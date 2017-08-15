@@ -341,9 +341,16 @@
 														id="imgTitle" placeholder="為您的照片輸入標題吧!" />
 													<textarea class="form-control" id="imgDesc" name="imgDesc"
 														placeholder="為您的照片輸入點故事吧!"></textarea>
-													<img class="img-responsive"
-														src="<%=request.getContextPath() %>/front_end/album/AImgReader.do?imgNo=${aImg.imgNo}"
-														alt="The awesome description">
+													<c:if test="<%=aImg.getImgExtName().startsWith(\"video\")%>">
+																<video controls class="img-responsive">
+																	<source src="<%=request.getContextPath() %>/front_end/album/AVideoReader.do?imgNo=${aImg.imgNo}"
+																		type="video/mp4" alt="您的瀏覽器不支援此撥放程式" >
+																</video>
+													</c:if>
+													<c:if test="<%=aImg.getImgExtName().startsWith(\"image\")%>">
+													
+													<img class="img-responsive" src="<%=request.getContextPath() %>/front_end/album/AImgReader.do?imgNo=${aImg.imgNo}" alt="The awesome description">
+													</c:if>											
 												</form>
 											</div>
 											<div class="modal-footer">
@@ -417,9 +424,15 @@
 												<h5 class="modal-title" id="myModalLabel">${aImg.imgDesc}</h4>
 											</div>
 											<div class="modal-body">
-												<img class="img-responsive"
-													src="<%=request.getContextPath() %>/front_end/album/AImgReader.do?imgNo=${aImg.imgNo}"
+												<c:if test="<%=aImg.getImgExtName().startsWith(\"video\")%>">
+													<video controls class="img-responsive">
+														<source src="<%=request.getContextPath() %>/front_end/album/AVideoReader.do?imgNo=${aImg.imgNo}" type="video/mp4" alt="您的瀏覽器不支援此撥放程式" >
+													</video>
+												</c:if>
+												<c:if test="<%=aImg.getImgExtName().startsWith(\"image\")%>">
+													<img class="img-responsive" src="<%=request.getContextPath() %>/front_end/album/AImgReader.do?imgNo=${aImg.imgNo}"
 													alt="The awesome description">
+												</c:if>
 											</div>
 										</div>
 									</div>

@@ -289,7 +289,7 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
 												<!-- 修改相簿Modal-->
 												<div class="modal fade" id="updateModal${s.index}"
 													role="dialog">
-													<div class="modal-dialog">
+													<div class="modal-dialog modal-lg">
 
 														<!-- Modal content-->
 														<div class="modal-content">
@@ -305,16 +305,15 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
 																	<input type='hidden' name='albumNo'
 																		value='${album.albumNo}'> <input type="text"
 																		class="form-control" name="albumTitle" id="albumTitle"
-																		value="${album.albumTitle}" placeholder="為您的相簿輸入標題吧!" />
+																		value="${album.albumTitle}" placeholder="為您的相簿輸入標題吧!"  required/>
 																</form>
 															</div>
 															<div class="modal-footer">
-																<button type="button" class="btn btn-default"
-																	data-dismiss="modal">取消</button>
-																<button type="button" class="btn btn-danger"
+																<button type="button" class="btn btn-primary"
 																	data-dismiss="modal" id='deletebtn'
 																	onclick="document.getElementById('updateAlbum${s.index}').submit();">送出</button>
-
+																<button type="button" class="btn btn-warning"
+																	data-dismiss="modal">取消</button>
 															</div>
 
 														</div>
@@ -341,12 +340,12 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
 																<p>刪除相簿後將無法復原，確定刪除嗎?</p>
 															</div>
 															<div class="modal-footer">
-																<button type="button" class="btn btn-default"
-																	data-dismiss="modal">取消</button>
+																<button type="button" class="btn btn-primary"
+																	data-dismiss="modal">刪除</button>
 
-																<button type="button" class="btn btn-danger"
+																<button type="button" class="btn btn-warning"
 																	data-dismiss="modal" id='deletebtn'
-																	onclick="document.getElementById('delete${s.index}').submit();">刪除</button>
+																	onclick="document.getElementById('delete${s.index}').submit();">取消</button>
 
 															</div>
 														</div>
@@ -380,7 +379,7 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
 				<!-- MODAL -->
 				<div class="modal fade" id="addAlbum" tabindex="-1" role="dialog"
 					aria-labelledby="exampleModalLabel" aria-hidden="true">
-					<div class="modal-dialog" role="document">
+					<div class="modal-dialog modal-lg" role="document">
 						<div class="modal-content">
 
 

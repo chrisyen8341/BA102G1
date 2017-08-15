@@ -164,7 +164,7 @@ public class AlbumC extends HttpServlet {
 			Map<String,String> errorMsgs = new LinkedHashMap<String,String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 			
-			System.out.println("222222222222222===================");
+	
 			/****************************** 1.接收請求參數 - 輸入格式的錯誤處理**********************/
 			Integer albumNo=null;
 			try{
@@ -195,7 +195,11 @@ public class AlbumC extends HttpServlet {
 			}
 			
 
-			//我還沒做錯誤處理 map還沒送回去
+			if(!errorMsgs.isEmpty()){
+				RequestDispatcher failView = req.getRequestDispatcher("/front_end/album/aImgShow.jsp?albumNo="+albumNo);
+				failView.forward(req, res);
+				return;
+			}
 
 			
 			/**************************** 2.修改完成,準備轉交(Send the Success view)*************/
@@ -206,7 +210,7 @@ public class AlbumC extends HttpServlet {
 			aImgSvc.updateAlbumImg(imgNo, albumNo, imgTitle, imgDesc, aImg.getImgCreatedTime(), currentTime, aImg.getImgFileName(), aImg.getImgExtName(), aImg.getImgFile());
 
 
-			System.out.println("=====================111111111111111======================");
+
 			
 			/**************************** 3.修改完成,準備轉交(Send the Success view)*************/
 			RequestDispatcher successView = req.getRequestDispatcher("/front_end/album/aImgShow.jsp?albumNo="+albumNo);
@@ -244,7 +248,11 @@ public class AlbumC extends HttpServlet {
 			
 
 
-			//我還沒做錯誤處理 map還沒送回去
+			if(!errorMsgs.isEmpty()){
+				RequestDispatcher successView = req.getRequestDispatcher("/front_end/album/albumShow.jsp");
+				successView.forward(req, res);
+				return;
+			}
 
 			
 			/**************************** 2.修改完成,準備轉交(Send the Success view)*************/

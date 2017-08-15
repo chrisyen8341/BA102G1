@@ -26,7 +26,7 @@ public class AlbumReader extends HttpServlet {
 			out.write(album.getAlbumImgFile());
 
 		} catch (Exception e) {
-			res.sendError(HttpServletResponse.SC_NOT_FOUND);
+
 		}
 	}
 

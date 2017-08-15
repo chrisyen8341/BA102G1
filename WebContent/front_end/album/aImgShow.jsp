@@ -179,8 +179,6 @@
 								<div class="row text-right" style="margin-right: 10px;">
 									<button type="button" class="btn btn-primary"
 										data-toggle="modal" data-target="#addAlbum">新增相片</button>
-									<button type="button" class="btn btn-primary"
-										data-toggle="modal" data-target="#addAlbum">編輯相片</button>
 								</div>
 
 
@@ -190,21 +188,23 @@
 								<!-- Add photo MODAL -->
 									<div class="modal fade" id="addAlbum" tabindex="-1"
 									role="dialog" aria-labelledby="exampleModalLabel"
-									aria-hidden="true">
-									<div class="modal-dialog" role="document">
+									aria-hidden="true"  style="height:80vh;width:100vw">
+									<div class="modal-dialog modal-lg" role="document">
 										<div class="modal-content">
 
 
 											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal">&times;</button>
 												<h4 class="modal-title">
 													<b>新增相片</b>
 												</h4>
 											</div>
-
+											
 											<input id="input-20" name="img" type="file"
 												class="file-loading" multiple>
-
+										
 										</div>
+										
 									</div>
 								</div>
 
@@ -320,9 +320,9 @@
 
 
 
-								<!-- 修改Modal-->
+<!-- 								修改Modal -->
 								<div class="modal fade" id="updateModal${s.index}" role="dialog">
-									<div class="modal-dialog">
+									<div class="modal-dialog modal-lg">
 
 										Modal content
 										<div class="modal-content">
@@ -338,28 +338,28 @@
 													<input type='hidden' name='imgNo' value='${aImg.imgNo}'>
 													<input type='hidden' name='albumNo' value='${aImg.albumNo}'>
 													<input type="text" class="form-control" name="imgTitle"
-														id="imgTitle" placeholder="為您的照片輸入標題吧!" />
+														id="imgTitle" placeholder="為您的照片輸入標題吧!" style="margin-top:15px" required/>
 													<textarea class="form-control" id="imgDesc" name="imgDesc"
-														placeholder="為您的照片輸入點故事吧!"></textarea>
+														placeholder="為您的照片輸入點故事吧!" style="margin-top:15px" required></textarea>
 													<c:if test="<%=aImg.getImgExtName().startsWith(\"video\")%>">
-																<video controls class="img-responsive">
+																<video controls class="img-responsive" style="margin-top:15px">
 																	<source src="<%=request.getContextPath() %>/front_end/album/AVideoReader.do?imgNo=${aImg.imgNo}"
 																		type="video/mp4" alt="您的瀏覽器不支援此撥放程式" >
 																</video>
 													</c:if>
 													<c:if test="<%=aImg.getImgExtName().startsWith(\"image\")%>">
 													
-													<img class="img-responsive" src="<%=request.getContextPath() %>/front_end/album/AImgReader.do?imgNo=${aImg.imgNo}" alt="The awesome description">
+													<img class="img-responsive" style="margin-top:10px" src="<%=request.getContextPath() %>/front_end/album/AImgReader.do?imgNo=${aImg.imgNo}" alt="The awesome description">
 													</c:if>											
 												</form>
 											</div>
 											<div class="modal-footer">
-												<button type="button" class="btn btn-default"
-													data-dismiss="modal">取消</button>
-												<button type="button" class="btn btn-danger"
-													data-dismiss="modal" id='deletebtn'
-													onclick="document.getElementById('updateImg${s.index}').submit();">送出</button>
 
+												<button type="button" class="btn btn-primary"
+													data-dismiss="modal" id='deletebtn'
+													onclick="document.getElementById('updateImg${s.index}').submit();">修改</button>
+												<button type="button" class="btn btn-warning"
+													data-dismiss="modal">取消</button>
 											</div>
 
 										</div>
@@ -391,12 +391,12 @@
 												<p>刪除相片後將無法復原，確定刪除嗎?</p>
 											</div>
 											<div class="modal-footer">
-												<button type="button" class="btn btn-default"
-													data-dismiss="modal">取消</button>
+												<button type="button" class="btn btn-primary"
+													data-dismiss="modal">刪除</button>
 
-												<button type="button" class="btn btn-danger"
+												<button type="button" class="btn btn-warning"
 													data-dismiss="modal" id='deletebtn'
-													onclick="document.getElementById('delete${s.index}').submit();">刪除</button>
+													onclick="document.getElementById('delete${s.index}').submit();">取消</button>
 
 											</div>
 										</div>

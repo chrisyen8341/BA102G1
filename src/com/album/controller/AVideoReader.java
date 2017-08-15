@@ -23,7 +23,6 @@ public class AVideoReader extends HttpServlet {
 		res.setBufferSize(1024*1024);
 		res.setContentType("video/mp4");
 		ServletOutputStream out = res.getOutputStream();
-		System.out.print("come here");
 		try {
 			AlbumImg albumImg=albumImgSvc.getOneAlbumImg(imgNo);
 			BufferedInputStream in = new BufferedInputStream(new ByteArrayInputStream(albumImg.getImgFile()));
@@ -34,7 +33,7 @@ public class AVideoReader extends HttpServlet {
 			}
 			in.close();
 		} catch (Exception e) {
-			res.sendError(HttpServletResponse.SC_NOT_FOUND);
+
 		}
 	}
 

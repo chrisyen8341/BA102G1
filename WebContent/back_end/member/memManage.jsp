@@ -23,7 +23,7 @@
 	<div class="container-fluid">
 		<div class="row">
 
-			<%@ include file="../memLSide.file"%>
+			<%@ include file="/back_end/memLSide.file"%>
 
 			<div class="col-xs-12 col-sm-8">
 

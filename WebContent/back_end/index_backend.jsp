@@ -66,8 +66,7 @@
 				<div class="nav collapse navbar-collapse navbar-right" id="login">
 					<ul class="nav navbar-nav">
 						<c:if test="${emp!=null}">
-							<li><a
-								href="<%=request.getContextPath()%>/back_end/emp/EmpLogout.do">管理員登出</a></li>
+							<li><a data-toggle="modal" data-target="#logout">管理員登出</a></li>
 						</c:if>
 						<c:if test="${emp==null}">
 							<li><a
@@ -103,10 +102,10 @@
 								test="<%=(((List) pageContext.getAttribute(\"auth\")).contains(4001))%>">
 								<%-- 						<% if (((List)pageContext.getAttribute("auth")).contains(1)) {%> --%>
 								<a href="#" class="list-group-item" data-toggle="collapse"
-									data-target="#sm1" data-parent="#menu">前端看板管理 <span
+									data-target="#sm1" data-parent="#menu">關於我們 <span
 									class="glyphicon glyphicon-triangle-bottom pull-right"></span></a>
 								<div id="sm1" class="sublinks collapse">
-									<a href="#" class="list-group-item small"> 幻燈片管理</a> <a
+									<a href="#" class="list-group-item small"> 常見問答管理</a> <a
 										href="#" class="list-group-item small"> 最新消息管理</a>
 								</div>
 								<%-- 						<% } %> --%>
@@ -224,7 +223,31 @@
 
 				</div>
 
+		<!-- 登出MODAL -->
+		<div class="modal fade" id="logout" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h3 class="modal-title" id="exampleModalLabel">是否確定登出?</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+						</button>
+					</div>
+					<div class="modal-footer">
+						<span>
 
+							<form action="<%=request.getContextPath()%>/back_end/emp/EmpLogout.do" method="post">
+								<input type="submit" class="btn btn-primary" value="是">
+								<button type="button" class="btn btn-warning"
+									data-dismiss="modal">否</button>
+							</form>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
 
 
 			</div>

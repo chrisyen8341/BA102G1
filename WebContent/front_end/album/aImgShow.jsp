@@ -179,8 +179,17 @@
 								<div class="row text-right" style="margin-right: 10px;">
 									<button type="button" class="btn btn-primary"
 										data-toggle="modal" data-target="#addAlbum">新增相片</button>
+									<a href="<%=request.getContextPath() %>/front_end/album/albumShow.jsp">
+									<button type="button" class="btn btn-primary"
+										onclick="document.getElementById('updateImg${s.index}').submit();">返回相簿</button>
+									</a>	
+<!-- 									<div style="display:none;"> -->
+<!-- 									<form method="post"> -->
+<!-- 										<input type="hidden" name="" value=""> -->
+<!-- 									</form> -->
+<!-- 									</div> -->
 								</div>
-
+								
 
 
 

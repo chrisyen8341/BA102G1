@@ -86,8 +86,11 @@ pageContext.setAttribute("petKind", petKind);
 
 
 			<div id="map_canvas"></div>
-
-
+			<img id="img0" src="">
+			<img id="img1" src="">
+			<img id="img2" src="">
+			<img id="img3" src="">
+			<img id="img4" src="">
 
 
 
@@ -253,6 +256,14 @@ pageContext.setAttribute("petKind", petKind);
 				
 				  marker.addListener('mouseover', function() {
 					    console.log(props.dateItemNo);
+					    var l=props.dateItemNo.lastIndexOf(",");
+					    var d=props.dateItemNo.substring(0,l);
+					    var s=d.split(',');
+					    for (var i = 0; i < s.length; i++){
+					    console.log(s[i]);
+					    $("#img"+i).attr('src',"ImgReader?dateItemNo="+s[i]+"&action=dateImg" );
+					    }
+					    //$("#img1").attr('src',"ImgReader?dateItemNo="+s[0]+"&action=dateImg" );
 					  });
 				
 				

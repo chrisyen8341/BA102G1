@@ -23,6 +23,7 @@ import com.pet.model.Pet;
 import com.pet.model.PetJDBCDAO;
 
 import jdbc.util.CompositeQuery.jdbcUtil_CompositeQuery_Emp2;
+import jdbc.util.CompositeQuery.jdbcUtil_CompositeQuery_Member;
 
 public class MemberDAO implements MemberDAO_interface {
 
@@ -724,7 +725,7 @@ public class MemberDAO implements MemberDAO_interface {
 			
 			con = ds.getConnection();
 			String finalSQL = "select * from member where memstatus = 0 "
-		          + jdbcUtil_CompositeQuery_Emp2.get_WhereCondition(map)
+		          + jdbcUtil_CompositeQuery_Member.get_WhereCondition(map)
 		          + "order by memno";
 			pstmt = con.prepareStatement(finalSQL);
 			System.out.println("¡´¡´finalSQL(by DAO) = "+finalSQL);

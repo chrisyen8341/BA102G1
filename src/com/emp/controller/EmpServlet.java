@@ -129,7 +129,7 @@ public class EmpServlet extends HttpServlet {
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
-			
+			Emp empVO=null;
 			String requestURL = req.getParameter("requestURL"); // 送出修改的來源網頁路徑: 可能為【/emp/listAllEmp.jsp】 或  【/dept/listEmps_ByDeptno.jsp】 或 【 /dept/listAllDept.jsp】 或 【 /emp/listEmps_ByCompositeQuery.jsp】
 		
 			try {
@@ -163,7 +163,7 @@ public class EmpServlet extends HttpServlet {
 				
 				
 
-				Emp empVO = new Emp();
+				empVO = new Emp();
 				empVO.setEmpNo(empNo);
 				empVO.setEmpName(empName);
 				empVO.setEmpJob(empJob);
@@ -195,12 +195,14 @@ public class EmpServlet extends HttpServlet {
 					req.setAttribute("listEmps_ByCompositeQuery",list); //  複合查詢, 資料庫取出的list物件,存入request
 				}
                 
+				req.setAttribute("empVO", empVO); // 含有輸入格式錯誤的empVO物件,也存入req
 				String url = requestURL;
 				RequestDispatcher successView = req.getRequestDispatcher(url);   // 修改成功後,轉交回送出修改的來源網頁
 				successView.forward(req, res);
  
 				/***************************其他可能的錯誤處理*************************************/
 			} catch (Exception e) {
+				req.setAttribute("empVO", empVO); // 含有輸入格式錯誤的empVO物件,也存入req
 				errorMsgs.add("修改資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
 						.getRequestDispatcher("/back_end/emp/update_emp_input.jsp");
@@ -232,7 +234,7 @@ public class EmpServlet extends HttpServlet {
 				/***************************3.刪除完成,準備轉交(Send the Success view)***********/
 
 				
-				if(requestURL.equals("/emp/listEmps_ByCompositeQuery.jsp")){
+				if(requestURL.equals("/back_end/emp/listEmps_ByCompositeQuery.jsp")){
 					HttpSession session = req.getSession();
 					Map<String, String[]> map = (Map<String, String[]>)session.getAttribute("map");
 					List<Emp> list  = empSvc.getAll(map);
@@ -240,6 +242,7 @@ public class EmpServlet extends HttpServlet {
 				}
 				
 				String url = requestURL;
+				System.out.println("123456");
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 刪除成功後,轉交回送出刪除的來源網頁
 				successView.forward(req, res);
 				

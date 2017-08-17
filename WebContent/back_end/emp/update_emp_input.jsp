@@ -114,7 +114,7 @@
 																<option value="協理" selected>協理</option>
 															</c:if>
 															<c:if test="${empVO.getEmpJob()!='協理'}">
-																<option value="總協理">協理</option>
+																<option value="協理">協理</option>
 															</c:if>
 
 

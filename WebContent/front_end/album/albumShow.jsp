@@ -340,13 +340,14 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
 																<p>刪除相簿後將無法復原，確定刪除嗎?</p>
 															</div>
 															<div class="modal-footer">
+																
+
 																<button type="button" class="btn btn-primary"
-																	data-dismiss="modal">刪除</button>
-
-																<button type="button" class="btn btn-warning"
 																	data-dismiss="modal" id='deletebtn'
-																	onclick="document.getElementById('delete${s.index}').submit();">取消</button>
-
+																	onclick="document.getElementById('delete${s.index}').submit();">刪除</button>
+																
+																<button type="button" class="btn btn-warning"
+																	data-dismiss="modal">取消</button>
 															</div>
 														</div>
 

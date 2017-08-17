@@ -99,9 +99,16 @@
 
 																<tr>
 																	<td class="title">會員姓別:</td>
-																	<td><input type="text" class="form-control"
-																		name="memGender" id="ememGender"
-																		placeholder="輸入會員姓別" /></td>
+<!-- 																	<td><input type="text" class="form-control" -->
+<!-- 																		name="memGender" id="ememGender" -->
+<!-- 																		placeholder="輸入會員姓別" /></td> -->
+																																		
+																<td><select class="form-control" id="sel1" name="memGender">
+																			<option value=""></option>
+																			<option value="0">男</option>
+																			<option value="1">女</option>
+																			<option value="2">不公開</option>
+																		</select></td>	
 																</tr>
 
 

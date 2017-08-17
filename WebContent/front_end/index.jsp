@@ -30,7 +30,7 @@
 
 <body>
 	<!-- Navigation -->
-	<%@ include file="indexNavBar.file"%>
+	<%@ include file="frontEndNavBar.file"%>
 	<!-- Header Carousel -->
 	<header id="myCarousel" class="carousel slide">
 		<!-- Indicators -->
@@ -170,32 +170,7 @@
 		<hr>
 
 
-		<!-- MODAL -->
-		<div class="modal fade" id="logout" tabindex="-1" role="dialog"
-			aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h3 class="modal-title" id="exampleModalLabel">是否確定登出?</h5>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-footer">
-						<span>
 
-							<form action="<%=request.getContextPath() %>/Update" method="post">
-								<input type="hidden" name="action" value="logout">
-								<button type="button" class="btn btn-secondary"
-									data-dismiss="modal">否</button>
-								<input type="submit" class="btn btn-primary" value="是">
-							</form>
-						</span>
-					</div>
-				</div>
-			</div>
-		</div>
 
 		<!-- Footer -->
 		<footer>
@@ -211,11 +186,7 @@
 			</div>
 		</footer>
 	</div>
-	<a href="#">
-		<div class="" id="fixedbutton-talk">
-			<button class="button btn-lg btn-primary active">交易聊天室</button>
-		</div>
-	</a>
+
 	<!-- /.container -->
 	<!-- jQuery -->
 	<script src="js/jquery.js"></script>

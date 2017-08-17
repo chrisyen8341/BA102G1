@@ -2,10 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.emp.model.*"%>
-<%
-	List<Integer> auth = (List<Integer>) session.getAttribute("auth");
-	pageContext.setAttribute("auth", auth);
-%>
+
 
 <jsp:useBean id="listMembers_ByCompositeQuery" scope="request"
 	type="java.util.List" />
@@ -27,12 +24,12 @@
 
 
 
-	<%@ include file="memNav.file"%>
+	<%@ include file="/back_end/backEndNavBar.file"%>
 
 	<div class="container-fluid">
 		<div class="row">
 
-			<%@ include file="../memLSide.file"%>
+			<%@ include file="/back_end/backEndLSide.file"%>
 
 			<div class="col-xs-12 col-sm-8">
 

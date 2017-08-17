@@ -154,7 +154,7 @@
 </head>
 
 <body>
-	<%@ include file="memNavBar.file"%>
+	<%@ include file="/front_end/frontEndNavBar.file"%>
 	<div class="container-fluid">
 		<div class="row">
 
@@ -470,12 +470,12 @@
 
 
 
-			<%@ include file="memButtom.file"%>
+			
 
 
 		</div>
 	</div>
-
+<%@ include file="/front_end/frontEndButtom.file"%>
 
 	<script>
 		$("#input-20").fileinput({

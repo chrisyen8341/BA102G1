@@ -52,7 +52,7 @@ pageContext.setAttribute("rests", rests);
 
 
 
-<%@ include file="nav.file"%>
+<%@ include file="/front_end/frontEndNavBar.file"%>
 <%@ include file="sidelist.file"%>
 
 

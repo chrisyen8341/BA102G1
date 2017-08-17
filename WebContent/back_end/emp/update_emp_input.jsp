@@ -8,9 +8,9 @@
 <%
 	Emp empVO = (Emp) request.getAttribute("empVO");
 	List<Integer> authForUpdate=(List<Integer>)request.getAttribute("auth");
-	List<Integer> auth = (List<Integer>) session.getAttribute("auth");
+// 	List<Integer> auth = (List<Integer>) session.getAttribute("auth");
 	pageContext.setAttribute("empVO", empVO);
-	pageContext.setAttribute("auth", auth);
+	//pageContext.setAttribute("auth", auth);
 	pageContext.setAttribute("authForUpdate", authForUpdate);
 %>
 <head>
@@ -21,12 +21,12 @@
 
 <body>
 
-	<%@ include file="empNav.file"%>
+	<%@ include file="/back_end/backEndNavBar.file"%>
 
 	<div class="container-fluid">
 		<div class="row">
 
-			<%@ include file="empLSide.file"%>
+			<%@ include file="/back_end/backEndLSide.file"%>
 
 			<div class="col-xs-12 col-sm-8">
 

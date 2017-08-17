@@ -24,7 +24,7 @@
 <body>
 
 	<!-- Navigation -->
-	<%@ include file="memNavBar.file"%>
+	<%@ include file="/front_end/frontEndNavBar.file"%>
 
 
 
@@ -77,24 +77,8 @@
 		</div>
 
 
-
-
-
-		<!-- Footer -->
-		<footer class="footer navbar-fixed-bottom">
-			<div class="row">
-				<div class="col-sm-12">
-					<div class="col-sm-3">
-						<p>Copyright 寵物You&amp;Me 2017</p>
-					</div>
-					<div class="col-sm-3">
-						<p>關於我們</p>
-					</div>
-				</div>
-			</div>
-		</footer>
 	</div>
-
+<%@ include file="/front_end/frontEndButtomFixed.file"%>
 	<!-- /.container -->
 	<!-- jQuery -->
 	<script src="<%=request.getContextPath()%>/front_end/js/jquery.js"></script>

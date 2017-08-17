@@ -17,16 +17,16 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="#">約會商品</a></li>
-					<li><a href="#">商城</a></li>
-					<li><a href="#">活動</a></li>
-					<li><a href="#">寵物日誌</a></li>
+					<li><a href="<%=request.getContextPath() %>/front_end/dateitem/select_page.jsp">約會商品</a></li>
+					<li><a href="<%=request.getContextPath() %>/front_end/product/BrowseProduct.jsp">商城</a></li>
+					<li><a href="<%=request.getContextPath()%>/front_end/activityFront/activityIndex.jsp">活動</a></li>
+					<li><a href="<%=request.getContextPath()%>/front_end/diary/diary.jsp">寵物日誌</a></li>
 				</ul>
 				<div class="nav collapse navbar-collapse navbar-right" id="login">
 					<ul class="nav navbar-nav">
-						<li><a href="#">購物車</a></li>
-						<li><a href="#">站內信</a></li>
-						<li><a href="memberInfo.jsp">會員專區</a></li>
+						<li><a href="<%=request.getContextPath() %>/front_end/product/Cart.jsp">購物車</a></li>
+						<li><a href="<%=request.getContextPath()%>/front_end/letter/index_letter.jsp">站內信</a></li>
+						<li><a href="<%=request.getContextPath() %>/front_end/member/memberInfo.jsp">會員專區</a></li>
 						<c:if test="${member==null}">
 						<li><a href="<%=request.getContextPath() %>/front_end/member/login.jsp">登入</a></li>
 						</c:if>
@@ -39,6 +39,13 @@
 			</div>
 			<!-- /.navbar-collapse -->
 		</div>
-		<!-- /.container -->
 
+		
+		
+
+
+		
+		
+		
+		
 	</nav>

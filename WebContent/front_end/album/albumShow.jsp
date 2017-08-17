@@ -187,7 +187,7 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
 </head>
 
 <body>
-	<%@ include file="memNavBar.file"%>
+	<%@ include file="/front_end/frontEndNavBar.file"%>
 	<div class="container-fluid">
 		<div class="row">
 
@@ -415,12 +415,12 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
 
 
 
-				<%@ include file="memButtom.file"%>
+				
 
 
 			</div>
 		</div>
-
+<%@ include file="/front_end/frontEndButtom.file"%>
 
 		<script>
 			$(document).on('ready', function() {

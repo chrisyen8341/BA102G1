@@ -7,8 +7,7 @@
 <%
 	Emp emp = (Emp) request.getAttribute("emp");
 	pageContext.setAttribute("emp", emp);
-	List<Integer> auth = (List<Integer>) session.getAttribute("auth");
-	pageContext.setAttribute("auth", auth);
+
 %>
 <head>
 
@@ -18,12 +17,12 @@
 </head>
 
 <body>
-	<%@ include file="memNav.file"%>
+	<%@ include file="/back_end/backEndNavBar.file"%>
 
 	<div class="container-fluid">
 		<div class="row">
 
-			<%@ include file="/back_end/memLSide.file"%>
+			<%@ include file="/back_end/backEndLSide.file"%>
 
 			<div class="col-xs-12 col-sm-8">
 

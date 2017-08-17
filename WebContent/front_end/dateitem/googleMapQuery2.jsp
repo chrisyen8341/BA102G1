@@ -34,7 +34,7 @@ pageContext.setAttribute("list", list);
 
 
 
-	<%@ include file="nav.file"%>
+	<%@ include file="/front_end/frontEndNavBar.file"%>
 	<%@ include file="sidelist.file"%>
 
 	<%-- <%@ include file="page3.file"%>	 --%>

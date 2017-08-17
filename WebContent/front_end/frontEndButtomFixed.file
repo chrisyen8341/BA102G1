@@ -1,5 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="BIG5"%>
-		<!-- MODAL -->
+
+		
+		<!-- 登出MODAL -->
 		<div class="modal fade" id="logout" tabindex="-1" role="dialog"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
@@ -25,10 +27,8 @@
 				</div>
 			</div>
 		</div>
-		
 
 
-				<div class="postion-left-group-b">
 					<footer class="footer navbar-fixed-bottom">
 						<div class="row">
 							<div class="col-sm-12">
@@ -36,14 +36,9 @@
 									<p>Copyright 寵物You&amp;Me 2017</p>
 								</div>
 								<div class="col-sm-3">
-									<p>關於我們</p>
+									<p><a href="<%=request.getContextPath() %>/front_end/about_us/faq_user.jsp">F&Q</a></p>
 								</div>
 							</div>
 						</div>
 					</footer>
-				</div>
-				<a href="#">
-					<div class="" id="fixedbutton-talk">
-						<button class="button btn-lg btn-primary active">交易聊天室</button>
-					</div>
-				</a>
+	

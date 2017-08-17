@@ -37,7 +37,7 @@
 
 <body>
 	<!-- Navigation -->
-	<%@ include file="memNavBar.file"%>
+	<%@ include file="/front_end/frontEndNavBar.file"%>
 	<!-- Header Carousel -->
 
 
@@ -131,48 +131,10 @@
 		</div>
 
 
-		<!-- MODAL -->
-		<div class="modal fade" id="logout" tabindex="-1" role="dialog"
-			aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h3 class="modal-title" id="exampleModalLabel">是否確定登出?</h5>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-footer">
-						<span>
 
-							<form action="<%=request.getContextPath() %>/Update" method="post">
-								<input type="hidden" name="action" value="logout">
-								<button type="button" class="btn btn-secondary"
-									data-dismiss="modal">否</button>
-								<input type="submit" class="btn btn-primary" value="是">
-							</form>
-						</span>
-					</div>
-				</div>
-			</div>
-		</div>
 
-		<!-- Footer -->
-		<footer>
-			<div class="row">
-				<div class="col-sm-12">
-					<div class="col-sm-3">
-						<p>Copyright 寵物You&amp;Me 2017</p>
-					</div>
-					<div class="col-sm-3">
-						<p>關於我們</p>
-					</div>
-				</div>
-			</div>
-		</footer>
 	</div>
-	
+		<%@ include file="/front_end/frontEndButtom.file"%>
 	<!-- /.container -->
 	<!-- jQuery -->
 	<script src="https://code.jquery.com/jquery.js"></script>

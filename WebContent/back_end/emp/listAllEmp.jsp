@@ -8,8 +8,7 @@
 	EmpService empSvc = new EmpService();
 	List<Emp> list = empSvc.getAll();
 	pageContext.setAttribute("list", list);
-	List<Integer> auth = (List<Integer>) session.getAttribute("auth");
-	pageContext.setAttribute("auth", auth);
+
 %>
 
 
@@ -22,12 +21,12 @@
 
 
 
-	<%@ include file="empNav.file"%>
+	<%@ include file="/back_end/backEndNavBar.file"%>
 
 	<div class="container-fluid">
 		<div class="row">
 
-			<%@ include file="empLSide.file"%>
+			<%@ include file="/back_end/backEndLSide.file"%>
 
 			<div class="col-xs-12 col-sm-8">
 

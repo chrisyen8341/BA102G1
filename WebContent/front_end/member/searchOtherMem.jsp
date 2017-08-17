@@ -55,7 +55,7 @@
 </head>
 
 <body>
-	<%@ include file="memNavBar.file"%>
+	<%@ include file="/front_end/frontEndNavBar.file"%>
 	<div class="container-fluid">
 		<div class="row">
 
@@ -100,11 +100,13 @@
 				</div>
 
 
-				<%@ include file="memButtom.file"%>
+				
 
 
 			</div>
 		</div>
+
+		<%@ include file="/front_end/frontEndButtomFixed.file"%>
 		<script src="https://code.jquery.com/jquery.js"></script>
 		<script
 			src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>

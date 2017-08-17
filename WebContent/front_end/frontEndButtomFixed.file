@@ -18,9 +18,9 @@
 
 							<form action="<%=request.getContextPath() %>/Update" method="post">
 								<input type="hidden" name="action" value="logout">
-								<button type="button" class="btn btn-secondary"
-									data-dismiss="modal">§_</button>
 								<input type="submit" class="btn btn-primary" value="¬O">
+								<button type="button" class="btn btn-warning"
+									data-dismiss="modal">§_</button>
 							</form>
 						</span>
 					</div>

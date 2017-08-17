@@ -429,7 +429,7 @@ public class EmpDAO implements EmpDAO_interface{
 		try {
 			
 			con = ds.getConnection();
-			String finalSQL = "select * from emp "
+			String finalSQL = "select * from emp where empStatus = 0 "
 		          + jdbcUtil_CompositeQuery_Emp2.get_WhereCondition(map)
 		          + "order by empno";
 			pstmt = con.prepareStatement(finalSQL);

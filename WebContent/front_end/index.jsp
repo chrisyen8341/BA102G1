@@ -172,19 +172,7 @@
 
 
 
-		<!-- Footer -->
-		<footer>
-			<div class="row">
-				<div class="col-sm-12">
-					<div class="col-sm-3">
-						<p>Copyright 寵物You&amp;Me 2017</p>
-					</div>
-					<div class="col-sm-3">
-						<p>關於我們</p>
-					</div>
-				</div>
-			</div>
-		</footer>
+		<%@ include file="/front_end/frontEndButtom.file"%>
 	</div>
 
 	<!-- /.container -->

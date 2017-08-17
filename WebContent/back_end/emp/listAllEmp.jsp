@@ -107,10 +107,12 @@
 														</FORM>
 													</td>
 													<td>
-														<FORM METHOD="post"
+														<FORM METHOD="post" id="empSuspend${empVO.empNo}"
 															ACTION="<%=request.getContextPath()%>/back_end/emp/EmpServlet.do">
-															<input type="submit" value="刪除"> <input
-																type="hidden" name="empno" value="${empVO.empNo}">
+															<a href='#' data-toggle="modal" data-target="#deleteModal${empVO.empNo}"> 
+															<input type="button" value="停權"> 
+															</a>
+															<input type="hidden" name="empno" value="${empVO.empNo}">
 															<input type="hidden" name="requestURL"
 																value="<%=request.getServletPath()%>">
 															<!--送出本網頁的路徑給Controller-->
@@ -121,6 +123,41 @@
 														</FORM>
 													</td>
 												</tr>
+												
+												
+												
+												
+												<!-- 員工停權Modal-->
+												<div class="modal fade" id="deleteModal${empVO.empNo}"
+													role="dialog">
+													<div class="modal-dialog">
+
+														<!-- Modal content-->
+														<div class="modal-content">
+															<div class="modal-header">
+																<button type="button" class="close" data-dismiss="modal">&times;</button>
+																<h4 class="modal-title">員工停權</h4>
+															</div>
+															<div class="modal-body">
+																<p>確定停權嗎?</p>
+															</div>
+															<div class="modal-footer">
+
+
+																<button type="button" class="btn btn-primary"
+																	data-dismiss="modal" id='deletebtn'
+																	onclick="document.getElementById('empSuspend${empVO.empNo}').submit();">刪除</button>
+																
+																<button type="button" class="btn btn-warning" data-dismiss="modal">取消</button>
+															</div>
+														</div>
+
+													</div>
+												</div>
+												
+												
+												
+												
 											</c:forEach>
 										</table>
 										<%@ include file="pages/page2.file"%>

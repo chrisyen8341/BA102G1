@@ -31,8 +31,9 @@
 
 	<div class="container-fluid">
 		<div class="row">
-
-			<%@ include file="/back_end/backEndNavBar.file"%>
+		
+		<%@ include file="/back_end/backEndLSide.file"%>
+			
 
 			<div class="col-xs-12 col-sm-8">
 
@@ -110,9 +111,9 @@
 													<td>
 														<FORM METHOD="post" id="empSuspend${empVO.empNo}"
 															ACTION="<%=request.getContextPath()%>/back_end/emp/EmpServlet.do">
-<%-- 															<a href='#' data-toggle="modal" data-target="#deleteModal${empVO.empNo}">  --%>
-															<input type="submit" value="°±Åv"> 
-<!-- 															</a> -->
+															<a href='#' data-toggle="modal" data-target="#deleteModal${empVO.empNo}"> 
+															<input type="button" value="°±Åv"> 
+															</a>
 															<input type="hidden" name="empno" value="${empVO.empNo}">
 															<input type="hidden" name="requestURL"
 																value="<%=request.getServletPath()%>">

@@ -38,7 +38,7 @@ public class jdbcUtil_CompositeQuery_Emp2 {
 				String aCondition = get_aCondition_For_Oracle(key, value.trim());
 
 				if (count == 1)
-					whereCondition.append(" where " + aCondition);
+					whereCondition.append(" and " + aCondition);
 				else
 					whereCondition.append(" and " + aCondition);
 

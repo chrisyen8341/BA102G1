@@ -2,7 +2,6 @@ package com.orderlist.model;
 
 import java.util.List;
 
-import com.order.model.Ord;
 
 public interface OrderList_interface {
 	void add(OrderList ol);
@@ -10,4 +9,7 @@ public interface OrderList_interface {
 	void delete(int olNo);
 	OrderList findByPk(int olNo);
 	List<OrderList> getAll();
+	
+	//同時新增訂單與訂單清單-------------------------------------------
+    public void insert2 (OrderList ordList , java.sql.Connection con);
 }

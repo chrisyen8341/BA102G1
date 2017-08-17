@@ -10,4 +10,9 @@ public interface Product_interface {
 	void delete(int prodNo);
 	Product findByPk(int prodNo);
 	List<Product> getAll();
+	
+	//---------------------
+	List<Product> getAllByName(String name);
+	//---------------------
+	List<Product> getAllByType(String type);
 }

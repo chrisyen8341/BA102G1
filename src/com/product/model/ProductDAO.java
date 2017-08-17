@@ -2,6 +2,7 @@ package com.product.model;
 
 import java.sql.Blob;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,12 +27,13 @@ public class ProductDAO implements Product_interface{
 			e.printStackTrace();
 		}
 	}
-	private static final String INSERT_STMT = "INSERT INTO PRODUCT(PRODNO,PRODNAME,PRODPRICE,PRODIMG,PRODDESCPT,PRODADD,PRODOUT,PRODSTATE,PRODTYPE)"+ "VALUES(PROD_SQ.NEXTVAL,?,?,?,?,?,?,?,?)";
-	private static final String UPDATE_STMT = "UPDATE PRODUCT SET PRODNO = ?, PRODNAME = ?, PRODPRICE = ?,PRODIMG = ?,PRODDESCPT = ?PRODADD = ?PRODOUT = ?,PRODSTATE = ?,PRODTYPE = ? "
+	private static final String INSERT_STMT = "INSERT INTO PRODUCT(PRODNO,PRODNAME,PRODPRICE,PRODIMG,PRODDESCPT,PRODADD,PRODOUT,PRODSTATE,PRODTYPE)"+ "VALUES(PRODNO_SQ.NEXTVAL,?,?,?,?,?,?,?,?)";
+	private static final String UPDATE_STMT = "UPDATE PRODUCT SET PRODNO = ?, PRODNAME = ?, PRODPRICE = ?,PRODIMG = ?,PRODDESCPT = ?,PRODADD = ?,PRODOUT = ?,PRODSTATE = ?,PRODTYPE = ? "
 			+ "WHERE PRODNO =¡@?";
+	private static final String GET_ALL_BYTYPE = "SELECT * FROM PRODUCT WHERE PRODTYPE = ? AND PRODSTATE = ?";
 	private static final String DELETE_STMT = "DELETE FROM PRODUCT WHERE PRODNO = ?";
 	private static final String FIND_BY_PK = "SELECT * FROM PRODUCT WHERE PRODNO = ?";
-	private static final String GET_ALL = "SELECT * FROM PRODUCT";
+	private static final String GET_ALL = "SELECT * FROM PRODUCT WHERE PRODSTATE = ?";
 	@Override
 	public void add(Product prod) {
 		Connection con = null;
@@ -219,6 +221,120 @@ public class ProductDAO implements Product_interface{
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ALL);
+			pstmt.setInt(1, 0);
+			rs=pstmt.executeQuery();
+			while(rs.next()){
+				Product product=new Product();
+				product.setProdNo(rs.getInt("prodNo"));
+				product.setProdName(rs.getString("prodName"));
+				product.setProdPrice(rs.getInt("prodPrice"));
+				product.setProdImg(rs.getBytes("prodImg"));
+				product.setProdDescpt(rs.getString("prodDescpt"));
+				product.setProdAdd(rs.getDate("prodAdd"));
+				product.setProdOut(rs.getDate("prodOut"));
+				product.setProdState(rs.getInt("prodState"));
+				product.setProdType(rs.getString("prodType"));
+				productList.add(product);		
+			}
+			
+		}  catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally{
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return productList;
+	}
+
+	@Override
+	public List<Product> getAllByName(String name) {
+		List<Product> productList = new ArrayList<>();
+		PreparedStatement pstmt=null;
+		Connection con=null;
+		ResultSet rs=null;
+		
+		try {
+			con = ds.getConnection();
+			String SQL = "select * from product where prodname like '%" + name + "%'";
+			pstmt=con.prepareStatement(SQL);
+			rs=pstmt.executeQuery();
+			while(rs.next()){
+				Product product=new Product();
+				product.setProdNo(rs.getInt("prodNo"));
+				product.setProdName(rs.getString("prodName"));
+				product.setProdPrice(rs.getInt("prodPrice"));
+				product.setProdImg(rs.getBytes("prodImg"));
+				product.setProdDescpt(rs.getString("prodDescpt"));
+				product.setProdAdd(rs.getDate("prodAdd"));
+				product.setProdOut(rs.getDate("prodOut"));
+				product.setProdState(rs.getInt("prodState"));
+				product.setProdType(rs.getString("prodType"));
+				productList.add(product);		
+			}
+			
+		}  catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally{
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return productList;
+	}
+
+	@Override
+	public List<Product> getAllByType(String type) {
+		List<Product> productList = new ArrayList<>();
+		PreparedStatement pstmt=null;
+		Connection con=null;
+		ResultSet rs=null;
+		
+		try {
+			con = ds.getConnection();
+			pstmt=con.prepareStatement(GET_ALL_BYTYPE);
+			pstmt.setString(1, type);
+			pstmt.setInt(2, 0);
 			rs=pstmt.executeQuery();
 			while(rs.next()){
 				Product product=new Product();

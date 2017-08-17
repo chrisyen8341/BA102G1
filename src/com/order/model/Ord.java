@@ -2,7 +2,6 @@ package com.order.model;
 
 import java.io.Serializable;
 import java.sql.Date;
-
 public class Ord implements Serializable {
 	
 	
@@ -54,8 +53,8 @@ public class Ord implements Serializable {
 	public Date getOrdDate() {
 		return ordDate;
 	}
-	public void setOrdDate(Date ordDate) {
-		this.ordDate = ordDate;
+	public void setOrdDate(Date nowDate) {
+		this.ordDate = nowDate;
 	}
 	public Date getOrdCheck() {
 		return ordCheck;

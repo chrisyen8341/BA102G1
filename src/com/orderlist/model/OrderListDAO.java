@@ -4,12 +4,9 @@ import java.util.*;
 import java.sql.*;
 
 import javax.naming.Context;
-import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-
 import com.order.model.Ord;
-
 public class OrderListDAO implements OrderList_interface{
 	
 	private static DataSource ds;
@@ -24,6 +21,7 @@ public class OrderListDAO implements OrderList_interface{
 		}
 	}
 	private static final String INSERT_STMT = "INSERT INTO ORDERLIST(ORDNO,PRODNO,PROPRICE,PROQUA)"+ "VALUES(ORDNO_SQ.NEXTVAL,PRODNO_SQ.NEXTVAL,?,?)";
+	private static final String INSERT_STMT2 = "INSERT INTO ORDERLIST(ORDNO,PRODNO,PROPRICE,PROQUA)"+ "VALUES(?,?,?,?)";
 	private static final String UPDATE_STMT = "UPDATE ORDERLIST SET ORDNO = ?, PRODNO = ?, PROPRICE = ?, "
 			+ "PROQUA = ?WHERE ORDNO =　?";
 	private static final String DELETE_STMT = "DELETE FROM ORDERLIST WHERE ORDNO = ?";
@@ -240,6 +238,52 @@ public class OrderListDAO implements OrderList_interface{
 			}
 		}
 		return orderList;
+	}
+
+
+
+	@Override
+	public void insert2(OrderList ordList, Connection con) {
+		PreparedStatement pstmt = null;
+
+		try {
+
+     		pstmt = con.prepareStatement(INSERT_STMT2);
+
+     		pstmt.setInt(1, ordList.getOrdNo());
+			pstmt.setInt(2, ordList.getProdNo());
+			pstmt.setInt(3, ordList.getProPrice());
+			pstmt.setInt(4, ordList.getProQua());
+			
+			pstmt.executeUpdate();
+
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			if (con != null) {
+				try {
+					// 3●設定於當有exception發生時之catch區塊內
+					System.err.print("Transaction is being ");
+					System.err.println("rolled back-由-ordList");
+					con.rollback();
+				} catch (SQLException excep) {
+					throw new RuntimeException("rollback error occured. "
+							+ excep.getMessage());
+				}
+			}
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+		}
+		
+		
 	}
 
 		

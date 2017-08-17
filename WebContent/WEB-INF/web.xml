@@ -16,6 +16,8 @@
   <filter-mapping>
     <filter-name>loginFilter</filter-name>
     <url-pattern>/front_end/member/memberInfo.jsp</url-pattern>
+    <url-pattern>/front_end/charge/chargePage.jsp</url-pattern>
+    <url-pattern>/front_end/product/OrderView.jsp</url-pattern>
     <dispatcher>REQUEST</dispatcher>
     <dispatcher>FORWARD</dispatcher>
     <dispatcher>INCLUDE</dispatcher>
@@ -27,4 +29,36 @@
     <servlet-class>com.context.PutMap</servlet-class>
     <load-on-startup>10</load-on-startup>
   </servlet>
+    <servlet>
+    <servlet-name>ShoppingCar</servlet-name>
+    <servlet-class>com.product.controller.ShoppingCar</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShoppingCar</servlet-name>
+    <url-pattern>/ShoppingCar.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ShoppingDetail</servlet-name>
+    <servlet-class>com.product.controller.ShoppingDetail</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShoppingDetail</servlet-name>
+    <url-pattern>/ShoppingDetail.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>CheckOut</servlet-name>
+    <servlet-class>com.product.controller.CheckOut</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CheckOut</servlet-name>
+    <url-pattern>/CheckOut.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>OrderView</servlet-name>
+    <servlet-class>com.order.controller.OrderView</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>OrderView</servlet-name>
+    <url-pattern>/OrderView.do</url-pattern>
+  </servlet-mapping>
 </web-app>

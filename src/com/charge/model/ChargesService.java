@@ -7,15 +7,15 @@ public class ChargesService {
 	private Charge_interface dao;
 
 	public ChargesService() {
-		dao = new ChargeJDBCDAO();
+		dao = new ChargeDAO();
 	}
 
-	public Charges addCharge(Integer chargeNo, Integer memNo, Integer chargeNum, Date applyTime, Integer chargeStatus,
+	public Charges addCharge(Integer memNo, Integer chargeNum, Date applyTime, Integer chargeStatus,
 			Integer payWay) {
 
 		Charges charge = new Charges();
 
-		charge.setChargeNo(chargeNo);
+		
 		charge.setMemNo(memNo);
 		charge.setChargeNum(chargeNum);
 		charge.setApplyTime(applyTime);

@@ -9,15 +9,15 @@ public class ProductService {
 	private Product_interface dao;
 
 	public ProductService() {
-		dao = new ProductJDBCDAO();
+		dao = new ProductDAO();
 	}
 
-	public Product addProduct(Integer prodNo, String prodName, Integer prodPrice, byte[] prodImg, String prodDescpt, Date prodAdd,
+	public Product addProduct(String prodName, Integer prodPrice, byte[] prodImg, String prodDescpt, Date prodAdd,
 			Date prodOut, Integer prodState, String prodType) {
 
 		Product product = new Product();
 
-		product.setProdNo(prodNo);
+
 		product.setProdName(prodName);
 		product.setProdPrice(prodPrice);
 		product.setProdImg(prodImg);
@@ -63,5 +63,11 @@ public class ProductService {
 
 	public List<Product> getAll() {
 		return dao.getAll();
+	}
+	public List<Product> getAllByName(String name) {
+		return dao.getAllByName(name);
+	}
+	public List<Product> getAllByType(String type) {
+		return dao.getAllByType(type);
 	}
 }

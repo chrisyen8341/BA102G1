@@ -1,5 +1,6 @@
 package com.orderlist.model;
 
+import java.sql.Connection;
 import java.sql.Date;
 import java.util.List;
 
@@ -9,7 +10,7 @@ public class OrderListService {
 	private OrderList_interface dao;
 
 	public OrderListService() {
-		dao = new OrderListJDBCDAO();
+		dao = new OrderListDAO();
 	}
 
 	public OrderList addOrderList(Integer ordNo, Integer prodNo, Integer proPrice, Integer proQua) {
@@ -40,7 +41,9 @@ public class OrderListService {
 	}
 	
 	
-
+	public void insert2(OrderList ordList, Connection con) {
+		dao.insert2(ordList, con);
+	}
 	public void deleteOrderList(Integer ordNo) {
 		dao.delete(ordNo);
 	}

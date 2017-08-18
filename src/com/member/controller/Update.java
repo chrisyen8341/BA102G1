@@ -281,10 +281,11 @@ public class Update extends HttpServlet {
 				if (part.getName().equals("memImg") && getFileNameFromPart(part) != null) {
 					memImg = getPictureByteArrayNoChangeSize(part.getInputStream());
 				}
-//				if (getFileNameFromPart(part) != null && part.getName().equals("memImg")
-//						&& !(part.getContentType().startsWith("image"))) {
-//					errorMsgs.add("會員照片格式有誤");
-//				}
+				// if (getFileNameFromPart(part) != null &&
+				// part.getName().equals("memImg")
+				// && !(part.getContentType().startsWith("image"))) {
+				// errorMsgs.add("會員照片格式有誤");
+				// }
 			}
 
 			/****************** 有寵物會執行下方 *****************/
@@ -371,12 +372,19 @@ public class Update extends HttpServlet {
 				Member memberl = memSvc.getOneMemberById(memId);
 				session.setAttribute("member", memberl);
 				String location = (String) session.getAttribute("location");
-				if (location != null) {
-					session.removeAttribute("location");
-					res.sendRedirect(location);
-					return;
-				}
-				res.sendRedirect(req.getContextPath() + "/front_end/index.jsp");
+				String specialLocation=(String) session.getAttribute("specialLocation");
+				//如果不是特殊Login 用重導
+				
+			
+					if (location != null) {
+						session.removeAttribute("location");
+						res.sendRedirect(location);
+						return;
+					}
+					res.sendRedirect(req.getContextPath() + "/front_end/index.jsp");
+				
+	
+				
 			}
 
 		}
@@ -431,7 +439,7 @@ public class Update extends HttpServlet {
 			/*****************************
 			 * 1.接收請求參數 - 輸入格式的錯誤處理
 			 **********************/
-			Integer memNo=null;
+			Integer memNo = null;
 			try {
 				memNo = Integer.parseInt(req.getParameter("memNo"));
 			} catch (Exception e) {
@@ -455,8 +463,7 @@ public class Update extends HttpServlet {
 			failureView.forward(req, res);
 
 		}
-		
-		
+
 		// 忘記密碼
 		if ("forgetPwd".equals(action)) {
 			List<String> errorMsgs = new LinkedList<String>();
@@ -469,42 +476,33 @@ public class Update extends HttpServlet {
 				errorMsgs.add("請填寫Email");
 			}
 
-			Member memberf=memSvc.getMemberByEmail(memEmail);
-			if(memberf==null){
+			Member memberf = memSvc.getMemberByEmail(memEmail);
+			if (memberf == null) {
 				errorMsgs.add("查無此Email");
 			}
-			
+
 			if (!errorMsgs.isEmpty()) {
 				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/forgetPwd.jsp");
 				req.setAttribute("errorMsgs", errorMsgs);
 				failureView.forward(req, res);
 				return;// 程式中斷
 			}
-			
-			
-			
+
 			/*************************** 2.開始修改資料 *****************************************/
-			
-			String memPwd=memberf.getMemPwd();;
 
+			String memPwd = memberf.getMemPwd();
+			;
 
+			String subject = "Pet You&Me 忘記密碼通知";
 
+			java.util.Date current = new java.util.Date();
+			java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String c = sdf.format(current);
+			String messageText = "嗨! " + memberf.getMemName() + "您在" + c + "曾發送忘記帳號密碼請求。 " + "\n" + "您的帳號為 : "
+					+ memberf.getMemId() + "， 您的密碼為 : " + memPwd + "\n" + "如此請求並非由您發出，請至客服反映";
 
-		      
-		    String subject = "Pet You&Me 忘記密碼通知";
-		      
-		    java.util.Date current=new java.util.Date();
-		    java.text.SimpleDateFormat sdf=new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		    String c=sdf.format(current);
-		    String messageText = "嗨! " + memberf.getMemName()+"您在"+c+"曾發送忘記帳號密碼請求。 "+ "\n" 
-		    +"您的帳號為 : "+memberf.getMemId() + "， 您的密碼為 : " + memPwd + "\n"
-		    +"如此請求並非由您發出，請至客服反映"; 
-		       
-		    MailService mailService = new MailService();
-		    mailService.sendMail(memEmail, subject, messageText);
-			
-			
-			
+			MailService mailService = new MailService();
+			mailService.sendMail(memEmail, subject, messageText);
 
 			/***************************
 			 * 2.修改完成,準備轉交(Send the Success view)
@@ -516,7 +514,6 @@ public class Update extends HttpServlet {
 			failureView.forward(req, res);
 
 		}
-		
 
 	}
 
@@ -531,8 +528,7 @@ public class Update extends HttpServlet {
 		baos.close();
 		return baos.toByteArray();
 	}
-	
-	
+
 	public static byte[] getPictureByteArrayNoChangeSize(InputStream fis) throws IOException {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		byte[] buffer = new byte[8192];
@@ -545,7 +541,6 @@ public class Update extends HttpServlet {
 
 		return baos.toByteArray();
 	}
-	
 
 	public String getFileNameFromPart(Part part) {
 		String header = part.getHeader("content-disposition");

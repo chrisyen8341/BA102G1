@@ -29,7 +29,7 @@
 					<Img src="<%=request.getContextPath() %>/front_end/images/logo.png" height="250px" width="400px" />
 				</div>
 
-				<form class="" action="<%=request.getContextPath() %>/Update" method="post">
+				<form class="" 	action="<%=request.getContextPath() %>/Update"  method="post">
 
 
 					<div class="form-group">

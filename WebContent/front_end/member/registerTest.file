@@ -161,15 +161,18 @@ document.getElementById("memBday").setAttribute("max", today);
 
 		//信箱驗證
 		$("#memEmail").blur(function() {
-			if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($("#memEmail").val()))  
+			if ( /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test($("#memEmail").val()))  
 			{  
 				$("#memEmailShow").html("").css('color','green');
 				valids[6]=true;
+				console.log("456");
 			}  
 			else{
 				$("#memEmailShow").html("&nbsp;&nbsp;&nbsp;&nbsp;不合格的EMAIL").css('color','red');
 				valids[6]=false;
+				console.log("789");
 			} 
+			console.log("123");
 		});
 
 

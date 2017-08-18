@@ -231,7 +231,7 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
 
 														<div class="wrimagecard wrimagecard-topimage">
 															<a
-																href="<%=request.getContextPath() %>/front_end/album/aImgShow.jsp?albumNo=${album.albumNo}">
+																href="<%=request.getContextPath() %>/front_end/album/aImgShow2.jsp?albumNo=${album.albumNo}">
 
 																<img class="aImg" src="<%=request.getContextPath() %>/front_end/album/AlbumReader.do?albumNo=${album.albumNo}">
 

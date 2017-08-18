@@ -33,26 +33,29 @@ public class ShoppingCar extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");  
 		res.setContentType("text/html; charset=UTF-8");
+		HttpSession session=req.getSession();
 		PrintWriter out = res.getWriter();
 		HashMap proQua = new HashMap();	
 		String url = "front_end/product/Cart.jsp";
-		String delname = (req.getParameter("delname"));
-		
-		HttpSession session = req.getSession();
+
+		String delname = req.getParameter("delname");
+
 		Vector<Product> buylist = (Vector<Product>) session.getAttribute("shoppingcart");
 		Map<String,Integer> qtyMap = (Map<String,Integer>) session.getAttribute("qtyMap");
+		
 		
 		
 		//ProductService prodVo = new ProductService();
 		Product aprod = getProduct(req);
 		String action = req.getParameter("action").trim();
-		System.out.println(action);
+		
+		
+		System.out.println("action : "+action);
 		
 		if(!action.equals("checkout")) {
 			// 刪除購物車中的書籍
 			if(session.getAttribute("member")==null) {
 				RequestDispatcher rd = req.getRequestDispatcher("/front_end/member/login.jsp");
-//				session.setAttribute("location", req.getRequestURI());
 				rd.forward(req, res);
 				return;
 			}
@@ -132,6 +135,7 @@ public class ShoppingCar extends HttpServlet {
 		
 	private Product getProduct(HttpServletRequest req) throws UnsupportedEncodingException {
 		String name = req.getParameter("name");
+		System.out.println(name);
 		Integer price = new Integer(req.getParameter("price").trim());
 		Integer prodNo = new Integer(req.getParameter("prodno").trim());
 		Product pro = new Product();

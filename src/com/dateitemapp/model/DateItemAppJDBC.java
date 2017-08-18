@@ -1,7 +1,8 @@
-package com.diamsg.model;
+package com.dateitemapp.model;
 
-
+import java.sql.Clob;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,10 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-
-public class DiaMsgJDBC implements DiaMsgDAO_Interface{
+public class DateItemAppJDBC implements DateItemApp_Interface{
 
 	String driver = "oracle.jdbc.driver.OracleDriver";
 	String url = "jdbc:oracle:thin:@localhost:1521:XE";
@@ -20,32 +18,38 @@ public class DiaMsgJDBC implements DiaMsgDAO_Interface{
 	String passwd = "123456";
 	
 	private static final String INSERT = 
-			"INSERT INTO DIAMSG(DIAMSGNO, DIANO, MEMNO, DIAMSGTEXT, DIAMSGTIME, DIAMSGSTATE) VALUES(DIAMSG_SEQ.NEXTVAL ,?,?,?,?,?)";
+			"INSERT INTO DATEITEMAPP(APPNO, MEMNO, DATEITEMNO, APPTITLE, APPTEXT, APPDATE, APPSTATE)"+
+					"VALUES (DATEITEMAPP_SEQ.NEXTVAL,?,?,?,?,?,?)";
 	private static final String GETALL = 
-			"SELECT DIAMSGNO, DIANO, MEMNO, DIAMSGTEXT, DIAMSGTIME, DIAMSGSTATE FROM DIAMSG ORDER BY DIAMSGTIME";
+			"SELECT APPNO, MEMNO, DATEITEMNO, APPTITLE, APPTEXT, APPDATE, APPSTATE FROM DATEITEMAPP";
 	private static final String GETONE =
-			"SELECT DIAMSGNO, DIANO, MEMNO, DIAMSGTEXT, DIAMSGTIME, DIAMSGSTATE FROM DIAMSG WHERE DIAMSGNO = ? ";
+			"SELECT APPNO, MEMNO, DATEITEMNO, APPTITLE, APPTEXT, APPDATE, APPSTATE FROM DATEITEMAPP WHERE APPNO = ? ";
 	private static final String UPDATE =
-			"UPDATE DIAMSG SET DIAMSGTEXT=?, DIAMSGTIME=? WHERE DIAMSGNO=?";
+			"UPDATE DATEITEMAPP SET DATEITEMNO=?, APPTITLE=?, APPTEXT=?, APPDATE=?, APPSTATE=? WHERE APPNO=?";
 	private static final String DELETE=
-			"DELETE FROM DIAMSG WHERE DIAMSGNO=?";
+			"DELETE FROM DATEITEMAPP WHERE APPNO=?";	
+	
 	
 	@Override
-	public void insert(DiaMsg diaMsg) {
-		
+	public void insert(DateItemApp dateItemApp) {
+
 		Connection con = null;
 		PreparedStatement pstmt =null;
-		
+		Clob clob=null;
 		try{
 			Class.forName(driver);
 			con = DriverManager.getConnection(url,userid,passwd);
 			pstmt = con.prepareStatement(INSERT);			
+			clob =con.createClob();
+			clob.setString(1,dateItemApp.getAppText());
 			
-			pstmt.setInt(1, diaMsg.getDiaNo());
-			pstmt.setInt(2, diaMsg.getMemNo());
-			pstmt.setString(3, diaMsg.getDiaMsgText());
-			pstmt.setTimestamp(4, diaMsg.getDiaMsgTime());
-			pstmt.setInt(5, diaMsg.getDiaMsgState());
+			pstmt.setInt(1, dateItemApp.getMemNo());
+			pstmt.setInt(2, dateItemApp.getDateItemNo());
+			pstmt.setString(3, dateItemApp.getAppTitle());
+			pstmt.setClob(4, clob);
+			
+			pstmt.setDate(5, dateItemApp.getAppDate());
+			pstmt.setInt(6, dateItemApp.getAppState());
 			
 			pstmt.executeUpdate();
 			
@@ -71,24 +75,32 @@ public class DiaMsgJDBC implements DiaMsgDAO_Interface{
 				}
 			}
 		}
+		
+		
 	}
 
 	@Override
-	public void update(DiaMsg diaMsg) {
+	public void update(DateItemApp dateItemApp) {
+
 		Connection con = null;
 		PreparedStatement pstmt =null;
-		
+		Clob clob=null;
 		
 		try{
 			Class.forName(driver);
 			con = DriverManager.getConnection(url,userid,passwd);
 			
 			pstmt = con.prepareStatement(UPDATE);	
+			clob =con.createClob();
+			clob.setString(1,dateItemApp.getAppText());
 			
+			pstmt.setInt(1, dateItemApp.getDateItemNo());
+			pstmt.setString(2, dateItemApp.getAppTitle());
+			pstmt.setClob(3, clob);
 			
-			pstmt.setString(1, diaMsg.getDiaMsgText());
-			pstmt.setTimestamp(2, diaMsg.getDiaMsgTime());
-			pstmt.setInt(3, diaMsg.getDiaMsgNo());
+			pstmt.setDate(4, dateItemApp.getAppDate());
+			pstmt.setInt(5, dateItemApp.getAppState());
+			pstmt.setInt(6, dateItemApp.getAppNo());
 			
 			pstmt.executeUpdate();
 			
@@ -118,7 +130,8 @@ public class DiaMsgJDBC implements DiaMsgDAO_Interface{
 	}
 
 	@Override
-	public void delete(Integer diaMsgNo) {
+	public void delete(Integer appNo) {
+		
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
@@ -128,7 +141,7 @@ public class DiaMsgJDBC implements DiaMsgDAO_Interface{
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(DELETE);
 			
-			pstmt.setInt(1, diaMsgNo);
+			pstmt.setInt(1, appNo);
 			
 			pstmt.executeUpdate();
 		}catch (ClassNotFoundException e) {
@@ -154,13 +167,13 @@ public class DiaMsgJDBC implements DiaMsgDAO_Interface{
 					e.printStackTrace(System.err);
 				}
 			}
-		}		
+		}
 	}
 
 	@Override
-	public DiaMsg findByPrimaryKey(Integer diaMsgNo) {
-		
-		DiaMsg diaMsg = null;
+	public DateItemApp findByPrimaryKey(Integer appNo) {
+
+		DateItemApp dateItemApp = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -171,26 +184,22 @@ public class DiaMsgJDBC implements DiaMsgDAO_Interface{
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(GETONE);
 
-			pstmt.setInt(1, diaMsgNo);
+			pstmt.setInt(1, appNo);
 
 			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
+			
+			while(rs.next()){
+				dateItemApp = new DateItemApp();
+				dateItemApp.setAppNo(rs.getInt("appno"));
+				dateItemApp.setMemNo(rs.getInt("memno"));
+				dateItemApp.setDateItemNo(rs.getInt("dateitemno"));
+				dateItemApp.setAppTitle(rs.getString("apptitle"));
+				dateItemApp.setAppText(rs.getString("apptext"));
 				
-				diaMsg = new DiaMsg();
-				diaMsg.setDiaMsgNo(rs.getInt("diamsgno"));
-				System.out.println(rs.getInt("diamsgno"));
-				diaMsg.setDiaNo(rs.getInt("diano"));
-				diaMsg.setMemNo(rs.getInt("memno"));
-				diaMsg.setDiaMsgText(rs.getString("diamsgtext"));
-				diaMsg.setDiaMsgTime(rs.getTimestamp("diamsgdate"));
-				diaMsg.setDiaMsgState(rs.getInt("diamsgstate"));
-				
+				dateItemApp.setAppDate(rs.getDate("appdate"));
+				dateItemApp.setAppState(rs.getInt("appstate"));
 			}
-			
-			
-			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
+		}catch (ClassNotFoundException e) {
 			throw new RuntimeException("Couldn't load database driver. "
 					+ e.getMessage());
 			// Handle any SQL errors
@@ -221,16 +230,14 @@ public class DiaMsgJDBC implements DiaMsgDAO_Interface{
 				}
 			}
 		}
-		return diaMsg;
+		return dateItemApp;
 	}
 
 	@Override
-	public List<DiaMsg> getAll() {
-		
-	
-		List<DiaMsg> list = new ArrayList<DiaMsg>();
-		DiaMsg diaMsg = null;
-		
+	public List<DateItemApp> getAll() {
+
+		List<DateItemApp> list  = new ArrayList<DateItemApp>();
+		DateItemApp dateItemApp =null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -240,22 +247,21 @@ public class DiaMsgJDBC implements DiaMsgDAO_Interface{
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(GETALL);
-			rs = pstmt.executeQuery();	
+			rs = pstmt.executeQuery();
 			
-			while (rs.next()) {
+			while(rs.next()){
+				dateItemApp = new DateItemApp();
+				dateItemApp.setAppNo(rs.getInt("appno"));
+				dateItemApp.setMemNo(rs.getInt("memno"));
+				dateItemApp.setDateItemNo(rs.getInt("dateitemno"));
+				dateItemApp.setAppTitle(rs.getString("apptitle"));
+				dateItemApp.setAppText(rs.getString("apptext"));
 				
-				diaMsg = new DiaMsg();
-				diaMsg.setDiaMsgNo(rs.getInt("diamsgno"));
-				diaMsg.setDiaNo(rs.getInt("diano"));
-				diaMsg.setMemNo(rs.getInt("memno"));
-				diaMsg.setDiaMsgText(rs.getString("diamsgtext"));
-				diaMsg.setDiaMsgTime(rs.getTimestamp("diamsgdate"));
-				diaMsg.setDiaMsgState(rs.getInt("diamsgstate"));
-				list.add(diaMsg);
+				dateItemApp.setAppDate(rs.getDate("appdate"));
+				dateItemApp.setAppState(rs.getInt("appstate"));
+				list.add(dateItemApp);
 			}
-
-			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
+		}catch (ClassNotFoundException e) {
 			throw new RuntimeException("Couldn't load database driver. "
 					+ e.getMessage());
 			// Handle any SQL errors
@@ -286,88 +292,69 @@ public class DiaMsgJDBC implements DiaMsgDAO_Interface{
 				}
 			}
 		}
-			
 		return list;
 	}
 	
 	public static void main(String[] args) {
+
+		DateItemAppJDBC dao = new DateItemAppJDBC();
 		
-		DiaMsgJDBC dao =new DiaMsgJDBC();
-		
-		//insert
-//		DiaMsg diamsg = new DiaMsg();
-//		diamsg.setDiaNo(102);
-//		diamsg.setMemNo(222);
-//		diamsg.setDiaMsgText("哈哈好好看");
-//		diamsg.setDiaMsgTime(new java.sql.Timestamp(System.currentTimeMillis()));
-//		diamsg.setDiaMsgState(0);
+		//add
+//		DateItemApp dateitemapp = new DateItemApp();
+//		dateitemapp.setMemNo(5008);
+//		dateitemapp.setDateItemNo(4007);
+//		dateitemapp.setAppText("我好想肥家");
+//		dateitemapp.setAppTitle("今天星期五");
 //		
-//		dao.insert(diamsg);
-		
+//		dateitemapp.setAppDate( java.sql.Date.valueOf("2014-3-21"));
+//		dateitemapp.setAppState(0);
+//		dao.insert(dateitemapp);
 		
 		//update
-//		DiaMsg diamsg1 = new DiaMsg();
+//		DateItemApp dateitemapp = new DateItemApp();
+//		dateitemapp.setAppNo(60006);
+//		dateitemapp.setDateItemNo(4003);
+//		dateitemapp.setAppText("家");
+//		dateitemapp.setAppTitle("星期五");
 //		
-//		diamsg1.setDiaMsgText("哈哈哈哈哈哈");
-//		diamsg1.setDiaMsgTime(new java.sql.Timestamp(System.currentTimeMillis()));
-//		diamsg1.setDiaMsgNo(20018);
-//		
-//		dao.update(diamsg1);
-//		
+//		dateitemapp.setAppDate( java.sql.Date.valueOf("2012-3-5"));
+//		dateitemapp.setAppState(1);
+//		dao.update(dateitemapp);
+		
 		//delete
-//		dao.delete(20020);
+//		dao.delete(60006);
 		
-		
-		//query one
-//		DiaMsg diamsg = dao.findByPrimaryKey(20003);
-//		System.out.print(diamsg.getDiaMsgNo()+" ,");
-//		System.out.print(diamsg.getDiaNo()+" ,");
-//		System.out.print(diamsg.getMemNo()+" ,");
-//		System.out.print(diamsg.getDiaMsgText()+" ,");
-//		System.out.print(diamsg.getDiaMsgTime()+" ,");
-//		System.out.print(diamsg.getDiaMsgState());
-//		System.out.println("---------------------------------");
+		//query 1
+//		DateItemApp dateitemapp = dao.findByPrimaryKey(60003);
+//		System.out.print(dateitemapp.getAppNo()+" ,");
+//		System.out.print(dateitemapp.getMemNo()+" ,");
+//		System.out.print(dateitemapp.getDateItemNo()+" ,");
+//		System.out.print(dateitemapp.getAppTitle()+" ,");
+//		System.out.print(dateitemapp.getAppText()+" ,");
+//		System.out.print(dateitemapp.getAppDate()+" ,");
+//		
+//		System.out.print(dateitemapp.getAppState());
+//		System.out.println();
 		
 		
 		//query all
-		List<DiaMsg> list = dao.getAll();
-		for(DiaMsg diamsg:list){
-			System.out.print(diamsg.getDiaMsgNo()+" ,");
-			System.out.print(diamsg.getDiaNo()+" ,");
-			System.out.print(diamsg.getMemNo()+" ,");
-			System.out.print(diamsg.getDiaMsgText()+" ,");
-			System.out.print(diamsg.getDiaMsgTime()+" ,");
-			System.out.print(diamsg.getDiaMsgState());
-			System.out.println("---------------------------------");
+		List<DateItemApp> list = dao.getAll();
+		for(DateItemApp dateitemapp:list){
+			System.out.print(dateitemapp.getAppNo()+" ,");
+			System.out.print(dateitemapp.getMemNo()+" ,");
+			System.out.print(dateitemapp.getDateItemNo()+" ,");
+			System.out.print(dateitemapp.getAppTitle()+" ,");
+			System.out.print(dateitemapp.getAppText()+" ,");
+			System.out.print(dateitemapp.getAppDate()+" ,");
+			
+			System.out.print(dateitemapp.getAppState());
+			System.out.println();
 		}
 		
 		
+		
+		
 	}
+	
 
-	@Override
-	public List<DiaMsg> getAllMsgFromDia(Integer diaNo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Integer getCurrDiaMsgNo() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
-	
-	
-	
-	
-	
-	
 }
-
-	
-	
-	
-	
-	
-	

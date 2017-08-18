@@ -5,8 +5,8 @@ import java.sql.Timestamp;
 
 public class DiaMsg implements Serializable{
 	
-	private Integer diaMsgNO;
-	private Integer diaNO;
+	private Integer diaMsgNo;
+	private Integer diaNo;
 	private Integer memNo;
 	private String diaMsgText;
 	private Timestamp diaMsgTime;
@@ -14,17 +14,17 @@ public class DiaMsg implements Serializable{
 	
 	
 	
-	public Integer getDiaMsgNO() {
-		return diaMsgNO;
+	public Integer getDiaMsgNo() {
+		return diaMsgNo;
 	}
-	public void setDiaMsgNO(Integer diaMsgNO) {
-		this.diaMsgNO = diaMsgNO;
+	public void setDiaMsgNo(Integer diaMsgNo) {
+		this.diaMsgNo = diaMsgNo;
 	}
-	public Integer getDiaNO() {
-		return diaNO;
+	public Integer getDiaNo() {
+		return diaNo;
 	}
-	public void setDiaNO(Integer diaNO) {
-		this.diaNO = diaNO;
+	public void setDiaNo(Integer diaNo) {
+		this.diaNo = diaNo;
 	}
 	public Integer getMemNo() {
 		return memNo;

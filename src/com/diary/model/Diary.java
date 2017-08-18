@@ -6,64 +6,67 @@ import java.sql.Timestamp;
 
 public class Diary implements Serializable{
 	
-	private Integer diano;
-	private Integer memno;
-	private String dianame;
-	private String diatext;
-	private byte[] diaimg;
-	private Timestamp diacretime;
-	private Timestamp diamodtime;
-	private Integer diastate;
+	private Integer diaNo;
+	private Integer memNo;
+	private String diaName;
+	private String diaText;
+	private byte[] diaImg;
+	private Timestamp diaCreTime;
+	private Timestamp diaModTime;
+	private Integer diaState;
 	
 	
-	public Integer getDiano() {
-		return diano;
+	public Integer getDiaNo() {
+		return diaNo;
 	}
-	public void setDiano(Integer diano) {
-		this.diano = diano;
+	public void setDiaNo(Integer diaNo) {
+		this.diaNo = diaNo;
 	}
-	public Integer getMemno() {
-		return memno;
+	public Integer getMemNo() {
+		return memNo;
 	}
-	public void setMemno(Integer memno) {
-		this.memno = memno;
+	public void setMemNo(Integer memNo) {
+		this.memNo = memNo;
 	}
-	public String getDianame() {
-		return dianame;
+	public String getDiaName() {
+		return diaName;
 	}
-	public void setDianame(String dianame) {
-		this.dianame = dianame;
+	public void setDiaName(String diaName) {
+		this.diaName = diaName;
 	}
-	public String getDiatext() {
-		return diatext;
+	public String getDiaText() {
+		return diaText;
 	}
-	public void setDiatext(String diatext) {
-		this.diatext = diatext;
+	public void setDiaText(String diaText) {
+		this.diaText = diaText;
 	}
-	public byte[] getDiaimg() {
-		return diaimg;
+	public byte[] getDiaImg() {
+		return diaImg;
 	}
-	public void setDiaimg(byte[] diaimg) {
-		this.diaimg = diaimg;
+	public void setDiaImg(byte[] diaImg) {
+		this.diaImg = diaImg;
 	}
-	public Timestamp getDiacretime() {
-		return diacretime;
+	public Timestamp getDiaCreTime() {
+		return diaCreTime;
 	}
-	public void setDiacretime(Timestamp diacretime) {
-		this.diacretime = diacretime;
+	public void setDiaCreTime(Timestamp diaCreTime) {
+		this.diaCreTime = diaCreTime;
 	}
-	public Timestamp getDiamodtime() {
-		return diamodtime;
+	public Timestamp getDiaModTime() {
+		return diaModTime;
 	}
-	public void setDiamodtime(Timestamp diamodtime) {
-		this.diamodtime = diamodtime;
+	public void setDiaModTime(Timestamp diaModTime) {
+		this.diaModTime = diaModTime;
 	}
-	public Integer getDiastate() {
-		return diastate;
+	public Integer getDiaState() {
+		return diaState;
 	}
-	public void setDiastate(Integer diastate) {
-		this.diastate = diastate;
+	public void setDiaState(Integer diaState) {
+		this.diaState = diaState;
 	}
+	
+	
+	
 	
 	
 

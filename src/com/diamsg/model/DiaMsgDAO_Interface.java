@@ -10,5 +10,7 @@ public interface DiaMsgDAO_Interface {
 	public void delete(Integer diaMsgNo);
 	public DiaMsg findByPrimaryKey(Integer diaMsgNo);
 	public List<DiaMsg> getAll();
+	public List<DiaMsg> getAllMsgFromDia(Integer diaNo);
+	public Integer getCurrDiaMsgNo();
 
 }

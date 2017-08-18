@@ -56,7 +56,7 @@
                     <div class="panel panel-default text-center " >                   
                         <div class="">                             
                             <div class="panel-body">
-                            		${member.getMemNo()}								
+                        								
 									<c:forEach var="ltr" items="${letterSvc.getOneMem(member.getMemNo())}">				
 										<div class="row text-center" ">										
 											<a href='#modal-${ltr.letterNo}' data-toggle="modal" class="btn col-md-10" style="${ltr.letterState =='0' ? 'background-color:#e7e7e7;': 'background-color:white;'}">

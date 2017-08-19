@@ -228,7 +228,9 @@ public class Update extends HttpServlet {
 			String memPhone = req.getParameter("memPhone").trim();
 			String memAddress = req.getParameter("memAddress").trim();
 			String memEmail = req.getParameter("memEmail").trim();
-
+			String gRecaptchaResponse = req.getParameter("g-recaptcha-response");
+			boolean verify = VerifyRecaptcha.verify(gRecaptchaResponse);
+			
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 
@@ -319,7 +321,7 @@ public class Update extends HttpServlet {
 				}
 			}
 
-			if (!errorMsgs.isEmpty()) {
+			if (!errorMsgs.isEmpty()&&!verify) {
 				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/memberInfo.jsp");
 				req.setAttribute("errorMsgs", errorMsgs);
 				failureView.forward(req, res);

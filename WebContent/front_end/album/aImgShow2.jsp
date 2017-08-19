@@ -263,7 +263,10 @@
 																</a>
 																<div style="display: none;max-height: 600px;max-width: 400px;" id="video${s.index}">
 																<video controls style="max-height: 80%;max-width: 80%;margin: auto;">
-																	<source src="<%=request.getContextPath() %>/front_end/album/AVideoReader.do?imgNo=${aImg.imgNo}" type="video/mp4">
+																	<source 
+																	src="<%=request.getContextPath() %>/front_end/album/AVideoReader.do?imgNo=${aImg.imgNo}" 
+<%-- 																		src="${aImg.imgFile}" --%>
+																	type="video/mp4">
 																 </video>
 																</div>
 															</div>
@@ -274,11 +277,11 @@
 															test="<%=aImg.getImgExtName().startsWith(\"image\")%>">
 															<div class="thumbnail">
 																<a data-fancybox="gallery" href="<%=request.getContextPath() %>/front_end/album/AImgReader.do?imgNo=${aImg.imgNo}">
-																<img class="img-responsive"
+																<img class="img-responsive" 
 																	src="<%=request.getContextPath() %>/front_end/album/AImgReader.do?imgNo=${aImg.imgNo}"
 																	alt="The awesome description">
 																<div class="caption">
-																	<div class="clearfix"></div>
+																		<div class="clearfix"></div>
 																</div>
 																</a>
 															</div>

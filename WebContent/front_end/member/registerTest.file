@@ -11,8 +11,8 @@
 		//帳號驗證 AJAX確認帳號是否存在
 		$("#memId").blur($.fn.testMemId = function() {
 			var xmlhttp = new XMLHttpRequest();
-			var memid = $("#memId").val();
-			var url = "exist.jsp?memid=" + memid;
+			var memId = $("#memId").val();
+			var url = "<%=request.getContextPath() %>/front_end/member/RegisterExit.do?memId=" + memId+"&action=memId";
 			xmlhttp.onreadystatechange = function() {
 				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 					if (xmlhttp.responseText.trim() == "帳號長度需大於6"
@@ -160,19 +160,30 @@ document.getElementById("memBday").setAttribute("max", today);
 
 
 		//信箱驗證
-		$("#memEmail").blur(function() {
-			if ( /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test($("#memEmail").val()))  
-			{  
-				$("#memEmailShow").html("").css('color','green');
-				valids[6]=true;
-				console.log("456");
-			}  
-			else{
-				$("#memEmailShow").html("&nbsp;&nbsp;&nbsp;&nbsp;不合格的EMAIL").css('color','red');
-				valids[6]=false;
-				console.log("789");
-			} 
-			console.log("123");
+		$("#memEmail").blur($.fn.testMemEmail = function() {
+
+			var memEmail = $("#memEmail").val();
+			$.ajax({
+				url: '<%=request.getContextPath() %>/front_end/member/RegisterExit.do',
+				data: {
+					memEmail:$("#memEmail").val(),
+					action :"memEmail"			
+				},
+				success : function(responseText){
+						console.log(responseText);
+						if(responseText.trim() == "抱歉，Email格式不正確"
+						||responseText.trim() == "抱歉，此Email已經註冊過了"){
+							$("#memEmailShow").html(responseText).css('color','red');
+						}
+						else{
+							$("#memEmailShow").html("").css('color','green');
+							valids[6]=true;
+							console.log("2589");
+						}	
+					}
+						
+			});
+
 		});
 
 
@@ -276,11 +287,12 @@ document.getElementById("memBday").setAttribute("max", today);
 			$("#memPhone").val("0930456158");
 			$("#memAddress").val("台北市大安區101");
 			$("#memEmail").val("chrisyen@gmail.com");
+			$("#memEmail").testMemEmail();
 		});
 
 
 		$("#autoAddMemPet").click(function(){
-					$("#memId").val("chrisyen");
+			$("#memId").val("chrisyen");
 			$("#memId").testMemId();
 			$("#memSname").val("小顏");
 			$("#memPwd").val("p123456");

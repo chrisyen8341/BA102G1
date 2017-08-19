@@ -444,9 +444,12 @@ public class AlbumDAO implements AlbumDAO_interface {
 				albumImg.setImgDesc(rs.getString("imgDesc"));
 				albumImg.setImgCreatedTime(rs.getTimestamp("imgCreatedTime"));
 				albumImg.setImgModifiedTime(rs.getTimestamp("imgModifiedTime"));
-				albumImg.setImgFileName(rs.getString("imgFileName"));
+				albumImg.setImgFileName(rs.getString("imgFileName"));				
 				albumImg.setImgExtName(rs.getString("imgExtName"));
-				albumImg.setImgFile(rs.getBytes("imgFile"));
+				String imgExtName=rs.getString("imgExtName");
+				//if(!imgExtName.startsWith("video")){
+				//albumImg.setImgFile(rs.getBytes("imgFile"));
+				//}
 				set.add(albumImg);
 			}
 		}

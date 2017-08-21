@@ -458,7 +458,7 @@ public class Update extends HttpServlet {
 			/***************************
 			 * 2.修改完成,準備轉交(Send the Success view)
 			 *************/
-			RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/viewMemInfo.jsp");
+			RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/viewMemInfo2.jsp");
 
 			req.setAttribute("memNo", memNo);
 

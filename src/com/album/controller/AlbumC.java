@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Timestamp;
@@ -320,16 +321,21 @@ public class AlbumC extends HttpServlet {
 	}
 
 	public static byte[] getPictureByteArray(InputStream fis) throws IOException {
-		BufferedImage originalImage = ImageIO.read(fis);
-		int type = originalImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : originalImage.getType();
-		BufferedImage resizeImageJpg = resizeImage(originalImage, type);
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		ImageIO.write(resizeImageJpg, "jpg", baos);
-		baos.flush();
+		byte[] buffer = new byte[8192];
+		int i;
+		while ((i = fis.read(buffer)) != -1) {
+			baos.write(buffer, 0, i);
+		}
 		baos.close();
+		fis.close();
+
 		return baos.toByteArray();
 	}
 
+	
+	
+	
 	private static BufferedImage resizeImage(BufferedImage originalImage, int type) {
 		BufferedImage resizedImage = new BufferedImage(400, 300, type);
 		Graphics2D g = resizedImage.createGraphics();
@@ -339,6 +345,31 @@ public class AlbumC extends HttpServlet {
 		return resizedImage;
 	}
 
+	
+	
+	public static byte[] getPictureByteArrayNoChangeSize(File file) throws IOException {
+		FileInputStream fis = new FileInputStream(file);
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		byte[] buffer = new byte[8192];
+		int i;
+		while ((i = fis.read(buffer)) != -1) {
+			baos.write(buffer, 0, i);
+		}
+		baos.close();
+		fis.close();
+
+		return baos.toByteArray();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// 取出上傳的檔案名稱 (因為API未提供method,所以必須自行撰寫)
 	public String getFileNameFromPart(Part part) {
 		String header = part.getHeader("content-disposition");

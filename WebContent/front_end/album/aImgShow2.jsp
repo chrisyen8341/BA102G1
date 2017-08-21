@@ -502,7 +502,7 @@
 		});
 		
 		$('#input-20').on('filebatchuploadcomplete', function (event, data, previewId, index) {
-			top.location.href="<%=request.getContextPath()%>/front_end/album/aImgShow.jsp?albumNo=<%=albumNo%>";});
+			top.location.href="<%=request.getContextPath()%>/front_end/album/aImgShow2.jsp?albumNo=<%=albumNo%>";});
 	</script>
 
 

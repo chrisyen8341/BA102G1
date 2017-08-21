@@ -223,6 +223,7 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
 										<ul>
 
 											<c:forEach var="album" items="${albumSet}" varStatus="s">
+												
 
 
 												<div class="col-md-3 col-sm-3 col-xs-6">

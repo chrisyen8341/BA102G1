@@ -18,7 +18,7 @@ import java.util.List;
 public class ProductJDBCDAO implements Product_interface{
 	private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
 	private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
-	private static final String USER = "ppp";
+	private static final String USER = "petym";
 	private static final String PASSWORD = "123456";
 	
 	

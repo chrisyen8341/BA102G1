@@ -4,10 +4,13 @@
 <%@ page import="com.member.model.Member"%>
 <%@ page import="java.util.HashMap"%>
 <%@ page import="java.util.*"%>
+<%@ page import="com.pet.model.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%
 	request.setCharacterEncoding("UTF-8");
+	MemberService memSvc = new MemberService();
+
 
 	String search = (String) (request.getAttribute("search"));
 	if (search == null) {
@@ -26,18 +29,17 @@
 
 	List<Member> mlist = null;
 	if (type.equals("會員")) {
-		MemberService memSvc = new MemberService();
 		mlist = memSvc.getMembersByIdName(search);
 		System.out.println(mlist);
 		pageContext.setAttribute("mlist", mlist);
 	}
 
-	List<Pet> plist = null;
-	if (type.equals("寵物")) {
-		PetService petSvc = new PetService();
-		plist = petSvc.getPetsByName(search);
-		pageContext.setAttribute("plist", plist);
-	}
+	// 	List<Pet> plist = null;
+	// 	if (type.equals("寵物")) {
+	// 		PetService petSvc = new PetService();
+	// 		plist = petSvc.getPetsByName(search);
+	// 		pageContext.setAttribute("plist", plist);
+	// 	}
 %>
 <html lang="">
 
@@ -74,15 +76,6 @@
 	width: 70px; /* 設定 H1 的樣式*/
 }
 </STYLE>
-<style>
-.searchbtn {
-	height: 100%;
-}
-
-#custom-search-form {
-	margin-top: 100px
-}
-
 
 
 
@@ -205,9 +198,7 @@ hgroup h2.lead {
 	<div class="container-fluid">
 		<div class="row">
 
-			<div class="col-xs-12 col-sm-2 postion-left-group ">
-				<%@ include file="memZoneLSide.file"%>
-			</div>
+			<div class="col-xs-12 col-sm-2 postion-left-group "></div>
 
 
 
@@ -220,42 +211,7 @@ hgroup h2.lead {
 					<div class="panel panel-info">
 
 						<div class="panel-heading">
-							<div class="row">
 
-								<div class=col-sm-6>
-									<span>
-										<form id="custom-search-form"
-											action="<%=request.getContextPath()%>/Update" method="post"
-											class="form-search form-horizontal" style='display: inline;'>
-
-											<div class="input-group">
-												<div class="input-group-btn search-panel">
-													<button type="button"
-														class="btn btn-default dropdown-toggle"
-														data-toggle="dropdown">
-														<span id="search_concept">會員</span> <span class="caret"></span>
-													</button>
-													<ul class="dropdown-menu" role="menu">
-														<li><a href="#contains">會員</a></li>
-														<li class="divider"></li>
-														<li><a href="#its_equal">寵物</a></li>
-													</ul>
-												</div>
-												<input type="hidden" name="search_param" value="all"
-													id="search_param"> <input type="text"
-													class="form-control" name="search" placeholder="請輸入搜尋內容">
-												<input type="hidden" id="stype" name="type" value="會員">
-												<input type="hidden" name="action" value="search"> <span
-													class="input-group-btn"> <input type="submit"
-													class="btn btn-default searchbtn glyphicon glyphicon-search"
-													value="搜尋">
-
-												</span>
-											</div>
-										</form>
-									</span>
-								</div>
-							</div>
 						</div>
 
 						<div class="panel-body">
@@ -314,40 +270,41 @@ hgroup h2.lead {
 
 										<c:forEach var="member" items="${mlist}"
 											begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+											<%Member member=(Member)pageContext.getAttribute("member"); %>
 
-
-											<a href="<%=request.getContextPath() %>/Update?action=viewOtherMem&memNo=${member.memNo}">
-												 <div>
-												<article class="search-result row">
-													<div class="col-xs-12 col-sm-12 col-md-3">
-														<div class="thumbnail"><img 
-															src="<%=request.getContextPath() %>/front_end/member/MemImgReader2.do?memNo=${member.memNo}"
-															alt="Lorem ipsum" /></div>
-													</div>
-													<div class="col-xs-12 col-sm-12 col-md-2">
-														<ul class="meta-search">
-															<li><i class="glyphicon glyphicon-user"></i> <span>${member.memSname}</span></li>
-															<li><i class="glyphicon glyphicon-user"></i> <span>${member.memId}</span></li>
-															<%
-																String memGender = String.valueOf(member.getMemGender());
-																		HashMap mGender = (HashMap) application.getAttribute("mGender");
-															%>
-															<li><i class="glyphicon glyphicon-time"></i> <span><%=mGender.get(memGender)%></span></li>
-
-															<li><i class="glyphicon glyphicon-tags"></i> <span>${member.memBday}</span></li>
-														</ul>
-													</div>
-													<div class="col-xs-12 col-sm-12 col-md-7 excerpet">
-														<h3>
-															${member.memSname}的自我介紹
-														</h3>
-														<p>${member.memSelfintro}</p>
-														<span class="plus"><i
-																class="glyphicon glyphicon-plus"></i></span>
-													</div>
-													<span class="clearfix borda"></span>
-												</article>
+											<a
+												href="<%=request.getContextPath() %>/Update?action=viewOtherMem&memNo=${member.memNo}">
 												<div>
+													<article class="search-result row">
+														<div class="col-xs-12 col-sm-12 col-md-3">
+															<div class="thumbnail">
+																<img
+																	src="<%=request.getContextPath() %>/front_end/member/MemImgReader2.do?memNo=${member.memNo}"
+																	alt="Lorem ipsum" />
+															</div>
+														</div>
+														<div class="col-xs-12 col-sm-12 col-md-2">
+															<ul class="meta-search">
+																<li><i class="glyphicon glyphicon-user"></i> <span>${member.memSname}</span></li>
+																<li><i class="glyphicon glyphicon-user"></i> <span>${member.memId}</span></li>
+																<%
+																	String memGender = String.valueOf(member.getMemGender());
+																			HashMap mGender = (HashMap) application.getAttribute("mGender");
+																%>
+																<li><i class="glyphicon glyphicon-time"></i> <span><%=mGender.get(memGender)%></span></li>
+
+																<li><i class="glyphicon glyphicon-tags"></i> <span>${member.memBday}</span></li>
+															</ul>
+														</div>
+														<div class="col-xs-12 col-sm-12 col-md-7 excerpet">
+															<h3>${member.memSname}的自我介紹</h3>
+															<p>${member.memSelfintro}</p>
+															<span class="plus"><i
+																class="glyphicon glyphicon-plus"></i></span>
+														</div>
+														<span class="clearfix borda"></span>
+													</article>
+													<div>
 											</a>
 
 										</c:forEach>
@@ -473,27 +430,11 @@ hgroup h2.lead {
 
 
 		</div>
-<%-- <%@ include file="/front_end/frontEndButtomFixed.file"%> --%>
+		<%-- <%@ include file="/front_end/frontEndButtomFixed.file"%> --%>
 		<script src="https://code.jquery.com/jquery.js"></script>
 		<script
 			src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<script>
-			$(document).ready(function(e) {
-				$('.search-panel .dropdown-menu').find('a').click(function(e) {
-					e.preventDefault();
-					var param = $(this).attr("href").replace("#", "");
-					var concept = $(this).text();
-					$("#stype").val(concept);
-					console.log($("#stype").attr("value"));
-					$('.search-panel span#search_concept').text(concept);
-					$('.input-group #search_param').val(param);
-				});
-			});
 
-			$(function() {
-
-			});
-		</script>
 </body>
 
 </html>

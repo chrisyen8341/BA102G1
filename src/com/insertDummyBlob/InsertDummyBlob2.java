@@ -6,6 +6,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.imageio.ImageIO;
 
@@ -86,20 +88,20 @@ public class InsertDummyBlob2 {
     System.out.println("=============活動照片新增完畢================");
     
     
-	// 廣告圖片修改
-	int aa = 1;
-	for (File file : new File("WebContent/DummyImg/ad").listFiles()) {
-		AdJDBCDAO dao = new AdJDBCDAO();
-		Ad ad = dao.findByPrimaryKey(aa++);
-		try {
-			byte[] b = getPictureByteArray(file);
-			ad.setAdImg(b);
-			dao.update(ad);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	System.out.println("=============廣告圖片修改完了================");
+//	// 廣告圖片修改
+//	int aa = 1;
+//	for (File file : new File("WebContent/DummyImg/ad").listFiles()) {
+//		AdJDBCDAO dao = new AdJDBCDAO();
+//		Ad ad = dao.findByPrimaryKey(aa++);
+//		try {
+//			byte[] b = getPictureByteArray(file);
+//			ad.setAdImg(b);
+//			dao.update(ad);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//	}
+//	System.out.println("=============廣告圖片修改完了================");
 
 	// 幻燈片修改
 	int s = 1;
@@ -115,22 +117,43 @@ public class InsertDummyBlob2 {
 		}
 	}
 	System.out.println("=============幻燈片修改完了================");
+        
     
-	// 約會商品圖片修改
-	int di=4001;
-    for (File file : new File("WebContent/DummyImg/dateitem").listFiles()) { 
+	// 修改約會商品照片
+	//讀取約會商品照片延伸附檔名	
+	Set<String> dateSet=new HashSet<String>();	
+	for (File file : new File("WebContent/DummyImg/dateitem").listFiles()) { 
+		String fileName=file.getName();
+		String fileExtName=fileName.substring(fileName.lastIndexOf("."));
+		dateSet.add(fileExtName);
+	}	
+	
+
+    for (int i=4001;i<=4015;i++) { 
     	DateItemJDBCDAO dao=new DateItemJDBCDAO();
-    	DateItemVO dateItem=dao.findByPk(di++);
+    	String fileN=String.valueOf((i-4000));
+    	
+    	File file = null;	    	
+    	for(String fileExtName:dateSet){
+    		file=new File("WebContent/DummyImg/dateitem/"+fileN+fileExtName);
+    		if(file.exists()){
+    			break;
+    		}
+    	}
+    	
+    	DateItemVO date=dao.findByPk(i);
         try {
-			byte[] b = getPictureByteArrayNoChangeSize(file);
-			dateItem.setDateItemImg(b);
-			dao.update(dateItem);
+        	byte[] b = getPictureByteArrayNoChangeSize(file);
+        	date.setDateItemImg(b);
+			dao.update(date);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}    
     }
-    System.out.println("=============約會商品圖片修改================");   
-
+    System.out.println("=============約會商品新增完畢================");
+    
+    
+    
     
 	}
 

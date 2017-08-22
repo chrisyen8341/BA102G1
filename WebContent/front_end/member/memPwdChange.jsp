@@ -79,7 +79,7 @@
 							</div>
 							<div class="panel-body">
 								<form method="post"
-									action="<%=request.getContextPath()%>/Update">
+									action="<%=request.getContextPath()%>/front_end/member/member.do">
 									<div class="row">
 										<div class="col-md-3 col-lg-3 " align="center">
 											<img alt="User Pic" id="memPic"

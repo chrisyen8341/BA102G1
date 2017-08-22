@@ -55,7 +55,7 @@
 								<h3 class="panel-title">${member.memId}</h3>
 							</div>
 							<div class="panel-body">
-								<form method="post" action="<%=request.getContextPath() %>/Update" enctype="multipart/form-data">
+								<form method="post" action="<%=request.getContextPath() %>/front_end/member/member.do" enctype="multipart/form-data">
 									<div class="row">
 										<div class="col-md-3 col-lg-3 " align="center">
 											<img alt="User Pic" id="memPic" src="<%=request.getContextPath() %>/DBGifReader"

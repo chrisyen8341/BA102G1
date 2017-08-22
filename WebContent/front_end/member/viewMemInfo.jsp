@@ -14,6 +14,9 @@
 	MemberService memSvc = new MemberService();
 	Member memberV = memSvc.getOneMember(memNo);
 	pageContext.setAttribute("memberV", memberV);
+	Member member = (Member) session.getAttribute("member");
+	List<Pet> list = memSvc.getPetsByMemNo(memberV.getMemNo());
+	pageContext.setAttribute("list", list);
 %>
 
 <head>
@@ -23,12 +26,26 @@
 .pet {
 	margin-top: 50px;
 }
+
 .member {
 	margin-buttom: 100px;
 }
 
+#memeImg {
+	float: left;
+	padding: 20px;
+}
 
+/* #memSname { */
+/* 	float: right; */
+/* } */
 
+/* .content { */
+/* 	width: 300px; */
+/* 	height: 300px; */
+/* 	padding: 20px; */
+/* 	overflow: hidden; */
+/* } */
 </style>
 
 
@@ -39,106 +56,24 @@
 	<div class="container-fluid">
 		<div class="row">
 
-			<div class="col-xs-12 col-sm-2 postion-left-group ">
-
-
-				<div id="menu">
-					<div class="panel list-group list-color">
-						<a
-							href="<%=request.getContextPath() + "/front_end/member/memberInfo.jsp"%>"
-							class="list-group-item">個人資訊</a>
-						<%
-							Member member = (Member) session.getAttribute("member");
-							List<Pet> list = memSvc.getPetsByMemNo(member.getMemNo());
-							pageContext.setAttribute("list", list);
-						%>
-						<c:if test="${not empty list}">
-							<a
-								href="<%=request.getContextPath() + "/front_end/pet/petInfo.jsp"%>"
-								class="list-group-item">寵物資訊</a>
-						</c:if>
-						<c:if test="${empty list}">
-							<a
-								href="<%=request.getContextPath() + "/front_end/pet/petRegister.jsp"%>"
-								class="list-group-item">註冊寵物</a>
-						</c:if>
-						<a
-							href="<%=request.getContextPath() + "/front_end/member/memPwdChange.jsp"%>"
-							class="list-group-item">變更密碼</a> <a
-							href="<%=request.getContextPath() + "/front_end/member/searchOtherMem.jsp"%>"
-							class="list-group-item">搜尋會員</a> <a href="#"
-							class="list-group-item">相簿管理</a>
-					</div>
-				</div>
-
-
-			</div>
+			<div class="col-xs-12 col-sm-2 postion-left-group "></div>
 
 			<div class="col-xs-12 col-sm-8 ">
 				<div class="row">
 
-
-					<h5 class="page-header text-right">目前位置:會員專區</h5>
-
 					<div class="row">
 
 						<div class="panel panel-info">
+
 							<div class="panel-heading">
-								<h3 class="panel-title">${memberV.memId}</h3>
+	
+								<%@ include file="viewMemInfoTop.file"%>
+								
 							</div>
+
 							<div class="panel-body">
 								<div class="row">
 
-									<div class="row member">
-
-										<div class="col-md-3 col-lg-3 " align="center">
-											<img alt="User Pic" id="memImg"
-												src="<%=request.getContextPath()%>/DBGifReader"
-												height="350px" width="250px"
-												class="img-circle img-responsive">
-										</div>
-
-
-										<div class=" col-md-9 col-lg-9 ">
-											<table class="table table-user-information">
-												<tbody>
-													<tr>
-														<td class="title">暱稱</td>
-														<td>${memberV.memSname}</td>
-													</tr>
-													<tr>
-														<td class="title">性別</td>
-														<%
-															String memGender = String.valueOf(memberV.getMemGender());
-															HashMap mGender = (HashMap) application.getAttribute("mGender");
-														%>
-														<td><%=mGender.get(memGender)%></td>
-													</tr>
-													<tr>
-
-														<td class="title">感情</td>
-														<%
-															String memRelation = String.valueOf(memberV.getMemRelation());
-															HashMap mRelation = (HashMap) application.getAttribute("mRelation");
-														%>
-														<td><%=mRelation.get(memRelation)%></td>
-													</tr>
-													<tr>
-														<td class="title">粉絲</td>
-														<td>${memberV.memFollowed}人</td>
-													</tr>
-													<tr>
-														<td class="title">關於我</td>
-														<td>${memberV.memSelfintro}</td>
-													</tr>
-
-
-												</tbody>
-											</table>
-
-										</div>
-
-									</div>
 
 									<div>
 										<c:forEach var="pet" items="${list}" varStatus="s">
@@ -187,7 +122,7 @@
 												</div>
 											</div>
 										</c:forEach>
-								</div>
+									</div>
 
 
 								</div>

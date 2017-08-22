@@ -30,7 +30,7 @@
 				<li>
 				<span style="width:150px;">
 					
-					<form id="custom-search-form" action="<%=request.getContextPath()%>/Update" method="post"
+					<form id="custom-search-form" action="<%=request.getContextPath()%>/front_end/member/member.do" method="post"
 											class="form-search form-horizontal">
 
 											

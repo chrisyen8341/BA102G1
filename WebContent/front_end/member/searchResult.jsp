@@ -273,7 +273,7 @@ hgroup h2.lead {
 											<%Member member=(Member)pageContext.getAttribute("member"); %>
 
 											<a
-												href="<%=request.getContextPath() %>/Update?action=viewOtherMem&memNo=${member.memNo}">
+												href="<%=request.getContextPath() %>/front_end/member/member.do?action=viewOtherMem&memNo=${member.memNo}">
 												<div>
 													<article class="search-result row">
 														<div class="col-xs-12 col-sm-12 col-md-3">

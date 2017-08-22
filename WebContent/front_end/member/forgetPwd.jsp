@@ -38,7 +38,7 @@
 						height="250px" width="400px" />
 				</div>
 
-				<form class="" action="<%=request.getContextPath()%>/Update"
+				<form class="" action="<%=request.getContextPath()%>/front_end/member/member.do"
 					method="post">
 
 					<div class="row">

@@ -32,7 +32,7 @@ import com.member.model.MemberService;
 import com.pet.model.Pet;
 import com.pet.model.PetService;
 
-@WebServlet("/Update")
+@WebServlet("/front_end/member/member.do")
 @MultipartConfig
 public class Update extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -460,7 +460,7 @@ public class Update extends HttpServlet {
 			/***************************
 			 * 2.修改完成,準備轉交(Send the Success view)
 			 *************/
-			RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/viewMemInfo2.jsp");
+			RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/viewMemInfo.jsp");
 
 			req.setAttribute("memNo", memNo);
 

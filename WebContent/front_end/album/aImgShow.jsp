@@ -250,6 +250,7 @@
 														<c:if
 															test="<%=aImg.getImgExtName().startsWith(\"video\")%>">
 															<div class="thumbnail">
+																<a data-fancybox="gallery" class="fancybox" href="#video${s.index}" rel="gallery" data-caption="<h1>${aImg.imgTitle}</h1><<h3>${aImg.imgDesc}</h3>" >
 																<video controls class="img-responsive">
 																	<source
 																		src="<%=request.getContextPath() %>/front_end/album/AVideoReader.do?imgNo=${aImg.imgNo}"
@@ -259,6 +260,15 @@
 																<div class="caption">
 																	<div class="clearfix"></div>
 																</div>
+																</a>
+																<div style="display: none;max-height: 600px;max-width: 400px;" id="video${s.index}">
+																<video controls style="max-height: 80%;max-width: 80%;margin: auto;">
+																	<source 
+																	src="<%=request.getContextPath() %>/front_end/album/AVideoReader.do?imgNo=${aImg.imgNo}" 
+<%-- 																		src="${aImg.imgFile}" --%>
+																	type="video/mp4">
+																 </video>
+																</div>
 															</div>
 														</c:if>
 
@@ -266,13 +276,11 @@
 														<c:if
 															test="<%=aImg.getImgExtName().startsWith(\"image\")%>">
 															<div class="thumbnail">
-																<img class="img-responsive"
+																<a data-fancybox="gallery"  class="fancybox" rel="gallery" data-caption="<h1>${aImg.imgTitle}</h1><<h3>${aImg.imgDesc}</h3>"  href="<%=request.getContextPath() %>/front_end/album/AImgReader.do?imgNo=${aImg.imgNo}">
+																<img class="img-responsive" 
 																	src="<%=request.getContextPath() %>/front_end/album/AImgReader.do?imgNo=${aImg.imgNo}"
-																	alt="The awesome description" data-toggle="modal"
-																	data-target="#myModal${s.index}">
-																<div class="caption">
-																	<div class="clearfix"></div>
-																</div>
+																	alt="The awesome description">														
+																</a>					
 															</div>
 														</c:if>
 
@@ -492,6 +500,43 @@
 		
 		$('#input-20').on('filebatchuploadcomplete', function (event, data, previewId, index) {
 			top.location.href="<%=request.getContextPath()%>/front_end/album/aImgShow.jsp?albumNo=<%=albumNo%>";});
+	
+		
+		
+// 		$(document).ready(function() {
+// 			$(".fancybox").fancybox();
+// 			$(".fancybox").fancybox({
+// 				helpers : { 
+// 					    title : { type : 'inside' }
+// 					   }, // helpers
+	   
+// 			beforeLoad: function() {
+// 		        	console.log("This:"+$(this.element));
+// 		        	console.log('title:'+$(this.element).attr('title'));
+// 		        	console.log('Caption:'+$(this.element).attr('caption'));
+// 		            this.title = $(this.element).attr('title') + " - " + $(this.element).attr('data-caption');
+// 		        }
+// 		    });
+// 			console.log("test");
+// 		}); // ready
+		
+		
+		
+		$(document).ready(function() {
+			 $(".fancybox").fancybox({
+			  afterLoad: function(){
+			   this.title = $(this.element).next('.newTitle').html();
+			  },
+			  helpers: {
+			   title : {
+			    type : 'inside'
+			   }
+			  }
+			 }); // fancybox
+			 console.log($(this.element).next('.newTitle').html());
+			}); // ready
+		
+		
 	</script>
 
 

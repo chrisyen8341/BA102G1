@@ -24,7 +24,7 @@ import com.pet.model.Pet;
 import com.pet.model.PetService;
 
 
-@WebServlet("/petUpdate")
+@WebServlet("/front_end/pet/pet.do")
 @MultipartConfig
 public class petUpdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;

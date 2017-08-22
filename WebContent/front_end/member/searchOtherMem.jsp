@@ -66,7 +66,7 @@
 			<div class="col-xs-12 col-sm-8 ">
 				<div class="row">
 					
-						<form id="custom-search-form" action="<%=request.getContextPath() %>/Update" method="post" class="form-search form-horizontal pull-left">
+						<form id="custom-search-form" action="<%=request.getContextPath() %>/front_end/member/member.do" method="post" class="form-search form-horizontal pull-left">
 
 							<div class="input-group">
 								<div class="input-group-btn search-panel">

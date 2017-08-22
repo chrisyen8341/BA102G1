@@ -47,7 +47,7 @@
 
 			<div class="col-sm-6 col-sm-offset-3">
 
-				<form class="" action="<%=request.getContextPath() %>/petUpdate" method="post"
+				<form class="" action="<%=request.getContextPath() %>/front_end/pet/pet.do" method="post"
 					enctype="multipart/form-data">
 
 

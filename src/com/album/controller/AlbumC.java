@@ -62,8 +62,8 @@ public class AlbumC extends HttpServlet {
 			for (Part part : parts) {
 				if (getFileNameFromPart(part) != null && part.getContentType() != null) {
 					AlbumImg aImg = new AlbumImg();
-					aImg.setImgTitle("為此找片新增點描述吧");
-					aImg.setImgDesc("為此找片新增點描述吧");
+					aImg.setImgTitle("為此照片新增點描述吧");
+					aImg.setImgDesc("為此照片新增點描述吧");
 					aImg.setImgCreatedTime(currentTime);
 					aImg.setImgModifiedTime(currentTime);
 					aImg.setImgFileName(getFileNameFromPart(part));
@@ -148,7 +148,7 @@ public class AlbumC extends HttpServlet {
 			/**************************** 2.修改完成,準備轉交(Send the Success view)*************/
 	
 			aImgSvc.deleteAlbumImg(imgNo);
-			System.out.print("===========23165468435============");
+
 	
 			
 			

@@ -87,7 +87,7 @@
 							<div class="panel-body">
 
 								<div class="row">
-									<form method="post" action="<%=request.getContextPath() %>/petUpdate" enctype="multipart/form-data">
+									<form method="post" action="<%=request.getContextPath() %>/front_end/pet/pet.do" enctype="multipart/form-data">
 										<div class="col-md-3 col-lg-3 " align="center">
 											<img alt="User Pic" id="petPic"
 												src="<%=request.getContextPath() %>/PetImgReader?petNo=${pet.petNo}" height="350px"
@@ -187,7 +187,7 @@
 					<div class="modal-footer">
 						<span>
 
-							<form action="<%=request.getContextPath() %>/petUpdate" method="post">
+							<form action="<%=request.getContextPath() %>/front_end/pet/pet.do" method="post">
 								<input type="hidden" name="action" value="petDisable">
 								<input type="hidden" name="petNo" value="${pet.petNo}">
 								<button type="button" class="btn btn-secondary"

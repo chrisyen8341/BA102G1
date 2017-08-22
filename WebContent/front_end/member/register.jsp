@@ -22,7 +22,7 @@
 
 			<div class="col-sm-6 col-sm-offset-3">
 
-				<form class="" action="<%=request.getContextPath()%>/Update"
+				<form class="" action="<%=request.getContextPath()%>/front_end/member/member.do"
 					method="post" enctype="multipart/form-data" id="register">
 
 					<div class="row">
@@ -255,22 +255,12 @@
 					<input type="hidden" name="action" value="register">
 
 
-					<!-- 							<button -->
-					<!-- 							class="g-recaptcha" -->
-					<!-- 							data-sitekey="6LeBbC0UAAAAAEd3C3R3zbSpsfxg2A7zZarw2mZT" -->
-					<!-- 							data-callback="OnSubmitFunction"> -->
-					<!-- 							µù¥U -->
-					<!-- 							</button> -->
-					<!-- 							     <div id='recaptcha' class="g-recaptcha" -->
-					<!--           								data-sitekey="6LeBbC0UAAAAAEd3C3R3zbSpsfxg2A7zZarw2mZT" -->
-					<!--          								data-callback="onSubmit" -->
-					<!--          								data-size="invisible"></div> -->
-
+<!-- 					google Invisible reCAPTCHA  -->
 					<div id='recaptcha' class="g-recaptcha" data-sitekey="6LeBbC0UAAAAAEd3C3R3zbSpsfxg2A7zZarw2mZT" 
 					data-callback="onSubmit" data-size="invisible"></div>
 					<button id='sub' class="btn btn-primary btn-lg btn-block login-button">µù¥U</button>
 
-<!-- 					<input id="submit " class="btn btn-primary btn-lg btn-block login-button" type="submit" value="µù¥U"> -->
+
 
 				</form>
 
@@ -290,20 +280,17 @@
 	<script>
 		function onSubmit(token) {
 			document.getElementById('register').submit();
-			console.log("777");
 		}
 
 		function validate(event) {
 
 			event.preventDefault();
 			grecaptcha.execute();			
-			console.log("555");
 		}
 
 		function onload() {
 			var element = document.getElementById('sub');
 			element.onclick = validate;
-			console.log("123");
 		}
 	</script>
 	<script src="https://www.google.com/recaptcha/api.js" async defer></script>

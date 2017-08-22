@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Timestamp;
@@ -46,15 +47,15 @@ public class AImgUpload extends HttpServlet {
 			
 			//影音檔上傳
 			if(getFileNameFromPart(part) != null && part.getContentType() != null&&part.getContentType().startsWith("video")){
-				aImgSvc.addAlbumImg(albumNo, getFileNameFromPart(part), "為此找片新增點描述吧", currentTime, currentTime, part.getName(),
+				aImgSvc.addAlbumImg(albumNo, getFileNameFromPart(part), "為此影片新增點描述吧", currentTime, currentTime,"為此照片新增點描述吧",
 						part.getContentType(), getVideoByteArray(part.getInputStream()));
 			}
 			
 
 			if (getFileNameFromPart(part) != null && part.getContentType() != null&&!part.getContentType().startsWith("video")) {
 
-				aImgSvc.addAlbumImg(albumNo, getFileNameFromPart(part), "為此找片新增點描述吧", currentTime, currentTime, part.getName(),
-						part.getContentType(), getPictureByteArray(part.getInputStream()));
+				aImgSvc.addAlbumImg(albumNo, getFileNameFromPart(part), "為此照片新增點描述吧", currentTime, currentTime, "為此照片新增點描述吧",
+						part.getContentType(), getPictureByteArrayNoChangeSize(part.getInputStream()));
 
 			}
 		}
@@ -70,7 +71,18 @@ public class AImgUpload extends HttpServlet {
 	
 	
 	
-	
+	public static byte[] getPictureByteArrayNoChangeSize(InputStream fis) throws IOException {
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		byte[] buffer = new byte[8192];
+		int i;
+		while ((i = fis.read(buffer)) != -1) {
+			baos.write(buffer, 0, i);
+		}
+		baos.close();
+		fis.close();
+
+		return baos.toByteArray();
+	}
 	
 
 	public static byte[] getVideoByteArray(InputStream fis) throws IOException {

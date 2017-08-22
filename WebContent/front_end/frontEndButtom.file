@@ -16,7 +16,7 @@
 					<div class="modal-footer">
 						<span>
 
-							<form action="<%=request.getContextPath() %>/Update" method="post">
+							<form action="<%=request.getContextPath() %>/front_end/member/member.do" method="post">
 								<input type="hidden" name="action" value="logout">
 								<input type="submit" class="btn btn-primary" value="¬O">
 								<button type="button" class="btn btn-warning"

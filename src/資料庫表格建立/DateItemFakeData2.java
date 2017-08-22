@@ -160,7 +160,8 @@ public class DateItemFakeData2 extends HttpServlet {
 			Integer statusR=0;
 			Integer showR=0;
 			Integer viewerR=rand.nextInt(1000);
-			Integer buyerR=rand.nextInt(30)+5001;
+//			Integer buyerR=rand.nextInt(30)+5001;
+			Integer buyerR=5100;
 			Boolean[] qrCode=new Boolean[]{true,false};
 			Boolean qrCodeR=qrCode[rand.nextInt(2)];
 			Integer buyerRepR=0;

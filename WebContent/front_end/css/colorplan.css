@@ -29,6 +29,7 @@ div>h2{
 
 
 
+
     .auto-center{
 margin-top: 0;
 margin-bottom: 0;
@@ -68,14 +69,17 @@ width:100%;
 .panel-collapse .list-group-item {border-radius:0;}
 
 .postion-left-group{
-  position:relative;
-  margin-top: 28rem;
+/*   position:relative; */
+/*   margin-top: 28rem; */
+	margin-top:2rem;
   display:block;
 }
 
+
+
 .postion-left-group-b{
-  position:relative;
-  margin-top: 12rem;
+/*   position:relative; */
+/*   margin-top: 12rem; */
   display:block;
 }
 

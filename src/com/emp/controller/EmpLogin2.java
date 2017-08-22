@@ -55,7 +55,6 @@ public class EmpLogin2 extends HttpServlet {
 		String empPwd = req.getParameter("empPwd");
 
 		req.setAttribute("errorMsgs", errorMsgs);
-
 		if (allowUser(empId, empPwd) == null) {
 			Emp errEmp = new Emp();
 			errEmp.setEmpId(empId);
@@ -76,12 +75,14 @@ public class EmpLogin2 extends HttpServlet {
 			HttpSession session=req.getSession();
 			session.setAttribute("emp", empl);
 			session.setAttribute("auth", auth);
-			String location = (String) session.getAttribute("location");
-			if (location != null) {
-				session.removeAttribute("location");
-				res.sendRedirect(location);
-				return;
-			}
+//			String location = (String) session.getAttribute("location");
+//			if (location != null) {
+//				session.removeAttribute("location");
+//				System.out.println("redirect");
+//				res.sendRedirect(location);
+//				return;
+//			}
+
 			res.sendRedirect(req.getContextPath() + "/back_end/index_backend.jsp");
 		}
 		

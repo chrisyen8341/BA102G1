@@ -43,40 +43,40 @@ public class InsertDummyBlob {
 	public static void main(String[] args) {
 
 
-		// 會員照片修改
-		//讀取會員照片延伸附檔名	
-		Set<String> memSet=new HashSet<String>();	
-		for (File file : new File("WebContent/DummyImg/member").listFiles()) { 
-			String fileName=file.getName();
-			String fileExtName=fileName.substring(fileName.lastIndexOf("."));
-			memSet.add(fileExtName);
-		}	
-		
-	    //對資料庫的編號跑回圈
-		for (int i=5001;i<=5030;i++) { 
-	    	MemberJDBCDAO dao=new MemberJDBCDAO();
-	    	//取得File檔名 (ex.1 2 3) 故要記得更改減的數字(5000)
-	    	String fileN=String.valueOf((i-5000));
-	    	
-	    	//附檔名不確定，故對可能的副檔名跑回圈跑到檔案存在為止
-	    	File file = null;	    	
-	    	for(String fileExtName:memSet){
-	    		file=new File("WebContent/DummyImg/member/"+fileN+fileExtName);
-	    		if(file.exists()){
-	    			break;
-	    		}
-	    	}
-	    	
-	    	Member member=dao.findByPk(i);
-	        try {
-	        	byte[] b = getPictureByteArrayNoChangeSize(file);
-				member.setMemImg(b);
-				dao.update(member);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}    
-	    }
-	    System.out.println("=============會員新增完畢================");
+//		// 會員照片修改
+//		//讀取會員照片延伸附檔名	
+//		Set<String> memSet=new HashSet<String>();	
+//		for (File file : new File("WebContent/DummyImg/member").listFiles()) { 
+//			String fileName=file.getName();
+//			String fileExtName=fileName.substring(fileName.lastIndexOf("."));
+//			memSet.add(fileExtName);
+//		}	
+//		
+//	    //對資料庫的編號跑回圈
+//		for (int i=5001;i<=5030;i++) { 
+//	    	MemberJDBCDAO dao=new MemberJDBCDAO();
+//	    	//取得File檔名 (ex.1 2 3) 故要記得更改減的數字(5000)
+//	    	String fileN=String.valueOf((i-5000));
+//	    	
+//	    	//附檔名不確定，故對可能的副檔名跑回圈跑到檔案存在為止
+//	    	File file = null;	    	
+//	    	for(String fileExtName:memSet){
+//	    		file=new File("WebContent/DummyImg/member/"+fileN+fileExtName);
+//	    		if(file.exists()){
+//	    			break;
+//	    		}
+//	    	}
+//	    	
+//	    	Member member=dao.findByPk(i);
+//	        try {
+//	        	byte[] b = getPictureByteArrayNoChangeSize(file);
+//				member.setMemImg(b);
+//				dao.update(member);
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}    
+//	    }
+//	    System.out.println("=============會員新增完畢================");
 
 	    
 	    
@@ -152,71 +152,71 @@ public class InsertDummyBlob {
 	    
 		// 修改相片
 		//讀取寵物照片延伸附檔名	
-//		Set<String> aImgSet=new HashSet<String>();	
-//		for (File file : new File("WebContent/DummyImg/albumimg").listFiles()) { 
-//			String fileName=file.getName();
-//			String fileExtName=fileName.substring(fileName.lastIndexOf("."));
-//			aImgSet.add(fileExtName);
-//		}	
-//		
-//
-//	    for (int i=1;i<=5;i++) { 
-//	    	AlbumImgJDBCDAO dao=new AlbumImgJDBCDAO();
-//	    	String fileN=String.valueOf((i-0));
-//	    	
-//	    	File file = null;	    	
-//	    	for(String fileExtName:aImgSet){
-//	    		file=new File("WebContent/DummyImg/albumimg/"+fileN+fileExtName);
-//	    		if(file.exists()){
-//	    			break;
-//	    		}
-//	    	}
-//	    	
-//	    	AlbumImg aImg=dao.findByPk(i);
-//	        try {
-//	        	byte[] b = getPictureByteArrayNoChangeSize(file);
-//	        	aImg.setImgFile(b);
-//				dao.update(aImg);
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}    
-//	    }
-//	    System.out.println("=============相片新增完畢================");
-//	    
-//
-//		// 修改商品照片
-//		//讀取商品照片延伸附檔名	
-//		Set<String> productSet=new HashSet<String>();	
-//		for (File file : new File("WebContent/DummyImg/product").listFiles()) { 
-//			String fileName=file.getName();
-//			String fileExtName=fileName.substring(fileName.lastIndexOf("."));
-//			productSet.add(fileExtName);
-//		}	
-//		
-//
-//	    for (int i=2001;i<=2005;i++) { 
-//	    	ProductJDBCDAO dao=new ProductJDBCDAO();
-//	    	String fileN=String.valueOf((i-2000));
-//	    	
-//	    	File file = null;	    	
-//	    	for(String fileExtName:productSet){
-//	    		file=new File("WebContent/DummyImg/product/"+fileN+fileExtName);
-//	    		if(file.exists()){
-//	    			break;
-//	    		}
-//	    	}
-//	    	
-//	    	Product product=dao.findByPk(i);
-//	        try {
-//	        	byte[] b = getPictureByteArrayNoChangeSize(file);
-//	        	product.setProdImg(b);
-//				dao.update(product);
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}    
-//	    }
-//	    System.out.println("=============商品新增完畢================");
-//	     
+		Set<String> aImgSet=new HashSet<String>();	
+		for (File file : new File("WebContent/DummyImg/albumimg").listFiles()) { 
+			String fileName=file.getName();
+			String fileExtName=fileName.substring(fileName.lastIndexOf("."));
+			aImgSet.add(fileExtName);
+		}	
+		
+
+	    for (int i=1;i<=5;i++) { 
+	    	AlbumImgJDBCDAO dao=new AlbumImgJDBCDAO();
+	    	String fileN=String.valueOf((i-0));
+	    	
+	    	File file = null;	    	
+	    	for(String fileExtName:aImgSet){
+	    		file=new File("WebContent/DummyImg/albumimg/"+fileN+fileExtName);
+	    		if(file.exists()){
+	    			break;
+	    		}
+	    	}
+	    	
+	    	AlbumImg aImg=dao.findByPk(i);
+	        try {
+	        	byte[] b = getPictureByteArrayNoChangeSize(file);
+	        	aImg.setImgFile(b);
+				dao.update(aImg);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}    
+	    }
+	    System.out.println("=============相片新增完畢================");
+	    
+
+		// 修改商品照片
+		//讀取商品照片延伸附檔名	
+		Set<String> productSet=new HashSet<String>();	
+		for (File file : new File("WebContent/DummyImg/product").listFiles()) { 
+			String fileName=file.getName();
+			String fileExtName=fileName.substring(fileName.lastIndexOf("."));
+			productSet.add(fileExtName);
+		}	
+		
+
+	    for (int i=2001;i<=2005;i++) { 
+	    	ProductJDBCDAO dao=new ProductJDBCDAO();
+	    	String fileN=String.valueOf((i-2000));
+	    	
+	    	File file = null;	    	
+	    	for(String fileExtName:productSet){
+	    		file=new File("WebContent/DummyImg/product/"+fileN+fileExtName);
+	    		if(file.exists()){
+	    			break;
+	    		}
+	    	}
+	    	
+	    	Product product=dao.findByPk(i);
+	        try {
+	        	byte[] b = getPictureByteArrayNoChangeSize(file);
+	        	product.setProdImg(b);
+				dao.update(product);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}    
+	    }
+	    System.out.println("=============商品新增完畢================");
+	     
     
 	    
 	}

@@ -43,7 +43,7 @@
 													</tr>
 													<tr>
 													<td colspan="2">
-													<a> <button  class="btn btn-default">日誌</button></a>
+													<a  href="<%=request.getContextPath() %>/front_end/member/viewMemDiary.jsp?memNo=<%=memNo %>"> <button  class="btn btn-default">日誌</button></a>
 													<a  href="<%=request.getContextPath() %>/front_end/member/viewMemAlbum.jsp?memNo=<%=memNo %>"> <button class="btn btn-default">相簿</button></a> 
 													<c:if test="${not empty list}">
 													<a> <button  class="btn btn-default">寵物</button></a> 					

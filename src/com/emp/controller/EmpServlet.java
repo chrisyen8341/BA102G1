@@ -271,12 +271,9 @@ public class EmpServlet extends HttpServlet {
 				HttpSession session = req.getSession();
 				Map<String, String[]> map = (Map<String, String[]>)session.getAttribute("map");
 				if (req.getParameter("whichPage") == null){
-					System.out.println("22222222222222222222");
-					HashMap<String, String[]> map1 = (HashMap<String, String[]>)req.getParameterMap();
-					System.out.println("11111111111111111");
-					HashMap<String, String[]> map2 = new HashMap<String, String[]>();
-					System.out.println("33333333333333333");
-					map2 = (HashMap<String, String[]>)map1.clone();
+						HashMap<String, String[]> map1 = (HashMap<String, String[]>)req.getParameterMap();
+						HashMap<String, String[]> map2 = new HashMap<String, String[]>();
+						map2 = (HashMap<String, String[]>)map1.clone();
 					session.setAttribute("map",map2);
 					map = (HashMap<String, String[]>)req.getParameterMap();
 				} 

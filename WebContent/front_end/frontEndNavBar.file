@@ -19,46 +19,59 @@
 			
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<div class="col-sm-5">
+
 				<ul class="nav navbar-nav">
 					<li><a href="<%=request.getContextPath() %>/front_end/dateitem/select_page.jsp">約會商品</a></li>
 					<li><a href="<%=request.getContextPath() %>/front_end/product/BrowseProduct.jsp">商城</a></li>
 					<li><a href="<%=request.getContextPath()%>/front_end/activityFront/activityIndex.jsp">活動</a></li>
 					<li><a href="<%=request.getContextPath()%>/front_end/diary/diary.jsp">寵物日誌</a></li>
 											
-				</ul>
+				
+				<li>
+				<span style="width:150px;">
 					
-				<div style="margin-right: auto;margin-left: auto;vertical-align: middle;">
 					<form id="custom-search-form" action="<%=request.getContextPath()%>/Update" method="post"
 											class="form-search form-horizontal">
 
-											<div class="input-group" style="margin-left: auto;margin-right: auto;">
-												<div class="input-group-btn search-panel">
-													<button type="button"
-														class="btn btn-default dropdown-toggle"
-														data-toggle="dropdown">
-														<span id="search_concept">會員</span> <span class="caret"></span>
-													</button>
-													<ul class="dropdown-menu" role="menu">
-														<li><a href="#contains">會員</a></li>
-														<li class="divider"></li>
-														<li><a href="#its_equal">寵物</a></li>
-													</ul>
-												</div>
-												<input type="hidden" name="search_param" value="all"
-													id="search_param"> <input type="text"
-													class="form-control" name="search" placeholder="請輸入搜尋內容">
+											
+											
+											<!-- 											<div class="input-group" style="margin-left: auto;margin-right: auto;"> -->
+<!-- 												<div class="input-group-btn search-panel"> -->
+<!-- 													<button type="button" -->
+<!-- 														class="btn btn-default dropdown-toggle" -->
+<!-- 														data-toggle="dropdown"> -->
+<!-- 														<span id="search_concept">會員</span> <span class="caret"></span> -->
+<!-- 													</button> -->
+<!-- 													<ul class="dropdown-menu" role="menu"> -->
+<!-- 														<li><a href="#contains">會員</a></li> -->
+<!-- 														<li class="divider"></li> -->
+<!-- 														<li><a href="#its_equal">寵物</a></li> -->
+<!-- 													</ul> -->
+<!-- 												</div> -->
+<!-- 												<input type="hidden" name="search_param" value="all" -->
+<!-- 													id="search_param"> <input type="text" -->
+<!-- 													class="form-control" name="search" placeholder="請輸入搜尋內容"> -->
+<!-- 												<input type="hidden" id="stype" name="type" value="會員"> -->
+<!-- 												<input type="hidden" name="action" value="search">  -->
+<!-- 												<span class="input-group-btn">  -->
+<!-- 												<input type="submit" class="btn btn-default searchbtn glyphicon glyphicon-search" value="搜尋"> -->
+<!-- 												</span> -->
+<!-- 											</div> -->
+											
+												<span>
+												<input type="hidden" name="search_param" value="all" id="search_param"> 
+												<input type="text"  name="search" placeholder="請輸入搜尋內容">
 												<input type="hidden" id="stype" name="type" value="會員">
 												<input type="hidden" name="action" value="search"> 
-												<span class="input-group-btn"> 
-												<input type="submit" class="btn btn-default searchbtn glyphicon glyphicon-search" value="搜尋">
+												<input type="submit" value="搜尋" style="float: right">
 												</span>
-											</div>
+
 											
 					</form>
-				</div>
-</div>
-				
+					
+				</span>
+</li>
+	</ul>			
 				<div class="nav collapse navbar-collapse navbar-right" id="login">
 					<ul class="nav navbar-nav">
 						<li><a href="<%=request.getContextPath() %>/front_end/product/Cart.jsp">購物車</a></li>

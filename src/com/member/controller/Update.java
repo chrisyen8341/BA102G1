@@ -229,6 +229,8 @@ public class Update extends HttpServlet {
 			String memAddress = req.getParameter("memAddress").trim();
 			String memEmail = req.getParameter("memEmail").trim();
 			String gRecaptchaResponse = req.getParameter("g-recaptcha-response");
+			System.out.println(gRecaptchaResponse);
+			
 			boolean verify = VerifyRecaptcha.verify(gRecaptchaResponse);
 			
 			List<String> errorMsgs = new LinkedList<String>();

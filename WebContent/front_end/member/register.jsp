@@ -289,28 +289,27 @@
 
 	<script>
 		function onSubmit(token) {
-			document.getElementById('test').submit();
-			;
+			document.getElementById('register').submit();
+			console.log("777");
 		}
 
 		function validate(event) {
 
 			event.preventDefault();
-			grecaptcha.execute();
+			grecaptcha.execute();			
+			console.log("555");
 		}
 
 		function onload() {
 			var element = document.getElementById('sub');
 			element.onclick = validate;
+			console.log("123");
 		}
 	</script>
 	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 
-
-
-
-
+	<script>onload();</script>
 
 
 	<!-- /.container -->

@@ -21,8 +21,20 @@
 <style type="text/css">
 #map_canvas {
 	width: 100%;
-	height: 600px;
+	height: 60%;
 }
+
+select {
+  border: 1px solid #333;
+  display: inline-block;
+  border-radius: 5px;
+  width: 200px;
+  color: #ccc;
+  height: 30px;
+  line-height: 30px;
+  
+}
+
 </style>
 </head>
 <body bgcolor='white'>
@@ -41,7 +53,7 @@
 			<span>
 				<Form action="<%=request.getContextPath()%>/front_end/dateitem/dateitem.do" method="post">
 					<input type="hidden" name="action" value="googleMapQuery"> 
-					<input type="date" id="datepicker" name="dateMeetingTime">
+					<input type="text" id="dateMeetingTime" name="dateMeetingTime">
 
 					<input type="submit">
 					<!--   <button class="btn btn-lg btn-warning glyphicon glyphicon-search"> </button> -->
@@ -86,8 +98,7 @@
 	</a>
 	</div>
 
-	<script src="https://code.jquery.com/jquery.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 	
 	
 	
@@ -118,6 +129,25 @@
 initializeMaps();
 
 </script>
+	
+	
+	<script>
+
+$(function(){
+
+	
+	$("#dateMeetingTime").datetimepicker({
+		format: 'Y-m-d',
+		 timepicker:false,		 
+		 mindate:0,
+	});
+
+	 
+});
+
+
+</script>
+	
 	
 	
 	

@@ -27,8 +27,8 @@ pageContext.setAttribute("petKind", petKind);
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAUbYcDBdfK_UjTWa9G6FSe3EfERMpEZQ">
 	
 </script>
-<!--     <script src="https://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script> -->
-<script src="<%=request.getContextPath()%>/front_end/js/d3.min.js"></script>
+
+
 
 
 
@@ -39,6 +39,35 @@ pageContext.setAttribute("petKind", petKind);
 	width: 100%;
 	height: 600px;
 }
+
+.select-style {
+    padding: 0;
+    margin: 0;
+    border: 1px solid #ccc;
+    width: 120px;
+    border-radius: 3px;
+    overflow: hidden;
+    background-color: #fff;
+
+    background: #fff url("http://www.scottgood.com/jsg/blog.nsf/images/arrowdown.gif") no-repeat 90% 50%;
+}
+
+.select-style select {
+    padding: 5px 8px;
+    width: 130%;
+    border: none;
+    box-shadow: none;
+    background-color: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+}
+
+.select-style select:focus {
+    outline: none;
+}
+
 </style>
 </head>
 <body bgcolor='white'>
@@ -57,26 +86,33 @@ pageContext.setAttribute("petKind", petKind);
 			<span>
 				<Form action="<%=request.getContextPath()%>/front_end/dateitem/dateitem.do" method="post">
 					<input type="hidden" name="action" value="googleMapQuery">
-					<input type="date" id="datepicker" name="dateMeetingTime" value=${date}>
+					<input type="text" id="dateMeetingTime" name="dateMeetingTime">
 					<input type="submit">
 				</Form>
 				<Form action="<%=request.getContextPath()%>/front_end/dateitem/dateitem.do" method="post">
 					<input type="hidden" name="action" value="googleMapFilter">
 					<input type="hidden" name="date" value=${date}>
-					<select class="w3-select selectpicker" name="memGender">
+<!-- 					class="w3-select selectpicker" -->
+					<span>
+					<div class="select-style" style="float:left;margin-right:10px;">
+					<select class="filter" name="memGender">
 <!-- 						<option value="" disabled selected>請選擇主人性別</option> -->
 						<option value="4" <c:if test="${memGender==4}">selected</c:if>>不限主人性別</option>
 						<option value="0" <c:if test="${memGender==0}">selected</c:if>>男</option>
 						<option value="1" <c:if test="${memGender==1}">selected</c:if>>女</option>
 						<option value="2" <c:if test="${memGender==2}">selected</c:if>>不願透露</option>
-					</select> 
-					<select class="w3-select selectpicker" name="petKind">
+					</select>
+					</div> 
+					<div class="select-style">
+					<select class="filter" name="petKind">
 <!-- 						<option value="" disabled selected>請選擇寵物</option> -->					
 						<option value="all" <c:if test="${petKind=='all'}">selected</c:if>>不限寵物種類</option>
 						<option value="狗" <c:if test="${petKind=='狗'}">selected</c:if>>狗</option>
 						<option value="貓" <c:if test="${petKind=='貓'}">selected</c:if>>貓</option>
 						<option value="其他" <c:if test="${petKind=='其他'}">selected</c:if>>其他</option>
-					</select> 
+					</select>
+					</div> 
+					</span>	
 				</Form> 
 				<!--   <button class="btn btn-lg btn-warning glyphicon glyphicon-search"> </button> -->
 
@@ -86,7 +122,7 @@ pageContext.setAttribute("petKind", petKind);
 
 
 			<div id="map_canvas"></div>
-
+			<div id="showDateItem"></div>
 
 
 
@@ -116,9 +152,7 @@ pageContext.setAttribute("petKind", petKind);
 	</a>
 	</div>
 
-	<script src="https://code.jquery.com/jquery.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
 
 
@@ -132,7 +166,7 @@ pageContext.setAttribute("petKind", petKind);
 	
 	$(function(){
 		
-		$('.selectpicker').on('change', function () {
+		$('.filter').on('change', function () {
 			   console.log("touch");
 				$(this).closest('form').submit();
 			});
@@ -208,6 +242,7 @@ pageContext.setAttribute("petKind", petKind);
 			marker.icon = {
 					url:"<%=request.getContextPath()%>/front_end/mapNumber/number_<%=map.get(date.getRestListNo())%>.png",
 			}
+		marker.dateItemNo="<%=dateNoMap.get(date.getRestListNo()).toString() %>";	
 		markers.push(marker);
 	<%tList.add(date.getRestListNo());
 				}
@@ -251,6 +286,37 @@ pageContext.setAttribute("petKind", petKind);
 				
 				
 				
+				  marker.addListener('mouseover', function() {
+					    console.log(props.dateItemNo);
+					    var myNode = document.getElementById("showDateItem");
+					    while (myNode.firstChild) {
+					        myNode.removeChild(myNode.firstChild);
+					    }
+					    var h4= document.createElement("H4");
+					    h4.innerHTML="你可以再此餐廳找到這些寵物";
+					    document.getElementById("showDateItem").appendChild(h4);
+					    
+					    var l=props.dateItemNo.lastIndexOf(",");
+					    var d=props.dateItemNo.substring(0,l);
+					    var s=d.split(',');		    
+					    for (var i = 0; i < s.length; i++){
+					    console.log(s[i]);
+					    var petImg=document.createElement("img");
+					    petImg.src="ImgReader?dateItemNo="+s[i]+"&action=dateImg";
+
+					    document.getElementById("showDateItem").appendChild(petImg);
+				 		 }
+//					    $("#img"+i).attr('src',"ImgReader?dateItemNo="+s[i]+"&action=dateImg" );
+
+					  });
+				
+				
+				
+				
+				
+				
+				
+				
 				 function toggleBounce() {
 				     if (marker.getAnimation() !== null) {
 				       marker.setAnimation(null);
@@ -279,7 +345,22 @@ pageContext.setAttribute("petKind", petKind);
 	</script>
 
 
+	<script>
 
+$(function(){
+	
+	$("#dateMeetingTime").datetimepicker({
+		format: 'Y-m-d',
+		 timepicker:false,		 
+		 mindate:0,
+	});
+
+	 
+});
+
+
+</script>
+	
 
 
 </body>

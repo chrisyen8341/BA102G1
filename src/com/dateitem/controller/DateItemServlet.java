@@ -397,7 +397,7 @@ public class DateItemServlet extends HttpServlet {
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
-
+			
 			try {
 
 				/*************************** 1.將輸入資料轉為Map **********************************/
@@ -454,8 +454,17 @@ public class DateItemServlet extends HttpServlet {
 			try {
 
 				/*************************** 1.取得輸入資料 **********************************/
-				String dateItemNos=req.getParameter("dateItemNo");	
-				List<String> list=Arrays.asList(dateItemNos.split(","));
+
+			
+				HttpSession session = req.getSession();
+				List<String> list = (List<String>) session.getAttribute("dateItemNo");
+				if (req.getParameter("whichPage") == null) {
+					String dateItemNos=req.getParameter("dateItemNo");
+					list=Arrays.asList(dateItemNos.split(","));
+					session.setAttribute("dateItemNo", list);
+				}
+				
+				
 				/*************************** 2.開始查詢 ***************************************/
 				DateItemService dateItemSvc = new DateItemService();
 				List<DateItemVO> dlist=new ArrayList<DateItemVO>();
@@ -471,14 +480,14 @@ public class DateItemServlet extends HttpServlet {
 				}
 
 				/**************************** 3.查詢完成,準備轉交(Send the Success view)************/
-				req.setAttribute("dlist", dlist); // 資料庫取出的list物件,存入request
-				RequestDispatcher successView = req.getRequestDispatcher("/front_end/dateitem/googleMapQuery3.jsp"); // 成功轉交listEmps_ByCompositeQuery.jsp
+				req.setAttribute("listEmps_ByCompositeQuery", dlist); // 資料庫取出的list物件,存入request
+				RequestDispatcher successView = req.getRequestDispatcher("/front_end/dateitem/compositeQuery.jsp"); // 成功轉交listEmps_ByCompositeQuery.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/dateitem/googleMapQuery3.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/dateitem/compositeQuery.jsp");
 				failureView.forward(req, res);
 			}
 		}

@@ -6,10 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.naming.Context;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+
+import another.CompositeQuery;
 
 
 
@@ -26,11 +29,12 @@ public class RestMemberDAO implements RestMemberDAO_Interface{
 		}
 		
 	}
-	private static final String INSERT_RESTMEMBER = "INSERT INTO RESTMEMBER (RESTMEMID,RESTNO,RESTMEMPSW VALUES(?,?,?)";
+	private static final String INSERT_RESTMEMBER = "INSERT INTO RESTMEMBER (RESTMEMID,RESTNO,RESTMEMPSW) VALUES(?,?,?)";
 	private static final String UPDATE_RESTMEMBER = "UPDATE RESTMEMBER SET RESTNO=?,RESTMEMPSW=? WHERE RESTMEMID=?";			
 	private static final String DELETE_RESTMEMBER = "DELETE FROM RESTMEMBER WHERE RESTMEMID=?";
 	private static final String FIND_BY_PK = "SELECT * FROM RESTMEMBER WHERE RESTMEMID=?";
 	private static final String GET_ALL = "SELECT * FROM RESTMEMBER";
+	
 	@Override
 	public void add(RestMember restMember) {
 		Connection conn = null;
@@ -235,5 +239,9 @@ public class RestMemberDAO implements RestMemberDAO_Interface{
 		}
 		return restMemberList;
 	}
+
+	
+	
+		
 	
 }

@@ -95,13 +95,7 @@ public class Restaurant implements Serializable{
 		this.restLatitude = restLatitude;
 	}
 	
-	public void RestLocate(String restLocate) {
-		this.restLocate = restLocate;
-	}
 	
-	public String getRestLocate(String restLatitude) {
-		return restLocate;
-	}
 	
 	
 }

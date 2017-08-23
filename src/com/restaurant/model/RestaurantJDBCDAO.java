@@ -12,11 +12,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.ListModel;
 
-//import com.restImg.model.RestImg;
-//import com.restMember.controller.restMemberServlet;
+import com.restImg.model.RestImg;
+import com.restMember.controller.RestMemberServlet;
 
 public class RestaurantJDBCDAO implements RestaurantDAO_Interface {
 
@@ -31,6 +32,7 @@ public class RestaurantJDBCDAO implements RestaurantDAO_Interface {
 			+ ",RESTINTRO=?,RESTKIND=?,RESTREVIEWSTATUS=?,RESTLONGTITUDE=?,RESTLATITUDE=? WHERE RESTNO=?";
 	private static final String UPDATE_REST_MEMBER = "UPDATE REST SET RESTNAME=?,RESTADD=?,RESTPHONE=?"
 			+ ",RESTINTRO=?,RESTKIND=? WHERE RESTNO=?";
+	private static final String UPDATE_REST_BACK = "UPDATE REST SET RESTREVIEWSTATUS=? WHERE RESTNO=?";
 	private static final String DELETE_REST = "DELETE FROM REST WHERE RESTNO=?";
 	private static final String FIND_BY_PK = "SELECT * FROM REST WHERE RESTNO=?";
 	private static final String GET_ALL = "SELECT * FROM REST";
@@ -49,7 +51,7 @@ public class RestaurantJDBCDAO implements RestaurantDAO_Interface {
 			pstmt.setInt(1, rest.getRestNo());
 			pstmt.setString(2, rest.getRestName());
 			pstmt.setString(3, rest.getRestAdd());
-			pstmt.setString(4, rest.getRestLocate());
+			pstmt.setString(4, rest.getRestAdd().substring(0,2)+"¿¤");
 			pstmt.setString(5, rest.getRestPhone());
 			pstmt.setString(6, rest.getRestIntro());
 			pstmt.setInt(7, rest.getRestKind());
@@ -95,7 +97,7 @@ public class RestaurantJDBCDAO implements RestaurantDAO_Interface {
 			
 			pstmt.setString(1, rest.getRestName());
 			pstmt.setString(2, rest.getRestAdd());
-			pstmt.setString(3, rest.getRestLocate());
+			pstmt.setString(3, rest.getRestAdd().substring(0,2)+"¿¤");
 			pstmt.setString(4, rest.getRestPhone());
 			pstmt.setString(5, rest.getRestIntro());
 			pstmt.setInt(6, rest.getRestKind());
@@ -130,49 +132,7 @@ public class RestaurantJDBCDAO implements RestaurantDAO_Interface {
 		}
 	}
 	
-	@Override
-	public void updateRestForRestMember(Restaurant rest) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		try {
-			
-			Class.forName(driver);
-			conn = DriverManager.getConnection(url, userid, passwd);
-			pstmt = conn.prepareStatement(UPDATE_REST_MEMBER);
-			
-			pstmt.setString(1, rest.getRestName());
-			pstmt.setString(2, rest.getRestAdd());
-			pstmt.setString(3, rest.getRestPhone());
-			pstmt.setString(4, rest.getRestIntro());
-			pstmt.setInt(5, rest.getRestKind());
-			
-			
-			pstmt.setInt(6, rest.getRestNo());
-			
-			pstmt.executeUpdate();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			
-			if(pstmt!=null){
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			if(conn!=null){
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		}
-	}
+	
 
 	@Override
 	public void delete(Integer restNo) {
@@ -227,6 +187,7 @@ public class RestaurantJDBCDAO implements RestaurantDAO_Interface {
 				rest.setRestNo(rs.getInt("RESTNO"));
 				rest.setRestName(rs.getString("RESTNAME"));
 				rest.setRestAdd(rs.getString("RESTADD"));
+				rest.setRestLocate(rs.getString("RESTLOCATE"));
 				rest.setRestPhone(rs.getString("RESTPHONE"));
 				rest.setRestIntro(rs.getString("RESTINTRO"));
 				rest.setRestKind(rs.getInt("RESTKIND"));
@@ -284,6 +245,7 @@ public class RestaurantJDBCDAO implements RestaurantDAO_Interface {
 				rest.setRestNo(rs.getInt("RESTNO"));
 				rest.setRestName(rs.getString("RESTNAME"));
 				rest.setRestAdd(rs.getString("RESTADD"));
+				rest.setRestLocate(rs.getString("RESTLOCATE"));
 				rest.setRestPhone(rs.getString("RESTPHONE"));
 				rest.setRestIntro(rs.getString("RESTINTRO"));
 				rest.setRestKind(rs.getInt("RESTKIND"));
@@ -341,9 +303,11 @@ public class RestaurantJDBCDAO implements RestaurantDAO_Interface {
 	}
 
 	public static void main(String[] args) throws IOException {
-//		RestaurantJDBCDAO restJDBCDAO = new RestaurantJDBCDAO();
-//		
-//		Restaurant rest = new Restaurant();
+		RestaurantJDBCDAO restJDBCDAO = new RestaurantJDBCDAO();
+		
+		Restaurant rest = new Restaurant();
+		
+		
 //		rest.setRestNo(2);
 //		rest.setRestName("À\ÆU¦WºÙ1");
 //		rest.setRestAdd("À\ÆU¦a§}1");
@@ -355,7 +319,7 @@ public class RestaurantJDBCDAO implements RestaurantDAO_Interface {
 //		rest.setRestLongtitude( 1.111111);
 //		rest.setRestLatitude( 2.22222);
 //		restJDBCDAO.add(rest);
-		
+		restJDBCDAO.updateBack(7007, 0);
 		
 //		rest.setRestNo(1);
 //		rest.setRestName("À\ÆU¦WºÙ1up");
@@ -371,7 +335,7 @@ public class RestaurantJDBCDAO implements RestaurantDAO_Interface {
 		
 //		restJDBCDAO.delete(1);
 		
-//		rest = restJDBCDAO.findByPK(1);
+//		rest = restJDBCDAO.findByPK(7016);
 //		System.out.println(rest.getRestNo());
 //		System.out.println(rest.getRestName());
 //		System.out.println(rest.getRestAdd());
@@ -390,6 +354,52 @@ public class RestaurantJDBCDAO implements RestaurantDAO_Interface {
 //			System.out.println(restE.getRestIntro());
 //			System.out.println(restE.getRestKind());
 //		}
+	}
+
+	@Override
+	public void updateBack(Integer restNo, Integer restReviewStatus) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			Class.forName(driver);
+			conn = DriverManager.getConnection(url, userid, passwd);
+			pstmt = conn.prepareStatement(UPDATE_REST_BACK);
+
+			
+			pstmt.setInt(2, restNo);
+			pstmt.setInt(1, restReviewStatus);
+			
+
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		
+	}
+
+	@Override
+	public List<Restaurant> getAll(Map<String, String[]> map) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -9,9 +9,13 @@ package com.restMember.model;
 	import java.sql.SQLException;
 	import java.util.ArrayList;
 	import java.util.List;
-	import javax.naming.Context;
+import java.util.Map;
+
+import javax.naming.Context;
 	import javax.naming.NamingException;
 	import javax.sql.DataSource;
+
+import another.CompositeQuery;
 public class RestMemberJDBCDAO implements RestMemberDAO_Interface{
 	
 
@@ -249,10 +253,10 @@ public class RestMemberJDBCDAO implements RestMemberDAO_Interface{
 //		restMember.setRestMemPsw("À\·|±K½X2");
 //		restMemberJDBCDAO.add(restMember);
 		
-//		restMember.setRestMemId("À\·|±b¸¹2");
-//		restMember.setRestNo(2);
-//		restMember.setRestMemPsw("À\·|±K½X222");
-//		restMemberJDBCDAO.update(restMember);
+		restMember.setRestMemId("ww");
+		restMember.setRestNo(7006);
+		restMember.setRestMemPsw("À\·|±K½X22222222222");
+		restMemberJDBCDAO.update(restMember);
 		
 //		restMemberJDBCDAO.delete("À\·|±b¸¹3");
 		
@@ -267,7 +271,13 @@ public class RestMemberJDBCDAO implements RestMemberDAO_Interface{
 //			System.out.println(restMemberListE.getRestNo());
 //			System.out.println(restMemberListE.getRestMemPsw());
 //		}
+//		
+		
 	}
+
+	
+
+	
 
 	
 	

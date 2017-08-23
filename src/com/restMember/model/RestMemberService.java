@@ -1,6 +1,7 @@
 package com.restMember.model;
 
 import java.util.List;
+import java.util.Map;
 
 public class RestMemberService {
 	private RestMemberDAO_Interface restMemDao;
@@ -38,6 +39,8 @@ public class RestMemberService {
 	public List<RestMember> getAll(){
 		return restMemDao.getAll();
 	}
+	
+	
 }
 
 

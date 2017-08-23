@@ -2,6 +2,7 @@ package com.activity.model;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Map;
 
 public class ActivityService {
 	private ActivityDAO_Interface activityDao;
@@ -49,6 +50,14 @@ public class ActivityService {
 			return activity;
 		}
 	
+	public Activity updateBack(Integer actStatus,Integer actNo){
+		Activity activity = new Activity();
+		activity.setActStatus(actStatus);
+		activity.setActNo(actNo);
+		activityDao.updateBack(actStatus, actNo);
+		return activity;
+	}
+	
 	public void deleteActivity(Integer actNo){
 		activityDao.delete(actNo);
 	}
@@ -57,8 +66,49 @@ public class ActivityService {
 		return activityDao.findByPK(actNo);
 	}
 	
+	public Activity getOneActivityByActStatus(Integer actNo,Integer actStatus){
+		return activityDao.findByPKStatus(actNo, actStatus);
+	}
+	
 	public List<Activity> getAll(){
 		return activityDao.getAll();
+	}
+	
+	public List<Activity> getAll(Map<String, String[]> map){
+		return activityDao.getAll(map);
+	}
+	
+	public List<Activity> getAllById(String restMemId){
+		return activityDao.getAllById(restMemId);
+	}
+	
+	public List<Activity> getAllByStatus(Integer actStatus){
+		return activityDao.getAllByStatus(actStatus);
+	}
+	
+	public List<Activity> getAllByStatusAnimal(Integer actStatus,Integer actKind){
+		return activityDao.getAllByStatusAnimal(actStatus, actKind);
+	}
+	
+	
+	public List<Activity> getAllNorth(){
+		return activityDao.getAllByNorth();
+	}
+	
+	public List<Activity> getAllEast(){
+		return activityDao.getAllByEast();
+	}
+	
+	public List<Activity> getAllWest(){
+		return activityDao.getAllByWest();
+	}
+	
+	public List<Activity> getAllSouth(){
+		return activityDao.getAllBySouth();
+	}
+	
+	public List<Activity> getAllOfMine(Integer memNo){
+		return activityDao.getAllOfMine(memNo);
 	}
 }
 

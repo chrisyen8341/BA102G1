@@ -125,7 +125,7 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i
 										class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
-										type="date" name="memBday" min="1910-01-01" max='2000-13-13'
+										name="memBday"
 										id="memBday" class="form-control"
 										placeholder="Confirm your Password" required/>
 								</div>
@@ -297,16 +297,26 @@
 
 
 	<script>onload();</script>
+	
+	
+		<script>
+
+	$(function(){
+
+	
+	$("#memBday").datetimepicker({
+		format: 'Y-m-d',
+		 timepicker:false,		 
+	});
+
+	 
+	});
 
 
-	<!-- /.container -->
-	<!-- jQuery -->
-	<script src="<%=request.getContextPath()%>/front_end/js/jquery.js"></script>
-	<!-- Bootstrap Core JavaScript -->
-	<script
-		src="<%=request.getContextPath()%>/front_end/js/bootstrap.min.js"></script>
-	<!-- Script to Activate the Carousel -->
+</script>
 
+
+		
 </body>
 
 </html>

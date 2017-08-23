@@ -250,7 +250,7 @@
 														<c:if
 															test="<%=aImg.getImgExtName().startsWith(\"video\")%>">
 															<div class="thumbnail">
-																<a data-fancybox="gallery" class="fancybox" href="#video${s.index}" rel="gallery" data-caption="<h1>${aImg.imgTitle}</h1><<h3>${aImg.imgDesc}</h3>" >
+																<a data-fancybox="gallery" class="fancybox" href="#video${s.index}" rel="gallery" data-caption="<h3>${aImg.imgTitle}</h3><h5>${aImg.imgDesc}</h5>" >
 																<video controls class="img-responsive">
 																	<source
 																		src="<%=request.getContextPath() %>/front_end/album/AVideoReader.do?imgNo=${aImg.imgNo}"
@@ -276,7 +276,7 @@
 														<c:if
 															test="<%=aImg.getImgExtName().startsWith(\"image\")%>">
 															<div class="thumbnail">
-																<a data-fancybox="gallery"  class="fancybox" rel="gallery" data-caption="<h1>${aImg.imgTitle}</h1><<h3>${aImg.imgDesc}</h3>"  href="<%=request.getContextPath() %>/front_end/album/AImgReader.do?imgNo=${aImg.imgNo}">
+																<a data-fancybox="gallery"  class="fancybox" rel="gallery" data-caption="<h3>${aImg.imgTitle}</h3><h5>${aImg.imgDesc}</h5>"  href="<%=request.getContextPath() %>/front_end/album/AImgReader.do?imgNo=${aImg.imgNo}">
 																<img class="img-responsive" 
 																	src="<%=request.getContextPath() %>/front_end/album/AImgReader.do?imgNo=${aImg.imgNo}"
 																	alt="The awesome description">														
@@ -355,9 +355,9 @@
 													<input type='hidden' name='imgNo' value='${aImg.imgNo}'>
 													<input type='hidden' name='albumNo' value='${aImg.albumNo}'>
 													<input type="text" class="form-control" name="imgTitle"
-														id="imgTitle" placeholder="為您的照片輸入標題吧!" style="margin-top:15px" required/>
+														id="imgTitle" placeholder="為您的照片輸入標題吧!" style="margin-top:15px" value="${aImg.imgTitle}" required/>
 													<textarea class="form-control" id="imgDesc" name="imgDesc"
-														placeholder="為您的照片輸入點故事吧!" style="margin-top:15px" required></textarea>
+														placeholder="為您的照片輸入點故事吧!" style="margin-top:15px" required>${aImg.imgDesc}</textarea>
 													<c:if test="<%=aImg.getImgExtName().startsWith(\"video\")%>">
 																<video controls class="img-responsive" style="margin-top:15px">
 																	<source src="<%=request.getContextPath() %>/front_end/album/AVideoReader.do?imgNo=${aImg.imgNo}"

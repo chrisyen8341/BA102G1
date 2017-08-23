@@ -103,7 +103,7 @@
 														<td class="title">寵物姓名</td>
 														<td><input type="text" class="form-control"
 															name="petName" id="petName" value="${pet.petName}"
-															placeholder="請輸入暱稱" /></td>
+															placeholder="請輸入暱稱" required /></td>
 													</tr>
 													<tr>
 														<td class="title">寵物分類</td>
@@ -118,7 +118,7 @@
 														<td class="title">寵物品種</td>
 														<td><input type="text" class="form-control"
 															name="petSpecies" id="petSpecies"
-															value="${pet.petSpecies}" placeholder="請輸入您的姓名" /></td>
+															value="${pet.petSpecies}" placeholder="請輸入您的寵物品種" required /></td>
 													</tr>
 
 													<tr>
@@ -126,14 +126,14 @@
 														<td><input type="date" name="petBday"
 															min="1910-01-01" max='2000-13-13' id="memBday"
 															value="${pet.petBday}" class="form-control"
-															placeholder="Confirm your Password" /></td>
+															placeholder="請輸入您的寵物生日" required/></td>
 													</tr>
 
 
 													<tr>
 														<td class="title">寵物介紹</td>
 														<td><textarea class="form-control" id="petIntro"
-																name="petIntro" placeholder="請輸入您的地址">${pet.petIntro}</textarea></td>
+																name="petIntro" placeholder="請輸入您的寵物介紹" required>${pet.petIntro}</textarea></td>
 													</tr>
 
 

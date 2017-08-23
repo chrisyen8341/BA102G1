@@ -8,27 +8,7 @@
 
 <head>
 <%@ include file="memHead.file"%>
-<script>
-	//照片上傳預覽
-	$(function() {
 
-		$("#memImg").change(function() {
-			readURL(this);
-		});
-
-		function readURL(input) {
-
-			if (input.files && input.files[0]) {
-				var reader = new FileReader();
-				reader.onload = function(e) {
-					$('#memPic').attr('src', e.target.result);
-				}
-				reader.readAsDataURL(input.files[0]);
-			}
-		};
-
-	});
-</script>
 
 
 </head>
@@ -72,26 +52,26 @@
 														<td class="title" >暱稱</td>
 														<td><input type="text" class="form-control"
 															name="memSname" id="memSname" value="${member.memSname}"
-															placeholder="請輸入暱稱" /></td>
+															placeholder="請輸入暱稱" required/></td>
 													</tr>
 													<tr>
 														<td class="title">姓名</td>
 														<td><input type="text" class="form-control"
 															name="memName" id="memName" value="${member.memName}"
-															placeholder="請輸入您的姓名" /></td>
+															placeholder="請輸入您的姓名" required/></td>
 													</tr>
 													<tr>
-														<td class="title">生日</td>
+														<td class="title">生日</td></label>
 														<td><input type="date" name="memBday"
 															min="1910-01-01" max='2000-13-13' id="memBday"
 															value="${member.memBday}" class="form-control"
-															placeholder="Confirm your Password" /></td>
+															placeholder="請輸入您的生日" required/><span id="memBdayShow"></span></td>
 													</tr>
 													<tr>
 														<td class="title">手機</td>
 														<td><input type="text" class="form-control"
 															name="memPhone" id="memPhone" value="${member.memPhone}"
-															placeholder="請輸入您的手機" /></td>
+															placeholder="請輸入您的手機" required/><span id="memPhoneShow"></span></td>
 													</tr>
 													<tr>
 														<td class="title">性別</td>
@@ -127,15 +107,15 @@
 														<td class="title">Email</td>
 														<td><input type="text" class="form-control"
 															name="memEmail" id="memEmail" value="${member.memEmail}"
-															placeholder="請輸入您的電子信箱" /></td>
+															placeholder="請輸入您的電子信箱" required/><span id="memEmailShow"></span></td>
 													</tr>
 													<td>地址</td>
 													<td><textarea class="form-control" id="memAddress"
-															name="memAddress" placeholder="請輸入您的地址">${member.memAddress}</textarea></td>
+															name="memAddress" placeholder="請輸入您的地址" required>${member.memAddress}</textarea><span id="memAddressShow"></span></td>
 													<tr>
-														<td class="title">關於我</td>
-														<td><textarea class="form-control" id="memAddress"
-																name="memSelfintro" placeholder="請輸入您的地址">${member.memSelfintro}</textarea></td>
+														<td class="title">關於我</td> </td>
+														<td><textarea class="form-control" id="memSelfintro"
+																name="memSelfintro" placeholder="請輸入您的自我介紹" required>${member.memSelfintro}</textarea><span id="memSelfintroShow"></span></td>
 													</tr>
 
 
@@ -165,6 +145,135 @@
 			</div>
 		</div>
 		<%@ include file="/front_end/frontEndButtom.file" %>
+		<script>
+		$(function(){
+			
+			var valids = new Array(true,true, true);
+			
+			
+			//生日驗證 生日最大可選天數
+			var today = new Date();
+			var dd = today.getDate();
+			var mm = today.getMonth()+1; //January is 0!
+			var yyyy = today.getFullYear();
+			if(dd<10){
+				dd='0'+dd
+			} 
+			if(mm<10){
+				mm='0'+mm
+			} 
+
+			today = yyyy+'-'+mm+'-'+dd;
+			document.getElementById("memBday").setAttribute("max", today);
+
+
+					//生日驗證 生日不可以大於今天
+					$("#memBday").blur(function(e){
+						console.log(e.target.id);
+						var nDay=yyyy+mm+dd;
+						if(e.target.id=="memBday"){
+							days=$("#memBday").val().split("-");
+							tDay=days[0]+days[1]+days[2];
+							if(tDay>nDay){
+								$("#memBdayShow").html("&nbsp;&nbsp;&nbsp;&nbsp;不合格的生日").css('color','red');
+								valids[0]=false;
+							}
+							else{
+								$("#memBdayShow").html("");
+								valids[0]=true;
+							}
+						}
+					});
+
+
+					//手機驗證
+					$("#memPhone").blur(function() {
+						var phone1 = new RegExp("[09]{2}[0-9]{2}\-[0-9]{6}");
+						var phone2 = new RegExp("[09]{2}[0-9]{8}");
+						if (phone1.test($("#memPhone").val())||phone2.test($("#memPhone").val()))  
+						{  
+							$("#memPhoneShow").html("").css('color','green');
+							valids[1]=true;
+						}  
+						else{
+							$("#memPhoneShow").html("&nbsp;&nbsp;&nbsp;&nbsp;不合格的手機格式").css('color','red');
+							valids[1]=false;
+						} 
+					});
+
+
+
+					//信箱驗證
+					$("#memEmail").blur($.fn.testMemEmail = function() {
+
+						var memEmail = $("#memEmail").val();
+						$.ajax({
+							url: '<%=request.getContextPath() %>/front_end/member/RegisterExit.do',
+							data: {
+								memEmail:$("#memEmail").val(),
+								action :"memEmail"			
+							},
+							success : function(responseText){
+									console.log(responseText);
+									if(responseText.trim() == "抱歉，Email格式不正確"){
+										valids[2]=false;
+										$("#memEmailShow").html(responseText).css('color','red');
+									}
+									else if(responseText.trim() == "抱歉，此Email已經註冊過了"){
+										if($("#memEmail").val()=="${member.memEmail}"){
+											console.log("this is my email");
+											$("#memEmailShow").html("").css('color','green');
+											valids[2]=true;
+										}
+										else{
+											valids[2]=false;
+											$("#memEmailShow").html(responseText).css('color','red');
+										}
+									}
+									else{
+										$("#memEmailShow").html("").css('color','green');
+										valids[2]=true;
+									}	
+								}
+									
+						});
+
+					});
+
+					
+					$("#memImg").change(function() {
+						readURL(this);
+					});
+
+					function readURL(input) {
+
+						if (input.files && input.files[0]) {
+							var reader = new FileReader();
+							reader.onload = function(e) {
+								$('#memPic').attr('src', e.target.result);
+							}
+							reader.readAsDataURL(input.files[0]);
+						}
+					};
+					
+					
+					
+					//送出表單時檢察有無未填
+					$('form').submit(function() {
+						
+
+						for (var i = 0; i < valids.length; i++) {
+							if(!valids[i]){
+								return false;
+							}
+						}
+
+					});
+					
+					
+			
+		});
+		</script>
 		<script src="https://code.jquery.com/jquery.js"></script>
 		<script
 			src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>

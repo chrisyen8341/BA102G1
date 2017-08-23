@@ -2,7 +2,7 @@ package com.charge.model;
 
 import java.util.List;
 
-//import com.orderlist.model.OrderList;
+import com.orderlist.model.OrderList;
 
 public interface Charge_interface {
 	void add(Charges charges);

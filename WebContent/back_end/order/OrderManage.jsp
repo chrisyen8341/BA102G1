@@ -14,8 +14,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+<script src="https://code.jquery.com/jquery.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/i18n/defaults-*.min.js"></script>
 <style type="text/css">
 .mm {
 	margin-top: 2.5cm;
@@ -42,8 +43,7 @@
 </ul>
 </div>
 <div>
-<form action="<%=request.getContextPath()%>/OrderUpdate" method="POST">
-<table class="table table-hover m">
+<table class="table table-hover m" style="padding:0px;">
 	<thead>
 		<tr style="background-color: #E8CCFF;">
 			<th>訂單編號</th>
@@ -54,55 +54,69 @@
 		</tr>
 	</thead>
 <c:forEach var="ordList" items="${ordList}">
+	<form action="<%=request.getContextPath()%>/OrderUpdate" method="POST">
 
 <tr>
    
 	<td>${ordList.ordNo}</td>
 	<td>${ordList.ordDate}</td>
 	<c:if test="${ordList.ordStatus == 0 || ordList.ordStatus == 1}">
-	<td>
-	 <select name="ordstate">
-　		<option value="1" selected>未出貨</option>
-　		<option value="2">已出貨</option>
-　		<option value="3">已結案</option>
-		<option value="4">已取消</option>
+	<td >
+	
+	 <select name="ordstate" id="tte"> 
+  		<option value="1" selected>未出貨</option> 
+  		<option value="2">已出貨</option>
+  		<option value="3">已結案</option>
+  		<option value="4">已取消</option>
 	 </select>
-	 
+
+	
 	</td>
 	</c:if>
 	<c:if test="${ordList.ordStatus == 2}">
-	<td><select name="ordstate">
-　		<option value="1">未出貨</option>
-　		<option value="2" selected>已出貨</option>
-　		<option value="3">已結案</option>
-		<option value="4">已取消</option>
-	</select></td>
+	<td>
+	<select name="ordstate" id="tte"> 
+  		<option value="1">未出貨</option> 
+  		<option value="2" selected>已出貨</option>
+  		<option value="3">已結案</option>
+  		<option value="4">已取消</option>
+	 </select>
+	</td>
 	</c:if>
 	<c:if test="${ordList.ordStatus == 3}">
-	<td><select name="ordstate">
-　		<option value="1">未出貨</option>
-　		<option value="2">已出貨</option>
-　		<option value="3" selected>已結案</option>
-		<option value="4">已取消</option>
-	</select></td>
+	<td>
+	<select name="ordstate" id="tte"> 
+  		<option value="1">未出貨</option> 
+  		<option value="2">已出貨</option>
+  		<option value="3" selected>已結案</option>
+  		<option value="4">已取消</option>
+	 </select>
+	</td>
 	</c:if>
 	<c:if test="${ordList.ordStatus == 4}">
-	<td><select name="ordstate">
-　		<option value="1">未出貨</option>
-　		<option value="2">已出貨</option>
-　		<option value="3" >已結案</option>
-		<option value="4" selected>已取消</option>
-	</select></td>
+	<td>
+	<select name="ordstate" id="tte"> 
+  		<option value="1">未出貨</option> 
+  		<option value="2">已出貨</option>
+  		<option value="3">已結案</option>
+  		<option value="4" selected>已取消</option>
+	 </select>
+	</td>
 	</c:if>
 	<td>${ordList.conName}</td>
 	<td>${ordList.ordTotal}</td>
-	<td><input type="submit" value="修改訂單"></td>
+	<td>
+	
+	<input id="changede" type="submit" value="確定修改" class="btn-primary">	
+	
+	</td>
+	
    	<input type="hidden" name="ordNo" value="${ordList.ordNo}">
 </tr>
 
+</form>
 </c:forEach>
 </table>
-</form>
 </div>
 
 <div class="row col-xs-10 col-sm-10" align="center">
@@ -113,10 +127,19 @@
 </div>
 
 </body>
+<script>
+function chg(){
+	var press = document.getElementById("press");
+	var tte = document.getElementById("tte");
+	var confirm = document.getElementById("confirm");
+	var change = document.getElementById("change");
+	var changede = document.getElementById("changede");
+	press.style.display='none';
+	tte.style.display='';
+	change.style.display='none';
+	changede.style.display='';
+}
+</script>
 
-
-	<script src="<%=request.getContextPath()%>/front_end/js/jquery.js"></script>
-	<script src="<%=request.getContextPath()%>/front_end/js/bootstrap.min.js"></script>
-	<script src="https://code.jquery.com/jquery.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	  
 </html>

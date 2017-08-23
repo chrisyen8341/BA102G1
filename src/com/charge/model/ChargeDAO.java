@@ -12,8 +12,8 @@ import javax.naming.Context;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-//import com.orderlist.model.OrderList;
-//import com.product.model.Product;
+import com.orderlist.model.OrderList;
+import com.product.model.Product;
 
 
 public class ChargeDAO implements Charge_interface{

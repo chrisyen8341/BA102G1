@@ -5,6 +5,9 @@
 <%@ page import="com.member.model.*"%>
 <%request.setCharacterEncoding("UTF-8");%>  
 <%response.setCharacterEncoding("UTF-8");%> 
+
+
+
 <html>
 <head>
 <%@ include file="page4.file" %>
@@ -40,6 +43,7 @@
           <input type="text" class="form-control" id="tel" value="<%= session.getAttribute("amount")%>">
         </div>
         <button type="submit" class="btn btn-default">確定付款</button>
+        
       </form>
     </div>
 

@@ -42,7 +42,6 @@
 </ul>
 </div>
 <div>
-<form action="<%=request.getContextPath()%>/OrderUpdate" method="POST">
 <table class="table table-hover m">
 	<thead>
 		<tr style="background-color: #E8CCFF;">
@@ -54,6 +53,7 @@
 		</tr>
 	</thead>
 <c:forEach var="ordList" items="${ordList}">
+<form action="<%=request.getContextPath()%>/OrderUpdate" method="POST">
 <c:if test="${ordList.ordStatus == 3 || ordList.ordStatus == 4}">
 <tr>
    
@@ -81,9 +81,9 @@
    	<input type="hidden" name="ordNo" value="${ordList.ordNo}">
 </tr>
 </c:if>
+</form>
 </c:forEach>
 </table>
-</form>
 </div>
 <div class="row col-xs-10 col-sm-10" align="center">
 	  

@@ -33,24 +33,20 @@ public class ShoppingCar extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");  
 		res.setContentType("text/html; charset=UTF-8");
-		HttpSession session=req.getSession();
 		PrintWriter out = res.getWriter();
 		HashMap proQua = new HashMap();	
 		String url = "front_end/product/Cart.jsp";
-
-		String delname = req.getParameter("delname");
-
+		String delname = (req.getParameter("delname"));
+		
+		HttpSession session = req.getSession();
 		Vector<Product> buylist = (Vector<Product>) session.getAttribute("shoppingcart");
 		Map<String,Integer> qtyMap = (Map<String,Integer>) session.getAttribute("qtyMap");
-		
 		
 		
 		//ProductService prodVo = new ProductService();
 		Product aprod = getProduct(req);
 		String action = req.getParameter("action").trim();
-		
-		
-		System.out.println("action : "+action);
+		System.out.println(action);
 		
 		if(!action.equals("checkout")) {
 			// 刪除購物車中的書籍
@@ -59,20 +55,18 @@ public class ShoppingCar extends HttpServlet {
 				rd.forward(req, res);
 				return;
 			}
-			
 			if (action.equals("delete")) {
 				
+				System.out.println(req.getParameter("delname").trim());
+				int Qua = qtyMap.get(req.getParameter("delname").trim());
 				
-				int Qua = qtyMap.get(req.getParameter("delname"));
 				
-				if(Qua-1<=0) {
 					String del = req.getParameter("del");
 					int d = Integer.parseInt((del).trim());
 					buylist.removeElementAt(d);
-			   }else {
-				   
-				   qtyMap.put(req.getParameter("delname"),qtyMap.get(req.getParameter("delname"))-1);
-			   }
+					qtyMap.remove(req.getParameter("delname").trim());
+			   
+			   
 				RequestDispatcher rd = req.getRequestDispatcher(url);
 				rd.forward(req, res);
 			}
@@ -135,7 +129,6 @@ public class ShoppingCar extends HttpServlet {
 		
 	private Product getProduct(HttpServletRequest req) throws UnsupportedEncodingException {
 		String name = req.getParameter("name");
-		System.out.println(name);
 		Integer price = new Integer(req.getParameter("price").trim());
 		Integer prodNo = new Integer(req.getParameter("prodno").trim());
 		Product pro = new Product();
@@ -150,5 +143,4 @@ public class ShoppingCar extends HttpServlet {
 		
 		doPost(req, res);
 	}
-
 }

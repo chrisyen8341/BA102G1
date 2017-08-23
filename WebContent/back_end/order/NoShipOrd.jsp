@@ -42,7 +42,6 @@
 </ul>
 </div>
 <div>
-<form action="<%=request.getContextPath()%>/OrderUpdate" method="POST">
 <table class="table table-hover m">
 	<thead>
 		<tr style="background-color: #E8CCFF;">
@@ -54,6 +53,7 @@
 		</tr>
 	</thead>
 <c:forEach var="ordList" items="${ordList}">
+<form action="<%=request.getContextPath()%>/OrderUpdate" method="POST">
 <c:if test="${ordList.ordStatus == 1 || ordList.ordStatus == 2 || ordList.ordStatus == 0}">
 <tr>
    
@@ -65,6 +65,7 @@
 　		<option value="1" selected>未出貨</option>
 　		<option value="2">已出貨</option>
 　		<option value="3">已結案</option>
+		<option value="4">已取消</option>
 	 </select>
 	 
 	</td>
@@ -74,24 +75,19 @@
 　		<option value="1">未出貨</option>
 　		<option value="2" selected>已出貨</option>
 　		<option value="3">已結案</option>
+		<option value="4">已取消</option>
 	</select></td>
 	</c:if>
-	<c:if test="${ordList.ordStatus == 3}">
-	<td><select name="ordstate">
-　		<option value="1">未出貨</option>
-　		<option value="2">已出貨</option>
-　		<option value="3" selected>已結案</option>
-	</select></td>
-	</c:if>
+	
 	<td>${ordList.conName}</td>
 	<td>${ordList.ordTotal}</td>
 	<td><input type="submit" value="修改訂單"></td>
    	<input type="hidden" name="ordNo" value="${ordList.ordNo}">
 </tr>
 </c:if>
+</form>
 </c:forEach>
 </table>
-</form>
 </div>
 <div class="row col-xs-10 col-sm-10" align="center">
 	  

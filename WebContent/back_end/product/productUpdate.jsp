@@ -4,53 +4,81 @@
 <html>
 <head>
 <%@ include file="page1.file"%>
+
+<script src="<%=request.getContextPath() %>/back_end/product/filejs/js/fileinput.js"></script>
+<script src="<%=request.getContextPath() %>/back_end/product/filejs/themes/fa/theme.js"></script>
+<link href="<%=request.getContextPath() %>/back_end/product/filejs/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
+<script src="<%=request.getContextPath() %>/back_end/product/filejs/js/plugins/piexif.min.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath() %>/back_end/product/filejs/js/plugins/sortable.min.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath() %>/back_end/product/filejs/js/plugins/purify.min.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath() %>/back_end/product/filejs/js/fileinput.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath() %>/back_end/product/filejs/themes/fa/theme.js"></script>
+<script src="<%=request.getContextPath() %>/back_end/product/filejs/js/locales/<lang>.js"></script>
 <style type="text/css">
 .mm {
 	margin-top: 4cm;
 }
-
+#DIV_SMALL{
+   
+    position:absolute;
+    top:3cm;
+    left:12cm;
+}
 </style>
-
+	<script type="text/javascript">
+	
+	</script>
 </head>
 <body>
 <%@ include file="/back_end/backEndNavBar.file"%>
 <%@ include file="/back_end/backEndLSide.file"%>
 
 	<div class="row col-xs-10 col-sm-10 ">
+			
+			
+		<div style="padding-top:0em;">	
+			
 	  <form action="<%=request.getContextPath()%>/ProductUpload" method="POST" enctype="multipart/form-data" name="form" >
 		<table class="table table-hover mm" style="background-color: #CCEEFF;">
 			<thead>
 				<tr style="background-color: #E8CCFF;">
-					<th>輸入上架商品資訊</th>
+					
+					<th>輸入上架商品資訊
+						<font color="red">
+	   					<c:if test="${not empty errorMsgs}">
+          				<%=request.getAttribute("errorMsgs") %>
+       					</c:if>
+	 					</font>
+					</th>
 				</tr>
 			</thead>
 			<tbody>
 			  
 				<tr>
-					<td>商品名稱<input type="text" name="proName" id="name"
+					<td>商品名稱<input type="text" size="17" maxlength="15" name="proName" id="name"
 						placeholder="請輸入上架商品名稱" required></td>
 				</tr>
 				<tr>
-					<td>商品類別<input type="text" name="proType" id="type"
+					<td>商品類別<input type="text" size="17" maxlength="4" name="proType" id="type"
 						placeholder="請輸入上架商品類別" required></td>
 				</tr>
 				<tr>
-					<td>商品描述<input type="text" name="proDescpt" id="descpt"
-						placeholder="請輸入上架商品描述" required></td>
+					<td><div style="padding-top:0px;">商品描述</div><textarea rows="4" cols="25" name="proDescpt" id="descpt" 
+						placeholder="請輸入上架商品描述" required></textarea>
+					</td>
 				</tr>
 				<tr>
-					<td>商品價格<input type="text" name="proPrice" id="price"
-						placeholder="請輸入上架商品價格" required></td>
+					<td>商品價格<input type="text" size="17" maxlength="4" name="proPrice" id="price"
+						placeholder="請輸入上架商品價格" required >
+						<p id="demo"></p>	
+					</td>
 				</tr>
 				<tr>
 					<td>商品圖片
-						
-							<input type='file' name="prodimg" class="upl" required>
-							<div>
-								<img class="preview"
-									style="max-width: 150px; max-height: 150px;">
-								<div class="size"></div>
-							</div>
+							<label class="control-label">Select File</label>
+							<input id="input-fa" name="prodimg" type="file" multiple class="file-loading">
+							
 						
 					</td>
 				</tr>
@@ -59,47 +87,22 @@
 						
 			
 		</table>
-				<input type="submit" value="新增商品" >
-				<input type="hidden" name="action" value="addprod">
-			</form>		
-				<a href="<%=request.getContextPath()%>/back_end/order/OrderManage.jsp"><input type="button" value="訂單管理"></a>
-				<a href="<%=request.getContextPath()%>/back_end/product/productManage.jsp"><input type="button" value="商品管理"></a>
+				<input type="submit" class="btn btn-primary" value="新增商品" >
+				<input type="hidden" name="action"value="addprod">
+				<a href="<%=request.getContextPath()%>/back_end/order/OrderManage.jsp"><input type="button" class="btn btn-primary" value="訂單管理"></a>
+				<a href="<%=request.getContextPath()%>/back_end/product/productManage.jsp"><input type="button" class="btn btn-primary" value="商品管理"></a>  
+			</form>	
+				
+		</div>		
 	</div>
-</body>
-<script>
-$(function (){
-	 
-    function format_float(num, pos)
-    {
-        var size = Math.pow(10, pos);
-        return Math.round(num * size) / size;
-    }
- 
-    function preview(input) {
- 
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            
-            reader.onload = function (e) {
-                $('.preview').attr('src', e.target.result);
-                var KB = format_float(e.total / 1024, 2);
-                $('.size').text("檔案大小：" + KB + " KB");
-            }
- 
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
- 
-    $("body").on("change", ".upl", function (){
-        preview(this);
-    })
-    
-})
-
-
-
 	
+</body>
 
+<script>
+$("#input-fa").fileinput({
+    theme: "fa",
+    uploadUrl: "/file-upload-batch/2"
+});
 </script>
 <!-- /.container -->
 	<!-- jQuery -->

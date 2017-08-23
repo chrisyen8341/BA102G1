@@ -134,7 +134,7 @@ public class chargePage extends HttpServlet {
 					chargeDao.addCharge(mem.getMemNo(), chargeIn, applyTime, 1, 0);
 					session.setAttribute("member", member);
 
-					RequestDispatcher rd = req.getRequestDispatcher("front_end/charge/PaySuccess.jsp");
+					RequestDispatcher rd = req.getRequestDispatcher("front_end/product/Cart.jsp");
 					rd.forward(req, res);
 				}
 				

@@ -13,9 +13,34 @@
 %>
 <html>
 <head>
+
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <%@ include file="page4.file"%>
+<script>
+$(document).ready(function(){
+    $(window).scroll(function () {
+           if ($(this).scrollTop() > 50) {
+               $('#back-to-top').fadeIn();
+           } else {
+               $('#back-to-top').fadeOut();
+           }
+       });
+       // scroll body to 0px on click
+       $('#back-to-top').click(function () {
+           $('#back-to-top').tooltip('hide');
+           $('body,html').animate({
+               scrollTop: 0
+           }, 800);
+           return false;
+       });
+       
+       $('#back-to-top').tooltip('show');
+
+});
+		</script>
 <style type="text/css">
 .mm{
 	padding-left:2cm;
@@ -171,14 +196,37 @@ body {
   margin-left: -10px;
   margin-right: -10px;
 }
+.fixed{
+	
+  position: fixed;
+  bottom: 10;
+  right: 0;
+  height:80px;
+  width: 100px;
+  background-color: #FFB7DD;
+
+  
+}
+.imggg{
+	background-image:url( '<%=request.getContextPath()%>/front_end/images/logo_re.jpg' );
+}
+.back-to-top {
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display:none;
+}
 </style>
 <%@ include file="csstest.file"%>
 </head>
 <body>
+	
 	<%@ include file="pageCount1.file"%>
 	<%@ include file="/front_end/frontEndNavBar.file" %>
 		
     <%@ include file="page2.file"%>
+    	<a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a>
 		<form action="<%=request.getContextPath()%>/ProductSearch" method="POST" class="mm">
 			<div class="row">
                 
@@ -198,7 +246,7 @@ body {
        <div class="promotion-section" style="padding:0px">
     <div class="w-container promotion-container" >
       <div class="row" style="padding-left:4cm">
-      <font face="monospace" size="30cm" color="#B088FF" >Favorate Shopping Mall !!!!!!!</font>
+      <font face="monospace" size="30cm" color="#B088FF" >Favorate Shopping Mall</font>
       </div>
       
       <!-- Cards First Row --->
@@ -212,12 +260,12 @@ body {
           <div class="blog-bar color-pink"></div>
           <div class="blog-post-text">
             ${product.prodName}
-            <div class="blog-description pink-text">${product.prodDescpt}</div>
+            
           </div>
           <div class="blog-post-text " style="margin-right:0px">
           	<div style="padding-left:0em" class="col-md-4">
           	<br>
-            <font face="fantasy" color="#5599FF">$${product.prodPrice}</font>
+            <font size="4" face="fantasy" color="#5599FF">$${product.prodPrice}</font>
             
             </div>
             	<div class="col-md-6">
@@ -247,11 +295,13 @@ body {
                 
             </div>
         </div>
+        
         <%@ include file="/front_end/frontEndButtom.file" %>
+        
         <script src="https://code.jquery.com/jquery.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-
+		
 </body>
 
 </html>

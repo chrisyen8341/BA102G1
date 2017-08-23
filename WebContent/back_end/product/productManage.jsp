@@ -25,20 +25,22 @@
 <%@ include file="/back_end/backEndLSide.file"%>
 
 			<div class="row col-xs-10 col-sm-10 ">
-                          
+<!--         11111111111111111111111                  -->
   <table class="table table-hover mm" style="background-color:#CCEEFF;">
     <thead>
       <tr style="background-color:#E8CCFF;">
+      	
         <th>商品名稱</th>
         <th>商品類別</th>
         <th>商品價格</th>
         <th>商品狀況</th>
         <th></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
      <c:forEach var="product" items="${prodList}">
-     
+      
      
      
      <c:if test = "${product.prodState == 0}">
@@ -50,13 +52,16 @@
         
         <td>上架中</td>
         <form action="<%=request.getContextPath() %>/ProductRemove" method="POST">  
-        <input type="hidden" name="prodNo" value="${product.prodNo}">
-        <td><input type="submit" value="商品下架"></td>
+        <input type="hidden" name="prodNo" id="no<%=prodList.size()%>" value="${product.prodNo}">
+        <td><input class="btn btn-primary" type="submit" value="商品下架"></td>
          </form> 
-        
-        
+        <form action="<%=request.getContextPath() %>/back_end/product/ProductAlter.jsp" method="POST">  
+        <input type="hidden" name="proNo" value="${product.prodNo}">
+        <td><input class="btn btn-primary" type="submit" value="商品修改" ></td>
+         </form>
         
       </tr>
+     
       </c:if>
       </c:forEach>
     </tbody>
@@ -64,14 +69,17 @@
  
 </div> 
 
-	<div class="row col-xs-10 col-sm-10" align="center">
+	<div class="row col-xs-10 col-sm-10" align="center" style="padding-left:10cm;">
 	  
-		<a href="<%=request.getContextPath() %>/back_end/product/productUpdate.jsp" ><input type="submit" value="上架新商品"></a>
-	  	<a href="<%=request.getContextPath() %>/back_end/order/OrderManage.jsp" ><input type="button" value="訂單管理"></a>
+		<a href="<%=request.getContextPath() %>/back_end/product/productUpdate.jsp" ><input type="submit" class="btn btn-primary" value="上架新商品"></a>
+	  	<a href="<%=request.getContextPath() %>/back_end/order/OrderManage.jsp" ><input type="button" class="btn btn-primary" value="訂單管理"></a>
 	</div> 
 
-
-
+	
+	
+	<script type="text/javascript">
+		
+	</script>
 
 			
 

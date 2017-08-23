@@ -15,6 +15,9 @@ width: 150px;
   
 }
 </style>
+<script src="https://code.jquery.com/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
 
 <body>
@@ -24,7 +27,21 @@ width: 150px;
 <% Vector<Product> buylist = (Vector<Product>) session.getAttribute("shoppingcart");%>
 <%HashMap<String,Integer> qtyMap = (HashMap<String,Integer>) session.getAttribute("qtyMap");%>   
 <%Member mem = (Member)session.getAttribute("member");%>
+<%if(mem == null){
+	RequestDispatcher rd = request.getRequestDispatcher("/front_end/member/login.jsp");
+	rd.forward(request, response);
+	return;
+}
 
+                	%>
+<%try{
+	buylist.get(0); 
+		}catch(Exception e)
+			{
+			RequestDispatcher rd = request.getRequestDispatcher("/front_end/product/NoItemCart.jsp");
+			rd.forward(request, response);
+			return;
+				}%>
 <%	
 	int totalall=0;
 	for (int i = 0; i < buylist.size(); i++) {
@@ -57,11 +74,15 @@ session.setAttribute("amount", amount);
                     </tr>
                 </thead>
                 <tbody>
+                
+                
+                
                 <%
 					
 	 				for (int index = 0; index < buylist.size(); index++) {
 					Product prod = buylist.get(index);
 					int total=prod.getProdPrice()*qtyMap.get(prod.getProdName()); 
+					session.setAttribute("total",total);
 					
 				%>
                     <tr>
@@ -73,24 +94,32 @@ session.setAttribute("amount", amount);
                             </div>
                         </div></td>
                         <td class="col-sm-1 col-md-1" style="text-align: center">
-                          <form action="<%=request.getContextPath()%>/CheckOut.do" method="POST">
-                       		 <input type="number" class="form-control" id="exampleInputEmail1" value="<%=qtyMap.get(prod.getProdName())%>">
-                                
-                           </form> 
+                          
+                       		 
+                       		 
+                       		 <input type="number" min="1" max="10" name="num<%=index %>" form="ProdNumChange" class="form-control" id="num<%=index %>" value="<%=qtyMap.get(prod.getProdName())%>" onchange="calculate(this,<%=index%>)">
+                             
+                               
+                           
                         </td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong><%=prod.getProdPrice()%></strong></td>
+                        <td  class="col-sm-1 col-md-1 text-center"><p>$<%=prod.getProdPrice()%></p></td>
                         <% %>
-                        <td class="col-sm-1 col-md-1 text-center"><strong><%=total %></strong></td>
+                        <td  class="col-sm-1 col-md-1 text-center">
+                          <input type="hidden" id="select<%=index %>">
+                          <div>$<%=total %></div>
+                        	
+                        	
+                        </td>
                         <td class="col-sm-1 col-md-1">
-						
+							<input type="hidden" id="index" value="<%=buylist.size()%>">
                             <form  name="deleteForm" action="<%=request.getContextPath() %>/ShoppingCar.do" method="POST">
               					<input type="hidden" name="action" value="delete">
               					<input type="hidden" name="del" value="<%=index%>">
-              					<input type="hidden" name="delname" value=<%=prod.getProdName()%>> 
-              					<input type="hidden" name="price" value=<%=prod.getProdPrice()%>>
+              					<input type="hidden" name="delname" id="name<%=index %>" value=<%=prod.getProdName()%>> 
+              					<input type="hidden" name="price"  id="pri<%=index %>" value=<%=prod.getProdPrice()%>>
              				    <input type="hidden" name="prodno" value=<%=prod.getProdNo()%>>
-              					<input type="submit" class="btn btn-danger" value="刪除"></div>
-       					 
+              					<input type="submit" class="btn btn-danger" value="刪除">
+       					 		
        					 </form>
                         </td>
                     </tr>
@@ -101,7 +130,11 @@ session.setAttribute("amount", amount);
                         <td>   </td>
                         <td><h3>Total</h3></td>
                         	
-                        <td class="text-right"><h3><strong><%=amount %></strong></h3></td>
+                        <td>
+                        
+                        <input class="btn btn-info btn-lg"  name="amount" id="amo" type="button" value="<%=amount %>" style="margin-top:10px;margin-left:-20px;">
+                        
+                        </td>
                     </tr>
                    		
                     <tr>
@@ -109,12 +142,31 @@ session.setAttribute("amount", amount);
                         <td></td>
                         <td></td>
                         <td>
-                        <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-shopping-cart"></span><a href="<%=request.getContextPath()%>/front_end/product/BrowseProduct.jsp">繼續購物</a>
-                        </button></td>
+                         <form action="<%=request.getContextPath() %>/ProdNumChange" id="ProdNumChange" method="POST">
+                         	<%for (int index = 0; index < buylist.size(); index++) {
+        					Product prod = buylist.get(index); %>
+                        	<input type="hidden" name="test" id="keep<%=index %>" value="2">
+              					
+             				<%} %>
+                         	<input type="hidden" name="action" value="back">
+                        	<button type="submit" class="btn btn-default">
+                            	<span class="glyphicon glyphicon-shopping-cart">繼續購物</span>
+                        	</button>
+                         </form>
+                        </td>
                         <td>
-                        <button type="button" class="btn btn-success"><a href="<%=request.getContextPath()%>/front_end/product/CheckOutConfirm.jsp">結帳</a> <span class="glyphicon glyphicon-play"></span>
-                        </button></td>
+                        <form action="<%=request.getContextPath() %>/ProdNumChange" id="ProdNumChange" method="POST">
+                        <%for (int index = 0; index < buylist.size(); index++) {
+        					Product prod = buylist.get(index); %>
+                        <input type="hidden" name="test" id="pay<%=index %>" value="1">
+              					
+             				    <%} %>
+                        <input type="hidden" name="action" value="pay">
+                        <button type="submit" class="btn btn-success"> 
+                        	結帳
+                        </button>
+                        </form>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -124,44 +176,43 @@ session.setAttribute("amount", amount);
 		
 
 <%@ include file="/front_end/frontEndButtom.file" %>
-<script type="text/javascript">
-$(document).ready(function(){
+<script>
 
-	var quantitiy=0;
-	   $('.quantity-right-plus').click(function(e){
-	        
-	        // Stop acting like a button
-	        e.preventDefault();
-	        // Get the field name
-	        var quantity = parseInt($('#quantity').val());
-	        
-	        // If is not undefined
-	            
-	            $('#quantity').val(quantity + 1);
+function calculate(e,idx){
+	
+	var numb = $(e).val();
+	$('#keep'+idx).val(numb);
+	$('#pay'+idx).val(numb);
+	alert($('#pay'+idx).val());
+	var sum=0;
+	var index = $("#index").val();
+	for(var i=0;i<index;i++){
 
-	          
-	            // Increment
-	        
-	    });
+	var num = "#" + "num" + i;
+	var pri = "#" + "pri" + i;
+	
+	var str = $(num).val()*$(pri).val();
+	var asd = $("#select"+i).next();
+	asd.text("$"+str);
+	
+	sum += parseInt(str);
+	console.log($(num).val());
+	}
+	$("#amo").val("$"+sum);
+	
+}
 
-	     $('.quantity-left-minus').click(function(e){
-	        // Stop acting like a button
-	        e.preventDefault();
-	        // Get the field name
-	        var quantity = parseInt($('#quantity').val());
-	        
-	        // If is not undefined
-	      
-	            // Increment
-	            if(quantity>0){
-	            $('#quantity').val(quantity - 1);
-	            }
-	    });
-	    
-	});
+
+
+
+
+
+
+
 </script>
-<script src="https://code.jquery.com/jquery.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+
+</script>
 </body>
 
 </html>

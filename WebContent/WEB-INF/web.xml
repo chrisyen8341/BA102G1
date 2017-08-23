@@ -126,7 +126,11 @@
     <servlet-name>ShowImage</servlet-name>
     <url-pattern>/front_end/diary/ShowImage</url-pattern>
   </servlet-mapping>
-  <servlet>
+
+  
+  
+  
+ <servlet>
     <servlet-name>ShoppingCar</servlet-name>
     <servlet-class>com.product.controller.ShoppingCar</servlet-class>
   </servlet>
@@ -158,4 +162,8 @@
     <servlet-name>OrderView</servlet-name>
     <url-pattern>/OrderView.do</url-pattern>
   </servlet-mapping>
+  
+  
+  
+  
 </web-app>

@@ -40,52 +40,71 @@ public class InsertDummyBlob2 {
 	
 	public static void main(String[] args) {
 
-	// 餐廳會員照片修改
-	int r = 7001;
-    for (File file : new File("WebContent/DummyImg/restImg").listFiles()) { 
-    	RestImgJDBCDAO restImgJDBCDAO=new RestImgJDBCDAO();
-        RestImg restImg=restImgJDBCDAO.findByPK(r++);
-        try {
-			byte[] b = getPictureByteArray(file);
-			restImg.setRestImg(b);
-			restImgJDBCDAO.update(restImg);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}    
-    }
-    System.out.println("=============餐廳會員照片新增完畢================");
-
-    
-    // 發起活動照片修改
-    int j = 8001;
-    for (File file : new File("WebContent/DummyImg/activityInitImg").listFiles()) { 
-    	ActivityJDBCDAO activityDAO=new ActivityJDBCDAO();
-    	Activity activity=activityDAO.findByPK(j++);
-        try {
-			byte[] b = getPictureByteArray(file);
-			activity.setActInitImg(b);
-			activityDAO.update(activity);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}    
-    }
-    System.out.println("=============發起活動照片新增完畢================");
-
-
- // 活動照片修改
-    int k = 8001;
-    for (File file : new File("WebContent/DummyImg/actImg").listFiles()) { 
-    	ActImgJDBCDAO actImgJDBCDAO=new ActImgJDBCDAO();
-    	ActImg actImg=actImgJDBCDAO.findByPK(k++);
-        try {
-			byte[] b = getPictureByteArray(file);
-			actImg.setActImg(b);
-			actImgJDBCDAO.update(actImg);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}    
-    }
-    System.out.println("=============活動照片新增完畢================");
+//	// 餐廳會員照片修改
+//	int r = 7001;
+//    for (File file : new File("WebContent/DummyImg/restImg").listFiles()) { 
+//    	RestImgJDBCDAO restImgJDBCDAO=new RestImgJDBCDAO();
+//        RestImg restImg=restImgJDBCDAO.findByPK(r++);
+//        try {
+//			byte[] b = getPictureByteArray(file);
+//			restImg.setRestImg(b);
+//			restImgJDBCDAO.update(restImg);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}    
+//    }
+//    System.out.println("=============餐廳會員照片新增完畢================");
+//
+//    
+//    // 發起活動照片修改
+//    Set<String> memSet=new HashSet<String>();	
+//	for (File file : new File("WebContent/DummyImg/activityInitImg").listFiles()) { 
+//		String fileName=file.getName();
+//		String fileExtName=fileName.substring(fileName.lastIndexOf("."));
+//		memSet.add(fileExtName);
+//	}	
+//	
+//    //對資料庫的編號跑回圈
+//	for (int i=8001;i<=8020;i++) { 
+//    	ActivityJDBCDAO dao=new ActivityJDBCDAO();
+//    	//取得File檔名 (ex.1 2 3) 故要記得更改減的數字(5000)
+//    	String fileN=String.valueOf((i-8000));
+//    	
+//    	//附檔名不確定，故對可能的副檔名跑回圈跑到檔案存在為止
+//    	File file = null;	    	
+//    	for(String fileExtName:memSet){
+//    		file=new File("WebContent/DummyImg/activityInitImg/"+fileN+fileExtName);
+//    		if(file.exists()){
+//    			break;
+//    		}
+//    	}
+//    	
+//    	Activity activity = dao.findByPK(i);
+//        try {
+//        	byte[] b = getPictureByteArrayNoChangeSize(file);
+//        	activity.setActInitImg(b);
+//			dao.update(activity);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}    
+//    }
+//    System.out.println("=============發起活動照片新增完畢================");
+//
+//
+// // 活動照片修改
+//    int k = 8001;
+//    for (File file : new File("WebContent/DummyImg/actImg").listFiles()) { 
+//    	ActImgJDBCDAO actImgJDBCDAO=new ActImgJDBCDAO();
+//    	ActImg actImg=actImgJDBCDAO.findByPK(k++);
+//        try {
+//			byte[] b = getPictureByteArray(file);
+//			actImg.setActImg(b);
+//			actImgJDBCDAO.update(actImg);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}    
+//    }
+//    System.out.println("=============活動照片新增完畢================");
     
     
 //	// 廣告圖片修改
@@ -103,23 +122,23 @@ public class InsertDummyBlob2 {
 //	}
 //	System.out.println("=============廣告圖片修改完了================");
 
-	// 幻燈片修改
-	int s = 1;
-	for (File file : new File("WebContent/DummyImg/slide").listFiles()) {
-		SlideJDBCDAO dao = new SlideJDBCDAO();
-		Slide slide = dao.findByPrimaryKey(s++);
-		try {
-			byte[] b = getPictureByteArray(file);
-			slide.setSlideImg(b);
-			dao.update(slide);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	System.out.println("=============幻燈片修改完了================");
+//	// 幻燈片修改
+//	int s = 1;
+//	for (File file : new File("WebContent/DummyImg/slide").listFiles()) {
+//		SlideJDBCDAO dao = new SlideJDBCDAO();
+//		Slide slide = dao.findByPrimaryKey(s++);
+//		try {
+//			byte[] b = getPictureByteArray(file);
+//			slide.setSlideImg(b);
+//			dao.update(slide);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//	}
+//	System.out.println("=============幻燈片修改完了================");
         
     
-	// 修改約會商品照片
+//	// 修改約會商品照片
 	//讀取約會商品照片延伸附檔名	
 	Set<String> dateSet=new HashSet<String>();	
 	for (File file : new File("WebContent/DummyImg/dateitem").listFiles()) { 
@@ -152,7 +171,7 @@ public class InsertDummyBlob2 {
     }
     System.out.println("=============約會商品新增完畢================");
     
-    
+
     
     
 	}

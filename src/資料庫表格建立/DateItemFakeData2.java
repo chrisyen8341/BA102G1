@@ -47,7 +47,7 @@ public class DateItemFakeData2 extends HttpServlet {
 		
 		RestaurantService restSvc=new RestaurantService ();
 		Map<Integer,String> rest=new HashMap<Integer,String>();
-		for(int i=7006;i<=7080;i++){
+		for(int i=7010;i<=7080;i++){
 			String loc=restSvc.getOneRest(i).getRestLocate();
 			rest.put(i, loc);
 		}
@@ -160,8 +160,7 @@ public class DateItemFakeData2 extends HttpServlet {
 			Integer statusR=0;
 			Integer showR=0;
 			Integer viewerR=rand.nextInt(1000);
-//			Integer buyerR=rand.nextInt(30)+5001;
-			Integer buyerR=5100;
+			Integer buyerR=rand.nextInt(30)+5001;
 			Boolean[] qrCode=new Boolean[]{true,false};
 			Boolean qrCodeR=qrCode[rand.nextInt(2)];
 			Integer buyerRepR=0;

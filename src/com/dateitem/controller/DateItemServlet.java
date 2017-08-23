@@ -363,12 +363,17 @@ public class DateItemServlet extends HttpServlet {
 				HttpSession session = req.getSession();
 				Member member = (Member) session.getAttribute("member");
 				DateItemVO dateItemVO = new DateItemVO();
+				System.out.println("11");
 				dateItemVO.setSellerNo(member.getMemNo());
+				System.out.println("22");
 				dateItemVO.setRestListNo(Integer.parseInt(req.getParameter("restListNo")));
+				System.out.println("33");
 				dateItemVO.setPetNo(Integer.parseInt(req.getParameter("petNo")));
 				dateItemVO.setDateItemTitle(dateItemTitle);
+				System.out.println("44");
 				dateItemVO.setDateItemText(dateItemText);
 				dateItemVO.setDateItemPrice(Integer.parseInt(req.getParameter("dateItemPrice")));
+				System.out.println("55");
 			
 				
 				
@@ -411,37 +416,40 @@ public class DateItemServlet extends HttpServlet {
 				boolean isInstantDate = false;
 
 				//檢查是否抓到值
-//				System.out.println(sellerno);
-//				System.out.println(restListNo);
-//				System.out.println(dateItemTitle);
-//				System.out.println(dateItemText);
-//				System.out.println(dateItemTime);
-//				System.out.println(dateMeetingTime);
-//				System.out.println(dateItemPeople);
-//				System.out.println(hasMate);
-//				System.out.println(dateItemPrice);
-//				System.out.println(dateItemStatus);
-//				System.out.println("===================");
-//				System.out.println(dateItemShow);
-//				System.out.println(dateItemViewer);
-//				System.out.println(buyerNo);
-//				System.out.println(isQRCChecked);
-//				System.out.println(buyerRep);
-//				System.out.println(sellerRep);
-//				System.out.println(isInstantDate);
-//				System.out.println(petNo);
+				System.out.println(sellerno);
+				System.out.println(restListNo);
+				System.out.println(dateItemTitle);
+				System.out.println(dateItemText);
+				System.out.println(dateItemTime);
+				System.out.println(dateMeetingTime);
+				System.out.println(dateItemPeople);
+				System.out.println(hasMate);
+				System.out.println(dateItemPrice);
+				System.out.println(dateItemStatus);
+				System.out.println("===================");
+				System.out.println(dateItemShow);
+				System.out.println(dateItemViewer);
+				System.out.println(buyerNo);
+				System.out.println(isQRCChecked);
+				System.out.println(buyerRep);
+				System.out.println(sellerRep);
+				System.out.println(isInstantDate);
+				System.out.println(petNo);
 				
-				
+				System.out.println("66");
 				RestaurantService rSvc = new RestaurantService();
+				System.out.println("===================2");
 				Restaurant restaurant = rSvc.getOneRest(Integer.parseInt(req.getParameter("restListNo"))); 
+				System.out.println("===================1");
 				String dateItemLocate = (restaurant.getRestAdd()).substring(5, 8);
 				System.out.println(dateItemLocate);
 				
-				
+				System.out.println("77");
 				DateItemService dateItemSvc = new DateItemService();
 				System.out.println("準備新增");
+				System.out.println("88");
 				dateItemVO = dateItemSvc.addDateItem(sellerno, restListNo, dateItemTitle, dateItemImg, dateItemText, dateItemTime, dateMeetingTime, dateItemLocate, dateItemPeople, hasMate, dateItemPrice, dateItemStatus, dateItemShow, dateItemViewer, buyerNo, isQRCChecked, buyerRep, sellerRep, isInstantDate, petNo);
-				
+				System.out.println("99");
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
 				req.setAttribute("itemAdded", dateItemVO);
 				String url = "/front_end/dateitem/list_seller_onsale.jsp";

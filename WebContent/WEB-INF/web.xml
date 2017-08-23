@@ -18,6 +18,7 @@
     <url-pattern>/front_end/member/memberInfo.jsp</url-pattern>
     <url-pattern>/front_end/charge/chargePage.jsp</url-pattern>
     <url-pattern>/front_end/product/OrderView.jsp</url-pattern>
+    <url-pattern>/front_end/activityFront/activityOfMine.jsp</url-pattern>
     <dispatcher>REQUEST</dispatcher>
     <dispatcher>FORWARD</dispatcher>
     <dispatcher>INCLUDE</dispatcher>

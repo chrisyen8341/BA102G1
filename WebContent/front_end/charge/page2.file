@@ -10,24 +10,26 @@
                         <a href="#" class="list-group-item" data-toggle="collapse" data-target="#sm1" data-parent="#menu">瀏覽商品 
                          <span class="glyphicon glyphicon-triangle-bottom pull-right"></span></a>
                         <div id="sm1" class="sublinks collapse">
-                            <a href="<%=request.getContextPath()%>/front_end/product/PetFoodType.jsp" class="list-group-item small" data-toggle="collapse" data-target="#sm11" data-parent="#sm1">寵物飼料
-                             </a>
+                            <a href="#" class="list-group-item small" data-toggle="collapse" data-target="#sm11" data-parent="#sm1">寵物飼料
+                             <span class="glyphicon glyphicon-triangle-bottom pull-right "></span></a>
                             <div id="sm11" class="sublinks collapse">
-                                
+                                <a href="# " class="list-group-item small "> 飼料品牌1</a>
+                                <a href="# " class="list-group-item small "> 飼料品牌2</a>
                             </div>
-                            <a href="<%=request.getContextPath()%>/front_end/product/PetGoodType.jsp" class="list-group-item small" data-toggle="collapse" data-target="#sm12" data-parent="#sm1">寵物用品
-                            </a>
+                            <a href="#" class="list-group-item small" data-toggle="collapse" data-target="#sm12" data-parent="#sm1">寵物衣服
+                            <span class="glyphicon glyphicon-triangle-bottom pull-right"></span></a>
                             <div id="sm12" class="sublinks collapse">
-                                
-                            </div>
-                             <a href="<%=request.getContextPath()%>/front_end/product/PetToyType.jsp" class="list-group-item small" data-toggle="collapse" data-target="#sm13" data-parent="#sm1">寵物玩具
-                            </a>
-                            <div id="sm13" class="sublinks collapse">
-                                
-                            </div>
+                                <a href="#" class="list-group-item small"> 大型犬</a>
+                                <a href="#" class="list-group-item small"> 小型犬</a>
+                                <a href="# " class="list-group-item small"> 貓貓</a></div>
                         </div>
+                       <c:if test="${member==null}">
+                        <a href="<%=request.getContextPath()%>/front_end/member/login.jsp" class="list-group-item">我的訂單</a>
+                        </c:if>
+                        <c:if test="${member!=null}">
                         <a href="<%=request.getContextPath()%>/front_end/product/OrderView.jsp" class="list-group-item">我的訂單</a>
-                        <a href="<%=request.getContextPath()%>/front_end/charge/chargePage.jsp" class="list-group-item">儲值專區</a>
+                        </c:if>
+                        <a href="<%=request.getContextPath()%>/front_end/product/Cart.jsp" class="list-group-item">我的購物車</a>
                     </div>
                 </div>
             </div>
@@ -80,8 +82,16 @@
                         </div>
                     </div>
                 </div>
+
+
 				
-				
-                <h5 class="page-header text-right">目前位置:商城專區</h5>
+				<div class="span12">
+            		<form id="custom-search-form" class="form-search form-horizontal pull-right">
+                	<div class="col-sm-3 input-append span12">
+                    <input type="text" class="search-query" placeholder="Search">
+                    <button type="submit" class="btn"><i class="icon-search"></i></button>
+                	</div></form>
+                <h5 class=" page-header text-right">目前位置:商城首頁</h5>
+                </div>
                 <div class="row">
                     <br>

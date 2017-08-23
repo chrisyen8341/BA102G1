@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<br>
+<div class="row">
 <table border="0">    
  <tr>
   <%if (rowsPerPage<rowNumber) {%>
@@ -33,4 +35,5 @@
    </FORM>
  </tr>
 </table>
+</div>
 <%}%>

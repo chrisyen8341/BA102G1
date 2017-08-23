@@ -12,16 +12,17 @@
 	
 </script>
 <!--     <script src="https://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script> -->
-<script src="<%=request.getContextPath()%>/front_end/js/d3.min.js"></script>
+
 
 
 
 <head>
 <title>約會首頁</title>
+<link href="<%=request.getContextPath() %>/front_end/css/modern-business.css" rel="stylesheet" type="text/css">
 <style type="text/css">
 #map_canvas {
 	width: 100%;
-	height: 60%;
+	height: 50%;
 }
 
 select {
@@ -34,6 +35,48 @@ select {
   line-height: 30px;
   
 }
+
+
+
+    #custom-search-form {
+        margin:0;
+        margin-top: 5px;
+        padding: 0;
+    }
+ 
+    #custom-search-form .search-query {
+        padding-right: 3px;
+        padding-right: 4px \9;
+        padding-left: 3px;
+        padding-left: 4px \9;
+        /* IE7-8 doesn't have border-radius, so don't indent the padding */
+ 
+        margin-bottom: 0;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+    }
+ 
+    #custom-search-form button {
+        border: 0;
+        background: none;
+        /** belows styles are working good */
+        padding: 2px 5px;
+        margin-top: 2px;
+        position: relative;
+        left: -28px;
+        /* IE7-8 doesn't have border-radius, so don't indent the padding */
+        margin-bottom: 0;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+    }
+ 
+    .search-query:focus + button {
+        z-index: 3;   
+    }
+
+
 
 </style>
 </head>
@@ -51,18 +94,17 @@ select {
 	<div class="col-xd-12 col-sm-10  main-page-show">
 		<div class="col-sm-10 col-sm-offset-1">
 			<span>
+				<br>
 				<Form action="<%=request.getContextPath()%>/front_end/dateitem/dateitem.do" method="post">
 					<input type="hidden" name="action" value="googleMapQuery"> 
-					<input type="text" id="dateMeetingTime" name="dateMeetingTime">
+					<label for="dateMeetingTime">設定約會時間</label>
+  					<input  type="text" id="dateMeetingTime" name="dateMeetingTime" placeholder="點我選擇日期">
+  					<input  type="submit" value="查詢">
 
-					<input type="submit">
 					<!--   <button class="btn btn-lg btn-warning glyphicon glyphicon-search"> </button> -->
-
-
 				</Form>
 
 			</span>
-
 
 
 
@@ -90,13 +132,7 @@ select {
 			</div>
 		</footer>
 	</div>
-	</div>
-	<a href="#">
-		<div class="" id="fixedbutton-talk">
-			<button class="button btn-lg btn-primary active">交易聊天室</button>
-		</div>
-	</a>
-	</div>
+
 
 
 	

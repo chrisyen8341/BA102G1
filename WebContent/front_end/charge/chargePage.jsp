@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
-<%@ page import="com.product.model.*"%>
+<%-- <%@ page import="com.product.model.*"%> --%>
 <%@ page import="com.member.model.*"%>
 <%request.setCharacterEncoding("UTF-8");%>  
 <%response.setCharacterEncoding("UTF-8");%> 
@@ -27,8 +27,7 @@
 </style>
 </head>
 <body>
-
-<%@ include file="/front_end/frontEndNavBar.file" %>
+<%@ include file="indexNavBar.file" %>
 <%@ include file="page2.file" %>
 
 <div class="container">
@@ -114,7 +113,7 @@
                             
                         </div>
                        		<div>
-                            	<input type="button" value="p" onclick="insert()">
+                            	<input type="button" value="petym" onclick="insert()">
                             </div>
 
                     </div>
@@ -147,8 +146,6 @@ function insert() {
 }
 
 </script>
-<%@ include file="/front_end/frontEndButtom.file" %>
-<script src="https://code.jquery.com/jquery.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<%@ include file="page3.file" %>
 </body>
 </html>

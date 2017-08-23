@@ -27,18 +27,20 @@ pageContext.setAttribute("petKind", petKind);
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAUbYcDBdfK_UjTWa9G6FSe3EfERMpEZQ">
 	
 </script>
-
+<!--     <script src="https://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script> -->
 
 
 
 
 <head>
 <title>約會首頁</title>
+<link href="<%=request.getContextPath() %>/front_end/css/modern-business.css" rel="stylesheet" type="text/css">
 <style type="text/css">
 #map_canvas {
 	width: 100%;
-	height: 600px;
+	height: 50%;
 }
+
 
 .select-style {
     padding: 0;
@@ -68,6 +70,7 @@ pageContext.setAttribute("petKind", petKind);
     outline: none;
 }
 
+
 </style>
 </head>
 <body bgcolor='white'>
@@ -85,9 +88,10 @@ pageContext.setAttribute("petKind", petKind);
 		<div class="col-sm-10 col-sm-offset-1">
 			<span>
 				<Form action="<%=request.getContextPath()%>/front_end/dateitem/dateitem.do" method="post">
-					<input type="hidden" name="action" value="googleMapQuery">
-					<input type="text" id="dateMeetingTime" name="dateMeetingTime">
-					<input type="submit">
+					<input type="hidden" name="action" value="googleMapQuery"> 
+					<label for="dateMeetingTime">設定約會時間</label>
+  					<input  type="text" id="dateMeetingTime" name="dateMeetingTime" value="${date}" placeholder="點我選擇日期">
+  					<input  type="submit" value="查詢">
 				</Form>
 				<Form action="<%=request.getContextPath()%>/front_end/dateitem/dateitem.do" method="post">
 					<input type="hidden" name="action" value="googleMapFilter">
@@ -143,18 +147,9 @@ pageContext.setAttribute("petKind", petKind);
 				</div>
 			</div>
 		</footer>
+		
+		
 	</div>
-	</div>
-	<a href="#">
-		<div class="" id="fixedbutton-talk">
-			<button class="button btn-lg btn-primary active">交易聊天室</button>
-		</div>
-	</a>
-	</div>
-
-
-
-
 
 
 
@@ -242,7 +237,7 @@ pageContext.setAttribute("petKind", petKind);
 			marker.icon = {
 					url:"<%=request.getContextPath()%>/front_end/mapNumber/number_<%=map.get(date.getRestListNo())%>.png",
 			}
-		marker.dateItemNo="<%=dateNoMap.get(date.getRestListNo()).toString() %>";	
+	marker.dateItemNo="<%=dateNoMap.get(date.getRestListNo()).toString() %>";
 		markers.push(marker);
 	<%tList.add(date.getRestListNo());
 				}
@@ -286,12 +281,14 @@ pageContext.setAttribute("petKind", petKind);
 				
 				
 				
+				
 				  marker.addListener('mouseover', function() {
 					    console.log(props.dateItemNo);
 					    var myNode = document.getElementById("showDateItem");
 					    while (myNode.firstChild) {
 					        myNode.removeChild(myNode.firstChild);
 					    }
+					    
 					    var h4= document.createElement("H4");
 					    h4.innerHTML="你可以再此餐廳找到這些寵物";
 					    document.getElementById("showDateItem").appendChild(h4);
@@ -306,14 +303,9 @@ pageContext.setAttribute("petKind", petKind);
 
 					    document.getElementById("showDateItem").appendChild(petImg);
 				 		 }
-//					    $("#img"+i).attr('src',"ImgReader?dateItemNo="+s[i]+"&action=dateImg" );
+// 					    $("#img"+i).attr('src',"ImgReader?dateItemNo="+s[i]+"&action=dateImg" );
 
 					  });
-				
-				
-				
-				
-				
 				
 				
 				
@@ -348,6 +340,7 @@ pageContext.setAttribute("petKind", petKind);
 	<script>
 
 $(function(){
+	console.log("123");
 	
 	$("#dateMeetingTime").datetimepicker({
 		format: 'Y-m-d',

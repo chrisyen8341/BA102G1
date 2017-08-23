@@ -8,8 +8,6 @@ import java.util.Map;
 
 import javax.servlet.annotation.MultipartConfig;
 
-import com.emp.model.Emp;
-
 
 public class DateItemService {
 
@@ -129,9 +127,13 @@ public class DateItemService {
 		return dao.findByPk(dateItemNo);
 	}
 	
+	public Integer findTheOtherMem(int memNo,int dateItemNo){
+		return dao.findTheOtherMem(memNo, dateItemNo);
+	}
+	
 	//將日期改為前端約會商品的顯示模式
 	public String getTimeForItem(Timestamp ts){
-	SimpleDateFormat sdf = new SimpleDateFormat("MM/dd HH'點'mm分");
+	SimpleDateFormat sdf = new SimpleDateFormat("YYYY/MM/dd HH'點'mm分");
 	String timeStr = sdf.format(ts);
 	return timeStr;
 	}
@@ -147,6 +149,31 @@ public class DateItemService {
 		dao.updateByVO(dateItemVO);
 	}
 	
+	public List<DateItemVO> getAllForChats(Integer memNo) {
+		return  dao.getAllForChats(memNo);
+	}
+	//找出約會號碼最新的約會預設秀在聊天室裡
+	public DateItemVO getLastestDateItem(List<DateItemVO> list){
+		int dateItemNo=0;
+		for(DateItemVO dateItemVO:list){
+			if (dateItemVO.getDateItemNo()>dateItemNo){
+				dateItemNo= dateItemVO.getDateItemNo();
+			}
+		}		
+		return dao.findByPk(dateItemNo);		
+	}
+	
+	public Integer getLastestDateItemNo(List<DateItemVO> list){
+		int dateItemNo=0;
+		for(DateItemVO dateItemVO:list){
+			if (dateItemVO.getDateItemNo()>dateItemNo){
+				dateItemNo= dateItemVO.getDateItemNo();
+			}
+		}		
+		return dateItemNo;
+	
+}
+	
 	
 	public List<DateItemVO> getAll(Map<String, String[]> map) {
 		return dao.getAll(map);
@@ -156,6 +183,11 @@ public class DateItemService {
 	public List<SDateItemVO> findByDate(String date){
 		return dao.findByDate(date);
 	}
-
-
+	
+	public List<DateItemVO> getAllWithOutImg() {
+		return dao.getAllWithoutImg();
+	}
+	
+	
+	
 }

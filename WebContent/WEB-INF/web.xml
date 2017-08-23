@@ -29,6 +29,39 @@
     <servlet-class>com.context.PutMap</servlet-class>
     <load-on-startup>10</load-on-startup>
   </servlet>
+  
+  
+ 
+ 
+ 	<servlet>
+		<servlet-name>Board</servlet-name>
+		<servlet-class>com.dateitem.model.Board</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Board</servlet-name>
+		<url-pattern>/front_end/dateitem/board.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>DateItemServlet</servlet-name>
+		<servlet-class>com.dateitem.controller.DateItemServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DateItemServlet</servlet-name>
+		<url-pattern>/front_end/dateitem/dateitem.do</url-pattern>
+	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>DateItemImgReader</servlet-name>
+		<servlet-class>com.imgreader.ImgReader</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DateItemImgReader</servlet-name>
+		<url-pattern>/front_end/dateitem/ImgReader</url-pattern>
+	</servlet-mapping>
+ 
+ 
+
   <servlet>
     <servlet-name>DateItemAppServlet</servlet-name>
     <servlet-class>com.dateitemapp.controller.DateItemAppServlet</servlet-class>

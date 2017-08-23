@@ -6,7 +6,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Blob;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -485,6 +484,24 @@ public class DateItemJDBCDAO implements DateItemDAO_interface{
 	public void updateByVO(DateItemVO dateItemVO) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<DateItemVO> getAllForChats(int memNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Integer findTheOtherMem(int memNo, int dateItemNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<DateItemVO> getAllWithoutImg() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override

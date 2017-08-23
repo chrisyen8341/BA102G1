@@ -2,43 +2,63 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.dateitem.model.*"%>
 <%@ page import="java.util.*"%>
-<%@ page import="java.sql.Timestamp"%>
-<%@ page import="java.text.SimpleDateFormat"%>
-<%@ page import="com.restaurant.model.*"%>
-<%@ page isELIgnored="false"%>
-<%@ page import="com.restaurant.model.*"%>
+<%@ page import="java.sql.Timestamp" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="com.restaurant.model.*" %>
+<%@ page isELIgnored="false" %>
 <%@ page import="java.util.List"%>
+<%@ page import="com.member.model.*"%>
 
 <%@ include file="header.file"%>
 
 <%
-	DateItemVO dateItemVO = (DateItemVO) request.getAttribute("dateItemVO");
-	Long now = System.currentTimeMillis();
-	Long candatetimemin = now + 3600000;
-	Long candatetimemax = candatetimemin + 5184000000L;
-	SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:00");
-	SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
-	Timestamp timemin = new Timestamp(candatetimemin);
-	Timestamp timemax = new Timestamp(candatetimemax);
-	String tmin = sdf1.format(timemin);
-	String tmax = sdf2.format(timemax);
-	RestaurantService restService = new RestaurantService();
-	List<Restaurant> rests = restService.getAll();
-	pageContext.setAttribute("rests", rests);
+DateItemVO dateItemVO = (DateItemVO) request.getAttribute("dateItemVO");
+Long now = System.currentTimeMillis();
+Long candatetimemin = now + 3600000;
+Long candatetimemax = candatetimemin +5184000000L;
+SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:00");
+SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+Timestamp timemin = new Timestamp(candatetimemin);
+Timestamp timemax = new Timestamp(candatetimemax);
+String tmin = sdf1.format(timemin);
+String tmax = sdf2.format(timemax);
+RestaurantService restService =new RestaurantService();
+List<Restaurant> rests= restService.getAll();
+pageContext.setAttribute("rests", rests);
 %>
 
 <style>
-#map {
-	height: 600px;
-	width: 100%;
-}
-</style>
+    #map{
+      height:600px;
+      width:100%;
+    }
+    
+    btn{
+    margin-top:1rem;
+    margin-bottom:1rem;
+    max-height:20px;
+    radius:15%;
+    }
+    
 
+  </style>
+
+
+<!-- =======檢查上架時間是否重複========= -->
+<jsp:useBean id = "dSvc" scope="page" class="com.dateitem.model.DateItemService" />     
+<jsp:useBean id = "memSvc" scope="page" class="com.member.model.MemberService" />
+
+
+<%
+Member member = (Member) session.getAttribute("member");
+List<DateItemVO> list = dSvc.findBySeller_history(member.getMemNo());
+pageContext.setAttribute("list",list);
+
+%>
 
 
 <head>
-<title>約會商品上架</title>
-</head>
+<title>約會商品上架</title></head>
 <link rel="stylesheet" type="text/css" href="js/calendar.css">
 <script language="JavaScript" src="js/calendarcode.js"></script>
 <div id="popupcalendar" class="text"></div>
@@ -49,146 +69,174 @@
 <%@ include file="sidelist.file"%>
 
 
+
+
+
 <div class="col-md-offset-1 col-md-8 main-page-show">
 
-	<h4>
-		選擇商品內容:<font color=red><b>*</b></font>為必填欄位
-	</h4>
-	<%-- 錯誤表列 --%>
-	<c:if test="${not empty errorMsgs}">
-		<font color='red'>請修正以下錯誤:
-			<ul>
-				<c:forEach var="message" items="${errorMsgs}">
-					<li>${message}</li>
-				</c:forEach>
-			</ul>
-		</font>
-	</c:if>
-
-	<form action="dateitem.do" method=post enctype="multipart/form-data">
-		<table class="table">
-			<!-- 	<tr> -->
-			<!-- 		<td>賣家會員編號:<font color=red><b>*</b></font></td> -->
-			<!-- 		<td><input type="TEXT" name="sellerNo" size="45"  -->
-			<%-- 			 value="${param.sellerno}"/></td> --%>
-			<!-- 	</tr> -->
-
-			<tr>
-				<jsp:useBean id="restSvc" scope="page"
-					class="com.restaurant.model.RestaurantService" />
-				<td>選擇餐廳:<font color=red><b>*</b></font></td>
-				<td><select id="restListNo" size="1" name="restListNo">
-						<c:forEach var="rest" items="${restSvc.all}">
-							<option value="${rest.restNo}"
-								${(rest.restNo==dateItemVO.restListNo)? 'selected':'' }>${rest.restName}
-						</c:forEach>
-
-				</select> <a class="btn btn-info" href=""> 新增一個餐廳 </a> <a
-					class="btn btn-info" data-toggle="modal" data-target="#googleMap"
-					href=""> 地圖瀏覽 </a></td>
-			</tr>
+<h4><font color=pink><b>*</b></font>請填寫所有欄位</h4>
+<%-- 錯誤表列 --%>
+<c:if test="${not empty errorMsgs}">
+	<font color='red'>請修正以下錯誤:
+	<ul class="unstyled">
+		<c:forEach var="message" items="${errorMsgs}">
+			<li>${message}</li>
+		</c:forEach>
+	</ul>	
+	</font>
+</c:if>
 
 
+<form id="formadd" action="dateitem.do" method=post enctype="multipart/form-data">
+<table class="table">
+
+<div class="row">
 
 
-			<tr>
-				<td>選擇你的寵物:<font color=red><b>*</b></font></td>
-				<td><select size="1" name="petNo">
-						<c:forEach var="pet" items="${myPetList}">
-							<option value="${pet.petNo}"
-								${(pet.petNo==dateItemVO.petNo)? 'selected':'' }>${pet.petName}
-						</c:forEach>
-				</select></td>
-			</tr>
+<form>
+<div class=" col-sm-5">
+  <div class="form-group">
+    <label for="lb1">選擇寵物圖片</label>
+    <input id="lb1" type="file" class="file" name="dateItemImg" data-show-upload="false" data-show-caption="true">
+	<input type="hidden" name="action" value="insert" >
+    <small id="desc1" class="form-text text-muted">請選擇要出席約會的寵物照片</small>
+  </div>
+  
+  <br>
+  <div class="form-group">
+    <label for="lb2">選擇寵物</label>
+    <select class="form-control selectpicker" size="1" name="petNo"  id="lb2">
+			<c:forEach var="pet" items="${myPetList}">
+				<option value="${pet.petNo}" ${(pet.petNo==dateItemVO.petNo)? 'selected':'' } >${pet.petName}
+			</c:forEach>
+		</select>
+  </div>
+  
+   <br>
+  <div class="form-group">
+  <label for="restListNo">選擇餐廳</label>
+  <jsp:useBean id="restSvc" scope="page" class="com.restaurant.model.RestaurantService" />
+   <a class="btn btn-default btn-xs" data-toggle="modal" data-target="#googleMap" href="#">
+       地圖瀏覽</a>
+  <a class="btn btn-default btn-xs" href="">新增餐廳</a>
+  <select id="restListNo" class="form-control" size="1" name="restListNo">
+			<c:forEach var="rest" items="${restSvc.all}">
+				<option value="${rest.restNo}" ${(rest.restNo==dateItemVO.restListNo)? 'selected':'' }>${rest.restName}
+			</c:forEach>
+			
+		</select> 
+  </div>
+   <br>
+  
+  <div class="form-group">
+    <label for="lb4">請輸入約會價格</label>
+<input class="form-control" type="TEXT" name="dateItemPrice" size="45"
+			value="<%= (dateItemVO==null)? "" : dateItemVO.getDateItemPrice()%>" />
+  </div>
+    </div>
+ <div class="col-sm-offset-1 col-sm-5"> 
+  
+  <div class="form-group">
+    <label for="lb5">請輸入約會標題</label>
+<input class="form-control" maxlength="30" type="TEXT" name="dateItemTitle" size="45"
+			value="<%= (dateItemVO==null)? "" : dateItemVO.getDateItemTitle()%>" />
+  </div>
+ 
+<br>
+  <div class="form-group">
+    <label for="exampleInputFile">約會內容描述</label>
+    <input class="form-control" type="text" name="dateItemText" size="45"
+			value="<%= (dateItemVO==null)? "" : dateItemVO.getDateItemText()%>" />
+    <small id="fileHelp" class="form-text text-muted">越充實的內容越容易約會成功喔.</small>
+  </div>
 
-			<tr>
-				<td>約會價格:</td>
-				<td><input type="TEXT" name="dateItemPrice" size="45"
-					value="<%=(dateItemVO == null) ? "" : dateItemVO.getDateItemPrice()%>" /></td>
-			</tr>
-
-			<tr>
-				<td>約會商品標題:</td>
-				<td><input type="TEXT" name="dateItemTitle" size="45"
-					value="<%=(dateItemVO == null) ? "" : dateItemVO.getDateItemTitle()%>" /></td>
-			</tr>
-
-			<tr>
-				<td>約會商品描述:</td>
-
-				<td><input type="text" name="dateItemText" size="45"
-					value="<%=(dateItemVO == null) ? "" : dateItemVO.getDateItemText()%>" /></td>
-			</tr>
-
-			<tr>
-				<td>約會時間(60天內):</td>
-				<td><input type="datetime-local" max=<%=tmax%> min=<%=tmin%>
-					step="1800" name="time"></td>
-			</tr>
-
-
-
-			<tr>
-				<td>買方人數限制:<font color=red><b>*</b></font></td>
-				<td><select name="dateItemPeople">
-						<option value="1" selected>1人</option>
-						<option value="2">2人</option>
-				</select>
-			</tr>
-
-			<tr>
-				<td>賣方友人參與:<font color=red><b>*</b></font></td>
-				<td><select name="hasMate">
-						<option value="false" selected>沒有</option>
-						<option value="true">有</option>
-				</select>
-			</tr>
-
-			<label class="control-label">上傳約會圖片</label>
-			<input id="input-1" type="file" class="file" name="dateItemImg"
-				data-show-upload="false" data-show-caption="true">
-
-			<!-- 	<input type="file" class="file" name="dateItemImg" > -->
-			<tr>
-				<td><input type="hidden" name="action" value="insert"></td>
-			</tr>
-			<tr>
-				<td><input type="submit" value="上架商品"></td>
-			</tr>
-
-		</table>
-	</FORM>
-
-
-
-
-
-	<!-- Add photo MODAL -->
-	<div class="modal fade" id="googleMap" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-lg" role="document">
-			<div class="modal-content">
-
-
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">
-						<b>瀏覽餐廳</b>
-					</h4>
-				</div>
-
-
-				<p>
-					輸入欲查詢的地址<input id="address" type="text" size="50" value="">
-					<input class="btn-info" type="button" value="查詢"
-						onClick="codeAddress()">
-				</p>
-				<div id="map"></div>
-
-
-			</div>
-		</div>
+  
+   <div class="form-group">
+    <label for="exampleInputFile">設定約會時間</label>
+  <input class="form-control" type="text" id="dp" name="time"> </td></tr>
+      <small id="fileHelp" class="form-text text-muted">點擊上面開始選取</small>
+  </div>	
+   <br>
+  <div class="form-group">
+    <label for="exampleInputFile">買方參與人數</label>
+  	<select name="dateItemPeople" class="form-control selectpicker">
+  	<option value="1" selected>1人</option>
+ 	 <option value="2">2人</option>
+	</select>
 	</div>
+	 <br>
+	  <div class="form-group">
+    <label for="exampleInputFile">賣方友人同行</label>
+    
+    	<select name="hasMate" class="form-control selectpicker">
+  	<option value="false" selected>沒有</option>
+ 	 <option value="true">有</option>
+	</select> </div>
+	<br>
+<br>
+                    <a id="godo"class="btn btn-info"  href="">
+                        上架商品
+                    </a>
+
+</div>	
+	
+
+
+
+<!-- 確認時間視窗 -->
+
+		<div id="tryonsale" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">上架商品</h4>
+      </div>
+      <div class="modal-body" >
+        <p></p>
+        <h2><p id="textshow">有一筆約會, 請相隔四小時以上</p></h2>
+      </div>
+      <div class="modal-footer">
+        <button id="fortest" type="button" class="btn btn-warning" data-dismiss="modal">回上一頁</button>
+      </div>
+    </div>
+
+  </div>
+  </div>
+
+
+</form>	
+</div>
+
+
+
+
+
+
+								<!-- Add photo MODAL -->
+								<div class="modal fade" id="googleMap" tabindex="-1"
+									role="dialog" aria-labelledby="exampleModalLabel"
+									aria-hidden="true">
+									<div class="modal-dialog modal-lg" role="document">
+										<div class="modal-content">
+
+
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal">&times;</button>
+												<h4 class="modal-title">
+													<b>瀏覽餐廳</b>
+												</h4>
+											</div>
+
+
+  <p> 輸入欲查詢的地址<input id="address" type="text" size="50" value="">   <input class="btn-info" type="button" value="查詢" onClick="codeAddress()"> </p>
+  <div id="map"></div>
+
+
+
+										</div>
+									</div>
+								</div>
 
 
 
@@ -200,7 +248,56 @@
 
 
 
-<script>
+ <script>
+ 
+ 
+//  先用ajax檢查是否有重複日期,有的話跳窗提醒,沒有的話送controller進行資料驗證
+ 
+ $(document).ready(function(){
+	 $('#godo').on('click', function(e) {
+		    e.preventDefault();
+		    $.ajax({ 
+		        url:  'dateitem.do?action=checkTime',
+		        type: 'POST',
+		        data: { time:$('#dp').val(), 
+				},
+		        success: function(count){
+		       
+		        	if(parseInt(count)>0){
+		        	 $('#tryonsale').modal('show');
+	        	$('#textshow').text($('#dp').val()+'這時段已經有約會了,請相隔四小時以上');
+		        	}else{		        		
+		        		$('#formadd').submit();
+		        	}
+		        },
+		        error: function(){
+		            alert("error");
+		        }  
+		    });  	    
+	});    
+ }); 
+
+
+ 
+ 		
+
+	 $("#dp").datetimepicker({
+		 
+// 	 	timepicker:false,
+		 format: 'Y-m-d H:i',
+		 minDate:
+			 '+1970/01/02',
+// 		 allowTimes:[
+// '11:00','11:30', '12:00', '12:30','13:00', '13:30','14:00','14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30', '18:00', '18:30', '19:00',
+// 		  '19:30', '20:00', '21:00', '22:00', '23:00'
+// 		 ],
+		 defaultDate: '17/09/01',
+//allowTimes 或者step選一個用
+		 step: 30 
+		             });
+
+	  
+ 
   var geocoder;
   var map, popup;
   var markers;
@@ -211,8 +308,6 @@
 		    google.maps.event.trigger(map, "resize");
 		    console.log("qwe");
 		});
-	  
-	
   })
   
   
@@ -261,15 +356,15 @@
       }
 
       // Add Marker Function
-function addMarker(props){
-                                  var marker = new google.maps.Marker({
+      function addMarker(props){
+        var marker = new google.maps.Marker({
           position:props.coords,
           map:map,
           //icon:props.iconImage
         });
 
         // Check for customicon
- if(props.iconImage){ 
+        if(props.iconImage){
           // Set icon image
           marker.setIcon(props.iconImage);
         }
@@ -284,9 +379,10 @@ function addMarker(props){
             infoWindow.open(map, marker);
           });
         }
-      }    
-      
       }
+      
+     
+    }
     
     
     
@@ -317,14 +413,15 @@ function addMarker(props){
   	  function chooseRest(restNo) {
   		  $('#restListNo').val(restNo);
   		$('#googleMap').modal('hide');
-	  }
+	  };
   	  
-
+  	
+  	  
   </script>
-<script async defer
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAUbYcDBdfK_UjTWa9G6FSe3EfERMpEZQ&callback=initMap">
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAUbYcDBdfK_UjTWa9G6FSe3EfERMpEZQ&callback=initMap">
     </script>
 
 
-<%@ include file="footer.file"%>
+<%@ include file="/front_end/frontEndButtom.file"%>
 

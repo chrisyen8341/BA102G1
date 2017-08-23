@@ -14,8 +14,14 @@ public class Diary implements Serializable{
 	private Timestamp diaCreTime;
 	private Timestamp diaModTime;
 	private Integer diaState;
+	private String diaImgExtName;
 	
-	
+	public String getDiaImgExtName() {
+		return diaImgExtName;
+	}
+	public void setDiaImgExtName(String diaImgExtName) {
+		this.diaImgExtName = diaImgExtName;
+	}
 	public Integer getDiaNo() {
 		return diaNo;
 	}

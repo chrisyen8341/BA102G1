@@ -231,38 +231,38 @@ hgroup h2.lead {
 
 
 
-							<div class="col-xs-12 col-sm-2 ">
-								<div id="menu">
-									<div class="panel list-group list-color">
+<!-- 							<div class="col-xs-12 col-sm-2 "> -->
+<!-- 								<div id="menu"> -->
+<!-- 									<div class="panel list-group list-color"> -->
 
-										<a href="#" class="list-group-item">排序</a> <a href="#"
-											class="list-group-item" data-toggle="collapse"
-											data-target="#sm1" data-parent="#menu">人氣<span
-											class="glyphicon glyphicon-triangle-bottom pull-right"></span></a>
-										<div id="sm1" class="sublinks collapse">
-											<a href="#" class="list-group-item small"> 高至低</a> <a
-												href="#" class="list-group-item small"> 低至高</a>
-										</div>
-
-
-										<a href="#" class="list-group-item" data-toggle="collapse"
-											data-target="#sm2" data-parent="#menu">性別 <span
-											class="glyphicon glyphicon-triangle-bottom pull-right"></span></a>
-										<div id="sm2" class="sublinks collapse">
-											<a href="#" class="list-group-item small"> 男</a> <a href="#"
-												class="list-group-item small"> 女</a>
-										</div>
+<!-- 										<a href="#" class="list-group-item">排序</a> <a href="#" -->
+<!-- 											class="list-group-item" data-toggle="collapse" -->
+<!-- 											data-target="#sm1" data-parent="#menu">人氣<span -->
+<!-- 											class="glyphicon glyphicon-triangle-bottom pull-right"></span></a> -->
+<!-- 										<div id="sm1" class="sublinks collapse"> -->
+<!-- 											<a href="#" class="list-group-item small"> 高至低</a> <a -->
+<!-- 												href="#" class="list-group-item small"> 低至高</a> -->
+<!-- 										</div> -->
 
 
-									</div>
-								</div>
-							</div>
+<!-- 										<a href="#" class="list-group-item" data-toggle="collapse" -->
+<!-- 											data-target="#sm2" data-parent="#menu">性別 <span -->
+<!-- 											class="glyphicon glyphicon-triangle-bottom pull-right"></span></a> -->
+<!-- 										<div id="sm2" class="sublinks collapse"> -->
+<!-- 											<a href="#" class="list-group-item small"> 男</a> <a href="#" -->
+<!-- 												class="list-group-item small"> 女</a> -->
+<!-- 										</div> -->
 
 
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
 
 
 
-							<div class="col-xs-12 col-sm-10 ">
+
+
+							<div class="col-xs-12 col-sm-12 ">
 								<div class="row">
 
 									<c:if test="<%=type.equals(\"會員\")%>">

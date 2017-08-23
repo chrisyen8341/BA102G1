@@ -64,10 +64,14 @@ public class DiaryServlet extends HttpServlet{
 				ne.printStackTrace(System.err);
 			}
 			//---------------判斷圖片的格式----------------------
-			byte[] diaImg= null;			
+			byte[] diaImg= null;
+			String diaImgExtName = null;
+			
 			Part part = req.getPart("diaimg");
+			diaImgExtName =  part.getContentType().substring(0,5);
+			
 			if(!part.equals("")){
-				if(part.getContentType().substring(0,5).equals("image")){
+				if(part.getContentType().substring(0,5).equals("image")||part.getContentType().substring(0,5).equals("video")){
 					diaImg = getByteArrayImg(part);
 				}
 			}
@@ -98,7 +102,7 @@ public class DiaryServlet extends HttpServlet{
 				}
 				
 				DiaryService dsv =new DiaryService();
-				dsv.addDia(member.getMemNo(), diaName, diaText, diaImg, diaCreTime, diaModTime, diaState);
+				dsv.addDia(member.getMemNo(), diaName, diaText, diaImg, diaCreTime, diaModTime, diaState, diaImgExtName);
 				
 				res.sendRedirect(req.getContextPath() + "/front_end/diary/mydiary.jsp");
 				
@@ -123,21 +127,25 @@ public class DiaryServlet extends HttpServlet{
 				}
 				//----------------判斷內文是否為空值-------------------
 				String diaText = null;
+				
 				try{
 					diaText = req.getParameter("diatext").trim();
 					if(diaText.equals("")){			//夸號裡面不是null的字而是""
 						errorMsgs.add("請輸入內文!");
 					}
+					
 				}catch(Exception ne){
 					ne.printStackTrace(System.err);
 				}
 				//---------------判斷圖片----------------------
-				byte[] diaImg= null;			
+				byte[] diaImg= null;	
+				String diaImgExtName = null;
 				try{
 					Part part = req.getPart("diaimg");
-
-						if(part.getContentType().substring(0,5).equals("image") ){
+					diaImgExtName =  part.getContentType().substring(0,5);
+						if(part.getContentType().substring(0,5).equals("image")||part.getContentType().substring(0,5).equals("video") ){
 							diaImg = getByteArrayImg(part);
+							
 						}else if(part.getSize()!=0){
 							//格式錯誤
 							errorMsgs.add("此非圖片格式!");
@@ -146,6 +154,7 @@ public class DiaryServlet extends HttpServlet{
 							DiaryService diaSvc = new DiaryService();
 							Diary diaryOld = diaSvc.getOneDia(diaNo);
 							diaImg = diaryOld.getDiaImg();
+							
 						}
 			
 				}catch(Exception e){
@@ -163,7 +172,7 @@ public class DiaryServlet extends HttpServlet{
 				
 				/***************************2.開始修改資料*****************************************/
 				DiaryService diaSvc = new DiaryService();
-				Diary diary = diaSvc.updateDia(member.getMemNo(), diaName, diaText, diaImg, diaModTime, diaState, diaNo);
+				Diary diary = diaSvc.updateDia(member.getMemNo(), diaName, diaText, diaImg, diaModTime, diaState, diaNo, diaImgExtName);
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("diary", diary); // 資料庫update成功後,正確的的diary物件,存入req

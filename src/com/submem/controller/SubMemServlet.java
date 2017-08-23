@@ -53,11 +53,6 @@ public class SubMemServlet extends HttpServlet{
 			
 			smSvc = new SubMemService();
 			smSvc.addSub(actSubMemNo, beSubMemNo, subState);
-			
-			//新增完成準備轉交
-			String url = "/front_end/diary/personalDiary.jsp?memNo="+ beSubMemNo;
-			RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交personalDiary.jsp
-			successView.forward(req, res);
 	
 		}
 		
@@ -87,12 +82,7 @@ public class SubMemServlet extends HttpServlet{
 			subMem.setBeSubMemNo(beSubMemNo);
 			subMem.setSubState(subState);
 			smSvc.deleteSub(subMem);
-			
-
-			//新增完成準備轉交
-			String url = "/front_end/diary/manageSubMem.jsp";
-			RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交personalDiary.jsp
-			successView.forward(req, res);
+		
 	
 		}
 		

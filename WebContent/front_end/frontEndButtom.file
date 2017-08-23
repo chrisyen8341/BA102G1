@@ -30,16 +30,17 @@
 		</div>
 
 	
-					<footer class="footer">
-						<div class="row">
-							<div class="col-sm-12">
-								<div class="col-sm-3">
-									<p>Copyright Ãdª«You&amp;Me 2017</p>
-								</div>
-								<div class="col-sm-3">
-									<a href="<%=request.getContextPath() %>/front_end/about_us/faq_user.jsp"><p>F&Q</p></a>
-								</div>
-							</div>
-						</div>
-					</footer>
+		
+<!-- 							<footer class="footer"> -->
+<!-- 						<div class="row"> -->
+<!-- 							<div class="col-sm-12"> -->
+<!-- 								<div class="col-sm-3"> -->
+<!-- 									<p>Copyright Ãdª«You&amp;Me 2017</p> -->
+<!-- 								</div> -->
+<!-- 								<div class="col-sm-3"> -->
+<%-- 									<a href="<%=request.getContextPath() %>/front_end/about_us/faq_user.jsp"><p>F&Q</p></a> --%>
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</footer> -->
 

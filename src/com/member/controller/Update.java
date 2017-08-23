@@ -417,7 +417,7 @@ public class Update extends HttpServlet {
 			String loc = req.getParameter("loc");
 
 			if (!errorMsgs.isEmpty()) {
-				RequestDispatcher failureView = req.getRequestDispatcher(loc);
+				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/index.jsp");
 				req.setAttribute("errorMsgs", errorMsgs);
 				failureView.forward(req, res);
 				return;// µ{¦¡¤¤Â_
@@ -428,7 +428,7 @@ public class Update extends HttpServlet {
 			 *************/
 			RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/searchResult.jsp");
 
-			req.setAttribute("type", type);
+
 
 			req.setAttribute("search", search);
 

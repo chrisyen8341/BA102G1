@@ -19,6 +19,11 @@
     <url-pattern>/front_end/charge/chargePage.jsp</url-pattern>
     <url-pattern>/front_end/product/OrderView.jsp</url-pattern>
     <url-pattern>/front_end/activityFront/activityOfMine.jsp</url-pattern>
+    <url-pattern>/front_end/diary/mydiary.jsp</url-pattern>
+	<url-pattern>/front_end/diary/manageSubMem.jsp</url-pattern>
+	<url-pattern>/front_end/letter/index_letter.jsp</url-pattern>
+	<url-pattern>/front_end/letter/index_notRead.jsp</url-pattern>
+	<url-pattern>/front_end/letter/index_tagLetter.jsp</url-pattern>
     <dispatcher>REQUEST</dispatcher>
     <dispatcher>FORWARD</dispatcher>
     <dispatcher>INCLUDE</dispatcher>
@@ -130,71 +135,93 @@
  
  
 
-  <servlet>
-    <servlet-name>DateItemAppServlet</servlet-name>
-    <servlet-class>com.dateitemapp.controller.DateItemAppServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>DateItemAppServlet</servlet-name>
-    <url-pattern>/back_end/apprec/dateitemapp.do</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>DateItemRepServlet</servlet-name>
-    <servlet-class>com.dateitemrep.controller.DateItemRepServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>DateItemRepServlet</servlet-name>
-    <url-pattern>/back_end/apprec/dateitemrep.do</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>LetterServlet</servlet-name>
-    <servlet-class>com.letter.controller.LetterServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>LetterServlet</servlet-name>
-    <url-pattern>/front_end/letter/letter.do</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>LetterTypeServlet</servlet-name>
-    <servlet-class>com.lettertype.controller.LetterTypeServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>LetterTypeServlet</servlet-name>
-    <url-pattern>/back_end/letter/letterType.do</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>DiaMsgServlet</servlet-name>
-    <servlet-class>com.diamsg.controller.DiaMsgServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>DiaMsgServlet</servlet-name>
-    <url-pattern>/front_end/diary/diaMsg.do</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>SubMemServlet</servlet-name>
-    <servlet-class>com.submem.controller.SubMemServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>SubMemServlet</servlet-name>
-    <url-pattern>/front_end/diary/subMem.do</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>DiaryServlet</servlet-name>
-    <servlet-class>com.diary.controller.DiaryServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>DiaryServlet</servlet-name>
-    <url-pattern>/front_end/diary/diary.do</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>ShowImage</servlet-name>
-    <servlet-class>com.diary.controller.ShowImage</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ShowImage</servlet-name>
-    <url-pattern>/front_end/diary/ShowImage</url-pattern>
-  </servlet-mapping>
 
+<servlet>
+		<servlet-name>DateItemAppServlet</servlet-name>
+		<servlet-class>com.dateitemapp.controller.DateItemAppServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DateItemAppServlet</servlet-name>
+		<url-pattern>/back_end/apprec/dateitemapp.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>DateItemRepServlet</servlet-name>
+		<servlet-class>com.dateitemrep.controller.DateItemRepServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DateItemRepServlet</servlet-name>
+		<url-pattern>/back_end/apprec/dateitemrep.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>LetterServlet</servlet-name>
+		<servlet-class>com.letter.controller.LetterServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LetterServlet</servlet-name>
+		<url-pattern>/front_end/letter/letter.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>LetterTypeServlet</servlet-name>
+		<servlet-class>com.lettertype.controller.LetterTypeServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LetterTypeServlet</servlet-name>
+		<url-pattern>/back_end/letter/letterType.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>DiaMsgServlet</servlet-name>
+		<servlet-class>com.diamsg.controller.DiaMsgServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DiaMsgServlet</servlet-name>
+		<url-pattern>/front_end/diary/diaMsg.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>SubMemServlet</servlet-name>
+		<servlet-class>com.submem.controller.SubMemServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SubMemServlet</servlet-name>
+		<url-pattern>/front_end/diary/subMem.do</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>DiaryServlet</servlet-name>
+		<servlet-class>com.diary.controller.DiaryServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DiaryServlet</servlet-name>
+		<url-pattern>/front_end/diary/diary.do</url-pattern>
+	</servlet-mapping>
+  
+  	<servlet>
+    	<servlet-name>ShowImage</servlet-name>
+    	<servlet-class>com.diary.controller.ShowImage</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+    	<servlet-name>ShowImage</servlet-name>
+    	<url-pattern>/front_end/diary/ShowImage</url-pattern>
+  	</servlet-mapping>
+  	
+  	<servlet>
+    	<servlet-name>ShowDiaVideo</servlet-name>
+    	<servlet-class>com.diary.controller.ShowVideo</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+    	<servlet-name>ShowDiaVideo</servlet-name>
+    	<url-pattern>/front_end/diary/DiaryVideo</url-pattern>
+  	</servlet-mapping>
+  
+  
+  
+  
+  
   
   
   

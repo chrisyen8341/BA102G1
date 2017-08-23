@@ -44,38 +44,72 @@
     display: block;
     margin: 0 auto;
 }
+.memImg{
+	height:60px;
+	width:60px;
+	max-height: 100%;
+	max-width:100%;
+	padding-right:0;
+}
+
+.box{
+	width: 240px;
+	background-color: #ccc;
+	padding: 10px;
+	position: relative;
+	float: left;
+	margin: 20px;
+}
 </style>
 <body>
 	<%@ include file="/front_end/frontEndNavBar.file"%>
     <%@ include file="leftbar.file" %>
     <div class="col-xs-12 col-sm-8 " >
                 <div class="row">
-                <h5 class="page-header text-right">目前位置:日誌首頁</h5>
-                
- 
-                <div class="row">
-                    <div class="panel panel-default col-sm-8 col-sm-offset-2 top-margin-sm">
-                        <div class="">
-                            <div class="panel-heading">
-                                 <c:forEach var="submem" items="${smSvc.getMemberAct(member.getMemNo())}">
-	                                 <form action="<%=request.getContextPath()%>/front_end/diary/subMem.do" method=post >
-	                            		<a href="<%=request.getContextPath()%>/front_end/diary/personalDiary.jsp?memNo=${submem.beSubMemNo}" > ${memSvc.getOneMember(submem.getBeSubMemNo()).getMemSname()}</a>
-	                            		<input type="hidden" name="action" value="delete">
-	                            		<input type="hidden" name="beSubMemNo" value="${submem.beSubMemNo }">
-	                            		<input type="submit" value="點我取消追蹤"><br>
-                            		</form>
-                       			</c:forEach>
-                            </div>
-                            <div class="panel-body">
-                               
-                            </div>
+                <h5 class="page-header text-right">目前位置:追蹤管理頁面</h5>
+  
+                     <c:forEach var="submem" items="${submSvc.getMemberAct(member.memNo)}">
+                        <div class="box">
+                        	<div class="col-sm-8" style="padding:0px;">  
+                            	<img class="memImg" src="<%=request.getContextPath()%>/front_end/member/MemImgReader2.do?memNo=${submem.beSubMemNo}">
+			  					<a href="<%=request.getContextPath()%>/front_end/diary/personalDiary.jsp?memNo=${submem.beSubMemNo}" style="color:#191970;font-weight:bold;">${memSvc.getOneMember(submem.beSubMemNo).getMemSname()}</a>
+			  					
+				            </div>
+				            <div class="col-sm-4" style="padding:0px;">
+				            	<input type="hidden" value="${submem.beSubMemNo}">    
+				                <div class="btn btn-default btn-xs" onclick="submem(this);">
+				                      <img src="<%=request.getContextPath()%>/front_end/images/subscribe.png">	
+				                      <span class="submember" style="color:red;font-weight:bold;">已追蹤</span>
+				                </div>
+				            </div>   	         
                          </div>
-                                                 
-                    </div>
+                     </c:forEach>     
                 </div>
-
-                <%@ include file="/front_end/frontEndButtom.file"%>
               </div>
-             </div>
+             <script>
+             function submem(e){
+              			var besubmemno = $(e).prev().val();
+              				$.ajax({ 
+              					   url : "<%=request.getContextPath()%>/front_end/diary/subMem.do",
+             					   data : {
+             					     action : 'delete',
+             					     beSubMemNo : besubmemno    												            						
+             					  },
+             					   type : 'POST',
+             					   error : function(xhr) {
+             					     alert('Ajax request 發生錯誤');
+             					  },
+             					   success : function(data) {		
+             					     	
+             						  $(e).parent().parent().remove();					    							
+             					  }
+             				});
+              			
+              			
+              			
+              		}
+              		
+              
+              </script>
 </body>
 </html>

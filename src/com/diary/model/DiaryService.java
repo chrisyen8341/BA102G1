@@ -12,7 +12,7 @@ public class DiaryService {
 	}
 	
 	public Diary addDia(Integer memNo, String diaName,String diaText, byte[] diaImg, 
-					Timestamp diaCreTime, Timestamp diaModTime, Integer diaState){
+					Timestamp diaCreTime, Timestamp diaModTime, Integer diaState, String diaImgExtName){
 		Diary diary = new Diary();
 		
 		diary.setMemNo(memNo);
@@ -22,13 +22,15 @@ public class DiaryService {
 		diary.setDiaCreTime(diaCreTime);
 		diary.setDiaModTime(diaModTime);
 		diary.setDiaState(diaState);
+		diary.setDiaImgExtName(diaImgExtName);
+		
 		dao.insert(diary);
 	
 		return diary;
 	}
 	
 	public Diary updateDia(Integer memNo, String diaName,String diaText, byte[] diaImg, 
-					 Timestamp diaModTime, Integer diaState, Integer diaNo){
+					 Timestamp diaModTime, Integer diaState, Integer diaNo, String diaImgExtName){
 		
 		Diary diary = new Diary();
 		
@@ -39,6 +41,7 @@ public class DiaryService {
 		diary.setDiaModTime(diaModTime);
 		diary.setDiaState(diaState);
 		diary.setDiaNo(diaNo);
+		diary.setDiaImgExtName(diaImgExtName);
 		
 		dao.update(diary);
 		

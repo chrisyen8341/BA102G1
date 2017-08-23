@@ -57,6 +57,7 @@ margin-right:0.25em;
 	<body class="landing">
 		<div id="page-wrapper">
 		
+	
 <%@ include file="frontEndNavBar.file"%>
 
 			<!-- Header -->
@@ -151,7 +152,6 @@ margin-right:0.25em;
 							<a href="<%=request.getContextPath() %>/front_end/dateitem/select_page.jsp" id="startdating" class="btn btn-info" >開始約會</a>
 						
 						</header>
-						
 
 						<span class="image featured"><img src="images/pic01.jpg" alt="" /></span>
 					</section>

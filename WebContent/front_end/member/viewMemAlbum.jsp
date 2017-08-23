@@ -226,8 +226,8 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
 															</a>
 														</div>
 														
-														</div>
-														</div>
+													</div>
+												</div>
 												<c:if test="${s.index%4==3}">
 													</div>
 												</c:if>

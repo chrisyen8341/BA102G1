@@ -29,11 +29,26 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!-- 	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script> -->
 </head>
+<style>
+.ellipsis{
+	overflow:hidden;
+/* 	width:100%; */
+	white-space:nowrap;
+	text-overflow:ellipsis;
+}
+.hov:hover{
+	border-left:5px #db70db solid;;
+} 
+.mymouse{
+	cursor: pointer;
+}
+
+
+</style>
 <body >
 	
 	
- 	<%@ include file="/front_end/frontEndNavBar.file"%>
- 	
+ 	<%@ include file="/front_end/frontEndNavBar.file"%> 
     
         
     <div class="container-fluid" >
@@ -41,65 +56,87 @@
             <%@ include file="leftbar.file" %> 
     
     
-			<div class="col-xs-12 col-sm-8" style="margin-top:5px;" >
-                <h5 class="page-header text-right">目前位置:站內信首頁</h5>
-                 <div class="row" style="overflow-y:scroll;overflow-x:hidden;height:400px;" >                	
-                    <div class="panel panel-default text-center " >                   
+			<div class="col-xs-12 col-sm-8 col-sm-push-3"  >
+                <h5 class="page-header"></h5>
+                 
+                 <div class="row"  > 
+                                	
+                    <div class="panel panel-default " >                   
                         <div class="">                             
-                            <div class="panel-body">										
-									<c:forEach var="ltr" items="${letterSvc.getTagLtrs(member.getMemNo())}">				
-										<div class="row text-center" ">										
-											<a href='#modal-${ltr.letterNo}' data-toggle="modal" class="btn col-md-10" style="${ltr.letterState =='0' ? 'background-color:#e7e7e7;': 'background-color:white;'}">
-												<table class="table table-hover table-condensed" >
-													<tbody>
-														<tr>
-															<td>${ltr.letterTypeNo}</td>																									
-															<td>${ltr.letterText}</td>	
-															<td><fmt:formatDate value="${ltr.letterTime}" pattern="yyyy-MM-dd"/></td>										
-														</tr>
-													</tbody>	
-												</table>
-											</a>
-											<div class="col-md-2">
-												<input type="hidden" value="${ltr.letterNo}" >
-												<c:if test = "${ltr.letterTag =='1'}" var="outcome" scope="page">
-													<input type="button" value="已標註" class="btn btn-warning btn-sm" onclick="tag(this);" >						
-												</c:if>
-												<c:if test = "${outcome==false}">
-													<input type="button" value="標註" class="btn btn-info btn-sm" onclick="tag(this);">						
-												</c:if>
-											</div>
-										</div>
-										<div class="modal fade" id="modal-${ltr.letterNo}">
-													<div class="modal-dialog">
-														<div class="modal-content">
-															<div class="modal-header text-left">														
-																<div class="modal-title">${ltr.letterTypeNo}</div>
-															</div>
-															<div class="modal-body text-left" style="height:300px;">
-																${ltr.letterText}
-															</div>
-															<div class="modal-footer">
-																<input type="hidden" value="${ltr.letterNo}" >
-																<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="haveRead(this);" >確認</button>
-															</div>
-														</div>
-													</div>
-												</div>																												
-									</c:forEach>										
+                            <div class="panel-body" >
+					  	
+								<c:forEach var="ltr" items="${letterSvc.getTagLtrs(member.getMemNo())}">
+								 <div class=" panel-body hov mymouse" style="line-height:36px;height:36px;border-bottom:1px #a9a9a9 solid;${ltr.letterState =='0' ? 'background-color:#e7e7e7;': 'background-color:white;'}"> 
+									  <div class="col-sm-1 text-center" style="padding:0px;margin-top:7px;">	
+											<input type="hidden" value="${ltr.letterNo}" >
+											<c:if test = "${ltr.letterTag =='1'}" var="outcome" scope="page">
+											<input type="button" value="已標註"  class="btn btn-warning btn-xs" onclick="tag(this);" >						
+											</c:if>
+											<c:if test = "${outcome==false}">
+											<input type="button" value="標註"  class="btn btn-info btn-xs" onclick="tag(this);">						
+											</c:if>
+									  </div>
+									  <div class="col-sm-11" data-toggle="modal" data-target="#myModal" onclick="haveRead(this,${ltr.letterNo });" style="padding:0px;" >
+									  	<div class="col-sm-1">
+									  		<c:if test="${ltr.letterState == '0' }" var="hadread">
+									  			<img src="<%=request.getContextPath()%>/front_end/images/mail.png">
+									  		</c:if>
+									  		<c:if test="${!hadread}">
+									  			<img src="<%=request.getContextPath()%>/front_end/images/envelope.png">
+									  		</c:if>
+									  	</div>
+									  	<c:if test="${hadread}">
+										<div class="text-left col-sm-2 ellipsis" style="font-weight:bold;padding-left:0px;">${ltrtpSvc.getOneByPrimaryKey(ltr.letterTypeNo).letterTypeName}</div>																									
+										</c:if>
+									  	<c:if test="${!hadread}">
+										<div class="text-left col-sm-2 ellipsis" style="padding-left:0px;">${ltrtpSvc.getOneByPrimaryKey(ltr.letterTypeNo).letterTypeName}</div>																									
+										</c:if>
+										
+										<div class="ellipsis col-sm-7 text-left" style="color:#808A87;padding-left:0px;">${ltr.letterText}</div>	
+										<div class="text-right col-sm-2"><fmt:formatDate value="${ltr.letterTime}" pattern="yyyy/MM/dd"/></div>										
+									  </div>					
+								</div>
+								  				
+								
+								</c:forEach>
+							</div>																										
+																		
                             </div>
                          
                                                
                          </div>                                
                     </div>  
-					             
+                                  
                 </div>
 				<%@ include file="/front_end/frontEndButtom.file"%>
             </div>
        </div>
-     </div>
+       <!-- Modal -->
+		<div class="modal fade" id="myModal" role="dialog">
+		    <div class="modal-dialog">
+		      <!-- Modal content-->
+		      <div class="modal-content">
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		          <h4 class="modal-title" id="modeltitle" style="font-weight:bold;"></h4>
+		        </div>
+		        <div class="modal-body">
+		          <p id="modelbody"></p>
+		        </div>
+		        <div class="modal-footer">
+		          <button type="button" class="btn btn-primary" data-dismiss="modal">確定</button>
+		        </div>
+		      </div>
+		      
+		    </div>
+		</div>
+     
+     
                 
                 <script type="text/javascript">
+                
+                
+                
 	                function tag(e){
 	                	var ltrNo = $(e).prev().val();
 	                	if($(e).val()=="標註"){
@@ -115,7 +152,7 @@
 									},
 								success : function(result) {
 									$(e).val("已標註");
-									$(e).attr("class","btn btn-warning btn-sm");
+									$(e).attr("class","btn btn-warning btn-xs");
 								}
 							});	
 	                	}else if($(e).val()=="已標註"){
@@ -131,29 +168,37 @@
 									},
 								success : function(result) {
 									$(e).val("標註");
-									$(e).attr("class","btn btn-info btn-sm");
+									$(e).attr("class","btn btn-info btn-xs");
 								}
 							});	
 	                	}
 	                }
-                function haveRead(e){
+                function haveRead(e,ltrNo){
+                	var title = $(e).find('div.col-sm-2.ellipsis').text();
+                	$('#modeltitle').text(title);
                 	
-                	var ltrNo = $(e).prev().val();
+                	var content = $(e).find('div.ellipsis.col-sm-7').text();
+                	$('#modelbody').text(content);
+                	
+                	if($(e).parent().css('background-color')=="rgb(231, 231, 231)"){     //231之間有空格
                 	$.ajax({
 						url:"<%=request.getContextPath()%>/front_end/letter/letter.do",
 						data:{
 							action : 'updateRead',
-							letterno : ltrNo					
+							letterno : 	ltrNo				
 						},
 						type : 'POST',
 						error : function(xhr) {
 							alert('Ajax request 發生錯誤');
 							},
 						success : function(result) {
-							$(e).parents(".fade").prev().find("a").css("background-color","white");
+							$(e).parent().css("background-color","white");
+							$(e).find('div.col-sm-1 > img').attr("src","<%=request.getContextPath()%>/front_end/images/envelope.png");
 							$("span.badge").text(parseInt($("span.badge").text())-1);
+							$(e).find('div.col-sm-2.ellipsis').css("font-weight",'');
 						}
-					});	  	
+					});	  
+                	}
                 }
                 
                 </script>

@@ -35,7 +35,6 @@ import com.google.gson.reflect.TypeToken;
 
 
 
-
 @SuppressWarnings("serial")
 @WebServlet("/MainActivity")
 public class DateItemForMainActivity extends HttpServlet {
@@ -60,7 +59,6 @@ public class DateItemForMainActivity extends HttpServlet {
 		
 		
 //		dateItemVOList = (ArrayList<DateItemVO>) dateItemDAO.getAll();
-		System.out.println("DataBase取回Size:"+dateItemVOList.size());
 		rq.setCharacterEncoding("UTF-8");
 		Gson gson = new Gson();
 		BufferedReader br = rq.getReader();
@@ -68,18 +66,20 @@ public class DateItemForMainActivity extends HttpServlet {
 		String line = null;
 		while ((line = br.readLine()) != null) {
 			jsonIn.append(line);
+		}
 			JsonObject jsonObject = gson.fromJson(jsonIn.toString(), JsonObject.class);
-			
-			
+			System.out.println("jsonObject:"+jsonObject);
 			String dateItem = jsonObject.get("dateItem").getAsString();
-			String type = jsonObject.get("type").getAsString();
+		
+
 			String outStr = "";
 		
 			if ("dateItem".equals(dateItem)) {
-				if("cat".equals(type)){
-					dateItemVOList = (ArrayList<DateItemVO>) dateItemDAO.getAll();
-				}
+				String type = jsonObject.get("type").getAsString();
+				System.out.println("type取回Size:"+type);
+				dateItemVOList = (ArrayList<DateItemVO>) dateItemDAO.getPet(type);
 				outStr = gson.toJson(dateItemVOList);
+				System.out.println("DataBase取回Size:"+outStr);
 			}else if ("getImage".equals(dateItem)) {
 				OutputStream os = rp.getOutputStream();
 				int id = jsonObject.get("id").getAsInt();
@@ -103,7 +103,7 @@ public class DateItemForMainActivity extends HttpServlet {
 			System.out.println(outStr);
 
 		}
-	}
+	
 
 
 

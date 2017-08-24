@@ -58,6 +58,7 @@ public class DateItemDAO implements DateItemDAO_interface{
 	private static final String FIND_BY_SELLER = "SELECT * FROM DATEITEM WHERE SELLERNO =? ORDER BY DATEITEMNO DESC";
 	private static final String FIND_BY_FASTDATEITEM = "SELECT * FROM DATEITEM WHERE isInstantDate =1 AND sellerNo  != ? AND dateItemStatus=0 ORDER BY DATEITEMNO DESC";
 	private static final String FIND_BY_All = "select * from dateitem where sellerno = ? or buyerno = ? order by datemeetingtime desc";
+	private static final String FIND_PET_TYPE = "select * from dateitem where  petno  in ( select petno from pet where petkind like '%++%');";
 
 	
 
@@ -603,6 +604,87 @@ public class DateItemDAO implements DateItemDAO_interface{
 			pstmt=con.prepareStatement(FIND_BY_All);
 			pstmt.setInt(1, dateItemNo);
 			pstmt.setInt(2, dateItemNo);
+			rs=pstmt.executeQuery();
+			while(rs.next()){
+				dateItemVO=new DateItemVO();
+				
+				dateItemVO.setDateItemNo(rs.getInt("dateItemNo"));
+				dateItemVO.setSellerNo(rs.getInt("sellerNo"));
+				dateItemVO.setRestListNo(rs.getInt("restListNo"));
+				dateItemVO.setDateItemTitle(rs.getString("dateItemTitle"));
+//				dateItemVO.setDateItemImg(rs.getBytes("dateItemImg"));
+				dateItemVO.setDateItemText(rs.getString("dateItemText"));
+				dateItemVO.setDateItemTime(rs.getTimestamp("dateItemTime"));
+				dateItemVO.setDateMeetingTime(rs.getTimestamp("dateMeetingTime"));
+				dateItemVO.setDateItemLocate(rs.getString("dateItemLocate"));
+				dateItemVO.setDateItemPeople(rs.getInt("dateItemPeople"));
+				dateItemVO.setHasMate(rs.getBoolean("hasMate"));
+				dateItemVO.setDateItemPrice(rs.getInt("dateItemPrice"));
+				dateItemVO.setDateItemStatus(rs.getInt("dateItemStatus"));
+				dateItemVO.setDateItemShow(rs.getInt("dateItemShow"));
+				dateItemVO.setDateItemViewer(rs.getInt("dateItemShow"));
+				dateItemVO.setBuyerNo(rs.getInt("buyerNo"));
+				dateItemVO.setIsQRCChecked(rs.getBoolean("isQRCChecked"));
+				dateItemVO.setBuyerRep(rs.getInt("buyerRep"));
+				dateItemVO.setSellerRep(rs.getInt("SellerRep"));
+				dateItemVO.setIsInstantDate(rs.getBoolean("isInstantDate"));
+				dateItemVO.setPetNo(rs.getInt("petNo"));
+				list.add(dateItemVO);
+			}
+			
+		}  catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally{
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return (ArrayList<DateItemVO>) list;
+	}
+	
+	
+	public ArrayList<DateItemVO> getPet(String type) {
+		PreparedStatement pstmt=null;
+		Connection con=null;
+		ResultSet rs=null;
+		DateItemVO dateItemVO=null;
+		String petKind;
+		List<DateItemVO> list = new ArrayList<DateItemVO>();
+		try {
+			if("cat".equals(type)){
+				petKind="¿ß";
+			}else if("dog".equals(type)){
+				petKind="ª¯";
+			}else {
+				petKind="¨ä¥L";
+			}
+			String FIND_PET_TYPE = "select * from dateitem where  petno  in ( select petno from pet where petkind like '%"+petKind+"%')";
+//									select * from dateitem where  petno  in ( select petno from pet where petkind like '%   ¿ß      %');
+			con = ds.getConnection();
+			pstmt=con.prepareStatement(FIND_PET_TYPE);
+			
+			
+			
 			rs=pstmt.executeQuery();
 			while(rs.next()){
 				dateItemVO=new DateItemVO();

@@ -24,6 +24,7 @@ import javax.servlet.http.Part;
 
 import com.activity.model.Activity;
 import com.activity.model.ActivityService;
+import com.letter.model.LetterService;
 import com.restMember.model.RestMember;
 import com.restMember.model.RestMemberService;
 import com.restaurant.model.Restaurant;
@@ -209,6 +210,8 @@ public class ActivityServlet extends HttpServlet {
 					actDate, actFDate, actStatus, actULimit, actLLimit, actKind, actAnotherKind, actInitImg);
 			
 			req.setAttribute("activity", activity);
+			
+			
 			
 			////////////////////////Âà¦s////////////////////////////////
 			RequestDispatcher requestDispatcher = req.getRequestDispatcher("/front_end/activity/activityManagent.jsp");

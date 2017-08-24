@@ -35,10 +35,8 @@
     <link href="<%=request.getContextPath()%>/front_end/css/frontend.css" rel="stylesheet" type="text/css">
 	<link href="<%=request.getContextPath()%>/front_end/css/modern-business.css" rel="stylesheet">
 	<link href="<%=request.getContextPath() %>/front_end/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
-	<link href="<%=request.getContextPath() %>/front_end/css/fileinput-rtl.css"  rel="stylesheet" type="text/css" />
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script src="<%=request.getContextPath() %>/front_end/js/fileinput.js"  type="text/javascript"></script>
-	<script src="<%=request.getContextPath() %>/front_end/themes/explorer/theme.js" type="text/javascript"></script>
 <!-- 	<script src="https://code.jquery.com/jquery.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	 <!--[if lt IE 9]>

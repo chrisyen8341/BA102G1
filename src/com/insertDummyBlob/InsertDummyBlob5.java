@@ -12,7 +12,7 @@ import java.util.Set;
 import javax.imageio.ImageIO;
 
 import com.diary.model.*;
-import com.dateitemapp.model.*;
+
 
 
 public class InsertDummyBlob5 {

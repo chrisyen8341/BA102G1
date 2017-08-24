@@ -11,28 +11,12 @@ import java.util.Set;
 
 import javax.imageio.ImageIO;
 
-import com.actImg.model.ActImg;
-import com.actImg.model.ActImgJDBCDAO;
+
 import com.activity.model.Activity;
 import com.activity.model.ActivityJDBCDAO;
-import com.ad.model.Ad;
-import com.ad.model.AdJDBCDAO;
-import com.album.model.Album;
-import com.album.model.AlbumJDBCDAO;
-import com.albumimg.model.AlbumImg;
-import com.albumimg.model.AlbumImgJDBCDAO;
+
 import com.dateitem.model.DateItemJDBCDAO;
 import com.dateitem.model.DateItemVO;
-import com.member.model.Member;
-import com.member.model.MemberJDBCDAO;
-import com.pet.model.Pet;
-import com.pet.model.PetJDBCDAO;
-import com.product.model.Product;
-import com.product.model.ProductJDBCDAO;
-import com.restImg.model.RestImg;
-import com.restImg.model.RestImgJDBCDAO;
-import com.slide.model.Slide;
-import com.slide.model.SlideJDBCDAO;
 
 public class InsertDummyBlob4 {
 	static int fixed_width=400;

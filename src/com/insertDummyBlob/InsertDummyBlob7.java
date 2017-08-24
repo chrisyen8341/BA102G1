@@ -11,10 +11,10 @@ import java.util.Set;
 
 import javax.imageio.ImageIO;
 
-import com.diary.model.*;
+
 import com.product.model.Product;
 import com.product.model.ProductJDBCDAO;
-import com.dateitemapp.model.*;
+
 
 
 public class InsertDummyBlob7 {

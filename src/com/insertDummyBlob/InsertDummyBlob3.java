@@ -48,9 +48,9 @@ public class InsertDummyBlob3 {
 	    	//附檔名不確定，故對可能的副檔名跑回圈跑到檔案存在為止
 	    	File file = null;	    	
 	    	for(String fileExtName:memSet){
-	    		System.out.println(i);
+	    		
 	    		file=new File("WebContent/DummyImg/member/"+fileN+fileExtName);
-	    		System.out.println("WebContent/DummyImg/member/"+fileN+fileExtName);
+	    		
 	    		if(file.exists()){
 	    			break;
 	    		}

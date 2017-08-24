@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.letter.model.LetterService;
 import com.order.model.Ord;
 import com.order.model.OrdService;
 
@@ -31,7 +32,10 @@ public class OrderUpdate extends HttpServlet {
 		java.sql.Date closeTime = new java.sql.Date(cloTime.getTime());
 		if(ordstate == 2) {
 			
-			ordDao.updateOrd(ordNo, ordOne.getMemNo(), ordOne.getOrdDate(), ordOne.getOrdCheck(), proTime, ordOne.getOrdClose(), ordstate,ordOne.getOrdShip(), ordOne.getOrdTotal(), ordOne.getConName(), ordOne.getConAdd(), ordOne.getConTel());
+			Ord ordAlreadyShip = ordDao.updateOrd(ordNo, ordOne.getMemNo(), ordOne.getOrdDate(), ordOne.getOrdCheck(), proTime, ordOne.getOrdClose(), ordstate,ordOne.getOrdShip(), ordOne.getOrdTotal(), ordOne.getConName(), ordOne.getConAdd(), ordOne.getConTel());
+			LetterService letterDao = new LetterService();
+			letterDao.addLtrOfOrdDelivery(ordAlreadyShip);
+			System.out.println("¥X³f¦¨¥\");
 			RequestDispatcher dispatcher = req.getRequestDispatcher("/back_end/order/OrderManage.jsp");
 			dispatcher.forward(req, res);
 		}else {

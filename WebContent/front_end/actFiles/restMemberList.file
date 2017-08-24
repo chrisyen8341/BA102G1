@@ -21,6 +21,9 @@
     
     
     <div class="col-xs-12 col-sm-2 postion-left-group-b">
+    			<div style="margin-top:0px;">
+				<img src="<%=request.getContextPath()%>/front_end/images/logo-sp.png" class="img-rounded img-bg try-color" style="margin-top:0px;">
+				</div> 
              	<div id="menu">
                   	<div class="panel list-group list-color">
 

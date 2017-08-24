@@ -44,7 +44,7 @@
 <div class="container-fluid">
 			<div class="row">
 				<div class="col-xs-12 col-sm-offset-1 col-sm-10">
-					<div class="col-xs-12 col-sm-12">
+					<div class="col-xs-12 col-sm-12"><br>
 					<h1 class=" page-header text-left">ª¯ª¯¿ß¿ß¤Íµ½À\ÆU</h1>
 					
  				<!-- 					½Æ¦X¬d¸ß                                                                        -->

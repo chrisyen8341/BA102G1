@@ -180,7 +180,25 @@
 											
 		
 		
-			<!-- Disable MODAL -->
+				
+											
+											
+											
+											<c:if test="${not empty errorMsgs}">
+												<font color="red">
+													<ul>
+														<c:forEach var="message" items="${errorMsgs}">
+															<li>${message}</li>
+														</c:forEach>
+													</ul>
+												</font>
+											</c:if>
+											
+										</div>
+									</form>
+									
+									
+												<!-- Disable MODAL -->
 		<div class="modal fade" id="petDisableModal" tabindex="-1" role="dialog"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
@@ -206,22 +224,8 @@
 				</div>
 			</div>
 		</div>									
-											
-											
-											
-											
-											<c:if test="${not empty errorMsgs}">
-												<font color="red">
-													<ul>
-														<c:forEach var="message" items="${errorMsgs}">
-															<li>${message}</li>
-														</c:forEach>
-													</ul>
-												</font>
-											</c:if>
-											
-										</div>
-									</form>
+							
+									
 									
 								</div>
 

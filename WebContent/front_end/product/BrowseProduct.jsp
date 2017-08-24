@@ -223,7 +223,9 @@ body {
 <body>
 	
 	<%@ include file="pageCount1.file"%>
+	
 	<%@ include file="/front_end/frontEndNavBar.file" %>
+	
 		<%@ include file="page2.file"%>
     
     	<a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a>
@@ -253,7 +255,7 @@ body {
       <div class="promo-flex col-sm-4" style="color: rgba(0, 0, 0, .4);">
         <div data-ix="blog-card" class="w-clearfix w-preserve-3d promo-card" >
         
-        <img style="width:200px;height:150px;margin-left:1cm;" width="100%" src="http://localhost:8081/ChrisAll/ProductImage?prodno=${product.prodNo}">
+        <img style="width:200px;height:150px;margin-left:1cm;" width="100%" src="<%=request.getContextPath() %>/ProductImage?prodno=${product.prodNo}">
         
           <div class="blog-bar color-pink"></div>
           <div class="blog-post-text">
@@ -266,7 +268,7 @@ body {
             <font size="4" face="fantasy" color="#5599FF">$${product.prodPrice}</font>
             
             </div>
-            	<div class="col-md-6">
+            	<div class="col-md-6" style="margin-bottom:0px;">
             	<form action="<%=request.getContextPath()%>/ShoppingDetail.do" method="POST">
 						
 						<a class="btn cc" ><input style="position:right" type="submit" class="btn btn-primary" value="¬d¬Ý¸Ô±¡"></a> 

@@ -25,7 +25,6 @@
 <html>
 <head>
 <%@ include file="page4.file"%>
-<script src="https://code.jquery.com/jquery.js"></script>
 </head>
 <body>
 	<%@ include file="/front_end/frontEndNavBar.file" %>
@@ -51,12 +50,12 @@
 				
 				<c:if test="${ordAll.ordStatus ==0}">
 				<td><span>未出貨</span></td>
-				<td><input type="submit" value="取消訂單"></td>
+				<td><input type="submit" class="btn btn-primary" value="取消訂單"></td>
 				<input type="hidden" name="ordNo" value="${ordAll.ordNo}">
 				</c:if>
 				<c:if test="${ordAll.ordStatus ==1}">
 				<td><span>未出貨</span></td>
-				<td><input type="submit" value="取消訂單"></td>
+				<td><input type="submit" class="btn btn-primary" value="取消訂單"></td>
 				<input type="hidden" name="ordNo" value="${ordAll.ordNo}">
 				</c:if>
 				<c:if test="${ordAll.ordStatus ==2}">

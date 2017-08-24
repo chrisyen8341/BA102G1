@@ -55,7 +55,7 @@ public class ActivityDAO implements ActivityDAO_Interface{
 			
 	private static final String GET_ALL_NORTH = "SELECT * FROM ACTIVITY JOIN RESTMEMBER "
 			+ "ON (ACTIVITY.RESTMEMID=RESTMEMBER.RESTMEMID) JOIN REST ON  (REST.RESTNO = RESTMEMBER.RESTNO) "
-			+ "WHERE actstatus=2 and restlocate='台北縣' or restlocate='桃園縣' or restlocate='新竹縣' ";
+			+ "WHERE actstatus=2 and restlocate='台北市' or restlocate='新北市' or restlocate='桃園市' or restlocate='新竹市' ";
 	
 	private static final String GET_ALL_EAST = "SELECT * FROM ACTIVITY JOIN RESTMEMBER "
 			+ "ON (ACTIVITY.RESTMEMID=RESTMEMBER.RESTMEMID) JOIN REST ON  (REST.RESTNO = RESTMEMBER.RESTNO) "
@@ -63,11 +63,11 @@ public class ActivityDAO implements ActivityDAO_Interface{
 	
 	private static final String GET_ALL_WEST = "SELECT * FROM ACTIVITY JOIN RESTMEMBER "
 			+ "ON (ACTIVITY.RESTMEMID=RESTMEMBER.RESTMEMID) JOIN REST ON  (REST.RESTNO = RESTMEMBER.RESTNO) "
-			+ "WHERE actstatus=2 and restlocate='苗栗縣' or restlocate='台中縣' or restlocate='彰化縣' or restlocate='南投縣' ";
+			+ "WHERE actstatus=2 and restlocate='苗栗縣' or restlocate='台中市' or restlocate='彰化縣' or restlocate='南投縣' ";
 	
 	private static final String GET_ALL_SOUTH = "SELECT * FROM ACTIVITY JOIN RESTMEMBER "
 			+ "ON (ACTIVITY.RESTMEMID=RESTMEMBER.RESTMEMID) JOIN REST ON  (REST.RESTNO = RESTMEMBER.RESTNO) "
-			+ "WHERE actstatus=2 and restlocate='雲林縣' or restlocate='嘉義縣' or restlocate='台南縣' or restlocate='高雄縣' or restlocate='屏東縣' ";
+			+ "WHERE actstatus=2 and restlocate='雲林縣' or restlocate='嘉義市' or restlocate='台南市' or restlocate='高雄市' or restlocate='屏東縣' ";
 	
 	
 	

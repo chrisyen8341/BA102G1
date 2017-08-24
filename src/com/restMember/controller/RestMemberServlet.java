@@ -183,17 +183,19 @@ public class RestMemberServlet extends HttpServlet {
 			}
 			
 			
-			
-			
 			if(!hasAUser.isEmpty()){
 				RequestDispatcher requestDispatcher1 =req.getRequestDispatcher("/front_end/restMember/restMemberRegister.jsp");
 				requestDispatcher1.forward(req, res);
 				return;
 			}
 			
+			
+			
 			////////////////////存取帳號////////////////////////////
 			RestMemberService restMemberServicea = new RestMemberService();
-			RestMember restMember = restMemberServicea.addRestMember(restMemId, restNo, restMemPsw);	
+			RestMember restMember = restMemberServicea.addRestMember(restMemId, restNo, restMemPsw);
+			
+			
 			
 			req.setAttribute("restMember", restMember);
 			
@@ -219,6 +221,8 @@ public class RestMemberServlet extends HttpServlet {
 			HttpSession session = req.getSession();
 			
 			session.removeAttribute("restMember");
+			session.removeAttribute("restMemId");
+			session.removeAttribute("restaurant");
 //			System.out.println("ddddddd::::"+req.getAttribute("restMember"));
 		
 			RequestDispatcher requestDispatcher3 = req.getRequestDispatcher("/front_end/restMember/restMemberLogin.jsp");
@@ -274,6 +278,8 @@ public class RestMemberServlet extends HttpServlet {
 				requestDispatcher.forward(req, res);
 				return;
 			}
+			
+			
 			
 			/////////////////////////更改密碼////////////////////////
 			RestMemberService restMemberService = new RestMemberService();

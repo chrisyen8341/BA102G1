@@ -30,8 +30,7 @@
 				}
 				reader.readAsDataURL(input.files[0]);
 			}
-		}
-		;
+		};
 
 	});
 </script>
@@ -145,7 +144,44 @@
 											
 											<!-- 下方會停用會 呼叫modal-->
 											<button type="button" class="btn btn-danger"
-												data-toggle="modal" data-target="#disable">停用</button>
+												data-toggle="modal" data-target="#petDisableModal">停用</button>
+											
+											
+											
+<!-- 		Disable MODAL                                       -->
+<!-- 		<div  class="modal fade" id="petDisableModal" tabindex="-1" role="dialog" -->
+<!-- 			aria-labelledby="exampleModalLabel" aria-hidden="true"> -->
+<!-- 			<div class="modal-dialog" role="document"> -->
+<!-- 				<div class="modal-content"> -->
+<!-- 					<div class="modal-header"> -->
+<!-- 						<h3 class="modal-title" id="exampleModalLabel">是否確定停用?</h3> -->
+<!-- 						<button type="button" class="close" data-dismiss="modal" -->
+<!-- 							aria-label="Close"> -->
+<!-- 							<span aria-hidden="true">&times;</span> -->
+<!-- 						</button> -->
+<!-- 					</div> -->
+<!-- 					<div class="modal-footer"> -->
+<!-- 						<span> -->
+
+<%-- 							<form action="<%=request.getContextPath() %>/front_end/pet/pet.do" method="post"> --%>
+<!-- 								<input type="hidden" name="action" value="petDisable"> -->
+<%-- 								<input type="hidden" name="petNo" value="${pet.petNo}"> --%>
+<!-- 								<input type="submit" class="btn btn-primary" value="是"> -->
+<!-- 								<button type="button" class="btn btn-secondary" -->
+<!-- 									data-dismiss="modal">否</button> -->
+					
+<!-- 							</form> -->
+<!-- 						</span> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+											
+											
+		
+		
+				
+											
 											
 											
 											<c:if test="${not empty errorMsgs}">
@@ -161,6 +197,36 @@
 										</div>
 									</form>
 									
+									
+												<!-- Disable MODAL -->
+		<div class="modal fade" id="petDisableModal" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h3 class="modal-title" id="exampleModalLabel">是否確定停用?</h3>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+						</button>
+					</div>
+					<div class="modal-footer">
+						<span>
+
+							<Form action="<%=request.getContextPath() %>/front_end/pet/pet.do" method="post">
+								<input type="hidden" name="action" value="petDisable">
+								<input type="hidden" name="petNo" value="${pet.petNo}">
+								<input type="submit" class="btn btn-primary" value="是">
+								<button type="button" class="btn btn-warning" data-dismiss="modal">否</button>
+							</Form>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>									
+							
+									
+									
 								</div>
 
 
@@ -171,33 +237,7 @@
 					</div>
 				</div>
 
-		<!-- Disable MODAL -->
-		<div class="modal fade" id="disable" tabindex="-1" role="dialog"
-			aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h3 class="modal-title" id="exampleModalLabel">是否確定停用?</h5>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-footer">
-						<span>
 
-							<form action="<%=request.getContextPath() %>/front_end/pet/pet.do" method="post">
-								<input type="hidden" name="action" value="petDisable">
-								<input type="hidden" name="petNo" value="${pet.petNo}">
-								<button type="button" class="btn btn-secondary"
-									data-dismiss="modal">否</button>
-								<input type="submit" class="btn btn-primary" value="是">
-							</form>
-						</span>
-					</div>
-				</div>
-			</div>
-		</div>
 		
 		
 				

@@ -149,7 +149,7 @@
 	</table>
 
 												
-													員工權限<%=authForUpdate %>
+													員工權限
 <c:if test="<%=authForUpdate!=null %>">
 														<div class="row">
 															<div class="col-sm-4">

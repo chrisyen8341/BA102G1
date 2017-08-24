@@ -26,8 +26,7 @@
 									data-target="#sm1" data-parent="#menu">關於我們 <span
 									class="glyphicon glyphicon-triangle-bottom pull-right"></span></a>
 								<div id="sm1" class="sublinks collapse">
-									<a href="<%=request.getContextPath()%>/back_end/about_us/faq/faq_select_page.jsp" class="list-group-item small"> 常見問答管理</a> <a
-										href="<%=request.getContextPath()%>/back_end/about_us/news/news_select_page.jsp" class="list-group-item small"> 最新消息管理</a>
+									<a href="<%=request.getContextPath()%>/back_end/about_us/faq/faq_select_page.jsp" class="list-group-item small"> 常見問答管理</a> 
 								</div>
 								<%-- 						<% } %> --%>
 							</c:if>

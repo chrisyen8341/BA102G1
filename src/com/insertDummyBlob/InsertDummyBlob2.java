@@ -41,19 +41,19 @@ public class InsertDummyBlob2 {
 	public static void main(String[] args) {
 
 //	// 餐廳會員照片修改
-	int r = 7001;
-    for (File file : new File("WebContent/DummyImg/restImg").listFiles()) { 
-    	RestImgJDBCDAO restImgJDBCDAO=new RestImgJDBCDAO();
-        RestImg restImg=restImgJDBCDAO.findByPK(r++);
-        try {
-			byte[] b = getPictureByteArray(file);
-			restImg.setRestImg(b);
-			restImgJDBCDAO.update(restImg);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}    
-    }
-    System.out.println("=============餐廳會員照片新增完畢================");
+//	int r = 7001;
+//    for (File file : new File("WebContent/DummyImg/restImg").listFiles()) { 
+//    	RestImgJDBCDAO restImgJDBCDAO=new RestImgJDBCDAO();
+//        RestImg restImg=restImgJDBCDAO.findByPK(r++);
+//        try {
+//			byte[] b = getPictureByteArray(file);
+//			restImg.setRestImg(b);
+//			restImgJDBCDAO.update(restImg);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}    
+//    }
+//    System.out.println("=============餐廳會員照片新增完畢================");
 
     
     // 發起活動照片修改
@@ -65,30 +65,30 @@ public class InsertDummyBlob2 {
 	}	
 	
     //對資料庫的編號跑回圈
-	for (int i=8001;i<=8020;i++) { 
-    	ActivityJDBCDAO dao=new ActivityJDBCDAO();
-    	//取得File檔名 (ex.1 2 3) 故要記得更改減的數字(5000)
-    	String fileN=String.valueOf((i-8000));
-    	
-    	//附檔名不確定，故對可能的副檔名跑回圈跑到檔案存在為止
-    	File file = null;	    	
-    	for(String fileExtName:memSet){
-    		file=new File("WebContent/DummyImg/activityInitImg/"+fileN+fileExtName);
-    		if(file.exists()){
-    			break;
-    		}
-    	}
-    	
-    	Activity activity = dao.findByPK(i);
-        try {
-        	byte[] b = getPictureByteArray(file);
-        	activity.setActInitImg(b);
-			dao.update(activity);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}    
-    }
-    System.out.println("=============發起活動照片新增完畢================");
+//	for (int i=8001;i<=8020;i++) { 
+//    	ActivityJDBCDAO dao=new ActivityJDBCDAO();
+//    	//取得File檔名 (ex.1 2 3) 故要記得更改減的數字(5000)
+//    	String fileN=String.valueOf((i-8000));
+//    	
+//    	//附檔名不確定，故對可能的副檔名跑回圈跑到檔案存在為止
+//    	File file = null;	    	
+//    	for(String fileExtName:memSet){
+//    		file=new File("WebContent/DummyImg/activityInitImg/"+fileN+fileExtName);
+//    		if(file.exists()){
+//    			break;
+//    		}
+//    	}
+//    	
+//    	Activity activity = dao.findByPK(i);
+//        try {
+//        	byte[] b = getPictureByteArray(file);
+//        	activity.setActInitImg(b);
+//			dao.update(activity);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}    
+//    }
+//    System.out.println("=============發起活動照片新增完畢================");
 
 
  // 活動照片修改

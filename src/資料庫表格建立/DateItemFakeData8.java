@@ -25,7 +25,7 @@ import com.restaurant.model.RestaurantService;
 
 
 @WebServlet("/DateItemFakeData2")
-public class DateItemFakeData2 extends HttpServlet {
+public class DateItemFakeData8 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 

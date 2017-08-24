@@ -36,24 +36,30 @@
 			font-size: 16px;
 			background: #40E0D0;
 		}
+		td{
+			text-align: center;
+		}
 		
 </style>
 <body>
     <%@ include file="/back_end/backEndNavBar.file" %>
 	<%@ include file="/back_end/backEndLSide.file" %>
 
-    	<div class="container">
+    	<div class="container-fluid">
 				<div class="row">
-					<div class="col-xs-12 col-sm-12 text-center">
+					<div class="col-xs-12 col-sm-10 ">
 					<form method="post" action="<%=request.getContextPath()%>/restaurant/restaurantController" >
 						<div class="form-group row">
-							<div class="col-xs-3">
+							<div class="col-xs-2">
+								À\ÆU½s¸¹:<input class="form-control" type="text" name="restNo" value="">
+							</div>
+							<div class="col-xs-2">
 								À\ÆU¦WºÙ:<input class="form-control" type="text" name="restName" value="">
 							</div>
-							<div class="col-xs-3">	
+							<div class="col-xs-2">	
 								À\ÆU¦a§}:<input class="form-control" type="text" name="restAdd" value="">
 							</div>	
-							<div class="col-xs-3">	
+							<div class="col-xs-2">	
 								À\ÆU¹q¸Ü:<input class="form-control" type="text" name="restPhone" value="">
 							</div>
 								<br>

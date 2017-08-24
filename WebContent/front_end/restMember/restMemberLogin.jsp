@@ -31,7 +31,7 @@
 </style>
 
 </head>
-<body>
+<body background="<%=request.getContextPath()%>/front_end/actFiles/55.jpg"  style= margin:0px;padding:0px;background-size:cover;>
 <%@ include file="/front_end/actFiles/restMemberNavBar2.file" %>
 
 	
@@ -42,9 +42,7 @@
     
 			<div class="col-sm-6 col-sm-offset-3">
 				<div class="col-sm-12">
-					<div align="center">
-						<Img src="<%=request.getContextPath()%>/front_end/images/logo.png" height="250px" width="400px" />
-					</div>
+					
 	
 					<form class="" action="<%=request.getContextPath()%>/restMember/restMemberController"  method="post">
 								<c:if test="${not empty errorMsgs}">
@@ -62,7 +60,7 @@
 								${hasAUser}
 							</c:if>
 				
-
+					<br><br><br><br><br><br><br><br>
 					<div class="form-group">
 						<label for="restMemId" class="cols-sm-2 control-label">À\ÆU·|­û±b¸¹</label><span
 							id="restMemIdShow"> 

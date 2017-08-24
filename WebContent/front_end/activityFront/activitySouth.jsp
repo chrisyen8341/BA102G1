@@ -40,9 +40,7 @@
         <div class="row">
             <%@ include file="/front_end/actFiles/actFrontList.file" %>
             
-            <div class="col-xs-12 col-sm-10 ">
-
-            <div class="panel-group col-sm-offset-1 col-sm-10">
+            <div class="panel-group col-sm-8">
 			<h1 class=" page-header text-left">南部餐廳活動</h1>
 
 			<%@ include file="/front_end/actFiles/activityAll.file" %>

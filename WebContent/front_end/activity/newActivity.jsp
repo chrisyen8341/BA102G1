@@ -73,6 +73,16 @@ $(function(){
 	    };		    
 	    reader.readAsDataURL(input.files[0]);		   
 	};
+	
+	
+	function newAct(){
+		document.getElementById("actName").value="靜好悠閒";
+		document.getElementById("actContent").value="長長的尾巴倚著，好似在撒嬌一樣。\n\n和她對視了一眼，試著攏了他一下。\n\n沒走，緊緊依偎著好像認識許久般。";
+		document.getElementById("actDate").value="2017-09-20";
+		document.getElementById("actFDate").value="2017-09-10";
+		document.getElementById("actULimit").value="30";
+		document.getElementById("actLLimit").value="5";
+	}
 
 </script>
 
@@ -162,7 +172,7 @@ $(function(){
 									人數上限
 								</label>
 								<div class="col-sm-9">
-									<input type="text" name="actULimit" class="form-control" 
+									<input type="text" name="actULimit" id="actULimit" class="form-control" 
 									value="" placeholder="請輸入人數上限">
 								</div>
 							</div>
@@ -171,7 +181,7 @@ $(function(){
 									人數下限
 								</label>
 								<div class="col-sm-9">
-									<input type="text" name="actLLimit" class="form-control" 
+									<input type="text" name="actLLimit" id="actLLimit" class="form-control" 
 									value="" placeholder="請輸入人數下限">
 								</div>
 							</div>

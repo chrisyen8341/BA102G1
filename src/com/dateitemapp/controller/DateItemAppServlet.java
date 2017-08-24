@@ -13,6 +13,7 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import com.appreprec.model.AppRepRecService;
@@ -20,8 +21,8 @@ import com.dateitem.model.DateItemService;
 import com.dateitem.model.DateItemVO;
 import com.dateitemapp.model.DateItemApp;
 import com.dateitemapp.model.DateItemAppService;
-import com.dateitemrep.model.DateItemRep;
 import com.letter.model.LetterService;
+import com.member.model.Member;
 
 
 @MultipartConfig(fileSizeThreshold =500* 1024 * 1024, maxFileSize = 500 * 1024 * 1024, maxRequestSize = 5 * 500 * 1024 * 1024)
@@ -37,8 +38,8 @@ public class DateItemAppServlet extends HttpServlet{
 	public void doPost(HttpServletRequest req, HttpServletResponse res )
 			throws ServletException, IOException{
 		
-//		HttpSession session = req.getSession();
-//		Member member = (Member)session.getAttribute("member");
+		HttpSession session = req.getSession();
+		Member member = (Member)session.getAttribute("member");
 		
 		req.setCharacterEncoding("utf-8");
 		res.setContentType("text/html; charset=Big5");
@@ -50,8 +51,8 @@ public class DateItemAppServlet extends HttpServlet{
 			
 			//---------申訴人編號-----------------之後改成用session取
 			Integer memNo  = null;
-			memNo =new Integer(req.getParameter("memNo").trim());
-			System.out.println(memNo);
+			memNo = member.getMemNo();
+			
 			//---------被申訴約會商品編號-----------------
 			Integer dateItemNo  = null;
 			dateItemNo =new Integer(req.getParameter("dateItemNo").trim());
@@ -66,7 +67,11 @@ public class DateItemAppServlet extends HttpServlet{
 			Base64.Encoder bs64 = Base64.getEncoder();
 			byte[] appImg= null;			
 			String appImgtoString = null;
-			Part part = req.getPart("appImg");
+			Part part = null;
+			part = req.getPart("appImage");
+			
+			System.out.println(part);
+			
 			
 			if(!part.equals("")){
 				if(part.getContentType().substring(0,5).equals("image")){
@@ -80,7 +85,7 @@ public class DateItemAppServlet extends HttpServlet{
 			}else{
 				appText = req.getParameter("appText").trim()+"<br><img src=\"data:image/jpg;base64,"+appImgtoString+"\">";
 			}
-				
+				System.out.println(appText);
 			//--------申訴時間為現在-------------------
 			Date appDate = new Date(System.currentTimeMillis());
 			Integer appState = new Integer(0);//代表還沒有處理
@@ -88,6 +93,11 @@ public class DateItemAppServlet extends HttpServlet{
 			//---------呼叫service前來處理---------------
 			DateItemAppService dipSvc = new DateItemAppService();
 			dipSvc.addApp(memNo, dateItemNo, appTitle, appText, appDate, appState);
+			
+			//------------導回申訴頁面-----------------------
+			res.sendRedirect(req.getContextPath() + "/front_end/dateitem/list_buyer_future.jsp");
+			
+			
 			
 			
 		}

@@ -122,7 +122,7 @@
 								<input type="text" name="dianame" class="form-control" placeholder="Wirte down your title."><br>
 							</div>
 							<textarea name="diatext" style="resize:none;height:80px;" class="form-control" placeholder="What's on your mind, ${memSvc.getOneMember(member.getMemNo()).getMemSname()}?"></textarea>
-							<input type="file" class="file" name="diaimg" >
+							<input type="file" class="file" name="diaimg" data-show-upload="false">
 							<p>
 							<div  class="">	
 								<input type="submit" class="btn btn-primary btn-block" value="½T©w">

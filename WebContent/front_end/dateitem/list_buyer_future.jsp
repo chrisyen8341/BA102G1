@@ -124,22 +124,26 @@ margin-left:2px;
     <div class="modal-content fortest">
       <div class="modal-header text-center">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">申訴</h4>
+        <h4 class="modal-title">我要申訴</h4>
       </div>
-      <form action="<%=request.getContextPath() %>/back_end/apprec/dateitemapp.do" method=post enctype="multipart/form-data">
+      <form class="form-group" action="<%=request.getContextPath() %>/back_end/apprec/dateitemapp.do" method=post enctype="multipart/form-data">
       <div class="modal-body" >
-        <p></p>
-        <input id="appImg${dateitem.dateItemNo}" type="file" class="file" name="appImg" data-show-upload="false" data-show-caption="true">
-        <small id="desc1" class="form-text text-muted">請上傳申訴圖片</small>
+        <div class=" input-group">
+        <label class="control-label input-group-addon">申訴標題</label>
         <input type="text" class="form-control" name="appTitle" id="appTitle${dateitem.dateItemNo}"/>
-        <p>請輸入檢舉原因 </p>
+        </div>
+        <div class="input-group">
+        <label class="input-group-addon contol-label">申訴內容 </label>
         <input type="text" class="form-control" name="appText" id="appText${dateitem.dateItemNo}"/>
-        <p>請詳述申訴內容 </p>
+        </div>
+        <large id="desc1" class="form-text text-muted">請上傳申訴圖片</large>
+        <input id="appImg${dateitem.dateItemNo}" name="appImage"  type="file" data-show-upload="false" data-show-caption="true"/>
       </div>
       <div class="modal-footer">
       <button id="" type="button" class="btn btn-warning pull-right adj-button" data-dismiss="modal">回上一頁</button>
-       <input type="submit" id="sendRep${dateitem.dateItemNo}" class="check btn btn-primary" value="確定送出"/>
-       <input type="hidden" value="${dateItem.dateItemNo}"/>
+       <input type="submit" id="sendRep${dateitem.dateItemNo}" class="check btn btn-primary" style="margin-right:3px;" value="確定送出"/>
+       <input type="hidden" name="dateItemNo" value="${dateitem.dateItemNo}"/>
+       <input type="hidden" name="action" value="insert"/>
         
       </div>
       </form>

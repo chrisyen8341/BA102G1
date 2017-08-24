@@ -1,9 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="BIG5"%>
 <html lang="en">
-
+<%@ page import="com.member.model.*"%>
+<%@ page import="com.pet.model.*"%>
 <head>
-
+<% 
+Member mem=(Member)request.getAttribute("fMem");
+Pet pet=(Pet)request.getAttribute("fPet");
+pageContext.setAttribute("mem", mem);
+pageContext.setAttribute("pet", pet);
+%>
 
 <%@ include file="memHead.file"%>
 <%@ include file="registerTest.file"%>
@@ -36,7 +42,7 @@
 									<span class="input-group-addon"><i class="fa fa-user fa"
 										aria-hidden="true"></i></span> <input type="text"
 										class="form-control" name="memId" id="memId"
-										placeholder="請輸入帳號" required />
+										placeholder="請輸入帳號" value="<%= (mem==null)? "" : mem.getMemId() %>" required />
 								</div>
 							</div>
 						</div>
@@ -49,7 +55,7 @@
 									<span class="input-group-addon"><i
 										class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
 										type="text" class="form-control" name="memSname" id="memSname"
-										placeholder="請輸入暱稱" required />
+										placeholder="請輸入暱稱" value=<%= (mem==null)? "" : mem.getMemSname() %> required />
 								</div>
 							</div>
 						</div>
@@ -65,7 +71,7 @@
 									<span class="input-group-addon"><i
 										class="fa fa-envelope fa" aria-hidden="true"></i></span> <input
 										type="password" class="form-control" name="memPwd" id="memPwd"
-										placeholder="需包含英文字且長度大於6" required />
+										placeholder="需包含英文字且長度大於6" value="<%= (mem==null)? "" : mem.getMemPwd() %>" required />
 								</div>
 							</div>
 						</div>
@@ -78,7 +84,7 @@
 									<span class="input-group-addon"><i
 										class="fa fa-users fa" aria-hidden="true"></i></span> <input
 										type="password" class="form-control" name="conpwd" id="conPwd"
-										placeholder="請再次輸入密碼" required />
+										placeholder="請再次輸入密碼" value="<%= (mem==null)? "" : mem.getMemPwd() %>" required />
 								</div>
 							</div>
 						</div>
@@ -94,7 +100,7 @@
 									<span class="input-group-addon"><i
 										class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
 										type="text" class="form-control" name="memName" id="memName"
-										placeholder="請輸入您的姓名" required />
+										placeholder="請輸入您的姓名" value="<%= (mem==null)? "" : mem.getMemName() %>" required />
 								</div>
 							</div>
 						</div>
@@ -109,7 +115,7 @@
 									<span class="input-group-addon"><i
 										class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
 										type="text" class="form-control" name="memIdNo" id="memIdNo"
-										placeholder="請輸入身份證字號" required />
+										placeholder="請輸入身份證字號" value="<%= (mem==null)? "" : mem.getMemId() %>" required />
 								</div>
 							</div>
 						</div>
@@ -127,7 +133,7 @@
 									<span class="input-group-addon"><i
 										class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
 										name="memBday" id="memBday" class="form-control"
-										placeholder="Confirm your Password" required />
+										placeholder="Confirm your Password" value="<%= (mem==null)? "" : mem.getMemBday() %>" required />
 								</div>
 							</div>
 						</div>
@@ -141,7 +147,7 @@
 									<span class="input-group-addon"><i
 										class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
 										type="text" class="form-control" name="memPhone" id="memPhone"
-										placeholder="請輸入您的手機" required />
+										placeholder="請輸入您的手機" value="<%= (mem==null)? "" : mem.getMemPhone() %>" required />
 								</div>
 							</div>
 						</div>
@@ -166,7 +172,7 @@
 								<span class="input-group-addon"><i
 									class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
 								<textarea class="form-control" id="memAddress" name="memAddress"
-									placeholder="請輸入您的地址" required></textarea>
+									placeholder="請輸入您的地址" required><%= (mem==null)? "" : mem.getMemAddress() %></textarea>
 							</div>
 						</div>
 					</div>
@@ -180,7 +186,7 @@
 								<span class="input-group-addon"><i
 									class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
 									type="text" class="form-control" name="memEmail" id="memEmail"
-									placeholder="請輸入您的電子信箱" required />
+									placeholder="請輸入您的電子信箱" value="<%= (mem==null)? "" : mem.getMemEmail() %>" required />
 							</div>
 						</div>
 					</div>
@@ -211,7 +217,7 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i
 										class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
-										type="text" class="form-control" name="petName" id="petName"
+										type="text" class="form-control" name="petName" value="<%= (pet==null)? "" : pet.getPetName() %>" id="petName"
 										placeholder="請輸入您的寵物姓名" />
 								</div>
 							</div>

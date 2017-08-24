@@ -306,7 +306,8 @@
 	
 	$("#memBday").datetimepicker({
 		format: 'Y-m-d',
-		 timepicker:false,		 
+		 timepicker:false,
+		 maxDate: '0',
 	});
 
 	 

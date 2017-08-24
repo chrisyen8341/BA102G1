@@ -228,8 +228,10 @@ document.getElementById("memBday").setAttribute("max", today);
 			if($('input[name=petOrNot]').get(0).checked)
 			{
 				$("input").slice(0,13).each(function() {
+					console.log("t");
 					if ($.trim($(this).val()) === "") {
 						if($(this).prop("id")=="memImg"){
+							console.log("test");
 							$(this).prev().prev().html("&nbsp;&nbsp;&nbsp;&nbsp;½Ð¶ñ¼g¸ê®Æ").css('color','red');
 						}
 						else{

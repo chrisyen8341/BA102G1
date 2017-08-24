@@ -103,7 +103,7 @@
 														<td class="title">寵物姓名</td>
 														<td><input type="text" class="form-control"
 															name="petName" id="petName" value="${pet.petName}"
-															placeholder="請輸入暱稱" required /></td>
+															placeholder="請輸入暱稱" required/></td>
 													</tr>
 													<tr>
 														<td class="title">寵物分類</td>
@@ -123,8 +123,7 @@
 
 													<tr>
 														<td class="title">寵物生日</td>
-														<td><input type="date" name="petBday"
-															min="1910-01-01" max='2000-13-13' id="memBday"
+														<td><input type="text" name="petBday" id="petBday"
 															value="${pet.petBday}" class="form-control"
 															placeholder="請輸入您的寵物生日" required/></td>
 													</tr>
@@ -205,9 +204,24 @@
 			</div>
 		</div>
 		<%@ include file="/front_end/frontEndButtom.file"%>
-		<script src="https://code.jquery.com/jquery.js"></script>
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		
+			<script>
+
+		$(function(){
+
+	
+		$("#petBday").datetimepicker({
+		format: 'Y-m-d',
+		 timepicker:false,
+		 maxDate: '0',
+		});
+
+	 
+		});
+
+
+	</script>
+
 </body>
 
 </html>

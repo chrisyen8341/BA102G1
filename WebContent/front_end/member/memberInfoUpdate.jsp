@@ -62,8 +62,7 @@
 													</tr>
 													<tr>
 														<td class="title">生日</td></label>
-														<td><input type="date" name="memBday"
-															min="1910-01-01" max='2000-13-13' id="memBday"
+														<td><input type="text" name="memBday" id="memBday"
 															value="${member.memBday}" class="form-control"
 															placeholder="請輸入您的生日" required/><span id="memBdayShow"></span></td>
 													</tr>
@@ -164,8 +163,17 @@
 			} 
 
 			today = yyyy+'-'+mm+'-'+dd;
-			document.getElementById("memBday").setAttribute("max", today);
 
+		
+// 			function isValidDate(dateString) {
+// 				  var regEx = /^\d{4}-\d{2}-\d{2}$/;
+// 				  if(!dateString.match(regEx))
+// 				    return false;  // Invalid format
+// 				  var d;
+// 				  if(!((d = new Date(dateString))|0))
+// 				    return false; // Invalid date (or this could be epoch)
+// 				  return d.toISOString().slice(0,10) == dateString;
+// 				}
 
 					//生日驗證 生日不可以大於今天
 					$("#memBday").blur(function(e){
@@ -178,6 +186,10 @@
 								$("#memBdayShow").html("&nbsp;&nbsp;&nbsp;&nbsp;不合格的生日").css('color','red');
 								valids[0]=false;
 							}
+// 							else if(!isValidDate(e.target.value)){
+// 								$("#memBdayShow").html("&nbsp;&nbsp;&nbsp;&nbsp;生日格式不符").css('color','red');
+// 								valids[0]=false;
+// 							}
 							else{
 								$("#memBdayShow").html("");
 								valids[0]=true;
@@ -274,9 +286,26 @@
 			
 		});
 		</script>
-		<script src="https://code.jquery.com/jquery.js"></script>
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		
+		
+	<script>
+
+		$(function(){
+
+	
+		$("#memBday").datetimepicker({
+		format: 'Y-m-d',
+		 timepicker:false,
+		 maxDate: '0',
+		});
+
+	 
+		});
+
+
+	</script>
+		
+
 </body>
 
 </html>

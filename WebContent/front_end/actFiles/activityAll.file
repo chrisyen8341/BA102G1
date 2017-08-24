@@ -3,10 +3,9 @@
 
 			<c:forEach var="activityFront" items="${activityFrontList}">
 				 <div class="panel panel-default">
-			       <div class="panel-heading">
-			       		<div class="container">
-							<div class="row">
-								<div class="col-xs-12 col-sm-6">
+			       		<div class="panel-heading">
+			       		
+								
 									<h3 class="panel-title">
 									<% Activity act = (Activity) pageContext.getAttribute("activityFront"); %>   
 									<%
@@ -17,43 +16,43 @@
 									
 									活動餐廳:<%=restaurant.getRestName() %>
 									</h3>
-								</div>
-
-							</div>
-						</div>
-			       </div>
+								
+								
+			       		</div>
 			      
-					
-				       <div class="col-xs-12 col-sm-4">
-							<img src="<%=request.getContextPath() %>/activity/DBGifReader5?actNo=${activityFront.actNo}" class="img-responsive" >
-						</div>
-					
+					<div class="panel-body">
 						
+					       <div class="col-xs-12 col-sm-4">
+								<img src="<%=request.getContextPath() %>/activity/DBGifReader5?actNo=${activityFront.actNo}" class="img-thumbnail" >
+							</div>
 						
-						<div class="col-xs-12 col-sm-8 ">
-							<textarea class="overflow form-control" rows="8" cols="40" style="resize:none;border:0px;background-color:white" readonly>${activityFront.actContent}</textarea>
 							
-						</div>
-					
+							
+							<div class="col-xs-12 col-sm-8 ">
+								<textarea class="overflow form-control" rows="8" cols="40" style="resize:none;border:0px;background-color:white;font-size:20px;font-weight:bold;" readonly>${activityFront.actContent}</textarea>
+								
+							</div>
+						
+					</div>
 				
 						
 					
 				<form method="post" action="<%=request.getContextPath()%>/actDetial/actDetialController" >
 				
-			       
-						<div class="col-xs-12 col-sm-12">
+			       <div class="panel-footer">
+						
 							<div class="panel-body text-right" >
 			         			<a href='#${activityFront.actNo}' data-toggle="modal" class="btn btn-primary">活動詳情</a>
 									<div class="modal fade" id="${activityFront.actNo }">
 										<div class="modal-dialog modal-lg">
 											<div class="modal-content">
-												
-						<div class="modal-header">
+					</div>							
+						<div class="modal-header" style="background-color:white">
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 							<h4 class="modal-title text-center">活動詳情</h4>
 						</div>
 				
-					<div class="modal-body">
+					<div class="modal-body" style="background-color:white">
 						<div class="container">
 							<div class="row">
 								
@@ -157,7 +156,7 @@
 								</div>
 							
 										
-				<div class="modal-footer">
+				<div class="modal-footer" style="background-color:white">
 					
 					
 					

@@ -43,6 +43,7 @@ public class petUpdate extends HttpServlet {
 		String action = req.getParameter("action");
 		HttpSession session=req.getSession();
 		PetService petSvc = new PetService();
+		System.out.println(action);
 		
 		if ("petUpdate".equals(action)) {
 		
@@ -135,13 +136,13 @@ public class petUpdate extends HttpServlet {
 		
 		
 		if ("petDisable".equals(action)) {
-			
+			System.out.println("abc");
 			/***************************** 1.接收請求參數 - 輸入格式的錯誤處理**********************/
 			Integer petNo = null;
 			try {
 				petNo = Integer.parseInt(req.getParameter("petNo").trim());
 			} catch (IllegalArgumentException e) {
-				
+					System.out.println("excep");
 			}
 			Pet pet=petSvc.getOnePet(petNo);
 			/*************************** 2.開始修改資料 *****************************************/
@@ -156,7 +157,7 @@ public class petUpdate extends HttpServlet {
 		
 		
 		if ("petRegister".equals(action)) {
-			
+
 			Member member=(Member)session.getAttribute("member");
 			Integer memNo=null;
 			if(member!=null){

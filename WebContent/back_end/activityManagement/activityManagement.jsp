@@ -36,6 +36,9 @@
 			font-size: 16px;
 			background: #40E0D0;
 		}
+		td{
+			text-align: center;
+		}
 		
 		
 </style>
@@ -43,9 +46,9 @@
     <%@ include file="/back_end/backEndNavBar.file" %>
 	<%@ include file="/back_end/backEndLSide.file" %>
 	
-	    	<div class="container">
+	    	<div class="container-fluid">
 				<div class="row">
-					<div class="col-xs-12 col-sm-12 text-center">
+					<div class="col-xs-12 col-sm-10">
 					<form method="post" action="<%=request.getContextPath()%>/activity/activityController" >
 						<div class="form-group row ">
 							<div class="col-xs-2">

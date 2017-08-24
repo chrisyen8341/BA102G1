@@ -277,7 +277,7 @@ pageContext.setAttribute("pet", pet);
 								<li>${message}</li>
 							</c:forEach>
 						</ul>
-					</font>
+					</font>s
 				</c:if>
 
 				<button type="button" class="btn btn-info" id="autoAddMem"

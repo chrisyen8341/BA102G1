@@ -11,8 +11,15 @@ import java.util.Set;
 
 import javax.imageio.ImageIO;
 
-import com.diary.model.*;
-import com.dateitemapp.model.*;
+
+import com.album.model.Album;
+import com.album.model.AlbumJDBCDAO;
+import com.albumimg.model.AlbumImg;
+import com.albumimg.model.AlbumImgJDBCDAO;
+
+import com.member.model.Member;
+
+import com.member.model.MemberJDBCDAO;
 
 
 public class InsertDummyBlob3 {
@@ -21,47 +28,123 @@ public class InsertDummyBlob3 {
 	
 	
 	public static void main(String[] args) {
+		
 
-
-		// 日誌圖片修改
-		//讀取日誌照片延伸附檔名	
-		Set<String> diaSet=new HashSet<String>();	
-		for (File file : new File("WebContent/DummyImg/Diary").listFiles()) { 
+		// 會員照片修改
+		//讀取會員照片延伸附檔名	
+		Set<String> memSet=new HashSet<String>();	
+		for (File file : new File("WebContent/DummyImg/member").listFiles()) { 
 			String fileName=file.getName();
 			String fileExtName=fileName.substring(fileName.lastIndexOf("."));
-			diaSet.add(fileExtName);
+			memSet.add(fileExtName);
 		}	
 		
 	    //對資料庫的編號跑回圈
-		for (int i=10001;i<=10015;i++) { 
-	    	DiaryJDBCDAO dao=new DiaryJDBCDAO();
-	    	//取得File檔名 (ex.1 2 3) 故要記得更改減的數字(10000)
-	    	String fileN=String.valueOf((i-10000));
+		for (int i=5001;i<=5033;i++) { 
+	    	MemberJDBCDAO dao=new MemberJDBCDAO();
+	    	//取得File檔名 (ex.1 2 3) 故要記得更改減的數字(5000)
+	    	String fileN=String.valueOf((i-5000));
 	    	
 	    	//附檔名不確定，故對可能的副檔名跑回圈跑到檔案存在為止
 	    	File file = null;	    	
-	    	for(String fileExtName:diaSet){
-	    		file=new File("WebContent/DummyImg/Diary/"+fileN+fileExtName);
+	    	for(String fileExtName:memSet){
+	    		System.out.println(i);
+	    		file=new File("WebContent/DummyImg/member/"+fileN+fileExtName);
+	    		System.out.println("WebContent/DummyImg/member/"+fileN+fileExtName);
 	    		if(file.exists()){
 	    			break;
 	    		}
 	    	}
 	    	
-	    	Diary diary=dao.findByPrimaryKey(i);
+	    	Member member=dao.findByPk(i);
+	    	System.out.println(i);
 	        try {
-	        	byte[] b = getPictureByteArray(file);
-				diary.setDiaImg(b);
-				dao.update(diary);
+	        	byte[] b = getPictureByteArrayNoChangeSize(file);
+	        	System.out.println(b);
+				member.setMemImg(b);
+				dao.update(member);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}    
 	    }
-	    System.out.println("=============日誌新增完畢================");
+	    System.out.println("=============會員新增完畢================");
 
 	    
 	    
 	    
+		
+	    
+	    
+	    
+		// 修改相簿
+		//讀取相簿照片延伸附檔名	
+		Set<String> albumSet=new HashSet<String>();	
+		for (File file : new File("WebContent/DummyImg/album").listFiles()) { 
+			String fileName=file.getName();
+			String fileExtName=fileName.substring(fileName.lastIndexOf("."));
+			albumSet.add(fileExtName);
+		}	
+		
 
+	    for (int i=1;i<=1;i++) { 
+	    	AlbumJDBCDAO dao=new AlbumJDBCDAO();
+	    	String fileN=String.valueOf((i-0));
+	    	
+	    	File file = null;	    	
+	    	for(String fileExtName:albumSet){
+	    		file=new File("WebContent/DummyImg/album/"+fileN+fileExtName);
+	    		if(file.exists()){
+	    			break;
+	    		}
+	    	}
+	    	
+	    	Album album=dao.findByPk(i);
+	        try {
+	        	byte[] b = getPictureByteArrayNoChangeSize(file);
+	        	album.setAlbumImgFile(b);
+				dao.update(album);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}    
+	    }
+	    System.out.println("=============相簿新增完畢================");
+	    
+	    
+		// 修改相片
+		//讀取寵物照片延伸附檔名	
+		Set<String> aImgSet=new HashSet<String>();	
+		for (File file : new File("WebContent/DummyImg/albumimg").listFiles()) { 
+			String fileName=file.getName();
+			String fileExtName=fileName.substring(fileName.lastIndexOf("."));
+			aImgSet.add(fileExtName);
+		}	
+		
+
+	    for (int i=1;i<=5;i++) { 
+	    	AlbumImgJDBCDAO dao=new AlbumImgJDBCDAO();
+	    	String fileN=String.valueOf((i-0));
+	    	
+	    	File file = null;	    	
+	    	for(String fileExtName:aImgSet){
+	    		file=new File("WebContent/DummyImg/albumimg/"+fileN+fileExtName);
+	    		if(file.exists()){
+	    			break;
+	    		}
+	    	}
+	    	
+	    	AlbumImg aImg=dao.findByPk(i);
+	        try {
+	        	byte[] b = getPictureByteArrayNoChangeSize(file);
+	        	aImg.setImgFile(b);
+				dao.update(aImg);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}    
+	    }
+	    System.out.println("=============相片新增完畢================");
+	    
+
+		
 	     
     
 	    

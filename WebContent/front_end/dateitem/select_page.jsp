@@ -444,9 +444,8 @@ type="button" class = "btn btn-xs btn-basic pull-left btn-circle" data-toggle="m
 <%@ include file="pages/pageLatest.file" %> 
 =======
  </div>  
- <%@include file="pageLatest.file"%>     
-<%-- <%@ include file="pages/page2.file" %>  --%>
->>>>>>> refs/remotes/origin/master
+ <%@include file="pages/pageLatest.file"%>     
+
  
 <%@ include file="/front_end/frontEndButtom.file"%>
 <%@ include file="chat.file"%>

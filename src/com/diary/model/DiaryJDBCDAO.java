@@ -95,6 +95,7 @@ public class DiaryJDBCDAO implements DiaryDAO_Interface{
 			con = DriverManager.getConnection(url,userid,passwd);
 			
 			pstmt = con.prepareStatement(UPDATE);	
+			
 			clob =con.createClob();
 			clob.setString(1, diary.getDiaText());
 			

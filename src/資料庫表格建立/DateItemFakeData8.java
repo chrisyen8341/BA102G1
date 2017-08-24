@@ -160,7 +160,8 @@ public class DateItemFakeData8 extends HttpServlet {
 			Integer statusR=0;
 			Integer showR=0;
 			Integer viewerR=rand.nextInt(1000);
-			Integer buyerR=rand.nextInt(30)+5001;
+//			Integer buyerR=rand.nextInt(30)+5001;
+			Integer buyerR=5100;
 			Boolean[] qrCode=new Boolean[]{true,false};
 			Boolean qrCodeR=qrCode[rand.nextInt(2)];
 			Integer buyerRepR=0;
@@ -171,24 +172,37 @@ public class DateItemFakeData8 extends HttpServlet {
 			Integer petNo=pMember.get(pMemberRand).get(rand.nextInt(pMember.get(pMemberRand).size()));
 			byte[] dateItemImg= petImg.get(petNo);
 			
-
-			//下面這個是要被檢舉的約會商品
-			if(i==98){
-				dateSvc.addDateItem(pMemberRand, restRand, "我打code的能力比中壢資策會強", dateItemImg, dText.get(textRand),
-						dateTime.get(dTimeR), meetTime.get(mTimeR), 
-						rest.get(restRand), mPeopleR, hasMateR, priceR, statusR, showR, viewerR, buyerR, 
-						qrCodeR, buyerRepR, sellerrRepR, instantR, petNo);
-				break;
-			}
 			
-			//下面這個是要太貴買不起的約會商品
-			if(i==99){
-				dateSvc.addDateItem(pMemberRand, restRand, dTitle.get(titleRand), dateItemImg, dText.get(textRand),
-						dateTime.get(dTimeR), meetTime.get(mTimeR), 
-						rest.get(restRand), mPeopleR, hasMateR, 99999, statusR, showR, viewerR, buyerR, 
-						qrCodeR, buyerRepR, sellerrRepR, instantR, petNo);
-				break;
-			}
+			
+
+//			//下面這個是要被檢舉的約會商品
+//			if(i==98){
+//				dateSvc.addDateItem(pMemberRand, restRand, "我比中壢資策會強", dateItemImg, dText.get(textRand),
+//						dateTime.get(dTimeR), meetTime.get(mTimeR), 
+//						rest.get(restRand), mPeopleR, hasMateR, priceR, statusR, showR, viewerR, buyerR, 
+//						qrCodeR, buyerRepR, sellerrRepR, instantR, petNo);
+//				break;
+//			}
+			
+//			//下面這個是要太貴買不起的約會商品
+//			if(i==97){
+//				dateSvc.addDateItem(pMemberRand, restRand, dTitle.get(titleRand), dateItemImg, dText.get(textRand),
+//						dateTime.get(dTimeR), meetTime.get(mTimeR), 
+//						rest.get(restRand), mPeopleR, hasMateR, new Integer(9999), statusR, showR, viewerR, buyerR, 
+//						qrCodeR, buyerRepR, sellerrRepR, instantR, petNo);
+//				break;
+//			}
+//			
+//			
+//			//下面這個是要太貴買不起的約會商品
+//			if(i==96){
+//				dateSvc.addDateItem(pMemberRand, restRand, dTitle.get(titleRand), dateItemImg, dText.get(textRand),
+//						dateTime.get(dTimeR), meetTime.get(mTimeR), 
+//						rest.get(restRand), mPeopleR, hasMateR, new Integer(9999), statusR, showR, viewerR, buyerR, 
+//						qrCodeR, buyerRepR, sellerrRepR, instantR, petNo);
+//				break;
+//			}
+//			
 		
 			dateSvc.addDateItem(pMemberRand, restRand, dTitle.get(titleRand), dateItemImg, dText.get(textRand),
 					dateTime.get(dTimeR), meetTime.get(mTimeR), 
@@ -208,6 +222,17 @@ public class DateItemFakeData8 extends HttpServlet {
 		}
 		
 		
+		
+		dateSvc.addDateItem(5014, 7040, "我比中壢資策會強", petImg.get(1041), "怎樣我就是覺得我超強",
+				new java.sql.Timestamp(gCalender1.getTimeInMillis()), new java.sql.Timestamp(gCalendern3.getTimeInMillis()), 
+				rest.get(7040), 0, false, new Integer(1100), 0, 0, 100, 5100, 
+				false, 0, 0, false, 1041);
+		
+		
+		dateSvc.addDateItem(5011, 7040, "打code累了就來跟可愛的寵物約個會吧", petImg.get(1033), "青山、綠樹、鮮花就是一道美麗的風景，遠處那白色的小樓房掩映其中，猶如走進了美麗的童話世界，讓人忘卻工作的疲勞，心中的煩惱。",
+				new java.sql.Timestamp(gCalender1.getTimeInMillis()), new java.sql.Timestamp(gCalendern3.getTimeInMillis()), 
+				rest.get(7040), 0, false, new Integer(9999), 0, 0, 100, 5100, 
+				false, 0, 0, false, 1033);
 		
 		
 	}

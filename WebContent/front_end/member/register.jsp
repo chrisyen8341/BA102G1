@@ -22,7 +22,8 @@
 
 			<div class="col-sm-6 col-sm-offset-3">
 
-				<form class="" action="<%=request.getContextPath()%>/front_end/member/member.do"
+				<form class=""
+					action="<%=request.getContextPath()%>/front_end/member/member.do"
 					method="post" enctype="multipart/form-data" id="register">
 
 					<div class="row">
@@ -48,7 +49,7 @@
 									<span class="input-group-addon"><i
 										class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
 										type="text" class="form-control" name="memSname" id="memSname"
-										placeholder="請輸入暱稱" required/>
+										placeholder="請輸入暱稱" required />
 								</div>
 							</div>
 						</div>
@@ -64,7 +65,7 @@
 									<span class="input-group-addon"><i
 										class="fa fa-envelope fa" aria-hidden="true"></i></span> <input
 										type="password" class="form-control" name="memPwd" id="memPwd"
-										placeholder="需包含英文字且長度大於6" required/>
+										placeholder="需包含英文字且長度大於6" required />
 								</div>
 							</div>
 						</div>
@@ -77,7 +78,7 @@
 									<span class="input-group-addon"><i
 										class="fa fa-users fa" aria-hidden="true"></i></span> <input
 										type="password" class="form-control" name="conpwd" id="conPwd"
-										placeholder="請再次輸入密碼" required/>
+										placeholder="請再次輸入密碼" required />
 								</div>
 							</div>
 						</div>
@@ -93,7 +94,7 @@
 									<span class="input-group-addon"><i
 										class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
 										type="text" class="form-control" name="memName" id="memName"
-										placeholder="請輸入您的姓名" required/>
+										placeholder="請輸入您的姓名" required />
 								</div>
 							</div>
 						</div>
@@ -108,7 +109,7 @@
 									<span class="input-group-addon"><i
 										class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
 										type="text" class="form-control" name="memIdNo" id="memIdNo"
-										placeholder="請輸入身份證字號" required/>
+										placeholder="請輸入身份證字號" required />
 								</div>
 							</div>
 						</div>
@@ -125,9 +126,8 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i
 										class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
-										name="memBday"
-										id="memBday" class="form-control"
-										placeholder="Confirm your Password" required/>
+										name="memBday" id="memBday" class="form-control"
+										placeholder="Confirm your Password" required />
 								</div>
 							</div>
 						</div>
@@ -141,7 +141,7 @@
 									<span class="input-group-addon"><i
 										class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
 										type="text" class="form-control" name="memPhone" id="memPhone"
-										placeholder="請輸入您的手機" required/>
+										placeholder="請輸入您的手機" required />
 								</div>
 							</div>
 						</div>
@@ -154,7 +154,7 @@
 							checked="true" value="0">男</label> <label class="radio-inline"><input
 							type="radio" id="girlMem" name="memGender" value="1">女</label> <label
 							class="radio-inline"><input type="radio" name="memGender"
-							value="2" >第三性</label>
+							value="2">第三性</label>
 					</div>
 
 
@@ -189,7 +189,7 @@
 						<div class="col-sm-6 form-group">
 							<label for="memImg" class="control-label ">照片</label><span
 								id="memImgShow"></span> <br> <input type="file"
-								name="memImg" id="memImg" placeholder=""/> <img
+								name="memImg" id="memImg" placeholder="" /> <img
 								src="https://api.fnkr.net/testimg/350x200/00CED1/FFF/?text=img+placeholder"
 								height="200px" width="150px" id="memPic" style="margin-top: 5px"><br>
 						</div>
@@ -212,7 +212,7 @@
 									<span class="input-group-addon"><i
 										class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
 										type="text" class="form-control" name="petName" id="petName"
-										placeholder="請輸入您的寵物姓名"/>
+										placeholder="請輸入您的寵物姓名" />
 								</div>
 							</div>
 						</div>
@@ -255,14 +255,24 @@
 					<input type="hidden" name="action" value="register">
 
 
-<!-- 					google Invisible reCAPTCHA  -->
-					<div id='recaptcha' class="g-recaptcha" data-sitekey="6LeBbC0UAAAAAEd3C3R3zbSpsfxg2A7zZarw2mZT" 
-					data-callback="onSubmit" data-size="invisible"></div>
-					<button id='sub' class="btn btn-primary btn-lg btn-block login-button">註冊</button>
-
-
+					<!-- 					google Invisible reCAPTCHA  -->
+					<div id='recaptcha' class="g-recaptcha"
+						data-sitekey="6LeBbC0UAAAAAEd3C3R3zbSpsfxg2A7zZarw2mZT"
+						data-callback="onSubmit" data-size="invisible"></div>
+					<button id='sub'
+						class="btn btn-primary btn-lg btn-block login-button">註冊</button>
 
 				</form>
+				<%-- 錯誤表列 --%>
+				<c:if test="${not empty errorMsgs}">
+					<font color='red'>請修正以下錯誤:
+						<ul>
+							<c:forEach var="message" items="${errorMsgs}">
+								<li>${message}</li>
+							</c:forEach>
+						</ul>
+					</font>
+				</c:if>
 
 				<button type="button" class="btn btn-info" id="autoAddMem"
 					style="margin-top: 10px">新增一般會員</button>
@@ -285,7 +295,7 @@
 		function validate(event) {
 
 			event.preventDefault();
-			grecaptcha.execute();			
+			grecaptcha.execute();
 		}
 
 		function onload() {
@@ -296,28 +306,25 @@
 	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 
-	<script>onload();</script>
-	
-	
-		<script>
-
-	$(function(){
-
-	
-	$("#memBday").datetimepicker({
-		format: 'Y-m-d',
-		 timepicker:false,
-		 maxDate: '0',
-	});
-
-	 
-	});
+	<script>
+		onload();
+	</script>
 
 
-</script>
+	<script>
+		$(function() {
+
+			$("#memBday").datetimepicker({
+				format : 'Y-m-d',
+				timepicker : false,
+				maxDate : '0',
+			});
+
+		});
+	</script>
 
 
-		
+
 </body>
 
 </html>

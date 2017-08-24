@@ -230,7 +230,7 @@ public class Update extends HttpServlet {
 			String memEmail = req.getParameter("memEmail").trim();
 			String gRecaptchaResponse = req.getParameter("g-recaptcha-response");
 			System.out.println(gRecaptchaResponse);
-			
+			Member fMem =new Member();
 			boolean verify = VerifyRecaptcha.verify(gRecaptchaResponse);
 			
 			List<String> errorMsgs = new LinkedList<String>();
@@ -282,7 +282,7 @@ public class Update extends HttpServlet {
 			byte[] memImg = null;
 			Collection<Part> parts = req.getParts();
 			for (Part part : parts) {
-				if (part.getName().equals("memImg") && getFileNameFromPart(part) != null) {
+				if (part.getName().equals("memImg")) {
 					memImg = getPictureByteArrayNoChangeSize(part.getInputStream());
 				}
 				// if (getFileNameFromPart(part) != null &&
@@ -292,6 +292,15 @@ public class Update extends HttpServlet {
 				// }
 			}
 
+			if(memImg!=null){
+				if(memImg.length==0){
+					errorMsgs.add("請上傳照片");
+				}
+			}
+			if(memImg==null){
+				errorMsgs.add("請上傳照片");
+			}
+			
 			/****************** 有寵物會執行下方 *****************/
 			String petName = null;
 			String petKind = null;
@@ -321,10 +330,21 @@ public class Update extends HttpServlet {
 						errorMsgs.add("寵物照片格式有誤");
 					}
 				}
+				
+				if(petImg!=null){
+					if(petImg.length==0){
+						errorMsgs.add("請上傳寵物照片");
+					}
+				}
+				if(petImg==null){
+					errorMsgs.add("請上傳寵物照片");
+				}
+				
+				
 			}
 
-			if (!errorMsgs.isEmpty()&&!verify) {
-				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/memberInfo.jsp");
+			if (!errorMsgs.isEmpty()||!verify) {
+				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/register.jsp");
 				req.setAttribute("errorMsgs", errorMsgs);
 				failureView.forward(req, res);
 				return;// 程式中斷

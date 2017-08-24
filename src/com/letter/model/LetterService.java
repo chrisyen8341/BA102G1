@@ -155,7 +155,7 @@ public class LetterService {
 		Member Buyer = memSvc.getOneMember(dateItem.getBuyerNo());
 
 		String text = null;
-		text = Buyer+" 你好: "+letterType.getLetterTypeText();
+		text = Buyer.getMemName()+" 你好: "+letterType.getLetterTypeText();
 		letter.setLetterText(text);
 		dao.insert(letter);
 		
@@ -173,7 +173,8 @@ public class LetterService {
 		Member seller = memSvc.getOneMember(dateItem.getSellerNo());
 		
 		String text1 = null;
-		text1 = seller+" 你好: "+Buyer+letterType1.getLetterTypeText()+"重新上架："+"/front_end/dateitem/dateitem.do?action=reinsert&dateItemNo="+dateItem.getDateItemNo();
+//		text1 = seller.getMemName()+" 你好: "+Buyer.getMemName()+letterType1.getLetterTypeText()+" 重新上架："+"<button id='insertAgain' class='btn btn-success'>重新上架</button><input type='hidden' id='itemNo' value="+dateItem.getDateItemNo()+">";
+		text1 = seller.getMemName()+" 你好: "+Buyer.getMemName()+letterType1.getLetterTypeText();
 		letter1.setLetterText(text1);
 		dao.insert(letter1);
 		

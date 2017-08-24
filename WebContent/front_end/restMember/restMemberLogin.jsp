@@ -31,7 +31,7 @@
 </style>
 
 </head>
-<body background="<%=request.getContextPath()%>/front_end/actFiles/55.jpg"  style= margin:0px;padding:0px;background-size:cover;>
+<body background="<%=request.getContextPath()%>/front_end/actFiles/77.jpg"  style= margin:0px;padding:0px;background-size:cover;>
 <%@ include file="/front_end/actFiles/restMemberNavBar2.file" %>
 
 	
@@ -100,8 +100,8 @@
 						type="submit" value="µn¿ý">
 					<div>
 						
-						
-						<a href="<%=request.getContextPath()%>/front_end/restMember/restMemberList.jsp" class="btn btn-link">µù¥U</a>
+						<br>
+						<a href="<%=request.getContextPath()%>/front_end/restMember/restMemberList.jsp" class="btn btn-primary">µù¥U</a>
 					</div>
 					
 				</form>
@@ -110,7 +110,11 @@
 		</div>
 	</div>
 </div>
-
+	<a href="<%=request.getContextPath()%>/front_end/index.jsp">
+		<div class="text-left" id="fixedbutton-talk">
+			<img src="<%=request.getContextPath()%>/front_end/actFiles/33.jpg">
+		</div>
+	</a>
 						
 <%@ include file="/front_end/frontEndButtomFixed.file" %>      
 	<script src="https://code.jquery.com/jquery.js"></script>

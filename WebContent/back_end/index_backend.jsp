@@ -61,28 +61,34 @@
 			<div class="col-xs-12 col-sm-8">
 
 
-				<h5 class="page-header text-right">目前位置:後端首頁</h5>
+				<h4 class="page-header text-right"></h4>
 
 
 				<div
 					class="panel panel-default col-sm-offset-3 col-sm-6 text-center">
 					<div class="panel-heading">
-						<h3 class="panel-title">待處理事項</h3>
+<!-- 						<h3 class="panel-title">待處理事項</h3> -->
+						<div align="center">
+							<Img
+								src="<%=request.getContextPath()%>/back_end/images/logo.png"
+								height="250px" width="400px" />
+						</div>
 					</div>
 
 					<ul class="list-group">
-						<li class="list-group-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5
-							筆待審核訂單 <span class="label label-info pull-right">5</span>
-						</li>
-						<li class="list-group-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1
-							筆待審核餐廳 <span class="label label-info pull-right">1</span>
-						</li>
-						<li class="list-group-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2
-							筆待處理申訴 <span class="label label-info pull-right">2</span>
-						</li>
-						<li class="list-group-item">0 筆待處理檢舉</li>
-						<li class="list-group-item">0 筆待審核活動</li>
-
+<!-- 						<li class="list-group-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5 -->
+<!-- 							筆待審核訂單 <span class="label label-info pull-right">5</span> -->
+<!-- 						</li> -->
+<!-- 						<li class="list-group-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1 -->
+<!-- 							筆待審核餐廳 <span class="label label-info pull-right">1</span> -->
+<!-- 						</li> -->
+<!-- 						<li class="list-group-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2 -->
+<!-- 							筆待處理申訴 <span class="label label-info pull-right">2</span> -->
+<!-- 						</li> -->
+<!-- 						<li class="list-group-item">0 筆待處理檢舉</li> -->
+<!-- 						<li class="list-group-item">0 筆待審核活動</li> -->
+						<h1>PET YOU & ME</h1>
+						<H3>平臺管理系統</H3>
 					</ul>
 
 

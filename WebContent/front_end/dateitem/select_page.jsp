@@ -438,13 +438,13 @@ type="button" class = "btn btn-xs btn-basic pull-left btn-circle" data-toggle="m
 			 </c:if>
  
  </c:forEach>
-<<<<<<< HEAD
+
  </div>       
-<%-- <%@ include file="pages/page2.file" %>  --%>
+
 <%@ include file="pages/pageLatest.file" %> 
-=======
+
  </div>  
- <%@include file="pages/pageLatest.file"%>     
+    
 
  
 <%@ include file="/front_end/frontEndButtom.file"%>

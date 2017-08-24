@@ -18,6 +18,7 @@ import com.actDetial.model.ActDetial;
 import com.actDetial.model.ActDetialService;
 import com.activity.model.Activity;
 import com.activity.model.ActivityService;
+import com.letter.model.LetterService;
 import com.member.model.Member;
 import com.member.model.MemberService;
 
@@ -111,7 +112,8 @@ public class ActDetialServlet extends HttpServlet {
 				req.setAttribute("actDetial", actDetial);
 			}
 	    	
-			
+//			LetterService letterService = new LetterService();
+//			letterService.
 			
 			//////////////////////ТрЅц////////////////////////////////
 			RequestDispatcher requestDispatcher = req.getRequestDispatcher(requestURL);

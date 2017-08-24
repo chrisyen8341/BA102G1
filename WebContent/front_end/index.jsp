@@ -201,7 +201,7 @@ margin-right:0.25em;
 								<h3>Restaurant Owners' Club</h3>
 								<p>你是寵物餐廳主人嗎? 快來發起一些活動吧</p>
 								<ul class="actions">
-									<li><a href="#" class="button alt">Learn More</a></li>
+									<li><a href="<%=request.getContextPath() %>/front_end/restMember/restMemberLogin.jsp" class="button alt">Learn More</a></li>
 								</ul>
 							</section>
 

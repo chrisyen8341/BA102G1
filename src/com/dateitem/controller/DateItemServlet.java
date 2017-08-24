@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import com.lettertype.model.LetterTypeService;
 
 import javax.servlet.*;
 import javax.servlet.annotation.MultipartConfig;
@@ -17,6 +18,7 @@ import javax.servlet.http.*;
 import com.dateitem.model.*;
 import com.dateitem.model.DateItemService;
 import com.dateitem.model.DateItemVO;
+import com.letter.model.LetterService;
 import com.member.model.Member;
 import com.member.model.MemberService;
 import com.pet.model.Pet;
@@ -195,6 +197,9 @@ public class DateItemServlet extends HttpServlet {
 				String url = "/front_end/dateitem/list_buyer_future.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
+				LetterService lSvc = new LetterService();
+				lSvc.addLtrOfDateBeBought(dateItemVO);
+				lSvc.addLtrOfBuyDateItemSucess(dateItemVO);
 				}else{
 					req.setAttribute("itemNotFound", dateItemVO);
 					String url = "/front_end/dateitem/list_buyer_future.jsp";
@@ -278,12 +283,18 @@ public class DateItemServlet extends HttpServlet {
 				
 				req.setAttribute("itemCanceled", dateItemVO);
 				if (req.getParameter("fromwho").equals("buyer")){
+					LetterService lSvc = new LetterService();
+					lSvc.addLtrOfBuyerCancelDate(dateItemVO);
+					
 					String url = "/front_end/dateitem/list_buyer_history.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url);
 					successView.forward(req, res);
 					}
 				if	(req.getParameter("fromwho").equals("seller")){
 					String url = "/front_end/dateitem/list_seller_history.jsp";
+					LetterService lSvc = new LetterService();
+					lSvc.addLtrOfSellerCancelDate(dateItemVO);
+					
 					RequestDispatcher successView = req.getRequestDispatcher(url);
 					successView.forward(req, res);
 					}

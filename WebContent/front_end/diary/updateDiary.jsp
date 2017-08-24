@@ -33,6 +33,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <style>
+.panel-body{
+	padding:1px;
+}
 .img-bg{
     opacity:1;
     background-color:#ccc;

@@ -44,6 +44,9 @@
   		<![endif]-->
 </head>
 <style>
+.panel-body{
+	padding:1px;
+}
 .img-bg{
     opacity:1;
     background-color:#ccc;

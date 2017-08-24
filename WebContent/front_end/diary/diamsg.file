@@ -4,7 +4,7 @@
 	                    <div class="panel-body">		                       
 								<!--  ¨q¥X¯d¨¥°Ï    -->                            		
 	                    <c:forEach var="diamsg" items="${diaMsgSvc.getAllMsgFromDia(diary.diaNo)}">
-	                        <div class="panel-body" style="margin-bottom:10px;">
+	                        <div class="panel-body" style="margin-bottom:10px;padding:0px;">
 	                            <div class="col-sm-10" >
 	                            	<div class="row">
 	                            		<div class="col-sm-4">

@@ -8,58 +8,277 @@
 <head>
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <%@ include file="page4.file"%>
+<script>
+$(document).ready(function(){
+    $(window).scroll(function () {
+           if ($(this).scrollTop() > 50) {
+               $('#back-to-top').fadeIn();
+           } else {
+               $('#back-to-top').fadeOut();
+           }
+       });
+       // scroll body to 0px on click
+       $('#back-to-top').click(function () {
+           $('#back-to-top').tooltip('hide');
+           $('body,html').animate({
+               scrollTop: 0
+           }, 800);
+           return false;
+       });
+       
+       $('#back-to-top').tooltip('show');
+
+});
+		</script>
 <style type="text/css">
+.mm{
+	padding-left:2cm;
+}
+
 .cc{
-	position:fixed;
+	padding-left:0cm;
+}
+body {
+  font-family: proxima-nova, helvetica, arial, sans-serif;
+  color: #333;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.promo-card {
+  overflow: hidden;
+  width: 260px;
+  height: 270px;
+  margin-bottom: 50px;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 4px 21px -12px rgba(0, 0, 0, .66);
+  -webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: all 200ms ease;
+  transition: all 200ms ease;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.promo-card:hover {
+  box-shadow: 0 34px 32px -33px rgba(0, 0, 0, .18);
+  -webkit-transform: translate(0px, -3px);
+  -ms-transform: translate(0px, -3px);
+  transform: translate(0px, -3px);
+}
+
+.blog-bar {
+  width: 4px;
+  height: 45px;
+  margin-top: 16px;
+  float: left;
+}
+
+.blog-bar.color-pink {
+  background-color: #f75e90;
+}
+
+.blog-bar.color-purple {
+  background-color: #a15dc0;
+}
+
+.blog-bar.color-blue {
+  background-color: #23b9b6;
+}
+
+.blog-post-text {
+  margin-top: 19px;
+  margin-right: 20px;
+  margin-left: 20px;
+  font-size: 17px;
+  text-transform: uppercase;
+}
+
+.blog-description {
+  font-size: 15px;
+  text-transform: none;
+}
+
+.blog-description.pink-text {
+  color: #f75e90;
+}
+
+.blog-description.purple-text {
+  color: #a15dc0;
+}
+
+.blog-description.blue-text {
+  color: #23b9b6;
+}
+
+/* Titles & containers */
+
+.section-title {
+  color: #f75e90;
+  font-size: 26px;
+  font-weight: 400;
+  text-align: center;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.title-underline {
+  display: block;
+  width: 100px;
+  height: 2px;
+  margin-top: -10px;
+  margin-right: auto;
+  margin-left: auto;
+  background-color: #23b9b6;
+}
+
+.promotion-section {
+  padding-bottom: 80px;
+  
+}
+
+.promo-flex {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 48px;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-align: end;
+  -webkit-align-items: flex-end;
+  -ms-flex-align: end;
+  align-items: flex-end;
+}
+
+@media (max-width: 991px) {
+  .promo-card {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 auto;
+    -ms-flex: 0 auto;
+    flex: 0 auto;
+  }
+}
+
+/* Webflow Basics */
+
+.w-container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 940px;
+}
+.w-container:before,
+.w-container:after {
+  content: " ";
+  display: table;
+}
+.w-container:after {
+  clear: both;
+}
+.w-container .w-row {
+  margin-left: -10px;
+  margin-right: -10px;
+}
+.fixed{
+	
+  position: fixed;
+  bottom: 10;
+  right: 0;
+  height:80px;
+  width: 100px;
+  background-color: #FFB7DD;
+
+  
+}
+.imggg{
+	background-image:url( '<%=request.getContextPath()%>/front_end/images/logo_re.jpg' );
+}
+.back-to-top {
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display:none;
 }
 </style>
 </head>
 <body>
 <%@ include file="/front_end/frontEndNavBar.file" %>
 <%@ include file="page2.file"%>
-	<c:forEach var="searchProd" items="${searchProd}">
-		<c:if test="${searchProd.prodState == 0}">
-		<div class="adj">
-
-			<div class="block col-sm-3 col-sm-offset-1 item-margin">
-				<div class="product">
-					<img
-						src="http://localhost:8081/ChrisAll/ProductImage?prodno=${searchProd.prodNo}" class="img-responsive" alt="Cinque Terre">
-					<div class="buttons">
-						<form action="<%=request.getContextPath()%>/ShoppingCar.do" method="POST">
-							<a class="buy btn-large" href="#">
-							<i class="icon-shopping-cart"></i>
-							<input type="submit" class="btn btn-primary" value="放入購物車"></a> 
-							<input type="hidden" name="name" value="${searchProd.prodName}"> 
-							<input type="hidden" name="price" value="${searchProd.prodPrice}">
-							<input type="hidden" name="prodno" value="${searchProd.prodNo}">
-							<input type="hidden" name="action" value="add">
-						</form>
-
-						<form action="<%=request.getContextPath()%>/ShoppingDetail.do" method="POST">
-							<a class="preview btn-large"><i class="icon-eye-open"></i><input type="submit" class="btn btn-primary" value="商品明細"></a> 
-							<input type="hidden" name="prodno" value="${searchProd.prodNo}">
-						</form>
-					</div>
-				</div>
-				<div class="info">
-					<h4>${searchProd.prodName}</h4>
-					 
-					<span class="price">${searchProd.prodPrice}</span>
-					<form action="<%=request.getContextPath()%>/ShoppingDetail.do"
-						method="POST">
-						<a class="btn pull-right" href="#"><i
-							class="icon-shopping-cart"></i><input type="submit"
-							class="btn btn-primary" value="馬上購買"></a> <input
-							type="hidden" name="prodno" value="${searchProd.prodNo}">
-					</form>
-				</div>
-				
-			</div>
-		</div>
+	<a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a>
+		<form action="<%=request.getContextPath()%>/ProductSearch" method="POST" class="mm">
+			<div class="row">
+                
+                <div class="form-group adj">
+                    <div class="input-group" style="margin-top:0px;">
+                        <input class="form-control" type="text" name="search" placeholder="Search" />
+                        <span class="input-group-btn">
+                            <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"><span style="margin-left:10px;">Search</span></button>
+                        </span>
+                       
+                    </div>
+                </div>
+            </div>
+			
+		</form>
+   
+       <div class="promotion-section" style="padding:0px">
+    <div class="w-container promotion-container" >
+      <div class="row" style="padding-left:4cm">
+      
+      </div>
+      <c:forEach var="product" items="${searchProd}">
+		<c:if test="${product.prodState == 0}">
+		<div class="promo-flex col-sm-4" style="color: rgba(0, 0, 0, .4);">
+        <div data-ix="blog-card" class="w-clearfix w-preserve-3d promo-card" >
+        
+        <img style="width:200px;height:150px;margin-left:1cm;" width="100%" src="http://localhost:8081/ChrisAll/ProductImage?prodno=${product.prodNo}">
+        
+          <div class="blog-bar color-pink"></div>
+          <div class="blog-post-text">
+            ${product.prodName}
+            
+          </div>
+          <div class="blog-post-text " style="margin-right:0px">
+          	<div style="padding-left:0em" class="col-md-4">
+          	<br>
+            <font size="4" face="fantasy" color="#5599FF">$${product.prodPrice}</font>
+            
+            </div>
+            	<div class="col-md-6">
+            	<form action="<%=request.getContextPath()%>/ShoppingDetail.do" method="POST">
+						
+						<a class="btn cc" ><input style="position:right" type="submit" class="btn btn-primary" value="查看詳情"></a> 
+						<input type="hidden" name="prodno" value="${product.prodNo}">
+						
+				</form>
+            	</div>
+          </div>
+        </div>
+        
+      </div>
 		</c:if>
 	
 	</c:forEach>
+	 </div>
+  </div>
+        
+        
+        <div class="row">
+        
+        </div>
+        
+        <%@ include file="/front_end/frontEndButtom.file" %>
+        </div>
+        </div>
+        </div>
+        </div>
 	 <%@ include file="/front_end/frontEndButtom.file" %>
         <script src="https://code.jquery.com/jquery.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>

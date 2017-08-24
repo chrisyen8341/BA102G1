@@ -49,7 +49,6 @@ public class DateItemFakeData8 extends HttpServlet {
 		Map<Integer,String> rest=new HashMap<Integer,String>();
 		for(int i=7006;i<=7080;i++){
 			String loc=restSvc.getOneRest(i).getRestLocate();
-			System.out.println("餐廳編號:"+i +"的loc為"+loc);
 			rest.put(i, loc);
 		}
 		
@@ -173,25 +172,44 @@ public class DateItemFakeData8 extends HttpServlet {
 			byte[] dateItemImg= petImg.get(petNo);
 			
 
-
+			//下面這個是要被檢舉的約會商品
+			if(i==98){
+				dateSvc.addDateItem(pMemberRand, restRand, "我打code的能力比中壢資策會強", dateItemImg, dText.get(textRand),
+						dateTime.get(dTimeR), meetTime.get(mTimeR), 
+						rest.get(restRand), mPeopleR, hasMateR, priceR, statusR, showR, viewerR, buyerR, 
+						qrCodeR, buyerRepR, sellerrRepR, instantR, petNo);
+				break;
+			}
 			
+			//下面這個是要太貴買不起的約會商品
+			if(i==99){
+				dateSvc.addDateItem(pMemberRand, restRand, dTitle.get(titleRand), dateItemImg, dText.get(textRand),
+						dateTime.get(dTimeR), meetTime.get(mTimeR), 
+						rest.get(restRand), mPeopleR, hasMateR, 99999, statusR, showR, viewerR, buyerR, 
+						qrCodeR, buyerRepR, sellerrRepR, instantR, petNo);
+				break;
+			}
+		
 			dateSvc.addDateItem(pMemberRand, restRand, dTitle.get(titleRand), dateItemImg, dText.get(textRand),
 					dateTime.get(dTimeR), meetTime.get(mTimeR), 
 					rest.get(restRand), mPeopleR, hasMateR, priceR, statusR, showR, viewerR, buyerR, 
 					qrCodeR, buyerRepR, sellerrRepR, instantR, petNo);
 			
-			if(rest.get(restRand)==null){
-			System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-			System.out.println("餐廳編號:"+restRand +"的loc為"+rest.get(restRand));
-			System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-			}
+
 //			String sql="INSERT INTO DATEITEM values (DATEITEMNO_SQ.NEXTVAL,"+(pMemberRand).toString()+","+restRand+",\'"+dTitle.get(titleRand)+"\'"
 //					+",EMPTY_BLOB(),'"+dText.get(textRand)+"',TO_DATE('"+dDate.get(dDateR)+" "+dTime.get(dTimeR)+"\',\'YYYYMMDD HH24:MI:SS'),TO_DATE('"
 //					+mDate.get(mDateR)+" "+mTime.get(mTimeR)+"\',\'YYYYMMDD HH24:MI:SS'),'"+rest.get(restRand)+"',"+mPeopleR+","+hasMateR+","+priceR+","
 //					+statusR+","+showR+","+viewerR+","+buyerR+","+qrCodeR+","+buyerRepR+","+sellerrRepR+","+instantR+","+petNo+");";
 //			System.out.println(sql); 
 			
+			
+			
+			
 		}
+		
+		
+		
+		
 	}
 
 

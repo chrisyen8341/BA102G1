@@ -238,7 +238,7 @@ body {
        <div class="promotion-section" style="padding:0px">
     <div class="w-container promotion-container" >
       <div class="row" style="padding-left:4cm">
-      <font face="monospace" size="30cm" color="#B088FF" >Favorate Shopping Mall</font>
+      
       </div>
     <c:forEach var="product" items="${prodList}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
     <c:if test="${product.prodType == '寵物用品'}">

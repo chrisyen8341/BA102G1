@@ -7,6 +7,7 @@
 <html>
 <head>
 <%@ include file="page4.file" %>
+<script src="https://code.jquery.com/jquery.js"></script>
 <title>Insert title here</title>
 <style>
  .panel.panel--styled {
@@ -76,7 +77,7 @@ span.glyphicon {
 <%Product shoppingdetail =  (Product)session.getAttribute("shoppingdetail");%>
 				
 				
-				<div class="container">    
+				<div class="container" style="padding-left:5cm;">    
 		<div class="row">
 			<div class="col-md-8">				
 				<div class="panel panel-default  panel--styled">

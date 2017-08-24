@@ -6,7 +6,8 @@
 
 <html>
 <head>
-<%@ include file="page1.file" %>
+<%@ include file="/back_end/product/page1.file" %>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="<%=request.getContextPath() %>/back_end/product/filejs/js/fileinput.js"></script>
 <script src="<%=request.getContextPath() %>/back_end/product/filejs/themes/fa/theme.js"></script>
 <link href="<%=request.getContextPath() %>/back_end/product/filejs/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
@@ -39,7 +40,7 @@ Product prod = (Product)prodDao.getOneProduct(proNo);
 <form action="<%=request.getContextPath() %>/ProductAlter" method="POST" enctype="multipart/form-data" name="form">
 <table class="table table-hover mm" style="background-color:#CCEEFF;">
 <tr><td>商品編號<br><input type="text" name="proNo" value="<%=proNo%>" readonly></td></tr>
-<tr><td>商品名稱<br><input type="text" size="25" name="proName" value="<%=prod.getProdName() %>"></td></tr>
+<tr><td>商品名稱<br><input type="text" size="25" maxlength="15" name="proName" value="<%=prod.getProdName() %>"></td></tr>
 <tr><td>商品描述<br><textarea rows="4" cols="25" name="proDesc" ><%=prod.getProdDescpt() %></textarea>
 </td></tr>
 <tr><td>商品價格<br><input type="text" name="proPrice" value="<%=prod.getProdPrice() %>"></td></tr>
@@ -70,12 +71,7 @@ $("#input-fa").fileinput({
     uploadUrl: "/file-upload-batch/2"
 });
 </script>
-<!-- /.container -->
-	<!-- jQuery -->
-	<script src="<%=request.getContextPath()%>/front_end/js/jquery.js"></script>
-	<!-- Bootstrap Core JavaScript -->
-	<script
-		src="<%=request.getContextPath()%>/front_end/js/bootstrap.min.js"></script>
-	<!-- Script to Activate the Carousel -->
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </html>

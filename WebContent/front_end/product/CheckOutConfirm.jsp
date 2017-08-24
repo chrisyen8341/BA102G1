@@ -11,6 +11,7 @@
 <html>
 <head>
 <%@ include file="page4.file" %>
+<script src="https://code.jquery.com/jquery.js"></script>
 </head>
 <body>
 <%

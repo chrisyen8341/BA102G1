@@ -9,13 +9,9 @@
 %>
 <html>
 <head>
-<%@ include file="page1.file"%>
+<%@ include file="/back_end/order/page1.file" %>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
-<script src="https://code.jquery.com/jquery.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <style type="text/css">
 .mm {
@@ -43,7 +39,7 @@
 </ul>
 </div>
 <div>
-<table class="table table-hover m" style="padding:0px;">
+<table class="table table-hover m" style="padding:0px;bgcolor:#BBFFEE;">
 	<thead>
 		<tr style="background-color: #E8CCFF;">
 			<th>訂單編號</th>
@@ -63,7 +59,7 @@
 	<c:if test="${ordList.ordStatus == 0 || ordList.ordStatus == 1}">
 	<td >
 	
-	 <select name="ordstate" id="tte"> 
+	 <select name="ordstate" id="tte" class="btn btn-default"> 
   		<option value="1" selected>未出貨</option> 
   		<option value="2">已出貨</option>
   		<option value="3">已結案</option>
@@ -75,7 +71,7 @@
 	</c:if>
 	<c:if test="${ordList.ordStatus == 2}">
 	<td>
-	<select name="ordstate" id="tte"> 
+	<select name="ordstate" id="tte" class="btn btn-default"> 
   		<option value="1">未出貨</option> 
   		<option value="2" selected>已出貨</option>
   		<option value="3">已結案</option>
@@ -85,7 +81,7 @@
 	</c:if>
 	<c:if test="${ordList.ordStatus == 3}">
 	<td>
-	<select name="ordstate" id="tte"> 
+	<select name="ordstate" id="tte" class="btn btn-default"> 
   		<option value="1">未出貨</option> 
   		<option value="2">已出貨</option>
   		<option value="3" selected>已結案</option>
@@ -95,7 +91,7 @@
 	</c:if>
 	<c:if test="${ordList.ordStatus == 4}">
 	<td>
-	<select name="ordstate" id="tte"> 
+	<select name="ordstate" id="tte" class="btn btn-default"> 
   		<option value="1">未出貨</option> 
   		<option value="2">已出貨</option>
   		<option value="3">已結案</option>
@@ -107,7 +103,7 @@
 	<td>${ordList.ordTotal}</td>
 	<td>
 	
-	<input id="changede" type="submit" value="確定修改" class="btn-primary">	
+	<input id="changede" type="submit" value="確定修改" class="btn btn-primary">	
 	
 	</td>
 	
@@ -121,7 +117,7 @@
 
 <div class="row col-xs-10 col-sm-10" align="center">
 	  
-		<a href="<%=request.getContextPath() %>/back_end/product/productManage.jsp" ><input type="button" value="商品管理"></a>
+		<a href="<%=request.getContextPath() %>/back_end/product/productManage.jsp" ><input type="button" class="btn btn-primary" value="商品管理"></a>
 	  	
 	</div> 
 </div>
@@ -140,6 +136,12 @@ function chg(){
 	changede.style.display='';
 }
 </script>
-
+<!-- /.container -->
+	<!-- jQuery -->
+	<script src="<%=request.getContextPath()%>/front_end/js/jquery.js"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script
+		src="<%=request.getContextPath()%>/front_end/js/bootstrap.min.js"></script>
+	<!-- Script to Activate the Carousel -->
 	  
 </html>

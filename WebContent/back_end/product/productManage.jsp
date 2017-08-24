@@ -12,21 +12,23 @@
 %>
 <html>
 <head>
-<%@ include file="page1.file"%>
+	
+	 <%@ include file="/back_end/product/page1.file" %>
 <style type="text/css">
 	.mm{
 		margin-top:4cm;
 		
 	}
+	
 </style>
 </head>
-<body>
+<body style="bgcolor:#fceaf0;">
 <%@ include file="/back_end/backEndNavBar.file"%>
 <%@ include file="/back_end/backEndLSide.file"%>
 
 			<div class="row col-xs-10 col-sm-10 ">
 <!--         11111111111111111111111                  -->
-  <table class="table table-hover mm" style="background-color:#CCEEFF;">
+  <table class="table table-hover mm" >
     <thead>
       <tr style="background-color:#E8CCFF;">
       	

@@ -4,8 +4,12 @@
                 <%@ page import="com.member.model.*"%>
 				
 				<!--在這裡面有取出 會員的所有寵物 存成list 只要是在會員專區的page 都有寵物list -->
+				<div class="frontend">
+                <img src="<%=request.getContextPath()%>/front_end/images/logo-sp.png" class="img-rounded img-bg try-color">
+                </div>
 				<div id="menu">
 					<div class="panel list-group list-color">
+					
 						<a href="<%=request.getContextPath()+"/front_end/member/memberInfo.jsp" %>" class="list-group-item">個人資訊</a> 
 						<% 
 						MemberService memSvc=new MemberService();

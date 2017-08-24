@@ -9,7 +9,7 @@
 %>
 <html>
 <head>
-<%@ include file="page1.file"%>
+<%@ include file="/back_end/order/page1.file" %>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
 
@@ -60,7 +60,7 @@
 	<td>${ordList.ordNo}</td>
 	<td>${ordList.ordDate}</td>
 	<c:if test="${ordList.ordStatus == 3}">
-	<td><select name="ordstate">
+	<td><select name="ordstate" class="btn btn-default">
 　		<option value="1">未出貨</option>
 　		<option value="2">已出貨</option>
 　		<option value="3" selected>已結案</option>
@@ -68,7 +68,7 @@
 	</select></td>
 	</c:if>
 	<c:if test="${ordList.ordStatus == 4}">
-	<td><select name="ordstate">
+	<td><select name="ordstate" class="btn btn-default">
 　		<option value="1">未出貨</option>
 　		<option value="2">已出貨</option>
 　		<option value="3">已結案</option>
@@ -77,7 +77,7 @@
 	</c:if>
 	<td>${ordList.conName}</td>
 	<td>${ordList.ordTotal}</td>
-	<td><input type="submit" value="修改訂單"></td>
+	<td><input type="submit" class="btn btn-primary" value="修改訂單"></td>
    	<input type="hidden" name="ordNo" value="${ordList.ordNo}">
 </tr>
 </c:if>
@@ -87,7 +87,7 @@
 </div>
 <div class="row col-xs-10 col-sm-10" align="center">
 	  
-		<a href="<%=request.getContextPath() %>/back_end/product/productManage.jsp" ><input type="button" value="商品管理"></a>
+		<a href="<%=request.getContextPath() %>/back_end/product/productManage.jsp" ><input type="button" class="btn btn-primary" value="商品管理"></a>
 	  	
 	</div>
 </div>

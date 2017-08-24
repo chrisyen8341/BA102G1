@@ -5,6 +5,7 @@
 <%@ page import="com.member.model.*"%>
 <%request.setCharacterEncoding("UTF-8");%>  
 <%response.setCharacterEncoding("UTF-8");%> 
+<%Member mem = (Member)session.getAttribute("member"); %>
 <html>
 <head>
 <script src="https://code.jquery.com/jquery.js"></script>
@@ -120,7 +121,7 @@
                        		<div>
                             	<input type="button" value="p" onclick="insert()">
                             </div>
-
+								<input type="hidden" value="<%=mem.getMemName() %>" id="memname">
                     </div>
                 </div>
             </div>
@@ -147,7 +148,8 @@ function insert() {
     var one = document.getElementById("ccv");
     one.value="310";
     var one = document.getElementById("holder");
-    one.value="黃楷章";
+    var memname = document.getElementById("memname");
+    one.value=memname.value;
     
 }
 

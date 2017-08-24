@@ -43,7 +43,7 @@ $(document).ready(function(){
 		</script>
 <style type="text/css">
 .mm{
-	padding-left:2cm;
+	padding-left:15px;
 }
 
 .cc{
@@ -224,11 +224,11 @@ body {
 	
 	<%@ include file="pageCount1.file"%>
 	<%@ include file="/front_end/frontEndNavBar.file" %>
-		
-    <%@ include file="page2.file"%>
+		<%@ include file="page2.file"%>
+    
     	<a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a>
 		<form action="<%=request.getContextPath()%>/ProductSearch" method="POST" class="mm">
-			<div class="row">
+			<div class="row" style="margin-left:0cm;">
                 
                 <div class="form-group adj">
                     <div class="input-group" style="margin-top:0px;">
@@ -245,9 +245,7 @@ body {
    
        <div class="promotion-section" style="padding:0px">
     <div class="w-container promotion-container" >
-      <div class="row" style="padding-left:4cm">
-      <font face="monospace" size="30cm" color="#B088FF" >Favorate Shopping Mall</font>
-      </div>
+      
       
       <!-- Cards First Row --->
       <c:forEach var="product" items="${prodList}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
@@ -297,7 +295,10 @@ body {
         </div>
         
         <%@ include file="/front_end/frontEndButtom.file" %>
-        
+        </div>
+        </div>
+        </div>
+        </div>
         <script src="https://code.jquery.com/jquery.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 

@@ -58,7 +58,7 @@
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fa fa-user fa"
 									aria-hidden="true"></i></span> <input type="password"
-									class="form-control" name="memPwd" id="memId"
+									class="form-control" name="memPwd" id="memPwd"
 									value="<%=(member == null) ? "" : member.getMemPwd()%>"
 									placeholder="請輸入密碼" required />
 							</div>
@@ -74,6 +74,10 @@
 					</div>
 					<input type="hidden" name="action" value="login">
 				</form>
+				
+				<button id="loginbtn1" class="btn btn-xs btn-default">有寵</button>
+				<button id="loginbtn2" class="btn btn-xs btn-default">沒寵</button>
+				<button id="loginbtn3" class="btn btn-xs btn-default">第三</button>
 
 			</div>
 		</div>
@@ -92,3 +96,25 @@
 </body>
 
 </html>
+
+<script>
+$(document).ready(function(){
+	$("#loginbtn1").click(function(e){
+		e.preventDefault();
+		$("#memId").val("petym0");
+		$("#memPwd").val("p123456");
+	});
+	
+	$("#loginbtn2").click(function(e){
+		e.preventDefault();
+		$("#memId").val("petym1");
+		$("#memPwd").val("p123456");
+	});
+	
+	$("#loginbtn3").click(function(e){
+		e.preventDefault();
+		$("#memId").val("petym20");
+		$("#memPwd").val("p123456");
+	});
+});
+</script>

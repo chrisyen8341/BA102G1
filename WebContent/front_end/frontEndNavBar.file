@@ -40,7 +40,7 @@
 
 						<!-- ========================= -->
 		<li id="selectsearch">
-			<form class="navbar-form navbar-search" id="search" action="<%=request.getContextPath()%>/front_end/member/member.do" method="post" role="search">
+			<form class="navbar-form navbar-search" id="searchForMem" action="<%=request.getContextPath()%>/front_end/member/member.do" method="post" role="search">
                 <div class="input-group">
         
                     <input type="text" class="form-control" name="search" required  placeholder="搜尋其他會員">
@@ -48,7 +48,7 @@
                 	<input type="hidden" id="stype" name="type" value="會員">
                 	<input type="hidden" name="search_param" value="all" id="search_param"> 
                     <div class="input-group-btn" >
-                        <button type="button" class="btn btn-search btn-basic" id="searchgroup" onclick="document.getElementById('search').submit();">
+                        <button type="button" class="btn btn-search btn-basic" id="searchgroup" onclick="document.getElementById('searchForMem').submit();">
                             <span class="glyphicon glyphicon-search"></span>
                             <span class="label-icon ">Search</span>
                         </button>

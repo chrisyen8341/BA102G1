@@ -47,8 +47,9 @@ public class DateItemFakeData8 extends HttpServlet {
 		
 		RestaurantService restSvc=new RestaurantService ();
 		Map<Integer,String> rest=new HashMap<Integer,String>();
-		for(int i=7010;i<=7080;i++){
+		for(int i=7006;i<=7080;i++){
 			String loc=restSvc.getOneRest(i).getRestLocate();
+			System.out.println("餐廳編號:"+i +"的loc為"+loc);
 			rest.put(i, loc);
 		}
 		
@@ -179,8 +180,11 @@ public class DateItemFakeData8 extends HttpServlet {
 					rest.get(restRand), mPeopleR, hasMateR, priceR, statusR, showR, viewerR, buyerR, 
 					qrCodeR, buyerRepR, sellerrRepR, instantR, petNo);
 			
-			
-			
+			if(rest.get(restRand)==null){
+			System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+			System.out.println("餐廳編號:"+restRand +"的loc為"+rest.get(restRand));
+			System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+			}
 //			String sql="INSERT INTO DATEITEM values (DATEITEMNO_SQ.NEXTVAL,"+(pMemberRand).toString()+","+restRand+",\'"+dTitle.get(titleRand)+"\'"
 //					+",EMPTY_BLOB(),'"+dText.get(textRand)+"',TO_DATE('"+dDate.get(dDateR)+" "+dTime.get(dTimeR)+"\',\'YYYYMMDD HH24:MI:SS'),TO_DATE('"
 //					+mDate.get(mDateR)+" "+mTime.get(mTimeR)+"\',\'YYYYMMDD HH24:MI:SS'),'"+rest.get(restRand)+"',"+mPeopleR+","+hasMateR+","+priceR+","

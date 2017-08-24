@@ -32,6 +32,7 @@
 
 <style>
 
+
 #logo{
 width:2em;
 margin-right:0.25em;
@@ -210,7 +211,7 @@ margin-right:0.25em;
 								<h3>Restaurant Owners' Club</h3>
 								<p>你是寵物餐廳主人嗎? 快來發起一些活動吧</p>
 								<ul class="actions">
-									<li><a href="<%=request.getContextPath() %>/front_end/restMember/restMemberLogin.jsp" class="button alt">Learn More</a></li>
+									<li><a href="<%=request.getContextPath() %>/front_end/restMember/restMemberLogin.jsp" class="button alt btn btn-info">Learn More</a></li>
 								</ul>
 							</section>
 
@@ -223,7 +224,7 @@ margin-right:0.25em;
 								<h3>Frequent Questions and Answers</h3>
 								<p>完整網站使用指南, 你想知道的都能在這得到解答</p>
 								<ul class="actions">
-									<li><a href="<%=request.getContextPath() %>/front_end/about_us/faq/faq_user.jsp" class="button alt">Learn More</a></li>
+									<li><a href="<%=request.getContextPath() %>/front_end/about_us/faq/faq_user.jsp" class="button alt btn btn-info">Learn More</a></li>
 								</ul>
 							</section>
 

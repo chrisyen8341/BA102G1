@@ -2,6 +2,7 @@
 package com.PetYM.aGetClass;
 
 import com.PetYM.*;
+import com.PetYM.Member.MemberDAO;
 import com.PetYM.puDateItem.DateItemDAO;
 import com.PetYM.puDateItem.DateItemVO;
 import com.PetYM.puDateItem.ImageUtil;
@@ -33,6 +34,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
+import oracle.net.aso.d;
+
 
 
 @SuppressWarnings("serial")
@@ -43,6 +46,7 @@ public class DateItemForMainActivity extends HttpServlet {
 	private byte[] dateItemVOListImage;
 	private final static String CONTENT_TYPE = "text/html; charset=UTF-8";
 	DateItemDAO dateItemDAO = new DateItemDAO();
+	MemberDAO memberDAO = new MemberDAO();
 	private static final long serialVersionUID = 1L;
 	@Override
 	public void init() throws ServletException {
@@ -73,7 +77,7 @@ public class DateItemForMainActivity extends HttpServlet {
 		
 
 			String outStr = "";
-		
+			
 			if ("dateItem".equals(dateItem)) {
 				String type = jsonObject.get("type").getAsString();
 				System.out.println("type取回Size:"+type);
@@ -93,7 +97,21 @@ public class DateItemForMainActivity extends HttpServlet {
 				}
 				os.write(dateItemVOListImage);
 				return;
-			} 
+			} else if ("getmemPic".equals(dateItem)){
+				OutputStream os = rp.getOutputStream();
+				int id = jsonObject.get("id").getAsInt();
+				int imageSize = jsonObject.get("imageSize").getAsInt();
+				dateItemVOListImage = (byte[]) memberDAO.getMemImage(id);
+				
+				if (dateItemVOListImage != null) {
+					dateItemVOListImage = ImageUtil.shrink(dateItemVOListImage, imageSize);//shrink轉換圖片size
+					rp.setContentType("image/jpeg");
+					rp.setContentLength(dateItemVOListImage.length);
+				}
+				os.write(dateItemVOListImage);
+				return;
+				
+			}
 			else {
 				doGet(rq, rp);
 			}

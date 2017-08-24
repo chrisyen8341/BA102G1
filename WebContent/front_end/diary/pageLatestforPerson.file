@@ -6,8 +6,8 @@
                     </ul>
                     <br>
                     <ul class="pager">
-                        <li><a href="<%=request.getRequestURI()%>?whichPage=<%=(whichPage-1)<=0? 1:whichPage-1%>">前一頁</a></li>
-                        <li><a href="<%=request.getRequestURI()%>?whichPage=<%=(whichPage+1)>=pageNumber? pageNumber:whichPage+1%>">下一頁</a></li>
+                        <li><a href="<%=request.getRequestURI()%>?whichPage=<%=(whichPage-1)<=0? 1:whichPage-1%>&memNo=<%= memNo %>">前一頁</a></li>
+                        <li><a href="<%=request.getRequestURI()%>?whichPage=<%=(whichPage+1)>=pageNumber? pageNumber:whichPage+1%>&memNo=<%= memNo %>">下一頁</a></li>
                     </ul>
                 </div>     
         <script type="text/javascript">
@@ -18,7 +18,7 @@
 			var pageMax;
 			var pageStart;
 			$('<li>').appendTo('.pagination');
-			$('<a>').attr("href","<%=request.getRequestURI()%>?whichPage=<%= (whichPage-5)<=0 ? 1:(whichPage-5)%>").html('&laquo;').appendTo('.pagination>li:first');
+			$('<a>').attr("href","<%=request.getRequestURI()%>?whichPage=<%= (whichPage-5)<=0 ? 1:(whichPage-5)%>&memNo=<%= memNo %>").html('&laquo;').appendTo('.pagination>li:first');
 			
 			if(5+5*pageNow>pageNumber){
 				pageMax = pageNumber;
@@ -33,12 +33,12 @@
 				}else{
 					$('<li>').attr("id","pg").appendTo('.pagination');
 				}
-				$('<a>').attr("href","<%=request.getRequestURI()%>?whichPage="+i).text(i).appendTo('#pg');
+				$('<a>').attr("href","<%=request.getRequestURI()%>?memNo=<%= memNo %>&whichPage="+i).text(i).appendTo('#pg');
 				$('#pg').removeAttr("id");
 			}
 			$('#pg').removeAttr("id");
 			$('<li>').appendTo('.pagination');
-			$('<a>').attr("href","<%=request.getRequestURI()%>?whichPage=<%=whichPage+5>=pageNumber? pageNumber:whichPage+5 %>").html('&raquo;').appendTo('.pagination>li:last');
+			$('<a>').attr("href","<%=request.getRequestURI()%>?whichPage=<%=whichPage+5>=pageNumber? pageNumber:whichPage+5 %>&memNo=<%= memNo %>").html('&raquo;').appendTo('.pagination>li:last');
 			
 			
 			

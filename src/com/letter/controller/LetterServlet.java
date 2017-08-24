@@ -57,7 +57,7 @@ public class LetterServlet extends HttpServlet{
 			//---------©I¥ssvc¨Ó³B²z----------------
 			LetterService ltrSvc = new LetterService();
 			Letter letter = ltrSvc.getOneByPrimary(letterNo);			
-			//ltrSvc.update(letterNo, letter.getLetterTypeNo(), letter.getMemNo(), letter.getLetterTime(), 1, letter.getLetterTag(), letter.getLetterText());
+			ltrSvc.update(letterNo, letter.getLetterTypeNo(), letter.getMemNo(), letter.getLetterTime(), 1, letter.getLetterTag(), letter.getLetterText());
 			
 		}
 		

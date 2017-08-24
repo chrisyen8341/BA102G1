@@ -182,23 +182,9 @@
           						
                
 <!--                 顯示頁數 -->
-                <div class="text-center">               	   
-                <%@ include file="page3.file" %> 
-<!--                     <ul class="pagination"> -->
-<!--                         <li><a href="#">&laquo;</a></li> -->
-<!--                         <li><a href="#">1</a></li> -->
-<!--                         <li><a href="#">2</a></li> -->
-<!--                         <li class="active"><a href="#">3</a></li> -->
-<!--                         <li><a href="#">4</a></li> -->
-<!--                         <li><a href="#">5</a></li> -->
-<!--                         <li><a href="#">&raquo;</a></li> -->
-<!--                     </ul> -->
-                    <br>
-<!--                     <ul class="pager"> -->
-<!--                         <li><a href="#">前一頁</a></li> -->
-<!--                         <li><a href="#">下一頁</a></li> -->
-<!--                     </ul> -->
-                </div>
+                              	   
+                <%@ include file="pageLatestforPerson.file" %> 
+
                 <%@ include file="/front_end/frontEndButtom.file"%>
                 
                 </div>

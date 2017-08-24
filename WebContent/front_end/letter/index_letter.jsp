@@ -199,6 +199,7 @@
 							$(e).find('div.col-sm-1 > img').attr("src","<%=request.getContextPath()%>/front_end/images/envelope.png");
 							$("span.badge").text(parseInt($("span.badge").text())-1);
 							$(e).find('div.col-sm-2.ellipsis').css("font-weight",'');
+							
 						}
 					});	  
                 	}

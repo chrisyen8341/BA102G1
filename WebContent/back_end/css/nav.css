@@ -5,6 +5,16 @@ a{
 }
 
 
+@font-face {
+    font-family: seto;
+    src: url(../fonts/setofont.ttf);
+    font-weight: normal;
+    font-style: normal;
+}
+
+.bakcendlogin{
+	font-family: 'seto' ;
+}
 
 #fixedbutton-talk {
   position: fixed;
@@ -20,11 +30,13 @@ a{
   margin-left:20px;
   padding-right:30px; 
   font-size:140%; 
+  font-family: 'seto' ;
 } 
 #emerald-nav{
   background-color:#F18C79;
   background:#f4e2bc;
-  font-size:130%; 
+  font-size:130%;
+  font-family: 'seto' ; 
 
 }
 
@@ -44,7 +56,7 @@ a{
 
 
 #login{
-    font-size:50%;
+    font-size:60%;
         margin:0;
 }
 

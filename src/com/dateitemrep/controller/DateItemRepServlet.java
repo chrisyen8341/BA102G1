@@ -27,25 +27,25 @@ public class DateItemRepServlet extends HttpServlet{
 	public void doPost(HttpServletRequest req, HttpServletResponse res )
 			throws ServletException, IOException{
 		
-//		HttpSession session = req.getSession();
-//		Member member = (Member)session.getAttribute("member");
+		HttpSession session = req.getSession();
+		Member member = (Member)session.getAttribute("member");
 		
 		req.setCharacterEncoding("utf-8");
 		res.setContentType("text/html; charset=Big5");
 		String action = req.getParameter("action");
 		
-		System.out.println(action);
+		
 		
 		if("insert".equals(action)){
 			
 			//---------檢舉人編號-----------------之後改成用session取
 			Integer memNo  = null;
-			memNo =new Integer(req.getParameter("memNo").trim());
-			System.out.println(memNo);
+			memNo =member.getMemNo();
+			
 			//---------被檢舉約會商品編號-----------------
 			Integer dateItemNo  = null;
 			dateItemNo =new Integer(req.getParameter("dateItemNo").trim());
-			
+			System.out.println(dateItemNo);
 			//---------新增的內文---------------------
 			String repText = null;
 			repText = req.getParameter("repText").trim();
@@ -57,6 +57,12 @@ public class DateItemRepServlet extends HttpServlet{
 			//---------呼叫service前來處理---------------
 			DateItemRepService dirSvc = new DateItemRepService();
 			dirSvc.addRep(memNo, dateItemNo, repText, repDate, repState);
+			
+			//---------導回約會商品頁面---------------------
+			Integer whichPage = null;
+			whichPage =new Integer(req.getParameter("whichPage"));
+			res.sendRedirect(req.getContextPath() + "/front_end/dateitem/select_page.jsp?whichPage="+whichPage);
+			
 			
 		}
 		
@@ -81,12 +87,8 @@ public class DateItemRepServlet extends HttpServlet{
 			
 			//------------將商品改為下架狀態--------------------
 			DateItemVO dateItem = diSvc.findByPK(dirSvc.findByPrimaryKey(repNo).getDateItemNo());
-			diSvc.updateDateItem(dateItem.getDateItemNo(), dateItem.getSellerNo(), dateItem.getRestListNo(), dateItem.getDateItemTitle(),
-									dateItem.getDateItemImg(), dateItem.getDateItemText(), dateItem.getDateItemTime(), dateItem.getDateMeetingTime(),
-										dateItem.getDateItemLocate(), dateItem.getDateItemPeople(), dateItem.getHasMate(), dateItem.getDateItemPrice(),
-											dateItem.getDateItemStatus(), 1, dateItem.getDateItemViewer(), dateItem.getBuyerNo(), dateItem.getIsQRCChecked(), 
-											dateItem.getBuyerRep(), dateItem.getSellerRep(), dateItem.getIsInstantDate(), dateItem.getPetNo());
-					
+			dateItem.setDateItemShow(1);
+			diSvc.updateByVO(dateItem);
 			
 			//-----------寄信給被檢舉者------------------------
 			LetterService ltrSvc = new LetterService();

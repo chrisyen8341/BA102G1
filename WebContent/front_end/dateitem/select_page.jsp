@@ -412,19 +412,21 @@ type="button" class = "btn btn-xs btn-basic pull-left btn-circle" data-toggle="m
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">檢舉</h4>
       </div>
-      <form action="<%=request.getContextPath() %>/back_end/apprec/dateitemrep.do" method=post >
+      <form action="<%=request.getContextPath() %>/back_end/apprec/dateitemrep.do" method="post" >
       <div class="modal-body" >
         <p></p>
         
 		
-        <input type="text" class="form-control" id="repText${dateitem.dateItemNo}"/>
+        <input type="text" class="form-control" name="repText" id="repText${dateitem.dateItemNo}"/>
         <p>請輸入檢舉原因 </p>
       </div>
       <div class="modal-footer">
       <button id="" type="button" class="btn btn-warning" data-dismiss="modal">回上一頁</button>
        <input type="submit" id="sendRep${dateitem.dateItemNo}" class="check btn btn-primary" value="確定送出">
-       <input type="hidden" value="${dateItem.dateItemNo}"/>
-        
+       <input type="hidden" name="dateItemNo" value="${dateitem.dateItemNo}"/>
+       
+        <input type="hidden" name="whichPage" value="<%=whichPage %>"/>
+        <input type="hidden" name="action" value="insert"/>
       </div>
       </form>
     </div>

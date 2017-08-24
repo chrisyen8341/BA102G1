@@ -75,7 +75,7 @@ public class DiaMsgServlet extends HttpServlet {
 			String Sname = memSvc.getOneMember(memNo).getMemSname();
 			SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String json = "{\"sname\":\""+Sname+"\",\"diaMsgTime\":\""+sdFormat.format(diaMsgTime)
-								+"\",\"curr\":\""+dmgSvc.getCurrNo()+"\"}";
+								+"\",\"memNo\":\""+memNo+"\",\"curr\":\""+dmgSvc.getCurrNo()+"\"}";
 			out.println(json);
 			out.close();
 			

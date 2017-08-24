@@ -138,7 +138,9 @@
                 
                 <script type="text/javascript">
                 
-                
+//                 $(document).ready(function(){
+<%--                 	$('insertAgain').attr("href", "<%=request.getContextPath()%>/front_end/dateitem/dateitem.do?action=reinsert&dateItemNo="+$('#itemNo').val()); --%>
+//                 });
                 
 	                function tag(e){
 	                	var ltrNo = $(e).prev().val();

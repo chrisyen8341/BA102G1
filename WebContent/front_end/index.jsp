@@ -1,6 +1,15 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="BIG5"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html lang="en">
+<style>
+#banner{
+	height:70%;
+
+}
+
+/* 最終如果要做畫面調整直接調整這個CSS */
+</style>
+
 
 <head>
 <meta charset="utf-8">

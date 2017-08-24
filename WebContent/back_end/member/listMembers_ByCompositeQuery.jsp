@@ -54,17 +54,19 @@
 									<tbody>
 
 
-										<table border='1' cellpadding='5' cellspacing='0' width='800'>
-											<tr bgcolor='#CCCCFF' align='center' valign='middle'
-												height='20'>
-												<td>
+<!-- 										<table border='1' cellpadding='5' cellspacing='0' width='800'> -->
+<!-- 											<tr bgcolor='#CCCCFF' align='center' valign='middle' -->
+<!-- 												height='20'> -->
+<!-- 												<td> -->
+<!-- 													<h3> -->
+<!-- 														會員查詢結果 -->
+<%-- 													</h3> <a href="<%=request.getContextPath()%>/back_end/member/memManage.jsp">回首頁</a> --%>
+<!-- 												</td> -->
+<!-- 											</tr> -->
+<!-- 										</table> -->
 													<h3>
 														會員查詢結果
-													</h3> <a href="<%=request.getContextPath()%>/back_end/member/memManage.jsp">回首頁</a>
-												</td>
-											</tr>
-										</table>
-
+													</h3>
 
 										<table border='1' bordercolor='#CCCCFF' width='800'>
 											<tr>
@@ -78,7 +80,7 @@
 											<c:forEach var="member" items="${listMembers_ByCompositeQuery}"
 												begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 												<tr align='center' valign='middle'
-													${(empVO.empNo==param.empNo) ? 'bgcolor=#CCCCFF':''}>
+													${(member.memNo==param.memNo) ? 'bgcolor=#CCCCFF':''}>
 													<!--將修改的那一筆加入對比色而已-->
 													<td>${member.memNo}</td>
 													<td>${member.memId}</td>

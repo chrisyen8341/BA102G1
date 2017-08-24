@@ -51,15 +51,15 @@
 									<tbody>
 
 
-										<table border='1' cellpadding='5' cellspacing='0' width='800'>
-											<tr bgcolor='#CCCCFF' align='center' valign='middle'
-												height='20'>
-												<td>
-													<h3>所有員工資料</h3> <a
-													href="<%=request.getContextPath()%>/back_end/emp/authManage.jsp">回首頁</a>
-												</td>
-											</tr>
-										</table>
+<!-- 										<table border='1' cellpadding='5' cellspacing='0' width='800'> -->
+<!-- 											<tr bgcolor='#CCCCFF' align='center' valign='middle' -->
+<!-- 												height='20'> -->
+<!-- 												<td> -->
+<!-- 													<h3>所有員工資料</h3> <a -->
+<%-- 													href="<%=request.getContextPath()%>/back_end/emp/authManage.jsp">回首頁</a> --%>
+<!-- 												</td> -->
+<!-- 											</tr> -->
+<!-- 										</table> -->
 
 										<%-- 錯誤表列 --%>
 										<c:if test="${not empty errorMsgs}">

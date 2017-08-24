@@ -50,15 +50,6 @@
 								<div class=" col-md-9 col-lg-9">
 									<tbody>
 
-										<table border='1' cellpadding='5' cellspacing='0' width='400'>
-											<tr bgcolor='#CCCCFF' align='center' valign='middle'
-												height='20'>
-												<td>
-													<h3>員工資料修改</h3> <a
-													href="<%=request.getContextPath()%>/back_end/emp/authManage.jsp">回首頁</a>
-												</td>
-											</tr>
-										</table>
 
 										<h3>資料修改:</h3>
 										<%-- 錯誤表列 --%>

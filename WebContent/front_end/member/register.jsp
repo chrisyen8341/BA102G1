@@ -152,7 +152,7 @@
 						<label for="memGender" class="control-label">性別</label><br> <label
 							class="radio-inline"><input type="radio" name="memGender"
 							checked="true" value="0">男</label> <label class="radio-inline"><input
-							type="radio" name="memGender" value="1">女</label> <label
+							type="radio" id="girlMem" name="memGender" value="1">女</label> <label
 							class="radio-inline"><input type="radio" name="memGender"
 							value="2" >第三性</label>
 					</div>

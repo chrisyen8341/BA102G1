@@ -36,14 +36,15 @@
 			background: #40E0D0;
 		}
 		
+		
 </style>
 
 <body>
 <%@ include file="/front_end/actFiles/restMemberNavBar2.file" %>
 <div class="container-fluid">
 			<div class="row">
-				<div class="col-xs-12 col-sm-offset-3">
-					<div class="col-xs-12 col-sm-6">
+				<div class="col-xs-12 col-sm-offset-1 col-sm-10">
+					<div class="col-xs-12 col-sm-12">
 					<h1 class=" page-header text-left">ª¯ª¯¿ß¿ß¤Íµ½À\ÆU</h1>
 					
  				<!-- 					½Æ¦X¬d¸ß                                                                        -->
@@ -78,7 +79,7 @@
 					<table class="table table-striped">
 						<tr>
 							
-						<th width="150px" >À\ÆU¦WºÙ</th>
+						<th width="150px" >&nbsp;&nbsp;&nbsp;&nbsp;À\ÆU¦WºÙ</th>
 						<th>À\ÆU¦a§}</th>
 						<th>À\ÆU¹q¸Ü</th>
 						
@@ -91,8 +92,8 @@
 					<c:forEach var="restaurant" items="${list}">
 						<tr align='center' valign='middle'>
 							
-							<td>${restaurant.restName}</td>
-							<td>${restaurant.restAdd}</td>
+							<td>&nbsp;&nbsp;&nbsp;&nbsp;${restaurant.restName}</td>
+							<td >${restaurant.restAdd}</td>
 							<td>${restaurant.restPhone}</td>
 							
 							<td>

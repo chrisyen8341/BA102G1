@@ -130,22 +130,27 @@ pageContext.setAttribute("list",list);
   
   <div class="form-group">
     <label for="lb4">請輸入約會價格</label>
-<input class="form-control" type="TEXT" name="dateItemPrice" size="45"
+<input id="qprice" class="form-control" type="TEXT" name="dateItemPrice" size="45"
 			value="<%= (dateItemVO==null)? "" : dateItemVO.getDateItemPrice()%>" />
   </div>
+
+   <button class="btn btn-xs btn-default" id="date1">1</button>
+  <button class="btn btn-xs btn-default" id="date2">2</button>
+  <button class="btn btn-xs btn-default" id="date3">3</button>
+  
     </div>
  <div class="col-sm-offset-1 col-sm-5"> 
   
   <div class="form-group">
     <label for="lb5">請輸入約會標題</label>
-<input class="form-control" maxlength="30" type="TEXT" name="dateItemTitle" size="45"
+<input id="qtitle" class="form-control" maxlength="30" type="TEXT" name="dateItemTitle" size="45"
 			value="<%= (dateItemVO==null)? "" : dateItemVO.getDateItemTitle()%>" />
   </div>
  
 <br>
   <div class="form-group">
     <label for="exampleInputFile">約會內容描述</label>
-    <input class="form-control" type="text" name="dateItemText" size="45"
+    <input id="qtext" class="form-control" type="text" name="dateItemText" size="45"
 			value="<%= (dateItemVO==null)? "" : dateItemVO.getDateItemText()%>" />
     <small id="fileHelp" class="form-text text-muted">越充實的內容越容易約會成功喔.</small>
   </div>
@@ -206,6 +211,8 @@ pageContext.setAttribute("list",list);
 
 
 </form>	
+
+
 </div>
 
 
@@ -249,8 +256,31 @@ pageContext.setAttribute("list",list);
 
 
  <script>
- 
- 
+ $(document).ready(function(){
+	$("#date1").click(function(e){
+		e.preventDefault();
+		$("#restListNo").val("7017");
+		$("#qprice").val("300");
+		$("#qtitle").val("葉子是不會飛翔的翅膀翅膀是落在天上的葉子");
+		$("#qtext").val("人生如此暴烈又如此甜蜜，如此孤獨又如此友善，正因為這樣，每分每秒都顯得獨特。我記得那些溫柔地對我微笑的臉孔；我記得那些深邃抒情的眼眸；我記得那些全心全意的擁抱……永難忘懷的，那些美好時光。哀愁是一件必要的事，因為哀愁，我們了解人世的無常，於是對獲得的幸福感到倍加珍惜。");
+	});
+	
+	$("#date2").click(function(e){
+		e.preventDefault();
+		$("#restListNo").val("7090");
+		$("#qprice").val("300");
+		$("#qtitle").val("有時候你以為那是幸福的起點");
+		$("#qtext").val("我是天空里的一片雲，偶爾投影在你的波心——你不必訝異，更無須歡喜——在轉瞬間消滅了蹤影。你我相逢在黑夜的海上，你有你的，我有我的，方向；你記得也好，最好你忘掉，在這交會時互放的光亮！");
+	});
+	
+	$("#date3").click(function(e){
+		e.preventDefault();
+		$("#restListNo").val("7050");
+		$("#qprice").val("300");
+		$("#qtitle").val("天上風箏在天上飛");
+		$("#qtext").val("我是天空里的一片雲，偶爾投影在你的波心——你不必訝異，更無須歡喜——在轉瞬間消滅了蹤影。你我相逢在黑夜的海上，你有你的，我有我的，方向；你記得也好，最好你忘掉，在這交會時互放的光亮！");
+	});
+ });
 //  先用ajax檢查是否有重複日期,有的話跳窗提醒,沒有的話送controller進行資料驗證
  
  $(document).ready(function(){

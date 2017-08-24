@@ -6,7 +6,7 @@
 			       <div class="panel-heading">
 			       		<div class="container">
 							<div class="row">
-								<div class="col-xs-12 col-sm-6">
+								<div class="col-xs-12 col-sm-12">
 									<h3 class="panel-title">
 									<% Activity act = (Activity) pageContext.getAttribute("activityFront"); %>   
 									<%
@@ -23,7 +23,7 @@
 						</div>
 			       </div>
 			      
-					
+					<div class="panel-body">
 				       <div class="col-xs-12 col-sm-4">
 							<img src="<%=request.getContextPath() %>/activity/DBGifReader5?actNo=${activityFront.actNo}" class="img-responsive" >
 						</div>
@@ -34,7 +34,7 @@
 							<textarea class="overflow form-control" rows="8" cols="40" style="resize:none;border:0px;background-color:white" readonly>${activityFront.actContent}</textarea>
 							
 						</div>
-					
+					</div>
 				
 						
 					

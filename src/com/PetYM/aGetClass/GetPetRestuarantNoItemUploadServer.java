@@ -39,7 +39,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
 
-
 @SuppressWarnings("serial")
 @WebServlet("/GetPetRestuarantNoItemUpload")
 public class GetPetRestuarantNoItemUploadServer extends HttpServlet {

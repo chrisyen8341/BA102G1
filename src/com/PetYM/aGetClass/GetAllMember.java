@@ -39,7 +39,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
 
-//import javassist.compiler.ast.NewExpr;
+import javassist.compiler.ast.NewExpr;
 
 
 @SuppressWarnings("serial")

@@ -4,7 +4,6 @@
 <style>
 #banner{
 	height:70%;
-
 }
 
 /* 最終如果要做畫面調整直接調整這個CSS */

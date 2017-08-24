@@ -60,7 +60,7 @@ session.setAttribute("amount", amount);
 
 
 	
-	<div class="container">
+	<div class="container" >
     <div class="row">
         <div class="col-sm-12 col-md-10 col-md-offset-1">
             <table class="table table-hover">
@@ -183,7 +183,7 @@ function calculate(e,idx){
 	var numb = $(e).val();
 	$('#keep'+idx).val(numb);
 	$('#pay'+idx).val(numb);
-	alert($('#pay'+idx).val());
+	
 	var sum=0;
 	var index = $("#index").val();
 	for(var i=0;i<index;i++){
@@ -210,9 +210,8 @@ function calculate(e,idx){
 
 
 </script>
-<script type="text/javascript">
-
-</script>
+<script src="https://code.jquery.com/jquery.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 
 </html>

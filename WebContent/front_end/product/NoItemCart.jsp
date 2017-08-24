@@ -8,6 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=BIG5">
 <%@ include file="page4.file"%>
+<script src="https://code.jquery.com/jquery.js"></script>
 <style>
  .panel.panel--styled {
     background: #F4F2F3;

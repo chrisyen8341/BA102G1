@@ -1,7 +1,26 @@
+@font-face {
+    font-family: seto;
+    src: url(../fonts/setofont.ttf);
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: seto;
+    src: url(../fonts/setofont.ttf);
+    font-weight: normal;
+    font-style: normal;
+}
+
+#nav{
+	font-family: 'seto' ;
+}
+
 #nav a {
     color: #EEE;
-    font-family: Microsoft JhengHei;
-    font-size: 16px !important;
+/*     font-family: Microsoft JhengHei; */
+font-family: 'seto' ;
+    font-size: 18px !important;
 }
 
 #nav a:hover {

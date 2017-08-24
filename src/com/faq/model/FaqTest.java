@@ -7,48 +7,48 @@ public class FaqTest {
 	public static void main(String[] args) {
 		FaqJDBCDAO dao = new FaqJDBCDAO();
 
-		// æ–°å¢
-//		Faq faq1 = new Faq();
-//		faq1.setEmpNo(1);
-//		faq1.setFaqCategory("å¯µç‰©èµ°å¤±");
-//		faq1.setFaqTitle("æˆ‘çš„å¯µç‰©èµ°å¤±äº†æ€éº¼è¾¦");
-//		faq1.setFaqAnswer("å ±è­¦é˜¿å»¢è©±");
-//		dao.insert(faq1);
-//		System.out.println("æ–°å¢å®Œæƒ¹");
+		// ·s¼W
+		// Faq faq1 = new Faq();
+		// faq1.setEmpNo(1);
+		// faq1.setFaqCategory("Ãdª«¨«¥¢");
+		// faq1.setFaqTitle("§ÚªºÃdª«¨«¥¢¤F«ç»ò¿ì");
+		// faq1.setFaqAnswer("³øÄµªü¼o¸Ü");
+		// dao.insert(faq1);
+		// System.out.println("·s¼W§¹·S");
 
-//		 ä¿®æ”¹
-//		Faq faq2 = new Faq();
-//		faq2.setEmpNo(2);
-//		faq2.setFaqCategory("è²·æ–¹å¸¸è¦‹å•é¡Œ");
-//		faq2.setFaqTitle("è³£æ–¹æ”¾æˆ‘ç²‰é³¥æ€éº¼è¾¦");
-//		faq2.setFaqAnswer("å¿«ä¾†ç”³è¨´");
-//		faq2.setFaqNo(2);
-//		dao.update(faq2);
-//		System.out.println("ä¿®æ”¹å®Œæƒ¹");
+		// ­×§ï
+		// Faq faq2 = new Faq();
+		// faq2.setEmpNo(2);
+		// faq2.setFaqCategory("¶R¤è±`¨£°İÃD");
+		// faq2.setFaqTitle("½æ¤è©ñ§Ú¯»³¾«ç»ò¿ì");
+		// faq2.setFaqAnswer("§Ö¨Ó¥Ó¶D");
+		// faq2.setFaqNo(2);
+		// dao.update(faq2);
+		// System.out.println("­×§ï§¹·S");
 
-//		 åˆªé™¤		ä¹‹å¾Œè¦æŒ‘PKFKä»¥å¤–çš„åˆª
-//		dao.delete(6);
-//		System.out.println("åˆªæ‰æƒ¹,ç³Ÿç³•");
+		// §R°£ ¤§«á­n¬DPKFK¥H¥~ªº§R
+		// dao.delete(6);
+		// System.out.println("§R±¼·S,ÁV¿|");
 
-//		 æŸ¥è©¢
-//		Faq faq3 = dao.findByPrimaryKey(4);
-//		System.out.println(faq3.getFaqNo());
-//		System.out.println(faq3.getEmpNo());
-//		System.out.println(faq3.getFaqCategory());
-//		System.out.println(faq3.getFaqTitle());
-//		System.out.println(faq3.getFaqAnswer());
-//		System.out.println("æ‰¾å®Œæƒ¹");
+		// ¬d¸ß
+		// Faq faq3 = dao.findByPrimaryKey(4);
+		// System.out.println(faq3.getFaqNo());
+		// System.out.println(faq3.getEmpNo());
+		// System.out.println(faq3.getFaqCategory());
+		// System.out.println(faq3.getFaqTitle());
+		// System.out.println(faq3.getFaqAnswer());
+		// System.out.println("§ä§¹·S");
 
-//		 æŸ¥å…¨éƒ¨
-//		 List<Faq> faqList=dao.getAll();
-//		 for(Faq faq:faqList){
-//		 System.out.println(faq.getFaqNo());
-//		 System.out.println(faq.getEmpNo());
-//		 System.out.println(faq.getFaqCategory());
-//		 System.out.println(faq.getFaqTitle());
-//		 System.out.println(faq.getFaqAnswer());
-//		 System.out.println("===================");
-//		 }
-	}	 
+		// ¬d¥ş³¡
+		// List<Faq> faqList=dao.getAll();
+		// for(Faq faq:faqList){
+		// System.out.println(faq.getFaqNo());
+		// System.out.println(faq.getEmpNo());
+		// System.out.println(faq.getFaqCategory());
+		// System.out.println(faq.getFaqTitle());
+		// System.out.println(faq.getFaqAnswer());
+		// System.out.println("===================");
+		// }
+	}
 
 }

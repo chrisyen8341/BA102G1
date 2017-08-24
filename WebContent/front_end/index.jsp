@@ -20,9 +20,10 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <title>PetYM</title>
 <!-- Bootstrap Core CSS -->
+<link href="css/main.css" rel="stylesheet">
 <link href="css/bootstrap.css" rel="stylesheet">
 <link href="css/nav.css" rel="stylesheet">
-<link href="css/main.css" rel="stylesheet">
+
 <!-- Custom CSS -->
 <!-- Custom Fonts -->
 <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet"
@@ -35,7 +36,7 @@
 #logo{
 width:2em;
 margin-right:0.25em;
-/* margin-bottom:0.5em; */
+ margin-bottom:0.5em; 
 }
 
 .qa{
@@ -223,7 +224,7 @@ margin-right:0.25em;
 								<h3>Frequent Questions and Answers</h3>
 								<p>完整網站使用指南, 你想知道的都能在這得到解答</p>
 								<ul class="actions">
-									<li><a href="#" class="button alt">Learn More</a></li>
+									<li><a href="<%=request.getContextPath() %>/front_end/about_us/faq/faq_user.jsp" class="button alt">Learn More</a></li>
 								</ul>
 							</section>
 

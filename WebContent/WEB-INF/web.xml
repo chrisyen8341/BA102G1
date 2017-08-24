@@ -261,4 +261,15 @@
   
   
   
+    <servlet>
+		<servlet-name>FaqServlet</servlet-name>
+		<servlet-class>com.faq.controller.FaqServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FaqServlet</servlet-name>
+		<url-pattern>/back_end/faq/faq.do</url-pattern>
+	</servlet-mapping>
+  
+  
+  
 </web-app>

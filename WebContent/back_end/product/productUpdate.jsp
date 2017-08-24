@@ -3,7 +3,9 @@
 <%@ page import="java.util.*"%>
 <html>
 <head>
-<%@ include file="page1.file"%>
+<%@ include file="/back_end/product/page1.file" %>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
 <script src="<%=request.getContextPath() %>/back_end/product/filejs/js/fileinput.js"></script>
 <script src="<%=request.getContextPath() %>/back_end/product/filejs/themes/fa/theme.js"></script>

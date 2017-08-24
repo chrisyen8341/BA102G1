@@ -25,6 +25,7 @@
 <html>
 <head>
 <%@ include file="page4.file"%>
+<script src="https://code.jquery.com/jquery.js"></script>
 </head>
 <body>
 	<%@ include file="/front_end/frontEndNavBar.file" %>
@@ -32,7 +33,7 @@
 	<form action="<%=request.getContextPath()%>/OrdCancel" method="POST">
 	<table class="table table-hover" width="200px">
 		<tr>
-			<th>訂單編號</th>
+			
 			<th>訂單日期</th>
 			<th>訂單運費</th>
 			<th>訂單金額</th>
@@ -42,7 +43,7 @@
 		</tr>
 				<c:forEach var="ordAll" items="${OrdFk}">
 			<tr>
-				<td><span>${ordAll.ordNo}</span></td>
+				
 				<td><span>${ordAll.ordDate}</span></td>
 				<td><span>${ordAll.ordShip}</span></td>
 				<td><span>${ordAll.ordTotal}</span></td>

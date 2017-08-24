@@ -36,37 +36,7 @@
 		<![endif]-->
 	
 	 
-	<script>
-		$(function() {
-			
-			$("#actDate").datetimepicker({
-			format: 'Y-m-d',
-			 minDate:'+1970/01/02',
-			 allowTimes:[
-	'11:00','11:30', '12:00', '12:30','13:00', '13:30','14:00','14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30', '18:00', '18:30', '19:00',
-			  '19:30', '20:00', '21:00', '22:00', '23:00'
-			 ],
-			 defaultDate: '17/09/01',
-	// 		 step: 30 
-			timepicker:false,
-			             });
-			             
-			             
-			 $("#actFDate").datetimepicker({
-			format: 'Y-m-d',
-			 minDate:'+1970/01/02',
-			 allowTimes:[
-	'11:00','11:30', '12:00', '12:30','13:00', '13:30','14:00','14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30', '18:00', '18:30', '19:00',
-			  '19:30', '20:00', '21:00', '22:00', '23:00'
-			 ],
-			 defaultDate: '17/09/01',
-	// 		 step: 30 
-				timepicker:false,
-			             });            	
-			
-			
-       });
-	</script> 
+	
     <style type="text/css">
 			.btn123{
 				margin-top: 10px;
@@ -155,7 +125,37 @@
 						<div class="row">
 							<div class="col-sm-3">
 									
-									
+											<script>
+												$(function() {
+													
+													$("#actDate${activitiyE.index}").datetimepicker({
+													format: 'Y-m-d',
+													 minDate:'+1970/01/02',
+													 allowTimes:[
+											'11:00','11:30', '12:00', '12:30','13:00', '13:30','14:00','14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30', '18:00', '18:30', '19:00',
+													  '19:30', '20:00', '21:00', '22:00', '23:00'
+													 ],
+													 defaultDate: '17/09/01',
+											// 		 step: 30 
+													timepicker:false,
+													             });
+													             
+													             
+													 $("#actFDate${activitiyE.index}").datetimepicker({
+													format: 'Y-m-d',
+													 minDate:'+1970/01/02',
+													 allowTimes:[
+											'11:00','11:30', '12:00', '12:30','13:00', '13:30','14:00','14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30', '18:00', '18:30', '19:00',
+													  '19:30', '20:00', '21:00', '22:00', '23:00'
+													 ],
+													 defaultDate: '17/09/01',
+											// 		 step: 30 
+														timepicker:false,
+													             });            	
+													
+													
+										       });
+											</script> 
 									
 											
 											<script>
@@ -214,7 +214,7 @@
 													活動日期
 												</label>
 												<div class="col-sm-9">
-													<input type="text" name="actDate" id="actDate" class="form-control" value="${activity.actDate }"
+													<input type="text" name="actDate" id="actDate${activitiyE.index}" class="form-control" value="${activity.actDate }"
 															min="<%=actDateMin %>">	
 												</div>
 											</div>
@@ -224,7 +224,7 @@
 													報名截止日期
 												</label>
 												<div class="col-sm-9">
-													<input type="text" name="actFDate" id="actFDate" class="form-control" value="${activity.actFDate}"
+													<input type="text" name="actFDate" id="actFDate${activitiyE.index}" class="form-control" value="${activity.actFDate}"
 													   min="<%=actDateMin %>">	
 												</div>
 											</div>

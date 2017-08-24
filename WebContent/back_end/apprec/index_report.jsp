@@ -96,13 +96,13 @@
 			
 			<script type="text/javascript">
 			function pass(e){
-				var repNo = $(e).prev().val();
+				var repno = $(e).prev().val();
 				var rep = $(e).parent();
 				$.ajax({
 					url:"<%=request.getContextPath()%>/back_end/apprec/dateitemrep.do",
 					data:{
 						action : 'updatepass',
-						repno : repNo					
+						repNo : repno					
 					},
 					type : 'POST',
 					error : function(xhr) {
@@ -117,13 +117,13 @@
 				});	
 			}
 			function deny(e){
-				var repNo = $(e).prev().prev().val();
+				var repno = $(e).prev().prev().val();
 				var rep = $(e).parent();
 				$.ajax({
 					url:"<%=request.getContextPath()%>/back_end/apprec/dateitemrep.do",
 					data:{
 						action : 'updatedeny',
-						repno : repNo					
+						repNo : repno					
 					},
 					type : 'POST',
 					error : function(xhr) {

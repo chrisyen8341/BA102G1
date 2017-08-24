@@ -238,7 +238,7 @@ public class AppRepRecDAO implements AppRepRec_Interface{
 			Calendar cal = new GregorianCalendar();			
 			cal.setTimeInMillis(System.currentTimeMillis());
 			cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE)-30);//找出以上架當天前30天內的檢舉申訴
-			System.out.println(cal.getTime());
+			
 			while(rs.next()){
 				nextrow = new GregorianCalendar();
 				nextrow.setTime(rs.getDate("recdate"));

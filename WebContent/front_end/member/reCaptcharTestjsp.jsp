@@ -9,7 +9,8 @@
 
 
 <%@ include file="memHead.file"%>
-<title>Ãdª«You&amp;Me</title>
+<%@ include file="memHead.file"%>
+<title>Ãdª«You&amp;fuck fuck fuck Me</title>
 </head>
 
 </script>

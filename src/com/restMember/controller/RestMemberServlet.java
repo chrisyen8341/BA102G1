@@ -219,6 +219,8 @@ public class RestMemberServlet extends HttpServlet {
 			HttpSession session = req.getSession();
 			
 			session.removeAttribute("restMember");
+			session.removeAttribute("restMemId");
+			session.removeAttribute("restaurant");
 //			System.out.println("ddddddd::::"+req.getAttribute("restMember"));
 		
 			RequestDispatcher requestDispatcher3 = req.getRequestDispatcher("/front_end/restMember/restMemberLogin.jsp");

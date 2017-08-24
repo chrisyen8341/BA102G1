@@ -96,7 +96,7 @@ public class RestaurantDAO implements RestaurantDAO_Interface {
 			
 			pstmt.setString(1, rest.getRestName());
 			pstmt.setString(2, rest.getRestAdd());
-			pstmt.setString(3, rest.getRestAdd().substring(0,2)+"¿¤");
+			pstmt.setString(3, rest.getRestAdd().substring(0,3));
 			pstmt.setString(4, rest.getRestPhone());
 			pstmt.setString(5, rest.getRestIntro());
 			pstmt.setInt(6, rest.getRestKind());

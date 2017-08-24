@@ -77,7 +77,7 @@
 									À\ÆU¦a§}
 								</label>
 								<div class="col-sm-9">
-									<input type="text" name="restAdd" class="form-control" value="<%=restaurant.getRestAdd() %>" >
+									<input type="text" name="restAdd" class="form-control" value="<%=restaurant.getRestAdd() %>" readonly>
 
 								</div>
 							</div>

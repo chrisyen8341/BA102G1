@@ -24,13 +24,13 @@ public class LetterService {
 	private static final int BUYER_CANCEL_DATE_NUMBER = 30002;
 	private static final int REPORT_NUMBER =30003;
 	private static final int ADD_ACTIVE_NUMBER = 30005;
-	private static final int ACTIVITY_SUCCESS_NUMBER = 30026;
-	private static final int ACTIVITY_CANCEL_NUMBER = 30027;
-	private static final int SHOP_NUMBER = 30028;
-	private static final int DATE_BE_BOUGHT_NUMBER = 30031;
-	private static final int BE_CANCEL_BY_BUYER_NUMBER = 30032;
-	private static final int SELLER_CANCEL_DATE_NUMBER = 30033;
-	private static final int BE_CANCEL_BY_SELLER_NUMBER = 30034;
+	private static final int ACTIVITY_SUCCESS_NUMBER = 30006;
+	private static final int ACTIVITY_CANCEL_NUMBER = 30007;
+	private static final int SHOP_NUMBER = 30008;
+	private static final int DATE_BE_BOUGHT_NUMBER = 30009;
+	private static final int BE_CANCEL_BY_BUYER_NUMBER = 30010;
+	private static final int SELLER_CANCEL_DATE_NUMBER = 30011;
+	private static final int BE_CANCEL_BY_SELLER_NUMBER = 30012;
 	
 	
 	public LetterService(){
@@ -173,7 +173,7 @@ public class LetterService {
 		Member seller = memSvc.getOneMember(dateItem.getSellerNo());
 		
 		String text1 = null;
-		text1 = seller+" 你好: "+Buyer+letterType1.getLetterTypeText();
+		text1 = seller+" 你好: "+Buyer+letterType1.getLetterTypeText()+"重新上架："+"/front_end/dateitem/dateitem.do?action=reinsert&dateItemNo="+dateItem.getDateItemNo();
 		letter1.setLetterText(text1);
 		dao.insert(letter1);
 		

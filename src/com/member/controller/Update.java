@@ -335,13 +335,13 @@ public class Update extends HttpServlet {
 			// 判斷是否有養寵物
 			if (((String) req.getParameter("petOrNot")).equals("0")) {
 				memSvc.addMember(memId, memPwd, memName, memSname, memGender, memIdNo, memBday, memPhone, memAddress,
-						memEmail, memImg, 0, 0, 2, "test", 0, 0, 0, 0.00, 0.00,
+						memEmail, memImg, 0, 0, 0, "新增點自我介紹吧", 0, 5000, 0, 0.00, 0.00,
 						new Timestamp((new java.util.Date()).getTime()), 0);
 			} else {
 
 				memSvc.addMemberWithPet(memId, memPwd, memName, memSname, memGender, memIdNo, memBday, memPhone,
-						memAddress, memEmail, memImg, 0, 0, 2, "test", 0, 0, 0, 0.00, 0.00,
-						new Timestamp((new java.util.Date()).getTime()), 0, petName, petKind, petGender, "test", "test",
+						memAddress, memEmail, memImg, 0, 0, 0, "新增點自我介紹吧", 0, 5000, 0, 0.00, 0.00,
+						new Timestamp((new java.util.Date()).getTime()), 0, petName, petKind, petGender, "新增寵物的品種吧", "新增點寵物的介紹吧",
 						new Date(2010 - 05 - 02), petImg, 0);
 			}
 

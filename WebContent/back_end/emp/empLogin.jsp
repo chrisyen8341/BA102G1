@@ -64,7 +64,7 @@
 						</div>
 
 						<form class=""
-							action="<%=request.getContextPath()%>//back_end/emp/EmpLogin2.do"
+							action="<%=request.getContextPath()%>/back_end/emp/EmpLogin2.do"
 							method="post">
 
 
@@ -101,17 +101,12 @@
 								</div>
 							</div>
 
-							<div class="checkbox">
-								<label> <input type="checkbox"> 記住我
-								</label>
-							</div>
+
 
 							<input
 								class="btn btn-primary btn-lg btn-block login-button login"
 								type="submit" value="登錄">
-							<div>
-								<a href="#" class="btn btn-link">忘記密碼</a>
-							</div>
+
 							<input type="hidden" name="action" value="login">
 						</form>
 

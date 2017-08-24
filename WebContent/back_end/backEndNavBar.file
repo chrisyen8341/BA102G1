@@ -27,7 +27,7 @@
 						</c:if>
 						<c:if test="${emp==null}">
 							<li><a
-								href="<%=request.getContextPath()%>/back_end/emp/empLogin.jsp" class="backendlogin">管理員入</a></li>
+								href="<%=request.getContextPath()%>/back_end/emp/empLogin.jsp" class="backendlogin">管理員登入</a></li>
 						</c:if>
 					</ul>
 				</div>

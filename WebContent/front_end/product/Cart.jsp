@@ -60,7 +60,7 @@ session.setAttribute("amount", amount);
 
 
 	
-	<div class="container" >
+	<div class="container">
     <div class="row">
         <div class="col-sm-12 col-md-10 col-md-offset-1">
             <table class="table table-hover">
@@ -88,7 +88,7 @@ session.setAttribute("amount", amount);
                     <tr>
                         <td class="col-sm-8 col-md-6">
                         <div class="media">
-                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://localhost:8081/ChrisAll/ProductImage?prodno=<%=prod.getProdNo()%>" style="width: 72px; height: 72px;"> </a>
+                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="<%=request.getContextPath() %>/ProductImage?prodno=<%=prod.getProdNo()%>" style="width: 72px; height: 72px;"> </a>
                             <div class="media-body">
                                 <h4 class="media-heading"><a href="<%=request.getContextPath() %>/ShoppingDetail.do?prodno=<%=prod.getProdNo()%>"><%=prod.getProdName()%></a></h4>
                             </div>
@@ -210,8 +210,9 @@ function calculate(e,idx){
 
 
 </script>
-<script src="https://code.jquery.com/jquery.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+
+</script>
 </body>
 
 </html>

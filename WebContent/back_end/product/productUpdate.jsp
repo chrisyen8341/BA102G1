@@ -93,6 +93,7 @@
 				<input type="hidden" name="action"value="addprod">
 				<a href="<%=request.getContextPath()%>/back_end/order/OrderManage.jsp"><input type="button" class="btn btn-primary" value="訂單管理"></a>
 				<a href="<%=request.getContextPath()%>/back_end/product/productManage.jsp"><input type="button" class="btn btn-primary" value="商品管理"></a>  
+				<input type="button" value="insert" onclick="alter()" class="btn btn-primary">
 			</form>	
 				
 		</div>		
@@ -105,6 +106,18 @@ $("#input-fa").fileinput({
     theme: "fa",
     uploadUrl: "/file-upload-batch/2"
 });
+</script>
+<script type="text/javascript">
+function alter(){
+	var proName = document.getElementById("name");
+	var proDescpt = document.getElementById("descpt");
+	var proPrice = document.getElementById("price");
+	var proType = document.getElementById("type");
+	proName.value="全方位無穀系列成犬無穀深海魚";
+	proDescpt.value="全方位無穀系列提供均衡的蛋白質、無穀類的碳水化合物及嚴選優質的脂肪。這些優質的成份來源，提供成犬所需要的能量";
+	proPrice.value="2040";
+	proType.value="寵物飼料";
+	}
 </script>
 <!-- /.container -->
 	<!-- jQuery -->

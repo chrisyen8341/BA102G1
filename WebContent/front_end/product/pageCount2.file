@@ -7,11 +7,11 @@
   <%if (rowsPerPage<rowNumber) {%>
     <%if(pageIndex>=rowsPerPage){%>
         
-        <td><A href="<%=request.getRequestURI()%>?whichPage=<%=whichPage-1%>"><input type="button" class="btn btn-primary" value="上一頁"></A>&nbsp;</td>
+        <td><A href="<%=request.getRequestURI()%>?whichPage=<%=whichPage-1%>"><input type="button" value="上一頁"></A>&nbsp;</td>
     <%}%>
   
     <%if(pageIndex<pageIndexArray[pageNumber-1]){%>
-        <td><A href="<%=request.getRequestURI()%>?whichPage=<%=whichPage+1%>"><input type="button" class="btn btn-primary" value="下一頁"></A>&nbsp;</td>
+        <td><A href="<%=request.getRequestURI()%>?whichPage=<%=whichPage+1%>"><input type="button" value="下一頁"></A>&nbsp;</td>
         
     <%}%>
   <%}%>  

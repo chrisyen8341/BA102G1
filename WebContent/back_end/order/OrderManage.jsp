@@ -103,7 +103,7 @@
 	<td>${ordList.ordTotal}</td>
 	<td>
 	
-	<input id="changede" type="submit" value="確定修改" class="btn btn-primary">	
+	<input id="changede" type="submit" value="確定修改" >	
 	
 	</td>
 	
@@ -115,7 +115,7 @@
 </table>
 </div>
 
-<div class="row col-xs-10 col-sm-10" align="center">
+<div class="row col-xs-10 col-sm-10" align="center" >
 	  
 		<a href="<%=request.getContextPath() %>/back_end/product/productManage.jsp" ><input type="button" class="btn btn-primary" value="商品管理"></a>
 	  	

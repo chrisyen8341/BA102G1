@@ -2,12 +2,13 @@
 <%request.setCharacterEncoding("UTF-8");%>  
 <%response.setCharacterEncoding("UTF-8");%> 
 <div class="container-fluid">
+	
         <div class="row">
-            <div class="col-xs-12 col-sm-2 postion-left-group" >
-                <div class="frontend">
-                <img src="<%=request.getContextPath()%>/front_end/images/logo-sp.png" class="img-rounded img-bg try-color">
-                </div>
-                <div id="menu">
+		
+            <div class="col-xs-12 col-sm-2 postion-left-group" style="margin-top:0px;padding-top:0px;">
+                 	<div class="frontend" style="margin-top:0rem;"><img src="<%=request.getContextPath() %>/front_end/images/logo-sp.png" class="img-rounded try-color" style="max-width:100%;"></div>
+                <div id="menu" >
+			
                     <div class="panel list-group list-color">
                         <a href="<%=request.getContextPath()%>/front_end/product/BrowseProduct.jsp" class="list-group-item ">商城首頁</a>
                         <a href="#" class="list-group-item" data-toggle="collapse" data-target="#sm1" data-parent="#menu">瀏覽商品 
@@ -38,6 +39,6 @@
                 
 				
 				
-                <h5 class="page-header text-right">目前位置:商城專區</h5>
+                
                 <div class="row">
                     <br>

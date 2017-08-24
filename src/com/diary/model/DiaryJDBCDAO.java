@@ -104,8 +104,8 @@ public class DiaryJDBCDAO implements DiaryDAO_Interface{
 			pstmt.setClob(2, clob);
 			pstmt.setBytes(3, diary.getDiaImg());
 			pstmt.setTimestamp(4, diary.getDiaModTime());
-			pstmt.setInt(5, diary.getDiaNo());
-			pstmt.setString(6, diary.getDiaImgExtName());
+			pstmt.setInt(6, diary.getDiaNo());
+			pstmt.setString(5, diary.getDiaImgExtName());
 			
 			pstmt.executeUpdate();
 			

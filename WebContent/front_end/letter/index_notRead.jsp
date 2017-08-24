@@ -30,6 +30,9 @@
 <!-- 	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script> -->
 </head>
 <style>
+.panel-body{
+	padding:1px;
+}
 .ellipsis{
 	overflow:hidden;
 /* 	width:100%; */

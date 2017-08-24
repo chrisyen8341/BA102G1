@@ -30,6 +30,9 @@
 
 <%@ include file="memHead.file"%>
 <style>
+.panel-body{
+	padding:1px;
+}
 .pet {
 	margin-top: 50px;
 }
@@ -98,14 +101,14 @@
 
 							</div>
 
-							<div class="panel-body" style="background-color:#d9edf7;">
+							<div class="panel-body" >
 							
 							
 <!-- 							你的日誌內容 -->
 							<c:forEach var="diary" items="${dialist}" >
 					             <div class="row">
-					                <div class="panel panel-default col-sm-8 col-sm-offset-2 top-margin-sm dia-msg">
-					                   <div class="panel">
+					                <div class="panel panel-default col-sm-8 col-sm-offset-2 top-margin-sm dia-msg" style="margin-bottom:20px;background-color:#FAF0E6;" >
+					                   <div class="panel" style="background-color:#FAF0E6;">
 					                      <div class="panel-heading" >
 					                          <div class="row">
 					                        	  <div class="col-sm-10" >                        		
@@ -158,7 +161,16 @@
 					                       </div>		
 						                  <div class="panel-body"> 
 						                      <div class="text-center">
+						                         <c:if test="${diary.diaImgExtName =='image' }" var="imgformat">
 						                         <img src="<%=request.getContextPath()%>/front_end/diary/ShowImage?diano=${diary.diaNo}" style='height:auto;width:540px;display:${empty diary.diaImg ? "none":""};'></img>
+						                         </c:if>
+						                         <c:if test="${!imgformat }">
+						                         <div style="max-height: auto;max-width:540px;" >
+													<video controls style="max-height: 80%;max-width: 80%;">
+														<source src="<%=request.getContextPath() %>/front_end/diary/DiaryVideo?diano=${diary.diaNo}" type="video/mp4" alt="您的瀏覽器不支援此撥放程式!!">
+													</video>
+												 </div>	                         
+						                      	 </c:if>
 						                      </div>
 						                  </div>  
 					                   </div>

@@ -178,7 +178,6 @@ document.getElementById("memBday").setAttribute("max", today);
 						else{
 							$("#memEmailShow").html("").css('color','green');
 							valids[6]=true;
-							console.log("2589");
 						}	
 					}
 						
@@ -278,33 +277,35 @@ document.getElementById("memBday").setAttribute("max", today);
 		});
 
 		$("#autoAddMem").click(function(){
-			$("#memId").val("chrisyen");
+			$("#memId").val("petym0");
 			$("#memId").testMemId();
-			$("#memSname").val("小顏");
+			$("#memSname").val("育誠");
 			$("#memPwd").val("p123456");
 			$("#conPwd").val("p123456");
-			$("#memName").val("顏佑軒");
+			$("#memName").val("梁育誠");
 			$("#memIdNo").val("A114900309");
 			$("#memBday").val("1990-01-16");
 			$("#memPhone").val("0930456158");
 			$("#memAddress").val("台北市大安區101");
-			$("#memEmail").val("chrisyen@gmail.com");
+			$("#memEmail").val("chrisyen8341@gmail.com");
 			$("#memEmail").testMemEmail();
 		});
 
 
 		$("#autoAddMemPet").click(function(){
-			$("#memId").val("chrisyen");
+			$("#memId").val("petym0");
 			$("#memId").testMemId();
-			$("#memSname").val("小顏");
+			$("#memSname").val("慈慈");
 			$("#memPwd").val("p123456");
 			$("#conPwd").val("p123456");
-			$("#memName").val("顏佑軒");
-			$("#memIdNo").val("A114900309");
-			$("#memBday").val("1990-01-16");
+			$("#memName").val("朱又慈");
+			$("#memIdNo").val("A272337380");
+			$("#memBday").val("1994-01-16");
 			$("#memPhone").val("0930456158");
+			$("#girlMem").prop("checked", true);
 			$("#memAddress").val("台北市大安區101");
-			$("#memEmail").val("chrisyen@gmail.com");
+			$("#memEmail").val("chrisyen8341@gmail.com");
+			$("#memEmail").testMemEmail();
 			$("#petOrNot_1").prop("checked", true);
 			$("#petDiv").css("display","block");
 			$("#petName").val("單身狗");

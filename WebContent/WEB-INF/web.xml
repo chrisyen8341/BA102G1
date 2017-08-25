@@ -23,6 +23,8 @@
 	<url-pattern>/front_end/diary/manageSubMem.jsp</url-pattern>
 	<url-pattern>/front_end/letter/index_letter.jsp</url-pattern>
 	<url-pattern>/front_end/letter/index_notRead.jsp</url-pattern>
+	<url-pattern>/front_end/dateitem/list_seller_future.jsp</url-pattern>
+	<url-pattern>/front_end/dateitem/list_buyer_future.jsp</url-pattern>
 	<url-pattern>/front_end/letter/index_tagLetter.jsp</url-pattern>
     <dispatcher>REQUEST</dispatcher>
     <dispatcher>FORWARD</dispatcher>

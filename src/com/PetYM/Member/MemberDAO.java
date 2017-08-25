@@ -38,6 +38,7 @@ public class MemberDAO implements MemberDAO_interface {
 	private static final String DELETE_STMT = "DELETE FROM MEMBER WHERE MEMNO = ?";
 	private static final String FIND_BY_PK = "SELECT * FROM MEMBER WHERE MEMNO = ?";
 	private static final String FIND_PETS_BY_MEMNO = "SELECT * FROM PET WHERE MEMNO = ? ORDER BY PETNO DESC";
+	private static final String FIND_MemberImg_BY_PK = "SELECT memImg FROM MEMBER WHERE MEMNO = ?";
 	private static final String GET_ALL = "SELECT * FROM MEMBER";
 	private static final String FIND_BY_ID = "SELECT * FROM MEMBER WHERE MEMID = ?";
 	private static final String GET_CURRSEQ = "SELECT MEMNO_SQ.CURRVAL FROM DUAL";
@@ -439,6 +440,52 @@ public class MemberDAO implements MemberDAO_interface {
 			}
 		}
 		return memList;
+	}
+public byte[] getMemImage(int id) {
+		
+		PreparedStatement pstmt=null;
+		Connection con=null;
+		ResultSet rs=null;
+		byte[] image = null;
+		try {
+			con = ds.getConnection();
+			pstmt=con.prepareStatement(FIND_MemberImg_BY_PK);
+			pstmt.setInt(1, id);
+			rs=pstmt.executeQuery();
+			while(rs.next()){
+				
+				image = rs.getBytes("memImg");
+				
+			
+			}
+		}  catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally{
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return image;
 	}
 	public List<Member> getAllwithoutPic() {
 		List<Member> memList = new ArrayList<>();

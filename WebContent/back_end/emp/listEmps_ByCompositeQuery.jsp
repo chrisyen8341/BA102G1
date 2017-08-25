@@ -38,7 +38,7 @@
 			<div class="col-xs-12 col-sm-8">
 
 
-				<h5 class="page-header text-right">目前位置:後端首頁</h5>
+				<h5 class="page-header text-right"></h5>
 
 
 				<div class="row">
@@ -58,16 +58,10 @@
 									<tbody>
 
 
-										<table border='1' cellpadding='5' cellspacing='0' width='800'>
-											<tr bgcolor='#CCCCFF' align='center' valign='middle'
-												height='20'>
-												<td>
 													<h3>
 														員工查詢結果
-													</h3> <a href="<%=request.getContextPath()%>/select_page.jsp">回首頁</a>
-												</td>
-											</tr>
-										</table>
+													</h3>
+
 
 
 										<table border='1' bordercolor='#CCCCFF' width='800'>
@@ -83,8 +77,7 @@
 											<%@ include file="pages/page1_ByCompositeQuery.file"%>
 											<c:forEach var="empVO" items="${listEmps_ByCompositeQuery}"
 												begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
-												<tr align='center' valign='middle'
-													${(empVO.empNo==param.empNo) ? 'bgcolor=#CCCCFF':''}>
+												<tr align='center' valign='middle'>
 													<!--將修改的那一筆加入對比色而已-->
 													<td>${empVO.empNo}</td>
 													<td>${empVO.empName}</td>

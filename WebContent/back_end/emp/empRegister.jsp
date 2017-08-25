@@ -9,33 +9,8 @@
 	pageContext.setAttribute("emp", emp);
 %>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-<title>Title Page</title>
-<link href="<%=request.getContextPath()%>/back_end/css/bootstrap.css"
-	rel="stylesheet">
-<link href="<%=request.getContextPath()%>/back_end/css/nav.css"
-	rel="stylesheet">
-<link href="<%=request.getContextPath()%>/back_end/css/colorplan.css"
-	rel="stylesheet">
-<!-- Custom CSS -->
-<link
-	href="<%=request.getContextPath()%>/back_end/css/modern-business.css"
-	rel="stylesheet">
-<!-- Custom Fonts -->
-<link
-	href="<%=request.getContextPath()%>/back_end/font-awesome/css/font-awesome.css"
-	rel="stylesheet" type="text/css">
-<link href="<%=request.getContextPath()%>/back_end/css/backend.css"
-	rel="stylesheet">
-<!--[if lt IE 9]>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
-		<![endif]-->
 
-
+			<%@ include file="empHeader.file"%>
 <style>
 .submit {
 	matgin-top: 20px;
@@ -54,7 +29,7 @@
 			<div class="col-xs-12 col-sm-8">
 
 
-				<h5 class="page-header text-right">目前位置:後端首頁</h5>
+				<h5 class="page-header text-right"></h5>
 
 
 				<div
@@ -112,9 +87,8 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i
 										class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
-										type="date" name="empHireDate" min="1910-01-01"
-										max='2000-13-13' id="empHireDate" class="form-control"
-										placeholder="Confirm your Password" />
+										type="text" name="empHireDate" id="empHireDate" class="form-control"
+										placeholder="選擇到職日" />
 								</div>
 							</div>
 						</div>
@@ -225,9 +199,7 @@
 
 			</div>
 
-			<script src="https://code.jquery.com/jquery.js"></script>
-			<script
-				src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
 			<script>
 				$(function() {
@@ -290,6 +262,24 @@
 
 				});
 			</script>
+			
+			
+					<script>
+
+	$(function(){
+
+	
+	$("#empHireDate").datetimepicker({
+		format: 'Y-m-d',
+		 timepicker:false,
+	});
+
+	 
+	});
+
+
+</script>
+			
 </body>
 
 </html>

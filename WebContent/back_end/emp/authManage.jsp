@@ -27,7 +27,7 @@
 			<div class="col-xs-12 col-sm-8">
 
 
-				<h5 class="page-header text-right">目前位置:後端首頁</h5>
+				<h5 class="page-header text-right"></h5>
 
 
 				<div class="row">
@@ -86,7 +86,7 @@
 
 																<tr>
 																	<td class="title">員工編號:</td>
-																	<td><input type="text" class="form-control"
+																	<td><input type="number" class="form-control"
 																		name="empNo" id="empNo"
 																		placeholder="請輸入員工編號" /></td>
 																</tr>

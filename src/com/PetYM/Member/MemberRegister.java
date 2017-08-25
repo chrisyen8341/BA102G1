@@ -63,7 +63,11 @@ public class MemberRegister extends HttpServlet {
 		System.out.println(jsonIn);
 		Type listType = new TypeToken<Member>() {
         }.getType();
+        MemberDAO memberDAO = new MemberDAO();
             member=gson.fromJson(jsonIn.toString(),listType);
+            if (member.getMemLatitude()!=0){
+            	memberDAO.update(member);
+            }
 			System.out.println(member.getMemId());
 			System.out.println(member.getMemEmail());
 

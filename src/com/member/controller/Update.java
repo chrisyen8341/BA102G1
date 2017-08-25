@@ -230,25 +230,33 @@ public class Update extends HttpServlet {
 			String memEmail = req.getParameter("memEmail").trim();
 			String gRecaptchaResponse = req.getParameter("g-recaptcha-response");
 			System.out.println(gRecaptchaResponse);
-			
+			Member fMem =new Member();
 			boolean verify = VerifyRecaptcha.verify(gRecaptchaResponse);
 			
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
-
-			if (memId == null || memId.isEmpty()) {
+			
+			String enameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{4,20}$";
+			if (memId == null || memId.isEmpty()||!memId.matches(enameReg)) {
 				errorMsgs.add("請填寫帳號");
 			}
+			fMem.setMemId(memId);
+			
 			if (memPwd == null || memPwd.isEmpty()) {
 				errorMsgs.add("請填寫密碼");
 			}
+			fMem.setMemPwd(memPwd);
+			
 			if (memName == null || memName.isEmpty()) {
 				errorMsgs.add("請填寫姓名");
 			}
+			fMem.setMemName(memName);
+			
 			if (memSname == null || memSname.isEmpty()) {
 				errorMsgs.add("請填寫暱稱");
 			}
-
+			fMem.setMemSname(memSname);
+			
 			Integer memGender = null;
 			try {
 				memGender = Integer.parseInt(req.getParameter("memGender").trim());
@@ -256,10 +264,12 @@ public class Update extends HttpServlet {
 				memGender = 1;
 				errorMsgs.add("請輸入性別");
 			}
-
+			fMem.setMemGender(memGender);
+			
 			if (memIdNo == null || memIdNo.isEmpty()) {
 				errorMsgs.add("請填寫身分證字號");
 			}
+			fMem.setMemIdNo(memIdNo);
 
 			java.sql.Date memBday = null;
 			try {
@@ -268,21 +278,27 @@ public class Update extends HttpServlet {
 				memBday = new java.sql.Date(System.currentTimeMillis());
 				errorMsgs.add("請輸入生日!");
 			}
+			fMem.setMemBday(memBday);
 
 			if (memPhone == null || memPhone.isEmpty()) {
 				errorMsgs.add("請填寫手機");
 			}
+			fMem.setMemPhone(memPhone);
+			
 			if (memAddress == null || memAddress.isEmpty()) {
 				errorMsgs.add("請填寫地址");
 			}
+			fMem.setMemAddress(memAddress);
+			
 			if (memEmail == null || memEmail.isEmpty()) {
 				errorMsgs.add("請填寫信箱");
 			}
+			fMem.setMemEmail(memEmail);
 
 			byte[] memImg = null;
 			Collection<Part> parts = req.getParts();
 			for (Part part : parts) {
-				if (part.getName().equals("memImg") && getFileNameFromPart(part) != null) {
+				if (part.getName().equals("memImg")) {
 					memImg = getPictureByteArrayNoChangeSize(part.getInputStream());
 				}
 				// if (getFileNameFromPart(part) != null &&
@@ -292,7 +308,18 @@ public class Update extends HttpServlet {
 				// }
 			}
 
+			if(memImg!=null){
+				if(memImg.length==0){
+					errorMsgs.add("請上傳照片");
+				}
+			}
+			if(memImg==null){
+				errorMsgs.add("請上傳照片");
+			}
+			fMem.setMemImg(memImg);
+			
 			/****************** 有寵物會執行下方 *****************/
+			Pet fPet=new Pet();
 			String petName = null;
 			String petKind = null;
 			Integer petGender = null;
@@ -303,14 +330,17 @@ public class Update extends HttpServlet {
 				if (petName == null || petName.isEmpty()) {
 					errorMsgs.add("請輸入寵物姓名");
 				}
+				fPet.setPetName(petName);
 
 				petKind = req.getParameter("petKind").trim();
 				if (petKind == null || petKind.isEmpty()) {
 					errorMsgs.add("請輸入寵物類別");
 				}
+				fPet.setPetKind(petKind);
 
 				petGender = Integer.parseInt(req.getParameter("petGender").trim());
-
+				fPet.setPetGender(petGender);
+				
 				for (Part part : parts) {
 					if (part.getName().equals("petImg") && getFileNameFromPart(part) != null
 							&& part.getContentType() != null) {
@@ -321,11 +351,24 @@ public class Update extends HttpServlet {
 						errorMsgs.add("寵物照片格式有誤");
 					}
 				}
+				
+				if(petImg!=null){
+					if(petImg.length==0){
+						errorMsgs.add("請上傳寵物照片");
+					}
+				}
+				if(petImg==null){
+					errorMsgs.add("請上傳寵物照片");
+				}
+				fPet.setPetImg(petImg);
+				
 			}
 
-			if (!errorMsgs.isEmpty()&&!verify) {
-				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/memberInfo.jsp");
+			if (!errorMsgs.isEmpty()||!verify) {
+				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/register.jsp");
 				req.setAttribute("errorMsgs", errorMsgs);
+				req.setAttribute("fMem", fMem);
+				req.setAttribute("fPet", fPet);
 				failureView.forward(req, res);
 				return;// 程式中斷
 			}

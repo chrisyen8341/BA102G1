@@ -17,8 +17,8 @@ public class jdbcUtil_CompositeQuery_DateItem {
 
 		if ("empNo".equals(columnName)||"memGender".equals(columnName)||"petGender".equals(columnName)|| "memNo".equals(columnName)||"memGender".equals(columnName)) // 用於其他
 			aCondition = columnName + "=" + value;
-		else if ("empName".equals(columnName) || "empId".equals(columnName)|| "empName".equals(columnName)
-				|| "empJob".equals(columnName)|| "memId".equals(columnName)|| "memName".equals(columnName)
+		else if ("memSname".equals(columnName) || "empId".equals(columnName)|| "empName".equals(columnName)
+				|| "petName".equals(columnName)|| "memId".equals(columnName)|| "memName".equals(columnName)
 				|| "memEmail".equals(columnName)|| "petKind".equals(columnName)) // 用於varchar
 			aCondition = columnName + " like '%" + value + "%'";
 		else if ("empHireDate".equals(columnName)|| "dateMeetingTime".equals(columnName))                          // 用於Oracle的date

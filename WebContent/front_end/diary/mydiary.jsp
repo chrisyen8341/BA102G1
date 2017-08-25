@@ -114,7 +114,7 @@
 							<input type="hidden" name="action" value="insert">
 							<div class="input-group">
 								<label class="input-group-addon">¤é»x</label>
-								<input type="text" name="dianame" class="form-control" placeholder="Wirte down your title."><br>
+								<input type="text" name="dianame" class="form-control" placeholder="Write down your title."><br>
 							</div>
 							<textarea name="diatext" style="resize:none;height:80px;" class="form-control" placeholder="What's on your mind, ${memSvc.getOneMember(member.getMemNo()).getMemSname()}?"></textarea>
 							<input type="file" class="file" name="diaimg" data-show-upload="false">

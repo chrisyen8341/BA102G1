@@ -239,10 +239,7 @@
 										
 											<br> <input type="hidden" name="action" value="update">
 											<input type="hidden" name="empNo"
-												value="<%=empVO.getEmpNo()%>"> <input type="hidden"
-												name="requestURL"
-												value="<%=request.getParameter("requestURL")%>">
-											<!--接收原送出修改的來源網頁路徑後,再送給Controller準備轉交之用-->
+												value="<%=empVO.getEmpNo()%>">
 											<input type="hidden" name="whichPage"
 												value="<%=request.getParameter("whichPage")%>">
 											<!--用於:istAllEmp.jsp 與 複合查詢 listEmps_ByCompositeQuery.jsp-->

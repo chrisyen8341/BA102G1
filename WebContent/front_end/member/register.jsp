@@ -7,8 +7,12 @@
 <% 
 Member mem=(Member)request.getAttribute("fMem");
 Pet pet=(Pet)request.getAttribute("fPet");
+String fCounty=(String)request.getAttribute("fCounty");
+String fDistrict=(String)request.getAttribute("fDistrict");
 pageContext.setAttribute("mem", mem);
 pageContext.setAttribute("pet", pet);
+pageContext.setAttribute("fCounty", fCounty);
+pageContext.setAttribute("fDistrict", fDistrict);
 %>
 
 <%@ include file="memHead.file"%>
@@ -405,14 +409,18 @@ pageContext.setAttribute("pet", pet);
 				maxDate : '0',
 			});
 
-			$('#twzipcode').addClass("selectpicker");
+
 			
 			$('#twzipcode').twzipcode({
 			    // 依序套用至縣市、鄉鎮市區及郵遞區號框
-			    'css': ['county', 'district', 'zipcode']
+			    'css': ['county', 'district', 'zipcode'],
+		    'countySel': '${fCounty}', 
+		    'districtSel': '${fDistrict}'
 			});
 			
 		});
+		
+
 		
 		var county = $(selector).twzipcode('get', 'county');
 

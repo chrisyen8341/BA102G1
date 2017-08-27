@@ -58,7 +58,7 @@ public class Update extends HttpServlet {
 				/*****************************
 				 * 1.接收請求參數 - 輸入格式的錯誤處理
 				 **********************/
-				//暱稱
+				// 暱稱
 				String memSname = req.getParameter("memSname");
 				if (memSname == null || memSname.trim().isEmpty()) {
 					errorMsgs.add("請填寫暱稱");
@@ -67,8 +67,7 @@ public class Update extends HttpServlet {
 					errorMsgs.add("暱稱長度過長");
 				}
 
-				
-				//姓名
+				// 姓名
 				String memName = req.getParameter("memName");
 				if (memName == null || memName.trim().isEmpty()) {
 					errorMsgs.add("請填寫姓名");
@@ -77,7 +76,7 @@ public class Update extends HttpServlet {
 					errorMsgs.add("姓名長度請勿大於20");
 				}
 
-				//生日
+				// 生日
 				java.sql.Date memBday = null;
 				try {
 					memBday = java.sql.Date.valueOf(req.getParameter("memBday"));
@@ -85,18 +84,18 @@ public class Update extends HttpServlet {
 					errorMsgs.add("日期格式錯誤");
 				}
 				long memBdayInLong = memBday.getTime();
-				long  nowTimeInLong = System.currentTimeMillis();
+				long nowTimeInLong = System.currentTimeMillis();
 				if (nowTimeInLong < memBdayInLong) {
 					errorMsgs.add("生日請誤大於今天");
 				}
-				
-				//手機
+
+				// 手機
 				String memPhone = req.getParameter("memPhone");
 				if (!(memPhone.matches("[09]{2}[0-9]{2}-[0-9]{6}") || memPhone.matches("[09]{2}[0-9]{8}"))) {
 					errorMsgs.add("手機格式錯誤");
 				}
-				
-				//性別
+
+				// 性別
 				Integer memGender = null;
 				try {
 					memGender = Integer.parseInt(req.getParameter("memGender").trim());
@@ -104,8 +103,8 @@ public class Update extends HttpServlet {
 					memGender = 2;
 					errorMsgs.add("請輸入性別");
 				}
-				
-				//感情狀態
+
+				// 感情狀態
 				Integer memRelation = null;
 				try {
 					memRelation = Integer.parseInt(req.getParameter("memRelation").trim());
@@ -114,7 +113,7 @@ public class Update extends HttpServlet {
 					errorMsgs.add("請輸入感情狀態");
 				}
 
-				//Email
+				// Email
 				String memEmail = req.getParameter("memEmail");
 				CrunchifyValidateEmail crunchifyCheck = new CrunchifyValidateEmail();
 				boolean isValidEmail = crunchifyCheck.crunchifyEmailValidator(memEmail);
@@ -123,63 +122,60 @@ public class Update extends HttpServlet {
 				}
 				Member emailMember = memSvc.getMemberByEmail(memEmail);
 				if (emailMember != null) {
-					if (emailMember.getMemNo() != member.getMemNo()) {
+					if (!emailMember.getMemId().equals(member.getMemId())) {
 						errorMsgs.add("此信箱已經有人註冊過，請更換信箱註冊");
+						System.out.println("abc");
 					}
 				}
 				if (memEmail.trim().length() > 100) {
 					errorMsgs.add("信箱長度請勿大於100");
 				}
-				
-				
-				//地址
-				String memAddress = req.getParameter("memAddress");
-				if (memAddress == null || memAddress.trim().isEmpty()) {
-					errorMsgs.add("請輸入正確的地址");
+
+				// 地址
+				String county = req.getParameter("county").trim();
+				System.out.println("縣市: " + county);
+				String district = req.getParameter("district").trim();
+				System.out.println("區: " + district);
+				String memAddress = req.getParameter("memAddress").trim();
+				if (county == null || county.isEmpty()) {
+					errorMsgs.add("請選擇縣市");
+				}
+				if (district == null || district.isEmpty()) {
+					errorMsgs.add("請選擇地址區域");
+				}
+				if (memAddress == null || memAddress.isEmpty()) {
+					errorMsgs.add("請填寫地址");
 				}
 				if (memAddress.trim().length() > 100) {
 					errorMsgs.add("地址長度請勿大於100");
 				}
+				String totalAddress = county + "，" + district + "，" + memAddress;
 
-				//自我介紹
+				// 自我介紹
 				String memSelfintro = req.getParameter("memSelfintro");
 				if (memSelfintro == null || memSelfintro.trim().isEmpty()) {
 					errorMsgs.add("請輸入自我介紹");
 				}
-				if (memSelfintro.trim().length() >600) {
+				if (memSelfintro.trim().length() > 600) {
 					errorMsgs.add("自我介紹長度請勿大於600");
 				}
 
-				
-				Member memberU = new Member();
-				memberU.setMemSname(memSname);
-				memberU.setMemName(memName);
-				memberU.setMemBday(memBday);
-				memberU.setMemPhone(memPhone);
-				memberU.setMemGender(memGender);
-				memberU.setMemRelation(memRelation);
-				memberU.setMemEmail(memEmail);
-				memberU.setMemAddress(memAddress);
-				memberU.setMemSelfintro(memSelfintro);
 				byte[] memImg = member.getMemImg();
 				Collection<Part> parts = req.getParts();
 
 				for (Part part : parts) {
-					if (part.getName().equals("memImg") && getFileNameFromPart(part) != null
-							&& part.getContentType().startsWith("image")) {
-						memImg = getPictureByteArray(part.getInputStream());
-						memberU.setMemImg(memImg);
-					}
-					if (getFileNameFromPart(part) != null && part.getName().equals("memImg")
-							&& !(part.getContentType().startsWith("image"))) {
-						errorMsgs.add("照片格式有誤");
+					if ("memImg".equals(part.getName())&&part.getSize()!=0) {
+						System.out.println("檔案大小:"+part.getSize());
+							memImg = getPictureByteArray(part.getInputStream());
+						if (!(part.getContentType().startsWith("image"))) {
+							errorMsgs.add("照片格式有誤");
+						}
 					}
 				}
 
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher dispatcher = req.getRequestDispatcher("/front_end/member/memberInfoUpdate.jsp");
+					RequestDispatcher dispatcher = req.getRequestDispatcher("/front_end/member/memberInfo.jsp");
 					req.setAttribute("errorMsgs", errorMsgs);
-					req.setAttribute("member", memberU);
 					dispatcher.forward(req, res);
 					return;
 				}
@@ -187,25 +183,32 @@ public class Update extends HttpServlet {
 				/*************************** 2.開始修改資料 *****************************************/
 
 				memSvc.updateMember(member.getMemNo(), member.getMemId(), member.getMemPwd(), memName, memSname,
-						memGender, member.getMemIdNo(), memBday, memPhone, memAddress, memEmail, memImg,
+						memGender, member.getMemIdNo(), memBday, memPhone, totalAddress, memEmail, memImg,
 						member.getMemReported(), member.getMemStatus(), memRelation, memSelfintro,
 						member.getMemFollowed(), member.getMemPoint(), member.getMemSaleRank(),
 						member.getMemLongtitude(), member.getMemLatitude(), member.getMemLocTime(),
 						member.getMemLocStatus());
-				/***************************
+
+				/****************************
 				 * 3.修改完成,準備轉交(Send the Success view)
 				 *************/
 				Integer memNo = member.getMemNo();
 				session.removeAttribute("member");
 				Member newMember = memSvc.getOneMember(memNo);
 				session.setAttribute("member", newMember);
-				res.sendRedirect(req.getContextPath() + "/front_end/member/memberInfo.jsp");
+				RequestDispatcher dispatcher = req.getRequestDispatcher("/front_end/member/memberInfo.jsp");
+				errorMsgs.add("修改資料成功");
+				req.setAttribute("errorMsgs", errorMsgs);
+				dispatcher.forward(req, res);
 			} catch (Exception e) {
-				System.out.println("error");
+				e.printStackTrace();
+				RequestDispatcher dispatcher = req.getRequestDispatcher("/front_end/member/memberInfo.jsp");
+				errorMsgs.add("修改資料失敗");
+				req.setAttribute("errorMsgs", errorMsgs);
+				dispatcher.forward(req, res);
 			}
 		}
 
-		
 		// 修改密碼
 		if ("pwdChange".equals(action)) {
 			List<String> errorMsgs = new LinkedList<String>();
@@ -218,7 +221,7 @@ public class Update extends HttpServlet {
 			if (!memPwd.equals(member.getMemPwd())) {
 				errorMsgs.add("目前的密碼錯誤");
 			}
-			if(memPwd.trim().length()>30){
+			if (memPwd.trim().length() > 30) {
 				errorMsgs.add("目前的密碼過長");
 			}
 
@@ -286,8 +289,8 @@ public class Update extends HttpServlet {
 
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
-			
-			//帳號
+
+			// 帳號
 			String enameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{4,20}$";
 			if (memId == null || memId.isEmpty()) {
 				errorMsgs.add("請填寫帳號");
@@ -304,8 +307,7 @@ public class Update extends HttpServlet {
 			}
 			fMem.setMemId(memId);
 
-			
-			//密碼
+			// 密碼
 			if (memPwd == null || memPwd.isEmpty()) {
 				errorMsgs.add("請填寫密碼");
 			}
@@ -317,8 +319,7 @@ public class Update extends HttpServlet {
 			}
 			fMem.setMemPwd(memPwd);
 
-			
-			//姓名
+			// 姓名
 			if (memName == null || memName.isEmpty()) {
 				errorMsgs.add("請填寫姓名");
 			}
@@ -326,9 +327,8 @@ public class Update extends HttpServlet {
 				errorMsgs.add("姓名長度請勿大於20");
 			}
 			fMem.setMemName(memName);
-			
-			
-			//暱稱
+
+			// 暱稱
 			if (memSname == null || memSname.isEmpty()) {
 				errorMsgs.add("請填寫暱稱");
 			}
@@ -337,8 +337,7 @@ public class Update extends HttpServlet {
 			}
 			fMem.setMemSname(memSname);
 
-			
-			//性別
+			// 性別
 			Integer memGender = null;
 			try {
 				memGender = Integer.parseInt(req.getParameter("memGender").trim());
@@ -348,19 +347,17 @@ public class Update extends HttpServlet {
 			}
 			fMem.setMemGender(memGender);
 
-			
-			//身分證字號
+			// 身分證字號
 			boolean isValidID = isValidIDorRCNumber(memIdNo);
 			if (memIdNo == null || memIdNo.isEmpty()) {
 				errorMsgs.add("請填寫身分證字號");
 			}
-			if (!isValidID||memIdNo.trim().length()>30) {
+			if (!isValidID || memIdNo.trim().length() > 30) {
 				errorMsgs.add("不合格的身分證字號");
 			}
 			fMem.setMemIdNo(memIdNo);
 
-			
-			//生日
+			// 生日
 			java.sql.Date memBday = null;
 			try {
 				memBday = java.sql.Date.valueOf(req.getParameter("memBday").trim());
@@ -370,13 +367,12 @@ public class Update extends HttpServlet {
 			}
 			fMem.setMemBday(memBday);
 			long memBdayInLong = memBday.getTime();
-			long  nowTimeInLong = System.currentTimeMillis();
+			long nowTimeInLong = System.currentTimeMillis();
 			if (nowTimeInLong < memBdayInLong) {
 				errorMsgs.add("生日請誤大於今天");
 			}
 
-			
-			//手機
+			// 手機
 			String phoneRegex1 = "[09]{2}[0-9]{2}-[0-9]{6}";
 			String phoneRegex2 = "[09]{2}[0-9]{8}";
 			if (memPhone == null || memPhone.isEmpty()) {
@@ -387,7 +383,7 @@ public class Update extends HttpServlet {
 			}
 			fMem.setMemPhone(memPhone);
 
-			//地址
+			// 地址
 			if (county == null || county.isEmpty()) {
 				errorMsgs.add("請選擇縣市");
 			}
@@ -397,14 +393,13 @@ public class Update extends HttpServlet {
 			if (memAddress == null || memAddress.isEmpty()) {
 				errorMsgs.add("請填寫地址");
 			}
-			if (memAddress.trim().length() >100) {
+			if (memAddress.trim().length() > 100) {
 				errorMsgs.add("地址長度請勿大於100");
 			}
 			fMem.setMemAddress(memAddress);
+			String totalAddress = county + "," + district + "," + memAddress;
 
-			
-			
-			//信箱
+			// 信箱
 			CrunchifyValidateEmail crunchifyCheck = new CrunchifyValidateEmail();
 			boolean isValidEmail = crunchifyCheck.crunchifyEmailValidator(memEmail);
 			if (memEmail == null || memEmail.isEmpty() || !isValidEmail) {
@@ -419,7 +414,6 @@ public class Update extends HttpServlet {
 			}
 			fMem.setMemEmail(memEmail);
 
-			
 			byte[] memImg = null;
 			Collection<Part> parts = req.getParts();
 			for (Part part : parts) {
@@ -427,7 +421,7 @@ public class Update extends HttpServlet {
 					memImg = getPictureByteArrayNoChangeSize(part.getInputStream());
 					System.out.println(part.getContentType());
 				}
-				if (part.getName().equals("memImg")&&!part.getContentType().startsWith("image")){
+				if (part.getName().equals("memImg") && !part.getContentType().startsWith("image")) {
 					errorMsgs.add("照片上傳格式有誤");
 				}
 				// if (getFileNameFromPart(part) != null &&
@@ -456,7 +450,7 @@ public class Update extends HttpServlet {
 			byte[] petImg = null;
 
 			if (((String) req.getParameter("petOrNot")).equals("1")) {
-				//寵物姓名
+				// 寵物姓名
 				petName = req.getParameter("petName").trim();
 				if (petName == null || petName.isEmpty()) {
 					errorMsgs.add("請輸入寵物姓名");
@@ -466,8 +460,7 @@ public class Update extends HttpServlet {
 				}
 				fPet.setPetName(petName);
 
-				
-				//寵物種類
+				// 寵物種類
 				petKind = req.getParameter("petKind").trim();
 				if (petKind == null || petKind.isEmpty()) {
 					errorMsgs.add("請輸入寵物類別");
@@ -477,12 +470,10 @@ public class Update extends HttpServlet {
 				}
 				fPet.setPetKind(petKind);
 
-				
 				petGender = null;
-				try{
-				petGender = Integer.parseInt(req.getParameter("petGender").trim());
-				}
-				catch(Exception e){
+				try {
+					petGender = Integer.parseInt(req.getParameter("petGender").trim());
+				} catch (Exception e) {
 					errorMsgs.add("請選擇寵物性別");
 				}
 				fPet.setPetGender(petGender);
@@ -512,9 +503,13 @@ public class Update extends HttpServlet {
 
 			if (!errorMsgs.isEmpty() || !verify) {
 				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/register.jsp");
+				String fCounty = county;
+				String fDistrict = district;
 				req.setAttribute("errorMsgs", errorMsgs);
 				req.setAttribute("fMem", fMem);
 				req.setAttribute("fPet", fPet);
+				req.setAttribute("fCounty", fCounty);
+				req.setAttribute("fDistrict", fDistrict);
 				failureView.forward(req, res);
 				return;// 程式中斷
 			}
@@ -523,13 +518,13 @@ public class Update extends HttpServlet {
 
 			// 判斷是否有養寵物
 			if (((String) req.getParameter("petOrNot")).equals("0")) {
-				memSvc.addMember(memId, memPwd, memName, memSname, memGender, memIdNo, memBday, memPhone, memAddress,
+				memSvc.addMember(memId, memPwd, memName, memSname, memGender, memIdNo, memBday, memPhone, totalAddress,
 						memEmail, memImg, 0, 0, 0, "新增點自我介紹吧", 0, 5000, 0, 0.00, 0.00,
 						new Timestamp((new java.util.Date()).getTime()), 0);
 			} else {
 
 				memSvc.addMemberWithPet(memId, memPwd, memName, memSname, memGender, memIdNo, memBday, memPhone,
-						memAddress, memEmail, memImg, 0, 0, 0, "新增點自我介紹吧", 0, 5000, 0, 0.00, 0.00,
+						totalAddress, memEmail, memImg, 0, 0, 0, "新增點自我介紹吧", 0, 5000, 0, 0.00, 0.00,
 						new Timestamp((new java.util.Date()).getTime()), 0, petName, petKind, petGender, "新增寵物的品種吧",
 						"新增點寵物的介紹吧", new Date(2010 - 05 - 02), petImg, 0);
 			}
@@ -597,7 +592,7 @@ public class Update extends HttpServlet {
 			if (search == null || search.trim().isEmpty()) {
 				errorMsgs.add("請填寫搜尋內容");
 			}
-			if(search.trim().length()>30){
+			if (search.trim().length() > 30) {
 				errorMsgs.add("搜尋內容過長");
 			}
 

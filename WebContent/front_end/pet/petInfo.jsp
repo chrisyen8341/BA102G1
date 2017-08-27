@@ -15,7 +15,7 @@
 }
 
 .pet {
-	margin-top: 20px;
+	margin-top: 70px;
 	color:Crimson ;
 }
 
@@ -53,11 +53,10 @@
 
 
 									<c:forEach var="pet" items="${list}" varStatus="s">
-										<div class="pet">
+										<div class="row pet">
 											<div class="col-md-3 col-lg-3 " align="center">
 												<img alt="User Pic" id="petImg"
-													src="<%=request.getContextPath() %>/PetImgReader?petNo=${pet.petNo}" height="350px"
-													width="250px" class="img-circle img-responsive">
+													src="<%=request.getContextPath() %>/PetImgReader?petNo=${pet.petNo}" height="300px" width="300px" class="img-rounded">
 											</div>
 
 											<div class=" col-md-9 col-lg-9 ">
@@ -107,6 +106,26 @@
 											</div>
 										</div>
 									</c:forEach>
+									
+									
+									
+									<c:if test="${not empty errorMsgs}">
+											<font color="red">
+												<ul>
+													<c:forEach var="message" items="${errorMsgs}">
+														<li>${message}</li>
+													</c:forEach>
+												</ul>
+											</font>
+										</c:if>
+									
+									
+									
+									
+									
+									
+									
+									
 									
 									<% 
 									int listSize=list.size();

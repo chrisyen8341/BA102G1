@@ -112,7 +112,7 @@
 </div>
 	<a href="<%=request.getContextPath()%>/front_end/index.jsp">
 		<div class="text-left" id="fixedbutton-talk">
-			<img src="<%=request.getContextPath()%>/front_end/actFiles/33.jpg">
+			<img src="<%=request.getContextPath()%>/front_end/actFiles/33.jpg" >
 		</div>
 	</a>
 						

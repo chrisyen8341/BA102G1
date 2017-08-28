@@ -203,7 +203,7 @@ public class EmpServlet extends HttpServlet {
 				/***************************其他可能的錯誤處理*************************************/
 			} catch (Exception e) {
 				req.setAttribute("empVO", empVO); // 含有輸入格式錯誤的empVO物件,也存入req
-				errorMsgs.add("修改資料失敗:"+e.getMessage());
+				
 				RequestDispatcher failureView = req
 						.getRequestDispatcher("/back_end/emp/update_emp_input.jsp");
 				failureView.forward(req, res);

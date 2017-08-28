@@ -1,8 +1,12 @@
 package com.charge.controller;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -31,85 +35,56 @@ public class chargePage extends HttpServlet {
 		java.sql.Date applyTime = new java.sql.Date(appTime.getTime());
 
 		if (req.getParameter("action").equals("payment")) {
-			List<String> errorMsgs = new LinkedList<String>();
+			Set<String> errorMsgs = new HashSet<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 			
-			try {
+			
 				
-				String carton = req.getParameter("cardone");
-				if(carton==null || (carton.trim()).length() == 0) {
-					errorMsgs.add("�п�J�H�Υd��T");
+				String numbe = req.getParameter("number").trim();
+				String numbe1 = numbe.replaceAll(" ", "");
+				long number = Long.parseLong(numbe1);
+				System.out.println(number);
+				String name = req.getParameter("name");
+				System.out.println(isChineseName(name));
+				
+				
+				String expir = req.getParameter("expiry");
+				String expiry1 = expir.replaceAll("/","");
+				String expiry2 = expiry1.replaceAll(" ","");
+				int expiry = Integer.valueOf(expiry2);
+				System.out.println(expiry);
+				String cvc = req.getParameter("cvc");
+				if(calc(numbe1)%10!=0){
+					errorMsgs.add("請輸入正確資訊");
 				}
-				String cartwo = req.getParameter("cardtwo");
-				if(carton==null || (cartwo.trim()).length() == 0) {
-					errorMsgs.add("�п�J�H�Υd��T");
+				if(!isChineseName(name)){
+					errorMsgs.add("請輸入正確資訊");
 				}
-				String cartth = req.getParameter("cardthree");
-				if(cartth==null || (cartth.trim()).length() == 0) {
-					errorMsgs.add("�п�J�H�Υd��T");
-				}
-				String cartfour = req.getParameter("cardfour");
-				if(cartfour==null || (cartfour.trim()).length() == 0) {
-					errorMsgs.add("�п�J�H�Υd��T");
-				}
-				String valimon = req.getParameter("valimon");
-				if(valimon==null || (valimon.trim()).length() == 0) {
-					errorMsgs.add("�п�J�H�Υd��T");
-				}
-				String valiyear = req.getParameter("valiyear");
-				if(valiyear==null || (valiyear.trim()).length() == 0) {
-					errorMsgs.add("�п�J�H�Υd��T");
-				}
-				String ccv = req.getParameter("ccv");
-				if(ccv==null || (ccv.trim()).length() == 0) {
-					errorMsgs.add("�п�J�H�Υd��T");
-				}
-				String holder = req.getParameter("holder");
-				if(holder==null || (holder.trim()).length() == 0) {
-					errorMsgs.add("�п�J�H�Υd��T");
-				}
-				Integer one = null;
+				Long one = null;
 				try {
-					one = new Integer(carton);
+					one = number;
 				} catch (Exception e) {
-					errorMsgs.add("�s��err1");
+					errorMsgs.add("請輸入正確資訊");
 				}
-				Integer two = null;
+				String two = null;
 				try {
-					two = new Integer(cartwo);
+					two = new String(name);
 				} catch (Exception e) {
-					errorMsgs.add("�s��err1");
+					errorMsgs.add("請輸入正確資訊");
 				}
 				Integer three = null;
 				try {
-					three = new Integer(cartth);
+					three = new Integer(expiry);
 				} catch (Exception e) {
-					errorMsgs.add("�s��err1");
+					errorMsgs.add("請輸入正確資訊");
 				}
-				Integer four = null;
+				Integer ccv = null;
 				try {
-					four = new Integer(cartfour);
+					ccv = new Integer(cvc);
 				} catch (Exception e) {
-					errorMsgs.add("�s��err1");
+					errorMsgs.add("請輸入正確資訊");
 				}
-				Integer mon = null;
-				try {
-					mon = new Integer(valimon);
-				} catch (Exception e) {
-					errorMsgs.add("�s��err1");
-				}
-				Integer year = null;
-				try {
-					year = new Integer(valiyear);
-				} catch (Exception e) {
-					errorMsgs.add("�s��err1");
-				}
-				Integer ccvno = null;
-				try {
-					ccvno = new Integer(ccv);
-				} catch (Exception e) {
-					errorMsgs.add("�s��err1");
-				}
+				
 				
 				if(!errorMsgs.isEmpty()) {
 					RequestDispatcher dispatcher = req.getRequestDispatcher("/front_end/charge/chargePage.jsp");
@@ -138,11 +113,7 @@ public class chargePage extends HttpServlet {
 					rd.forward(req, res);
 				}
 				
-			} 
 			
-			catch (Exception e) {
-				System.out.println("error");
-			}
 			
 			
 		}
@@ -152,5 +123,48 @@ public class chargePage extends HttpServlet {
 
 		doGet(req, res);
 	}
-
+	
+	
+	public static boolean isChineseName(String name) {
+		Pattern pattern = Pattern.compile("^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]){2,5}$");
+		Matcher matcher = pattern.matcher(name);
+		if(matcher.find()){
+		return true;
+		}
+		return false;
+		}
+	public static int calc(String s){  
+        int odd = 0;  
+        int even = 0;  
+        int t = 0;  
+        char[] c = s.toCharArray();  
+        if(c.length%2==0){  // 憒��銝箏�銝�,��洵銝�銝芣隞�撘�憪�絲  
+            for(int i=0;i<c.length;i++){  
+                t = c[i]-'0';  
+                if(i%2!=0){  
+                    odd += t;  
+                }else{       // 蝚砌�銝芣�����  
+                    if(t*2>=10){  
+                        even += t*2-9;  
+                    }else{  
+                        even += t*2;  
+                    }  
+                }  
+            }  
+        }else{       // 憒��銝箏�銝�,��洵銝�銝芣隞�撘�憪�絲  
+            for(int i=0;i<c.length;i++){  
+                t = c[i]-'0';  
+                if(i%2==0){ // 蝚砌�銝芣���憟  
+                    odd += t;  
+                }else{  
+                    if(t*2>=10){  
+                        even += t*2-9;  
+                    }else{  
+                        even += t*2;  
+                    }  
+                }  
+            }  
+        }  
+        return odd+even;    // 餈��雿�餃����雿�餃��  
+    }  
 }

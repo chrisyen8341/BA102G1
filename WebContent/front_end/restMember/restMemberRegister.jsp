@@ -12,7 +12,7 @@
 <html lang="">
 <head>
 <%@ include file="/front_end/actFiles/restFrontCss.file" %>
-<title>Title Page</title>
+<title>Ãdª« You & Me</title>
 <style type="text/css">
 .aa {
 	margin-top: 20px;
@@ -69,15 +69,7 @@
 								</div>
 							</div>
 
-							<div class="form-group">
-								<label class="col-sm-3 control-label">
-									À\ÆU¤¶²Ð
-								</label>
-								<div class="col-sm-9">
-									<input type="text" name="restIntro" class="form-control" value="${param.restIntro}" readonly>
-									
-								</div>
-							</div>
+							
 
 							<div class="form-group">
 								<label class="col-sm-3 control-label">
@@ -134,8 +126,6 @@
 		</div>
 	</div>
 <%@ include file="/front_end/frontEndButtomFixed.file" %>      
-	<script src="https://code.jquery.com/jquery.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
 </body>
 </html>

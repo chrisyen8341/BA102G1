@@ -8,6 +8,7 @@
 <html lang="">
 
 <head>
+<title>Ãdª« You & Me</title>
 <%@ include file="memHead.file"%>
 <STYLE>
 .title {
@@ -15,7 +16,7 @@
 }
 
 .pet {
-	margin-top: 20px;
+	margin-top: 70px;
 	color:Crimson ;
 }
 
@@ -53,11 +54,10 @@
 
 
 									<c:forEach var="pet" items="${list}" varStatus="s">
-										<div class="pet">
+										<div class="row pet">
 											<div class="col-md-3 col-lg-3 " align="center">
 												<img alt="User Pic" id="petImg"
-													src="<%=request.getContextPath() %>/PetImgReader?petNo=${pet.petNo}" height="350px"
-													width="250px" class="img-circle img-responsive">
+													src="<%=request.getContextPath() %>/PetImgReader?petNo=${pet.petNo}" width="100%" class="img-rounded">
 											</div>
 
 											<div class=" col-md-9 col-lg-9 ">
@@ -108,6 +108,26 @@
 										</div>
 									</c:forEach>
 									
+									
+									
+									<c:if test="${not empty errorMsgs}">
+											<font color="red">
+												<ul>
+													<c:forEach var="message" items="${errorMsgs}">
+														<li>${message}</li>
+													</c:forEach>
+												</ul>
+											</font>
+										</c:if>
+									
+									
+									
+									
+									
+									
+									
+									
+									
 									<% 
 									int listSize=list.size();
 									pageContext.setAttribute("listSize", listSize);
@@ -134,10 +154,22 @@
 				
 			</div>
 		</div>
+		
+				<script>
+			$(function() {
+
+				var cw = $('#petImg').width();
+				$('#petImg').css({'height':cw+'px'});
+				console.log(cw);
+				
+
+				
+			});
+		</script>
+		
+		
 		<%@ include file="/front_end/frontEndButtom.file"%>
-		<script src="https://code.jquery.com/jquery.js"></script>
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </body>
 
 </html>

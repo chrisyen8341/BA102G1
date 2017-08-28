@@ -4,7 +4,7 @@
 <html lang="">
 <head>
 
-<title>Title Page</title>
+<title>Ãdª« You & Me</title>
 <style type="text/css">
 .aa{
 	margin-left: 40%
@@ -17,7 +17,7 @@
 }
 </style>
 <%@ include file="/front_end/actFiles/restFrontCss.file" %>	
-</head>
+</head> 
 <body>
 <%@ include file="/front_end/actFiles/restMemberNavBar2.file" %>
 	<div class="container">

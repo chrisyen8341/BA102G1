@@ -12,7 +12,7 @@
 
 <head>
 <%@ include file="memHead.file"%>
-<title>寵物You&amp;Me</title>
+<title>寵物 You & Me</title>
 <script>
 	//照片上傳預覽
 	$(function() {
@@ -27,6 +27,9 @@
 				var reader = new FileReader();
 				reader.onload = function(e) {
 					$('#petPic').attr('src', e.target.result);
+					var cw = $('#petPic').width();
+					$('#petPic').css({'height':cw+'px'});
+					console.log(cw);
 				}
 				reader.readAsDataURL(input.files[0]);
 			}
@@ -89,9 +92,10 @@
 									<form method="post" action="<%=request.getContextPath() %>/front_end/pet/pet.do" enctype="multipart/form-data">
 										<div class="col-md-3 col-lg-3 " align="center">
 											<img alt="User Pic" id="petPic"
-												src="<%=request.getContextPath() %>/PetImgReader?petNo=${pet.petNo}" height="350px"
-												width="250px" class="img-circle img-responsive"> <input
-												type="file" name="petImg" id="petImg" placeholder="編輯相片" />
+												src="<%=request.getContextPath() %>/PetImgReader?petNo=${pet.petNo}" width="100%" class="img-rounded"> 
+											<label class="btn btn-default btn-file">
+												<input type="file" name="petImg" id="petImg"/>
+											</label>
 										</div>
 
 

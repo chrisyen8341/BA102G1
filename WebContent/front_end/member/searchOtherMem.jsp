@@ -10,27 +10,10 @@
 <html lang="">
 
 <head>
-
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-<link href="<%=request.getContextPath() %>/front_end/css/bootstrap.css" rel="stylesheet">
-<link href="<%=request.getContextPath() %>/front_end/css/nav.css" rel="stylesheet">
-<link href="<%=request.getContextPath() %>/front_end/css/colorplan.css" rel="stylesheet">
-<link href="<%=request.getContextPath() %>/front_end/css/frontend.css" rel="stylesheet" type="text/css">
-<!-- Custom CSS -->
-<link href="<%=request.getContextPath() %>/front_end/css/modern-business.css" rel="stylesheet">
-<!-- Custom Fonts -->
-<link href="<%=request.getContextPath() %>/front_end/font-awesome/css/font-awesome.css" rel="stylesheet"
-	type="text/css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<!--[if lt IE 9]>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
-            <![endif]-->
-            </script>
+<title>寵物 You & Me</title>
+<%@ include file="memHead.file"%>
 <STYLE>
+
 .title {
 	width: 70px; /* 設定 H1 的樣式*/
 }
@@ -107,9 +90,7 @@
 		</div>
 
 		<%@ include file="/front_end/frontEndButtomFixed.file"%>
-		<script src="https://code.jquery.com/jquery.js"></script>
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 			<script>
 			$(document).ready(function(e){
 			    $('.search-panel .dropdown-menu').find('a').click(function(e) {

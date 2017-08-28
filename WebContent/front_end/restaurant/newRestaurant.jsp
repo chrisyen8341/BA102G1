@@ -12,7 +12,11 @@
 <head>
 
 <%@ include file="/front_end/actFiles/restFrontCss.file" %>
-<title>Title Page</title>
+
+<script
+	src="<%=request.getContextPath()%>/front_end/js/jquery.twzipcode.min.js"></script>
+<title>寵物 You & Me</title>
+
 <style type="text/css">
 .aa {
 	margin-top: 20px;
@@ -22,6 +26,70 @@
 
 
 </style>
+<style>
+ 
+
+
+.select-style {
+    padding: 0;
+    margin: 0;
+    border: 1px solid #ccc;
+    width: 200px;
+    border-radius: 3px;
+    overflow: hidden;
+    background-color: #fff;
+
+    background: #fff url("http://www.scottgood.com/jsg/blog.nsf/images/arrowdown.gif") no-repeat 90% 50%;
+}
+
+.select-style select {
+    padding: 5px 8px;
+    width: 130%;
+    border: none;
+    box-shadow: none;
+    background-color: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+}
+
+.select-style select:focus {
+    outline: none;
+}
+
+
+
+
+
+
+.zipcode {
+	display:none;
+}
+.county {
+    background-color: #4169E1;
+    color: #fff;
+}
+.district {
+    background-color: #008000;
+    color: #fff;
+}
+</style>
+
+
+<style type="text/css">
+	div.inline { float:left; }
+	.clearBoth { clear:both; }
+</style>
+
+<script type="text/javascript">
+	function newRest(){
+		
+		document.getElementById("restName").value="QQ";
+	}
+
+
+</script>
 
 </head>
 <body>
@@ -52,21 +120,33 @@
 									餐廳名稱
 								</label>
 								<div class="col-sm-9">
-									<input type="text" name="restName" class="form-control" 
+									<input type="text" name="restName" id="restName" class="form-control" 
 									value="" placeholder="請輸入餐廳名稱" >
 									
 								</div>
 							</div>
 
 							<div class="form-group">
-								<label class="col-sm-3 control-label">
-									餐廳地址
-								</label>
-								<div class="col-sm-9">
-									<input type="text" name="restAdd" class="form-control" 
-									value="" placeholder="請輸入餐廳地址">
-
-								</div>
+								
+									<label class="col-sm-3 control-label">
+										餐廳地址
+									</label>
+									<div class="col-sm-9">
+										<div id="twzipcode">
+											
+												<div class="select-style inline">
+													<div data-role="county" data-style="Style Name"></div>
+												</div>
+												<div class="select-style inline">
+													<div data-role="district" data-style="Style Name"></div>
+												</div>
+											
+										</div>
+										
+											<input type="text" name="restAdd" class="form-control" 
+											value="" placeholder="請輸入餐廳地址">
+									</div>
+								
 							</div>
 
 							<div class="form-group">
@@ -116,15 +196,30 @@
 						</form>			
 					</div>	
 						
-						
+					<button onclick="newRest()">新增餐廳</button>	
 					
 				</div>
 			</div>
 		</div>
 	</div>
-<%@ include file="/front_end/frontEndButtomFixed.file" %>      
-	<script src="https://code.jquery.com/jquery.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<%@ include file="/front_end/frontEndButtomFixed.file" %>  
+
+		<script>
+			$(function() {
+	
+				
+				$('#twzipcode').twzipcode({
+				    // 依序套用至縣市、鄉鎮市區及郵遞區號框
+				    'css': ['county', 'district', 'zipcode'],
+				});
+				
+			});
+			
+	
+	
+			
+		</script>
+    
+	
 </body>
 </html>

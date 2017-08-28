@@ -2,25 +2,102 @@
 	pageEncoding="BIG5"%>
 <%@ page import="com.member.model.*"%>
 <%@ page import="java.util.HashMap"%>
+<%@ page import="java.util.*"%>
+<%@ page import="com.pet.model.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<%
+	Member mem = (Member) session.getAttribute("member");
+	String address = mem.getMemAddress();
+	String[] addr = address.split("，");
+	String fCounty = addr[0];
+	String fDistrict = addr[1];
+	String fStreet = addr[2];
+	pageContext.setAttribute("fCounty", fCounty);
+	pageContext.setAttribute("fDistrict", fDistrict);
+	pageContext.setAttribute("fStreet", fStreet);
+%>
 
 <html lang="">
 
 <head>
 <%@ include file="memHead.file"%>
+<title>寵物 You & Me</title>
+<script
+	src="<%=request.getContextPath()%>/front_end/js/jquery.twzipcode.min.js"></script>
 
+
+<style>
+.select-style {
+	padding: 0;
+	margin: 0;
+	border: 1px solid #ccc;
+	width: 200px;
+	border-radius: 3px;
+	overflow: hidden;
+	background-color: #fff;
+	background: #fff
+		url("http://www.scottgood.com/jsg/blog.nsf/images/arrowdown.gif")
+		no-repeat 90% 50%;
+}
+
+.select-style select {
+	padding: 5px 8px;
+	width: 130%;
+	border: none;
+	box-shadow: none;
+	background-color: transparent;
+	background-image: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+.select-style select:focus {
+	outline: none;
+}
+
+.zipcode {
+	display: none;
+}
+
+.county {
+	background-color: #4169E1;
+	color: #fff;
+}
+
+.district {
+	background-color: #008000;
+	color: #fff;
+}
+</style>
+
+<style type="text/css">
+div.inline {
+	float: left;
+}
+
+.clearBoth {
+	clear: both;
+}
+</style>
 
 
 </head>
 
 <body>
-	<%@ include file="/front_end/frontEndNavBar.file" %>
+	<%@ include file="/front_end/frontEndNavBar.file"%>
 	<div class="container-fluid">
 		<div class="row">
 
 			<div class="col-xs-12 col-sm-2 postion-left-group ">
-					<%@ include file="memZoneLSide.file" %>
+
+				<%@ include file="memZoneLSide.file"%>
+
 			</div>
+
+
+
 
 			<div class="col-xs-12 col-sm-8 ">
 				<div class="row">
@@ -35,13 +112,18 @@
 								<h3 class="panel-title">${member.memId}</h3>
 							</div>
 							<div class="panel-body">
-								<form method="post" action="<%=request.getContextPath() %>/front_end/member/member.do" enctype="multipart/form-data">
+								<form method="post"
+									action="<%=request.getContextPath()%>/front_end/member/member.do"
+									enctype="multipart/form-data">
 									<div class="row">
 										<div class="col-md-3 col-lg-3 " align="center">
-											<img alt="User Pic" id="memPic" src="<%=request.getContextPath() %>/DBGifReader"
-												height="350px" width="250px"
-												class="img-circle img-responsive"> <input type="file"
-												name="memImg" id="memImg" placeholder="編輯相片" />
+											<img alt="User Pic" id="memPic"
+												src="<%=request.getContextPath()%>/DBGifReader"
+												width="100%" class="img-rounded"> 
+												<label class="btn btn-default btn-file">
+												<input type="file"
+												name="memImg" id="memImg" class="btn" placeholder="編輯相片" />
+												</label>
 										</div>
 
 
@@ -49,28 +131,29 @@
 											<table class="table table-user-information">
 												<tbody>
 													<tr>
-														<td class="title" >暱稱</td>
+														<td class="title">暱稱</td>
 														<td><input type="text" class="form-control"
 															name="memSname" id="memSname" value="${member.memSname}"
-															placeholder="請輸入暱稱" required/></td>
+															placeholder="請輸入暱稱" required /></td>
 													</tr>
 													<tr>
 														<td class="title">姓名</td>
 														<td><input type="text" class="form-control"
 															name="memName" id="memName" value="${member.memName}"
-															placeholder="請輸入您的姓名" required/></td>
+															placeholder="請輸入您的姓名" required /></td>
 													</tr>
 													<tr>
-														<td class="title">生日</td></label>
+														<td class="title">生日</td>
+														</label>
 														<td><input type="text" name="memBday" id="memBday"
 															value="${member.memBday}" class="form-control"
-															placeholder="請輸入您的生日" required/><span id="memBdayShow"></span></td>
+															placeholder="請輸入您的生日" required /><span id="memBdayShow"></span></td>
 													</tr>
 													<tr>
 														<td class="title">手機</td>
 														<td><input type="text" class="form-control"
 															name="memPhone" id="memPhone" value="${member.memPhone}"
-															placeholder="請輸入您的手機" required/><span id="memPhoneShow"></span></td>
+															placeholder="請輸入您的手機" required /><span id="memPhoneShow"></span></td>
 													</tr>
 													<tr>
 														<td class="title">性別</td>
@@ -106,21 +189,46 @@
 														<td class="title">Email</td>
 														<td><input type="text" class="form-control"
 															name="memEmail" id="memEmail" value="${member.memEmail}"
-															placeholder="請輸入您的電子信箱" required/><span id="memEmailShow"></span></td>
+															placeholder="請輸入您的電子信箱" required /><span
+															id="memEmailShow"></span></td>
 													</tr>
-													<td>地址</td>
-													<td><textarea class="form-control" id="memAddress"
-															name="memAddress" placeholder="請輸入您的地址" required>${member.memAddress}</textarea><span id="memAddressShow"></span></td>
+
+
 													<tr>
-														<td class="title">關於我</td> </td>
+														<td>地址</td>
+														<td>
+															<div class="input-group">
+																<!-- 																<span class="input-group-addon"></span> -->
+																<div id="twzipcode">
+
+																	<div class="select-style inline">
+																		<div data-role="county" data-style="Style Name"
+																			data-value="110"></div>
+																	</div>
+																	<div class="select-style inline">
+																		<div data-role="district" data-style="Style Name"
+																			data-value="臺北市"></div>
+																	</div>
+																	<input type="text" class="form-control"
+																		name="memAddress" id="memAddress" placeholder="請輸入地址"
+																		value="${fStreet}" required /> </span>
+																</div>
+															</div>
+														</td>
+													</tr>
+
+													<tr>
+														<td class="title">關於我</td>
+														</td>
 														<td><textarea class="form-control" id="memSelfintro"
-																name="memSelfintro" placeholder="請輸入您的自我介紹" required>${member.memSelfintro}</textarea><span id="memSelfintroShow"></span></td>
+																name="memSelfintro" placeholder="請輸入您的自我介紹" required>${member.memSelfintro}</textarea><span
+															id="memSelfintroShow"></span></td>
 													</tr>
 
 
 												</tbody>
 											</table>
-											<input type="hidden" name="action" value="memUpdate"> 
+											<input type="hidden" name="action" value="memUpdate">
 											<input type="submit" value="修改" class="btn btn-primary">
 											<c:if test="${not empty errorMsgs}">
 												<font color="red">
@@ -140,10 +248,10 @@
 				</div>
 
 
-				
+
 			</div>
 		</div>
-		<%@ include file="/front_end/frontEndButtom.file" %>
+		<%@ include file="/front_end/frontEndButtom.file"%>
 		<script>
 		$(function(){
 			
@@ -220,92 +328,110 @@
 
 						var memEmail = $("#memEmail").val();
 						$.ajax({
-							url: '<%=request.getContextPath() %>/front_end/member/RegisterExit.do',
-							data: {
-								memEmail:$("#memEmail").val(),
-								action :"memEmail"			
-							},
-							success : function(responseText){
-									console.log(responseText);
-									if(responseText.trim() == "抱歉，Email格式不正確"){
-										valids[2]=false;
-										$("#memEmailShow").html(responseText).css('color','red');
-									}
-									else if(responseText.trim() == "抱歉，此Email已經註冊過了"){
-										if($("#memEmail").val()=="${member.memEmail}"){
-											console.log("this is my email");
-											$("#memEmailShow").html("").css('color','green');
-											valids[2]=true;
-										}
-										else{
-											valids[2]=false;
-											$("#memEmailShow").html(responseText).css('color','red');
-										}
-									}
-									else{
-										$("#memEmailShow").html("").css('color','green');
-										valids[2]=true;
-									}	
-								}
-									
-						});
+							url: '<%=request.getContextPath()%>/front_end/member/RegisterExit.do',
+												data : {
+													memEmail : $("#memEmail")
+															.val(),
+													action : "memEmail"
+												},
+												success : function(responseText) {
+													console.log(responseText);
+													if (responseText.trim() == "抱歉，Email格式不正確") {
+														valids[2] = false;
+														$("#memEmailShow")
+																.html(
+																		responseText)
+																.css('color',
+																		'red');
+													} else if (responseText
+															.trim() == "抱歉，此Email已經註冊過了") {
+														if ($("#memEmail")
+																.val() == "${member.memEmail}") {
+															console
+																	.log("this is my email");
+															$("#memEmailShow")
+																	.html("")
+																	.css(
+																			'color',
+																			'green');
+															valids[2] = true;
+														} else {
+															valids[2] = false;
+															$("#memEmailShow")
+																	.html(
+																			responseText)
+																	.css(
+																			'color',
+																			'red');
+														}
+													} else {
+														$("#memEmailShow")
+																.html("")
+																.css('color',
+																		'green');
+														valids[2] = true;
+													}
+												}
 
-					});
+											});
+
+								});
 
 					
-					$("#memImg").change(function() {
-						readURL(this);
-					});
+				$("#memImg").change(function() {
+					readURL(this);
+				});
 
-					function readURL(input) {
+				function readURL(input) {
 
-						if (input.files && input.files[0]) {
-							var reader = new FileReader();
-							reader.onload = function(e) {
-								$('#memPic').attr('src', e.target.result);
-							}
-							reader.readAsDataURL(input.files[0]);
+					if (input.files && input.files[0]) {
+						var reader = new FileReader();
+						reader.onload = function(e) {
+							$('#memPic').attr('src', e.target.result);
+							var cw = $('#memPic').width();
+							$('#memPic').css({'height':cw+'px'});
+							console.log(cw);
 						}
-					};
-					
-					
-					
-					//送出表單時檢察有無未填
-					$('form').submit(function() {
-						
+						reader.readAsDataURL(input.files[0]);
+					}
+				}
+				;
 
-						for (var i = 0; i < valids.length; i++) {
-							if(!valids[i]){
-								return false;
-							}
+				//送出表單時檢察有無未填
+				$('form').submit(function() {
+
+					for (var i = 0; i < valids.length; i++) {
+						if (!valids[i]) {
+							return false;
 						}
+					}
 
-					});
-					
-					
-			
-		});
+				});
+
+			});
 		</script>
-		
-		
-	<script>
-
-		$(function(){
-
-	
-		$("#memBday").datetimepicker({
-		format: 'Y-m-d',
-		 timepicker:false,
-		 maxDate: '0',
-		});
-
-	 
-		});
 
 
-	</script>
-		
+		<script>
+			$(function() {
 
+				$("#memBday").datetimepicker({
+					format : 'Y-m-d',
+					timepicker : false,
+					maxDate : '0',
+				});
+
+				$('#twzipcode').twzipcode({
+					// 依序套用至縣市、鄉鎮市區及郵遞區號框
+					'css' : [ 'county', 'district', 'zipcode' ],
+					'countySel' : '${fCounty}',
+					'districtSel' : '${fDistrict}'
+				});
+				
+
+				
+			});
+		</script>
 </body>
 
 </html>

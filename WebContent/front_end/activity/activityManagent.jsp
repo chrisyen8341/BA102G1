@@ -26,10 +26,12 @@
 %>
 <!DOCTYPE html>
 <html lang="">
-
+<title>寵物 You & Me</title>
+<script src="<%=request.getContextPath() %>/front_end/js/bootstrap.js"></script>
+<script src="<%=request.getContextPath() %>/front_end/js/jquery.js"></script>
 <head>
 
-    <script src="https://code.jquery.com/jquery.js"></script> 	
+    	
     <!--[if lt IE 9]>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -38,16 +40,19 @@
 	 
 	
     <style type="text/css">
+    	.img-bg{
+    	max-width:100%;
+    	}
+    
 			.btn123{
 				margin-top: 10px;
 			}
 			
 	</style>  
 </head>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<body>
+
+<body background="<%=request.getContextPath()%>/front_end/actFiles/465.jpg"  style= background-size:cover;>
+<%@ include file="/front_end/actFiles/restMemberNavBar2.file" %>
 
     <%@ include file="/front_end/actFiles/restMemberNavBar.file" %>
 	<%@ include file="/front_end/actFiles/overflow.file" %>
@@ -55,7 +60,7 @@
 	
     <div class="container-fluid">
         <div class="row">
-        	<%@ include file="/front_end/actFiles/restMemberList.file" %>
+        	<%@ include file="/front_end/actFiles/restMemberList1.file" %>
         <div class="col-xs-12 col-sm-8">       
    
     <div class="panel-group col-sm-offset-2 col-sm-8">
@@ -190,7 +195,8 @@
 											</div>
 							</div>	
 								
-							<div class="col-sm-6">		
+							<div class="col-sm-6">	
+										<div class="row">	
 											<div class="form-group">
 												<label class="col-sm-3 control-label">
 													活動名稱
@@ -199,7 +205,8 @@
 													<input type="text" name="actName" class="form-control" value="${activity.actName }">	
 												</div>
 											</div>
-											
+										</div>
+										<div class="row">	
 											<div class="form-group">
 												<label class="col-sm-3 control-label">
 													活動內容
@@ -208,7 +215,8 @@
 													<textarea name="actContent" rows="3" cols="47" class="overflow form-control" style="resize:none">${activity.actContent }</textarea>	
 												</div>
 											</div>
-											
+										</div>	
+										<div class="row">	
 											<div class="form-group">
 												<label class="col-sm-3 control-label">
 													活動日期
@@ -218,7 +226,8 @@
 															min="<%=actDateMin %>">	
 												</div>
 											</div>
-											
+										</div>
+										<div class="row">	
 											<div class="form-group">
 												<label class="col-sm-3 control-label">
 													報名截止日期
@@ -228,7 +237,8 @@
 													   min="<%=actDateMin %>">	
 												</div>
 											</div>
-											
+										</div>
+										<div class="row">	
 											<div class="form-group">
 												<label class="col-sm-3 control-label">
 													人數上限
@@ -237,7 +247,8 @@
 													<input type="text" name="actULimit" class="form-control" value="${activity.actULimit }">	
 												</div>
 											</div>
-											
+										</div>
+										<div class="row">	
 											<div class="form-group">
 												<label class="col-sm-3 control-label">
 													人數下限
@@ -246,7 +257,8 @@
 													<input type="text" name="actLLimit" class="form-control" value="${activity.actLLimit }">	
 												</div>
 											</div>
-											
+										</div>
+										<div class="row">	
 											<div class="form-group">
 												<label class="col-sm-3 control-label">
 													種類限制
@@ -261,7 +273,8 @@
 													</select>	
 												</div>
 											</div>
-											
+										</div>
+										<div class="row">	
 											<div class="form-group" id="aKindModal" style='display:'>
 												<label class="col-sm-3 control-label">
 													其他寵物種類
@@ -271,7 +284,7 @@
 													value="${activity.actAnotherKind}">	
 												</div>
 											</div>
-
+										</div>
 											
 											<input type="hidden" name="action" value="updateActivity">
 									</div>
@@ -312,8 +325,8 @@
 
     
 <%@ include file="/front_end/frontEndButtomFixed.file" %>        
-   
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ <script src="<%=request.getContextPath() %>/front_end/js/bootstrap.min.js"></script>     
+    
     
 </body>
 

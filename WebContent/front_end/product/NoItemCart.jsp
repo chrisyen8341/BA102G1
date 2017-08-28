@@ -6,7 +6,8 @@
 <%@ page import="com.member.model.*"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=BIG5">
+<script src="<%=request.getContextPath() %>/front_end/js/jquery.js"></script>
+<script src="<%=request.getContextPath() %>/front_end/js/bootstrap.min.js"></script>
 <%@ include file="page4.file"%>
 <style>
  .panel.panel--styled {
@@ -74,20 +75,18 @@ span.glyphicon {
 <%@ include file="page2.file" %>
 		<div class="container">    
 		<div class="row">
-			<div class="col-md-8">				
-				<div class="panel panel-default  panel--styled">
-					<div class="panel-body">
+			<div class="col-md-8" style="margin-left:2cm;margin-top:2cm">				
+				<div class="panel panel-default  panel--styled" >
+					<div class="panel-body" >
 						<div class="col-md-12 panelTop">	
 							<div class="col-md-4">	
 								<img class="img-responsive" src="<%=request.getContextPath() %>/front_end/images/222.jpg" alt=""/>
 							</div>
-							<div class="col-md-8" style="padding-left:4cm;">	
-								<font class="fancy" size="5">你尚未購買商品</font><br>
+							<div class="col-md-8" style="padding-left:4cm;padding-top:2cm;">	
+								<font class="fancy" size="4">你的購物車尚未購買任何商品</font><br>
 								<div style="padding-top:2cm;">
-								<button type="submit" class="btn btn-lg btn-add-to-cart">
-								 <span>
-									<a href="<%=request.getContextPath()%>/front_end/product/BrowseProduct.jsp">回首頁逛逛</a>
-								 </span>
+								<button type="submit" class="btn btn-lg btn-add-to-cart" onclick="window.location.href='<%=request.getContextPath()%>/front_end/product/BrowseProduct.jsp'">
+								回首頁逛逛
 								 </button>
 								 </div>
 							</div>

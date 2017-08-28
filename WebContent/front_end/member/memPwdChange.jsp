@@ -8,7 +8,7 @@
 
 <head>
 <%@ include file="memHead.file"%>
-<title>Title Page</title>
+<title>Ãdª« You & Me</title>
 
 
 <script>
@@ -84,8 +84,7 @@
 										<div class="col-md-3 col-lg-3 " align="center">
 											<img alt="User Pic" id="memPic"
 												src="<%=request.getContextPath()%>/DBGifReader"
-												height="350px" width="250px"
-												class="img-circle img-responsive">
+												width="100%" class="img-rounded">
 										</div>
 
 
@@ -149,9 +148,7 @@
 	</div>
 
 		<%@ include file="/front_end/frontEndButtomFixed.file"%>
-	<script src="https://code.jquery.com/jquery.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </body>
 
 </html>

@@ -19,7 +19,7 @@
 <head>
     <%@ include file="/back_end/actFiles/actBackCss.file" %>
 </head>
-<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
 	<script>
 	$(document).ready(function(){
 		$("tr:even").css("background-color","white");
@@ -137,8 +137,7 @@
 				</div>
 			</div> 
   
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
 </body>
 
 </html>

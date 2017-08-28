@@ -17,11 +17,13 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<title>PetYM</title>
+<title>Ãdª« You & Me</title>
 <!-- Bootstrap Core CSS -->
-<link href="css/main.css" rel="stylesheet">
-<link href="css/bootstrap.css" rel="stylesheet">
 <link href="css/nav.css" rel="stylesheet">
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/main.css" rel="stylesheet">
+
+
 
 <!-- Custom CSS -->
 <!-- Custom Fonts -->
@@ -31,6 +33,12 @@
 
 
 <style>
+
+#imgNav{
+	max-width:30px;
+	position:relative;
+	transform:translateY(-21%) !important;
+}
 
 
 #logo{

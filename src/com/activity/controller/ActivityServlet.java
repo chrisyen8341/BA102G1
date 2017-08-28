@@ -101,20 +101,27 @@ public class ActivityServlet extends HttpServlet {
 			}
 			
 			String actName = req.getParameter("actName");
-			String meg = "^[a-zA-Z0-9_\u4E00-\u9FFF]{0,30}";
+			String meg = "[a-zA-Z0-9_\u4E00-\u9FFF`~!@#$%^&*()+=|{}':;',//[//].<>/?~！@#￥%……&*（）——+|{}【】‘；︰”“’。，、？]{0,30}";
+			System.out.println(meg);
 			
 			if(actName==null || (actName.trim()).length()==0 ){
 				activityError.add("請輸入活動名稱");
 			}
 			else if(!actName.trim().matches(meg)){
-				activityError.add("請輸入中、英文、數字或是_，長度最大為30字");
+				activityError.add("活動名稱請輸入中、英文、數字或是_，長度最大為30字");
 			}
 			
+			
+			
 			String actContent = req.getParameter("actContent");
-			String meg1 = "^[a-zA-Z0-9_\u4E00-\u9FFF]";
+			
 			
 			if(actContent==null||(actContent.trim()).length()==0){
 				activityError.add("請輸入活動內容");
+				
+			}
+			if(actContent.length()>600){
+				activityError.add("長度最大為600字");
 			}
 			
 			

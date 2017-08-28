@@ -27,10 +27,16 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-<title>Title Page</title>
-<script src="https://code.jquery.com/jquery.js"></script>
+<title>Ãdª« You & Me</title>
+<script src="<%=request.getContextPath() %>/front_end/js/bootstrap.js"></script>
+<script src="<%=request.getContextPath() %>/front_end/js/jquery.js"></script>
 
-
+<style type="text/css">
+    	.img-bg{
+    	max-width:100%;
+    	}
+    
+</style> 
 	
 
 <script>
@@ -93,9 +99,7 @@ $(function(){
 	margin-top: 20px;
 }
 </style>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
 <!--[if lt IE 9]>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -108,7 +112,7 @@ $(function(){
 	
 	<div class="container-fluid">
         <div class="row"> 
-        	<%@ include file="/front_end/actFiles/restMemberList.file" %>
+        	<%@ include file="/front_end/actFiles/restMemberList1.file" %>
         <div class="col-xs-12 col-sm-8">       
    
     <div class="panel-group col-sm-offset-2 col-sm-8">
@@ -234,8 +238,7 @@ $(function(){
 		</div>	
 	</div>
 	<%@ include file="/front_end/frontEndButtomFixed.file" %>      	
+	<script src="<%=request.getContextPath() %>/front_end/js/bootstrap.min.js"></script>  
 	
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

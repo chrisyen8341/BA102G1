@@ -4,7 +4,7 @@
 
 <head>
 <%@ include file="memHead.file"%>
-<title>Ãdª«You&amp;Me</title>
+<title>Ãdª« You & Me</title>
 
 <script>
 	$(function() {
@@ -135,12 +135,7 @@
 
 	</div>
 		<%@ include file="/front_end/frontEndButtom.file"%>
-	<!-- /.container -->
-	<!-- jQuery -->
-	<script src="https://code.jquery.com/jquery.js"></script>
-	<!-- Bootstrap Core JavaScript -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<!-- Script to Activate the Carousel -->
+
 
 </body>
 

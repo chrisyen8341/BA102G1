@@ -33,10 +33,10 @@ public class RestaurantServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	
-	protected Double getLongtitude(String restAdd){
+	protected Double getLongtitude(String restRestAdd){
 		Double longtitude = null;
 		try {
-			String sKeyWord = restAdd;
+			String sKeyWord = restRestAdd;
 			
 			URL urlFromGMap  = new URL(String.format("http://maps.googleapis.com/maps/api/geocode/json?address=%s&sensor=false&language=zh-TW", 
 			URLEncoder.encode(sKeyWord, "UTF-8")));//p=%s is KeyWord in	            
@@ -61,10 +61,10 @@ public class RestaurantServlet extends HttpServlet {
 		return longtitude;       
 	}
     
-	protected Double getLatitude(String restAdd){
+	protected Double getLatitude(String restRestAdd){
 		Double latitude = null;
 		try {
-			String sKeyWord = restAdd;
+			String sKeyWord = restRestAdd;
 			
 			URL urlFromGMap  = new URL(String.format("http://maps.googleapis.com/maps/api/geocode/json?address=%s&sensor=false&language=zh-TW", 
 			URLEncoder.encode(sKeyWord, "UTF-8")));//p=%s is KeyWord in	            
@@ -246,10 +246,17 @@ public class RestaurantServlet extends HttpServlet {
 					newRestErr.add("餐廳名稱請勿留空");
 				}
 				
-				String restAdd = req.getParameter("restAdd");
-				if( (restAdd.trim()).length()==0 || restAdd == null ){
+				String county = req.getParameter("county").trim();
+				System.out.println(county);
+				String district = req.getParameter("district").trim();
+				System.out.println(district);
+				String restAddEnd = req.getParameter("restAdd").trim();
+				if( restAddEnd.length()==0 || restAddEnd == null || restAddEnd.isEmpty()){
 					newRestErr.add("餐廳地址有誤或留空");
 				}
+				
+				
+				String restAdd = county+district+restAddEnd;
 				
 				String restPhone = req.getParameter("restPhone");
 				if( (restPhone.trim()).length()==0 || restPhone == null){

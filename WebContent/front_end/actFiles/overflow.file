@@ -6,6 +6,12 @@
 		width:300px;
 	}
 	
+	
+   
+    
+	
+	
+	
 	.overflow{
 		
 		text-overflow: ellipsis;

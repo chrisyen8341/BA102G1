@@ -3,7 +3,9 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.product.model.*"%>
 
-
+<%
+List<Product> searchProd = (ArrayList<Product>)session.getAttribute("searchProd");
+%>
 <html>
 <head>
 <script src="<%=request.getContextPath() %>/front_end/js/jquery.js"></script>
@@ -210,6 +212,42 @@ body {
 </style>
 </head>
 <body>
+
+<%@ include file="indexNavBar.file"%>
+	
+	
+     <%  int rowsPerPage = 6;  //每頁的筆數    
+    int rowNumber=0;      //總筆數
+    int pageNumber=0;     //總頁數      
+    int whichPage=1;      //第幾頁
+    int pageIndexArray[]=null;
+    int pageIndex=0; 
+%>
+
+<%  
+    rowNumber=searchProd.size();
+    if (rowNumber%rowsPerPage !=0)
+     pageNumber=rowNumber/rowsPerPage +1;
+    else pageNumber=rowNumber/rowsPerPage;    
+
+    pageIndexArray=new int[pageNumber]; 
+    for (int i=1 ; i<=pageIndexArray.length ; i++)
+    pageIndexArray[i-1]=i*rowsPerPage-rowsPerPage;
+%>
+
+<%  try {
+      whichPage = Integer.parseInt(request.getParameter("whichPage"));
+      pageIndex=pageIndexArray[whichPage-1];
+    } catch (NumberFormatException e) { //第一次執行的時候
+       whichPage=1;
+       pageIndex=0;
+    } catch (ArrayIndexOutOfBoundsException e) { //總頁數之外的錯誤頁數
+         if (pageNumber>0){
+              whichPage=pageNumber;
+              pageIndex=pageIndexArray[pageNumber-1];
+         }
+    } 
+%>
 <%@ include file="/front_end/frontEndNavBar.file" %>
 <%@ include file="page2.file"%>
 	<a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a>
@@ -234,7 +272,7 @@ body {
       <div class="row" style="padding-left:4cm">
       
       </div>
-      <c:forEach var="product" items="${searchProd}">
+      <c:forEach var="product" items="${searchProd}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 		<c:if test="${product.prodState == 0}">
 		<div class="promo-flex col-sm-4" style="color: rgba(0, 0, 0, .4);">
         <div data-ix="blog-card" class="w-clearfix w-preserve-3d promo-card" >
@@ -272,7 +310,12 @@ body {
         
         
         <div class="row">
-        
+        <div>
+                <div class="text-center">
+                    <%@ include file="pageCount2.file"%>
+                </div>
+                
+            </div>
         </div>
         
         <%@ include file="/front_end/frontEndButtom.file" %>

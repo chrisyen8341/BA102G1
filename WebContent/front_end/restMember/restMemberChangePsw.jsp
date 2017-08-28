@@ -22,8 +22,12 @@
 .aa {
 	margin-top: 20px;
 }
+.img-bg{
+	max-width:100%;
+}
 
-
+    
+	</style> 
 
 
 </style>

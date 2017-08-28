@@ -20,6 +20,11 @@
 	margin-top: 20px;
 }
 
+    	.img-bg{
+    	max-width:100%;
+    	}
+    
+
 
 
 

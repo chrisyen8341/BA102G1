@@ -31,7 +31,12 @@
 <script src="<%=request.getContextPath() %>/front_end/js/bootstrap.js"></script>
 <script src="<%=request.getContextPath() %>/front_end/js/jquery.js"></script>
 
-
+<style type="text/css">
+    	.img-bg{
+    	max-width:100%;
+    	}
+    
+</style> 
 	
 
 <script>

@@ -28,10 +28,17 @@
 #memIdShow {
    color: red;
 }
+
+#beforePage{
+	position:absolute;
+	top:700px;
+	left:50px;
+}
+
 </style>
 
 </head>
-<body background="<%=request.getContextPath()%>/front_end/actFiles/77.jpg"  style= margin:0px;padding:0px;background-size:cover;>
+<body background="<%=request.getContextPath()%>/front_end/actFiles/465.jpg"  style= margin:0px;padding:0px;background-size:cover;>
 <%@ include file="/front_end/actFiles/restMemberNavBar2.file" %>
 
 	
@@ -111,7 +118,7 @@
 	</div>
 </div>
 	<a href="<%=request.getContextPath()%>/front_end/index.jsp">
-		<div class="text-left" id="fixedbutton-talk">
+		<div class="text-left" id="beforePage">
 			<img src="<%=request.getContextPath()%>/front_end/actFiles/33.jpg" >
 		</div>
 	</a>

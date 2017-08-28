@@ -27,6 +27,8 @@
 
 </style>
 <style>
+ 
+
 
 .select-style {
     padding: 0;
@@ -79,6 +81,16 @@
 	div.inline { float:left; }
 	.clearBoth { clear:both; }
 </style>
+
+<script type="text/javascript">
+	function newRest(){
+		
+		document.getElementById("restName").value="QQ";
+	}
+
+
+</script>
+
 </head>
 <body>
 	<%@ include file="/front_end/actFiles/restMemberNavBar2.file" %>
@@ -108,7 +120,7 @@
 									餐廳名稱
 								</label>
 								<div class="col-sm-9">
-									<input type="text" name="restName" class="form-control" 
+									<input type="text" name="restName" id="restName" class="form-control" 
 									value="" placeholder="請輸入餐廳名稱" >
 									
 								</div>
@@ -184,7 +196,7 @@
 						</form>			
 					</div>	
 						
-						
+					<button onclick="newRest()">新增餐廳</button>	
 					
 				</div>
 			</div>

@@ -40,6 +40,10 @@
 	 
 	
     <style type="text/css">
+    	.img-bg{
+    	max-width:100%;
+    	}
+    
 			.btn123{
 				margin-top: 10px;
 			}
@@ -47,7 +51,8 @@
 	</style>  
 </head>
 
-<body>
+<body background="<%=request.getContextPath()%>/front_end/actFiles/465.jpg"  style= background-size:cover;>
+<%@ include file="/front_end/actFiles/restMemberNavBar2.file" %>
 
     <%@ include file="/front_end/actFiles/restMemberNavBar.file" %>
 	<%@ include file="/front_end/actFiles/overflow.file" %>

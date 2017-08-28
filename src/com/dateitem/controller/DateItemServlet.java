@@ -420,7 +420,7 @@ public class DateItemServlet extends HttpServlet {
 				int dateItemStatus = 0 ;
 				int dateItemShow = 0;
 				int dateItemViewer = 0;
-				int buyerNo = 5010 ;
+				int buyerNo = 5100 ;
 				boolean isQRCChecked = false;
 				int buyerRep = 0 ;
 				int sellerRep = 0 ;

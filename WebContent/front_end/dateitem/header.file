@@ -15,7 +15,8 @@
 <link href="<%=request.getContextPath() %>/front_end/css/frontend.css" rel="stylesheet" type="text/css">
 <link href="<%=request.getContextPath() %>/front_end/css/itemdetail.css" rel="stylesheet" type="text/css">
  <link href="<%=request.getContextPath() %>/front_end/css/chat.css" rel="stylesheet" type="text/css"> 
-<link href="<%=request.getContextPath() %>/front_end/css/nav.css" rel="stylesheet" type="text/css"> 
+<link href="<%=request.getContextPath() %>/front_end/css/nav.css" rel="stylesheet" type="text/css">\
+<link href="<%=request.getContextPath() %>/front_end/css/modern-business.css" rel="stylesheet" type="text/css">  
 
 
 <link href="<%=request.getContextPath() %>/front_end/font-awesome/css/font-awesome.css" rel="stylesheet"

@@ -81,6 +81,8 @@ public class OrderInsert extends HttpServlet {
 		}
 			OrdService ordSvc=new  OrdService();
 			ordSvc.insertWithOrderLists(ord, list);
+			session.removeAttribute("qtyMap");
+			session.removeAttribute("shoppingcart");
 			RequestDispatcher rd = req.getRequestDispatcher(url);
 			rd.forward(req, res);
 		}

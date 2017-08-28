@@ -10,7 +10,8 @@
 %>
 <html>
 <head>
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<script src="<%=request.getContextPath() %>/front_end/js/jquery.js"></script>
+<script src="<%=request.getContextPath() %>/front_end/js/bootstrap.min.js"></script>
 <%@ include file="page4.file"%>
 <script>
 $(document).ready(function(){
@@ -247,7 +248,7 @@ body {
         <img style="width:200px;height:150px;margin-left:1cm;" width="100%" src="http://localhost:8081/ChrisAll/ProductImage?prodno=${product.prodNo}">
         
           <div class="blog-bar color-pink"></div>
-          <div class="blog-post-text">
+          <div class="blog-post-text" style="width:180px;height:40px;">
             ${product.prodName}
             
           </div>

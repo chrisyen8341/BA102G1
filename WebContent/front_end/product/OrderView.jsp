@@ -24,6 +24,8 @@
 
 <html>
 <head>
+<script src="<%=request.getContextPath() %>/front_end/js/jquery.js"></script>
+<script src="<%=request.getContextPath() %>/front_end/js/bootstrap.min.js"></script>
 <%@ include file="page4.file"%>
 </head>
 <body>
@@ -34,7 +36,7 @@
 		<tr>
 			
 			<th>訂單日期</th>
-			<th>訂單運費</th>
+			
 			<th>訂單金額</th>
 			<th>會員姓名</th>
 			<th>訂單狀態</th>
@@ -44,7 +46,7 @@
 			<tr>
 				
 				<td><span>${ordAll.ordDate}</span></td>
-				<td><span>${ordAll.ordShip}</span></td>
+				
 				<td><span>${ordAll.ordTotal}</span></td>
 				<td><span>${ordAll.conName}</span></td>
 				

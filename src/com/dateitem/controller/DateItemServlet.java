@@ -200,6 +200,10 @@ public class DateItemServlet extends HttpServlet {
 				LetterService lSvc = new LetterService();
 				lSvc.addLtrOfDateBeBought(dateItemVO);
 				lSvc.addLtrOfBuyDateItemSucess(dateItemVO);
+				MemberService mSvc = new MemberService();
+				int currentPoint = mSvc.getOneMember(buyerNo).getMemPoint();
+				member.setMemPoint(currentPoint-dateItemVO.getDateItemPrice());
+				session.setAttribute("member", member);
 				}else{
 					req.setAttribute("itemNotFound", dateItemVO);
 					String url = "/front_end/dateitem/list_buyer_future.jsp";

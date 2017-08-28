@@ -130,7 +130,7 @@ public class EmpServlet extends HttpServlet {
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 			Emp empVO=null;
-//			
+			
 		
 			try {
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
@@ -178,34 +178,27 @@ public class EmpServlet extends HttpServlet {
 					failureView.forward(req, res);
 					return; //程式中斷
 				}
-				
+
 				/***************************2.開始修改資料*****************************************/
 				EmpService empSvc = new EmpService();
 				Emp empc=empSvc.getOneEmp(empNo);
 				empVO = empSvc.updateEmpWithAuth(empNo, empName, empJob, empc.getEmpId(), empc.getEmpPwd(),empc.getEmpPwdSalt(), 0, empHireDate, empEmail, empAuthNos);
-						
+
 						
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/				
 
 				
-				if(requestURL.equals("/emp/listEmps_ByCompositeQuery.jsp")){
-					HttpSession session = req.getSession();
-					Map<String, String[]> map = (Map<String, String[]>)session.getAttribute("map");
-					List<Emp> list  = empSvc.getAll(map);
-					req.setAttribute("listEmps_ByCompositeQuery",list); //  複合查詢, 資料庫取出的list物件,存入request
-				}
-                
-				req.setAttribute("empVO", empVO); // 含有輸入格式錯誤的empVO物件,也存入req
-				String url = requestURL;
-				RequestDispatcher successView = req.getRequestDispatcher(url);   // 修改成功後,轉交回送出修改的來源網頁
+
+				req.setAttribute("auth", empAuthNos); // 含有輸入格式錯誤的empVO物件,也存入req
+				req.setAttribute("empVO", empVO);
+				RequestDispatcher successView = req.getRequestDispatcher("/back_end/emp/update_emp_input.jsp");   // 修改成功後,轉交回送出修改的來源網頁
 				successView.forward(req, res);
- 
+				
 				/***************************其他可能的錯誤處理*************************************/
 			} catch (Exception e) {
 				req.setAttribute("empVO", empVO); // 含有輸入格式錯誤的empVO物件,也存入req
-				
-				RequestDispatcher failureView = req
-						.getRequestDispatcher("/back_end/emp/update_emp_input.jsp");
+				errorMsgs.add("修改資料失敗:"+e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/emp/update_emp_input.jsp");
 				failureView.forward(req, res);
 			}
 		}

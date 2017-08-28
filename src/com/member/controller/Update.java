@@ -280,6 +280,7 @@ public class Update extends HttpServlet {
 			String district = req.getParameter("district").trim();
 			System.out.println("°Ï: " + district);
 			String memAddress = req.getParameter("memAddress").trim();
+			System.out.println("µó¦W: " + memAddress);
 			String memEmail = req.getParameter("memEmail").trim();
 			String gRecaptchaResponse = req.getParameter("g-recaptcha-response");
 

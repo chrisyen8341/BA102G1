@@ -30,6 +30,7 @@ public class OrderInsert extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	String url = "/front_end/product/OrderView.jsp";
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
 		HttpSession session = req.getSession();
 		Member mem=(Member)session.getAttribute("member");
 		OrdService dao = new OrdService();
@@ -41,6 +42,15 @@ public class OrderInsert extends HttpServlet {
 		Vector<Product> buylist = (Vector<Product>) session.getAttribute("shoppingcart");
 		java.util.Date appTime = new java.util.Date();
 		java.sql.Date applyTime = new java.sql.Date(appTime.getTime());
+		String county = req.getParameter("county").trim();
+		System.out.println("¿¤¥«: " + county);
+		String district = req.getParameter("district").trim();
+		System.out.println("°Ï: " + district);
+		String memAddress = req.getParameter("memAddress").trim();
+		System.out.println("µó¦W: " + memAddress);
+		String totalAddress = county + district + memAddress;
+		System.out.println("¦a§}: " + totalAddress);
+		
 		
 		//§PÂ_Àx­Èª÷ÃB¬O§_¨¬°÷
 		

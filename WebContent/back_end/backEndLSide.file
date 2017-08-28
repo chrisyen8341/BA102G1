@@ -61,8 +61,8 @@
 									data-target="#sm4" data-parent="#menu">檢舉申訴管理 <span
 									class="glyphicon glyphicon-triangle-bottom pull-right"></span></a>
 								<div id="sm4" class="sublinks collapse">
-									<a href="<%=request.getContextPath()%>/back_end/apprec/index_report.jsp" class="list-group-item small"> 約會商品檢舉管理</a> <a
-										href="<%=request.getContextPath()%>/back_end/apprec/index_appeal.jsp" class="list-group-item small"> 約會商品申訴管理</a>
+									<a href="<%=request.getContextPath()%>/back_end/apprec/index_report.jsp" class="list-group-item small"> 約會商品檢舉管理</a> 
+									<a href="<%=request.getContextPath()%>/back_end/apprec/index_appeal.jsp" class="list-group-item small"> 約會商品申訴管理</a>
 								</div>
 							</c:if>
 

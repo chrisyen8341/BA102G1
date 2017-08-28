@@ -16,7 +16,7 @@
 <html>
 <%@ include file="/front_end/actFiles/restFrontCss.file" %>
 <head>
-<title>À\ÆU¤@Äýªí</title>
+<title>Ãdª« You & Me</title>
 </head>
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 	<script>

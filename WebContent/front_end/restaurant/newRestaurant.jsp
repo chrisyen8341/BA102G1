@@ -12,12 +12,10 @@
 <head>
 
 <%@ include file="/front_end/actFiles/restFrontCss.file" %>
-<script src="https://code.jquery.com/jquery.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <script
 	src="<%=request.getContextPath()%>/front_end/js/jquery.twzipcode.min.js"></script>
-<title>Title Page</title>
+<title>Ãdª« You & Me</title>
 
 <style type="text/css">
 .aa {

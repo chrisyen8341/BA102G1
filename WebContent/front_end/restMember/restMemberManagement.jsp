@@ -14,7 +14,7 @@
 <html lang="">
 <head>
 
-<title>Title Page</title>
+<title>Ãdª« You & Me</title>
 <style type="text/css">
 .aa {
 	margin-top: 20px;
@@ -24,9 +24,7 @@
 
 
 </style>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
 <!--[if lt IE 9]>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -128,8 +126,6 @@
 		</div>	
 	</div>
 	<%@ include file="/front_end/frontEndButtomFixed.file" %>      	
-	<script src="https://code.jquery.com/jquery.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
 </body>
 </html>

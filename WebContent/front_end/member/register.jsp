@@ -7,13 +7,77 @@
 <% 
 Member mem=(Member)request.getAttribute("fMem");
 Pet pet=(Pet)request.getAttribute("fPet");
+String fCounty=(String)request.getAttribute("fCounty");
+String fDistrict=(String)request.getAttribute("fDistrict");
 pageContext.setAttribute("mem", mem);
 pageContext.setAttribute("pet", pet);
+pageContext.setAttribute("fCounty", fCounty);
+pageContext.setAttribute("fDistrict", fDistrict);
 %>
 
 <%@ include file="memHead.file"%>
 <%@ include file="registerTest.file"%>
 <title>寵物You&amp;Me</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+ <script src="<%=request.getContextPath() %>/front_end/js/jquery.twzipcode.min.js"></script> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script> 
+ 
+ <style>
+
+.select-style {
+    padding: 0;
+    margin: 0;
+    border: 1px solid #ccc;
+    width: 200px;
+    border-radius: 3px;
+    overflow: hidden;
+    background-color: #fff;
+
+    background: #fff url("http://www.scottgood.com/jsg/blog.nsf/images/arrowdown.gif") no-repeat 90% 50%;
+}
+
+.select-style select {
+    padding: 5px 8px;
+    width: 130%;
+    border: none;
+    box-shadow: none;
+    background-color: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+}
+
+.select-style select:focus {
+    outline: none;
+}
+
+
+
+
+
+
+.zipcode {
+	display:none;
+}
+.county {
+    background-color: #4169E1;
+    color: #fff;
+}
+.district {
+    background-color: #008000;
+    color: #fff;
+}
+</style>
+
+
+<style type="text/css">
+	div.inline { float:left; }
+	.clearBoth { clear:both; }
+</style>
+
+
+ 
 </head>
 
 <body>
@@ -42,7 +106,7 @@ pageContext.setAttribute("pet", pet);
 									<span class="input-group-addon"><i class="fa fa-user fa"
 										aria-hidden="true"></i></span> <input type="text"
 										class="form-control" name="memId" id="memId"
-										placeholder="請輸入帳號" value="<%= (mem==null)? "" : mem.getMemId() %>" required />
+										placeholder="帳號長度需大於4" value="<%= (mem==null)? "" : mem.getMemId() %>" required />
 								</div>
 							</div>
 						</div>
@@ -55,7 +119,7 @@ pageContext.setAttribute("pet", pet);
 									<span class="input-group-addon"><i
 										class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
 										type="text" class="form-control" name="memSname" id="memSname"
-										placeholder="請輸入暱稱" value=<%= (mem==null)? "" : mem.getMemSname() %> required />
+										placeholder="請輸入暱稱" value="<%= (mem==null)? "" : mem.getMemSname() %>" required />
 								</div>
 							</div>
 						</div>
@@ -71,7 +135,7 @@ pageContext.setAttribute("pet", pet);
 									<span class="input-group-addon"><i
 										class="fa fa-envelope fa" aria-hidden="true"></i></span> <input
 										type="password" class="form-control" name="memPwd" id="memPwd"
-										placeholder="需包含英文字且長度大於6" value="<%= (mem==null)? "" : mem.getMemPwd() %>" required />
+										placeholder="密碼長度需大於4" value="<%= (mem==null)? "" : mem.getMemPwd() %>" required />
 								</div>
 							</div>
 						</div>
@@ -115,7 +179,7 @@ pageContext.setAttribute("pet", pet);
 									<span class="input-group-addon"><i
 										class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
 										type="text" class="form-control" name="memIdNo" id="memIdNo"
-										placeholder="請輸入身份證字號" value="<%= (mem==null)? "" : mem.getMemId() %>" required />
+										placeholder="請輸入身份證字號" value="<%= (mem==null)? "" : mem.getMemIdNo() %>" required />
 								</div>
 							</div>
 						</div>
@@ -171,8 +235,27 @@ pageContext.setAttribute("pet", pet);
 							<div class="input-group">
 								<span class="input-group-addon"><i
 									class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-								<textarea class="form-control" id="memAddress" name="memAddress"
-									placeholder="請輸入您的地址" required><%= (mem==null)? "" : mem.getMemAddress() %></textarea>
+<!-- 									<div id="twzipcode" class="selectpicker"></div> -->
+									
+									<div id="twzipcode">
+
+									  	<div class="select-style inline">
+									  	<div data-role="county" data-style="Style Name" data-value="110"></div>
+									  	</div>
+									  	<div class="select-style inline">								
+  										<div data-role="district" data-style="Style Name" data-value="臺北市"></div>
+  										</div>
+<!--   										<div data-role="zipcode" data-style="Style Name" data-value="信義區"></div> -->
+										 <input
+										type="text" class="form-control" name="memAddress" id="memAddress"
+										placeholder="請輸入地址" value="<%= (mem==null)? "" : mem.getMemAddress() %>" required />
+										</span> 
+									</div>
+									
+									
+									
+<!-- 								<textarea class="form-control" id="memAddress" name="memAddress" -->
+<%-- 									placeholder="請輸入您的地址" required><%= (mem==null)? "" : mem.getMemAddress() %></textarea> --%>
 							</div>
 						</div>
 					</div>
@@ -277,7 +360,7 @@ pageContext.setAttribute("pet", pet);
 								<li>${message}</li>
 							</c:forEach>
 						</ul>
-					</font>
+					</font>s
 				</c:if>
 
 				<button type="button" class="btn btn-info" id="autoAddMem"
@@ -326,8 +409,26 @@ pageContext.setAttribute("pet", pet);
 				maxDate : '0',
 			});
 
+
+			
+			$('#twzipcode').twzipcode({
+			    // 依序套用至縣市、鄉鎮市區及郵遞區號框
+			    'css': ['county', 'district', 'zipcode'],
+		    'countySel': '${fCounty}', 
+		    'districtSel': '${fDistrict}'
+			});
+			
 		});
+		
+
+		
+		var county = $(selector).twzipcode('get', 'county');
+
+		console.log(county);
+
+		
 	</script>
+		
 
 
 

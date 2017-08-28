@@ -84,8 +84,7 @@
 										<div class="col-md-3 col-lg-3 " align="center">
 											<img alt="User Pic" id="memPic"
 												src="<%=request.getContextPath()%>/DBGifReader"
-												height="350px" width="250px"
-												class="img-circle img-responsive">
+												height="300px" width="300px" class="img-rounded">
 										</div>
 
 

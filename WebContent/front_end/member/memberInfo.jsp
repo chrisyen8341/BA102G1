@@ -3,7 +3,16 @@
 <%@ page import="com.member.model.*"%>
 <%@ page import="java.util.HashMap"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%
+	Member mem = (Member) session.getAttribute("member");
+	String address = mem.getMemAddress();
+	String[] addr = address.split("，");
+	String fCounty = addr[0];
+	String fDistrict = addr[1];
+	String fStreet = addr[2];
+	String memAddr = fCounty + fDistrict + fStreet;
+	pageContext.setAttribute("memAddr", memAddr);
+%>
 <html lang="">
 
 <head>
@@ -28,7 +37,7 @@
 				<div class="row">
 
 
-<h5 class="page-header text-right">目前位置:會員專區</h5>
+					<h5 class="page-header text-right">目前位置:會員專區</h5>
 
 					<div class="row">
 
@@ -39,11 +48,12 @@
 							<div class="panel-body">
 								<div class="row">
 									<div class="col-md-3 col-lg-3 " align="center">
-										<img alt="User Pic" id="memImg" src="<%=request.getContextPath()%>/DBGifReader" height="350px" width="250px"
-											class="img-circle img-responsive">
-<!-- 										<video  autoplay loop muted width="150px" height="200px"> -->
-<%-- 											<source src="<%=request.getContextPath()%>/DBGifReader" type="video/mp4"> --%>
-<!-- 										</video> -->
+										<img alt="User Pic" id="memImg"
+											src="<%=request.getContextPath()%>/DBGifReader"
+											height="300px" width="300px" class="img-rounded">
+										<!-- 										<video  autoplay loop muted width="150px" height="200px"> -->
+										<%-- 											<source src="<%=request.getContextPath()%>/DBGifReader" type="video/mp4"> --%>
+										<!-- 										</video> -->
 									</div>
 
 
@@ -96,7 +106,7 @@
 													<td>${member.memEmail}</td>
 												</tr>
 												<td class="title">地址</td>
-												<td>${member.memAddress}</td>
+												<td>${memAddr}</td>
 												<tr>
 													<td class="title">關於我</td>
 													<td>${member.memSelfintro}</td>
@@ -105,7 +115,15 @@
 
 											</tbody>
 										</table>
-
+										<c:if test="${not empty errorMsgs}">
+											<font color="red">
+												<ul>
+													<c:forEach var="message" items="${errorMsgs}">
+														<li>${message}</li>
+													</c:forEach>
+												</ul>
+											</font>
+										</c:if>
 										<a href="memberInfoUpdate.jsp" class="btn btn-primary">編輯個人資訊</a>
 									</div>
 								</div>
@@ -116,7 +134,7 @@
 				</div>
 
 			</div>
-			
+
 		</div>
 		<%@ include file="/front_end/frontEndButtomFixed.file"%>
 		<script src="https://code.jquery.com/jquery.js"></script>

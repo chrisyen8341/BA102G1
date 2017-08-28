@@ -334,7 +334,7 @@ type="button" class = "btn btn-xs btn-basic pull-left btn-circle" data-toggle="m
             <li> <h2><a href="" style="color:white;">
             ${memSvc.getOneMember(dateitem.sellerNo).getMemSname()} && ${pSvc.getOnePet(dateitem.petNo).getPetName()}
             </a></h2></li>
-            <li>餐廳:${restSvc.getOneRest(dateitem.restListNo).getRestName()} - 所在地:<a href="" class="btn btn-xs btn-basic">看地圖</a></li>
+            <li>餐廳:${restSvc.getOneRest(dateitem.restListNo).getRestName()} </li>
             <li>${dSvc.getTimeForItem(dateitem.dateMeetingTime)}</li>
             <li>參加人數上限:${dateitem.dateItemPeople}人  - 
             	寵物主人攜伴:

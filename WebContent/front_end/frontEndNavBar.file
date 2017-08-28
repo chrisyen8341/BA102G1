@@ -1,5 +1,27 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="BIG5"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="com.member.model.*" %>
+
+<style>
+#imgNav{
+	max-width:30px;
+	position:relative;
+	transform:translateY(-40%);
+}
+</style>
+
+
+<%
+
+if(session.getAttribute("member")!=null){
+Member memberNav = (Member) session.getAttribute("member");
+try{
+String memSnameNav = memberNav.getMemSname();
+pageContext.setAttribute("memSnameNav",memSnameNav);
+}catch(Exception e){};
+}
+
+%>
 		
 <jsp:useBean id="letterSvc" scope="page" class="com.letter.model.LetterService"/>
 	
@@ -15,6 +37,12 @@
 					<a class="navbar-brand" href="<%=request.getContextPath() %>/front_end/index.jsp">PetYM</a>
 
 
+					<c:if test="${member!=null}">
+					<ul class="nav navbar-nav navbar-left"><li class="pull-left"><a href="<%=request.getContextPath()%>/front_end/member/memberInfo.jsp">${memSnameNav}, §A¦n</a></li></ul>
+					<li class="pull-left"><a href="<%=request.getContextPath()%>/front_end/member/memberInfo.jsp"><img class="img-rounded img-responsive" id="imgNav" src="<%=request.getContextPath()%>/front_end/dateitem/ImgReader?sellerNo=${member.getMemNo()}&action=memImg"></a></li>
+					
+					</c:if>
+					
 
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->

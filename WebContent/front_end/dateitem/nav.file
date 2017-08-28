@@ -1,6 +1,16 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="BIG5"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<%
+MemberService mSvcNav = new MerberService();
+if (member==null){
+Member member = (Member) session.getAttribute("member");
+}try{
+int memSnameNav = member.getMemNo();
+}catch(Exception e){};
+}
+%>
+
 <body>
 <nav id="emerald-nav" class="navbar navbar-light navbar-fixed-top"
 		role="navigation">

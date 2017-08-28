@@ -1,5 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="BIG5"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+
+
+
 <nav id="emerald-nav" class="navbar navbar-light navbar-fixed-top"
 		role="navigation">
 		<div class="container-fluid">

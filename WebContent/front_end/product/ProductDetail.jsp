@@ -6,7 +6,10 @@
 
 <html>
 <head>
+<script src="<%=request.getContextPath() %>/front_end/js/jquery.js"></script>
+<script src="<%=request.getContextPath() %>/front_end/js/bootstrap.min.js"></script>
 <%@ include file="page4.file" %>
+
 <title>Insert title here</title>
 <style>
  .panel.panel--styled {
@@ -78,7 +81,7 @@ span.glyphicon {
 				
 				<div class="container">    
 		<div class="row">
-			<div class="col-md-8">				
+			<div class="col-md-8" style="margin-left:2cm;margin-top:2cm">				
 				<div class="panel panel-default  panel--styled">
 					<div class="panel-body">
 						<div class="col-md-12 panelTop">	
@@ -120,7 +123,7 @@ span.glyphicon {
 		</div>
     </div>
         <%@ include file="/front_end/frontEndButtom.file" %>
-        <script src="https://code.jquery.com/jquery.js"></script>
+       <script src="https://code.jquery.com/jquery.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

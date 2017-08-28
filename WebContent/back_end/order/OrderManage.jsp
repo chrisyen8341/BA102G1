@@ -103,7 +103,7 @@
 	<td>${ordList.ordTotal}</td>
 	<td>
 	
-	<input id="changede" type="submit" value="確定修改" >	
+	<input id="changede" type="submit" value="確定修改" class="btn btn-primary">	
 	
 	</td>
 	

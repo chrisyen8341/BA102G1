@@ -28,11 +28,9 @@ pageContext.setAttribute("memSnameNav",memSnameNav);
 			<nav style="background:#024f19;" class="navbar navbar-fixed-top  role="navigation" id="nav">
 			
 				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-1">
+					<button type="button" style="background:#DDD;" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-1">
+					<span class="glyphicon glyphicon-th-list"></span>
 						<span class="sr-only">PetYM</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
 					</button>
 					<a class="navbar-brand" href="<%=request.getContextPath() %>/front_end/index.jsp">PetYM</a>
 

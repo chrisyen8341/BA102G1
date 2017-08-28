@@ -15,17 +15,16 @@
 <!-- Custom Fonts -->
 <link href="<%=request.getContextPath() %>/front_end/font-awesome/css/font-awesome.css" rel="stylesheet"
 	type="text/css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <!--[if lt IE 9]>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
             <![endif]-->
             </script>
- 	<script src="<%=request.getContextPath()%>/front_end/js/jquery.js"></script>
-	<!-- Bootstrap Core JavaScript -->
-	<script
-		src="<%=request.getContextPath()%>/front_end/js/bootstrap.min.js"></script>
-	<!-- Script to Activate the Carousel -->
+ 	
+            
+    <script src="<%=request.getContextPath()%>/front_end/js/jquery.js"></script>
+	<script src="<%=request.getContextPath()%>/front_end/js/bootstrap.js"></script>
+
  
  
  <link href="<%=request.getContextPath() %>/front_end/css/jquery.datetimepicker.css" rel="stylesheet" type="text/css">

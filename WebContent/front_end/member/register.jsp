@@ -17,10 +17,9 @@ pageContext.setAttribute("fDistrict", fDistrict);
 
 <%@ include file="memHead.file"%>
 <%@ include file="registerTest.file"%>
-<title>Ãdª«You&amp;Me</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+<title>Ãdª« You & Me</title>
  <script src="<%=request.getContextPath() %>/front_end/js/jquery.twzipcode.min.js"></script> 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script> 
+
  
  <style>
 

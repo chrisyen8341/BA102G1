@@ -28,6 +28,7 @@
 
 <head>
 
+<title>Ãdª« You & Me</title>
 <%@ include file="memHead.file"%>
 <link
 	href="<%=request.getContextPath()%>/front_end/css/jquery.fancybox.min.css"
@@ -292,7 +293,7 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
 			</div>
 		</div>
 		<%@ include file="/front_end/frontEndButtom.file"%>
-		<script src="https://code.jquery.com/jquery.js"></script>
+
 </body>
 
 </html>

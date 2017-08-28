@@ -118,7 +118,7 @@ div.inline {
 										<div class="col-md-3 col-lg-3 " align="center">
 											<img alt="User Pic" id="memPic"
 												src="<%=request.getContextPath()%>/DBGifReader"
-												height="300px" width="300px" class="img-rounded"> 
+												width="100%" class="img-rounded"> 
 												<label class="btn btn-default btn-file">
 												<input type="file"
 												name="memImg" id="memImg" class="btn" placeholder="½s¿è¬Û¤ù" />
@@ -387,6 +387,9 @@ div.inline {
 						var reader = new FileReader();
 						reader.onload = function(e) {
 							$('#memPic').attr('src', e.target.result);
+							var cw = $('#memPic').width();
+							$('#memPic').css({'height':cw+'px'});
+							console.log(cw);
 						}
 						reader.readAsDataURL(input.files[0]);
 					}
@@ -423,7 +426,9 @@ div.inline {
 					'countySel' : '${fCounty}',
 					'districtSel' : '${fDistrict}'
 				});
+				
 
+				
 			});
 		</script>
 </body>

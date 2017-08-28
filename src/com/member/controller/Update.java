@@ -397,7 +397,7 @@ public class Update extends HttpServlet {
 				errorMsgs.add("地址長度請勿大於100");
 			}
 			fMem.setMemAddress(memAddress);
-			String totalAddress = county + "," + district + "," + memAddress;
+			String totalAddress = county + "，" + district + "，" + memAddress;
 
 			// 信箱
 			CrunchifyValidateEmail crunchifyCheck = new CrunchifyValidateEmail();

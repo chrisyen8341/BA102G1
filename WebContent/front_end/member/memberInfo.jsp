@@ -50,7 +50,7 @@
 									<div class="col-md-3 col-lg-3 " align="center">
 										<img alt="User Pic" id="memImg"
 											src="<%=request.getContextPath()%>/DBGifReader"
-											height="300px" width="300px" class="img-rounded">
+											width="100%" class="img-rounded">
 										<!-- 										<video  autoplay loop muted width="150px" height="200px"> -->
 										<%-- 											<source src="<%=request.getContextPath()%>/DBGifReader" type="video/mp4"> --%>
 										<!-- 										</video> -->

@@ -95,7 +95,7 @@
         
   </div>
         
-        
+        <%@ include file="/front_end/frontEndButtom.file"%>
         
 </body>
 </html>

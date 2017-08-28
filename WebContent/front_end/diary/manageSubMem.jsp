@@ -89,6 +89,9 @@
                      </c:forEach>     
                 </div>
               </div>
+              
+              <%@ include file="/front_end/frontEndButtom.file"%>
+              
              <script>
              function submem(e){
               			var besubmemno = $(e).prev().val();

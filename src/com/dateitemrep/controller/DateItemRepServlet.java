@@ -1,13 +1,17 @@
 package com.dateitemrep.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.json.JSONObject;
 
 import com.appreprec.model.AppRepRecService;
 import com.dateitem.model.DateItemService;
@@ -16,6 +20,9 @@ import com.dateitemrep.model.DateItemRep;
 import com.dateitemrep.model.DateItemRepService;
 import com.letter.model.LetterService;
 import com.member.model.Member;
+import com.member.model.MemberService;
+import com.pet.model.PetService;
+import com.restaurant.model.RestaurantService;
 
 
 public class DateItemRepServlet extends HttpServlet{
@@ -33,7 +40,7 @@ public class DateItemRepServlet extends HttpServlet{
 		req.setCharacterEncoding("utf-8");
 		res.setContentType("text/html; charset=Big5");
 		String action = req.getParameter("action");
-		
+		PrintWriter out = res.getWriter();
 		
 		
 		if("insert".equals(action)){
@@ -107,6 +114,40 @@ public class DateItemRepServlet extends HttpServlet{
 			DateItemRepService dirSvc = new DateItemRepService();
 			DateItemRep dateItemRep = dirSvc.findByPrimaryKey(repNo);
 			dirSvc.updateRep(repNo, dateItemRep.getMemNo(), dateItemRep.getDateItemNo(), dateItemRep.getRepText(), dateItemRep.getRepDate(), 1);
+			
+		}
+		
+		if("getOneDateItem".equals(action)){
+			
+			//-----------呼叫約會商品----------------------
+			Integer dateItemNo = null;
+			dateItemNo = new Integer(req.getParameter("dateItemNo").trim());
+			DateItemService dSvc = new DateItemService();
+			DateItemVO dateItem = dSvc.getOneDateItem(dateItemNo);
+			RestaurantService restSvc = new RestaurantService();
+			PetService pSvc = new PetService();
+			MemberService memSvc = new MemberService();
+			
+//			JSONObject json =new JSONObject(dateItem);
+			
+			String sellerName = memSvc.getOneMember(dateItem.getSellerNo()).getMemName();
+			String petName = pSvc.getOnePet(dateItem.getPetNo()).getPetName();
+			SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String restName = restSvc.getOneRest(dateItem.getRestListNo()).getRestName();
+			String hasMate = null;
+			if(dateItem.getHasMate()==true){
+				hasMate="有";
+			}else{
+				hasMate="沒有";
+			}
+			
+			String json = "{\"dateItemTitle\":\""+dateItem.getDateItemTitle()+"\",\"dateMeetingTime\":\""+sdFormat.format(dateItem.getDateMeetingTime())
+			+"\",\"sellerNo\":\""+dateItem.getSellerNo()+"\",\"sellerName\":\""+sellerName+"\",\"petName\":\""+petName+"\",\"dateItemPeople\":\""+dateItem.getDateItemPeople()
+			+"\",\"dateItemText\":\""+dateItem.getDateItemText()+"\",\"dateItemPrice\":\""+dateItem.getDateItemPrice()+"\",\"restName\":\""+restName+"\",\"hasMate\":\""+hasMate+"\"}";
+			
+			out.println(json);
+			out.close();
+			
 			
 		}
 		

@@ -183,7 +183,7 @@
 		                           <c:if test="${diary.diaImgExtName =='image' }" var="imgformat">
 			                         <img src="<%=request.getContextPath()%>/front_end/diary/ShowImage?diano=${diary.diaNo}" style='height:auto;width:540px;display:${empty diary.diaImg ? "none":""};'></img>
 			                         </c:if>
-			                         <c:if test="${!imgformat }">
+			                         <c:if test="${!imgformat && diary.diaImgExtName =='video'  }">
 			                         <div style="max-height: auto;max-width:540px;" >
 										<video controls style="max-height: 80%;max-width: 80%;">
 											<source src="<%=request.getContextPath() %>/front_end/diary/DiaryVideo?diano=${diary.diaNo}" type="video/mp4" alt="您的瀏覽器不支援此撥放程式!!">

@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-xs-12 col-sm-2 postion-left-group" >
                 <div class="frontend">
-                <img src="<%=request.getContextPath()%>/front_end/images/logo-sp.png" class="img-rounded img-bg try-color">
+                <img src="<%=request.getContextPath()%>/front_end/images/logo-sp.png" class="img-rounded img-bg try-color" style="margin-top:25px;">
                 </div>
                 <div id="menu">
                     <div class="panel list-group list-color">
@@ -38,6 +38,6 @@
                 
 				
 				
-                <h5 class="page-header text-right">目前位置:商城專區</h5>
+                
                 <div class="row">
                     <br>

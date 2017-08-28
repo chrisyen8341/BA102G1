@@ -10,6 +10,8 @@
 
 <html>
 <head>
+<script src="<%=request.getContextPath() %>/front_end/js/jquery.js"></script>
+<script src="<%=request.getContextPath() %>/front_end/js/bootstrap.min.js"></script>
 <%@ include file="page4.file" %>
 </head>
 <body>
@@ -24,27 +26,31 @@
 
 
 <div class="container">
+	 <div style="margin-left:20px;">	
       <h2>確認你的訂單資訊</h2>
+      </div>
+      <div style="margin-top:2cm">
       <form class="col-sm-8" action="<%=request.getContextPath()%>/OrderInsert" method="POST">
         <div class="form-group">
-          <label for="name">name:</label>
+          <label for="name">訂購人姓名:</label>
           <input type="text" class="form-control" id="name" value="<%= mem.getMemName()%>">
         </div>
         <div class="form-group">
-          <label for="addr">Address:</label>
+          <label for="addr">訂購人住址:</label>
           <input type="text" class="form-control" id="addr" value="<%= mem.getMemAddress()%>">
         </div>
         <div class="form-group">
-          <label for="tel">Telephone:</label>
+          <label for="tel">訂購人電話:</label>
           <input type="text" class="form-control" id="tel" value="<%= mem.getMemPhone()%>">
         </div>
         <div class="form-group">
-          <label for="tel">TotalPrice:</label>
+          <label for="tel">訂單總金額:</label>
           <input type="text" class="form-control" id="tel" value="<%= session.getAttribute("amount")%>">
         </div>
         <button type="submit" class="btn btn-default">確定付款</button>
         
       </form>
+      </div>
     </div>
 
 

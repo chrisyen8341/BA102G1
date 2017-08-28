@@ -69,15 +69,7 @@
 								</div>
 							</div>
 
-							<div class="form-group">
-								<label class="col-sm-3 control-label">
-									À\ÆU¤¶²Ð
-								</label>
-								<div class="col-sm-9">
-									<input type="text" name="restIntro" class="form-control" value="${param.restIntro}" readonly>
-									
-								</div>
-							</div>
+							
 
 							<div class="form-group">
 								<label class="col-sm-3 control-label">

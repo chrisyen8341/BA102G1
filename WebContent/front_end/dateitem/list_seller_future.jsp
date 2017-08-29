@@ -120,6 +120,7 @@ pageContext.setAttribute("list",list);
 <div id="modal-cancel" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
+    <form method="post" action="<%=request.getContextPath() %>/front_end/dateitem/dateitem.do?action=cancel_date&fromwho=seller">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">取消約會預定</h4>
@@ -130,9 +131,11 @@ pageContext.setAttribute("list",list);
         <p>若取消次數過多將被暫停取消上架權力~</p>
       </div>
       <div class="modal-footer">
-        <a type="button" class="btn btn-primary" href="<%=request.getContextPath() %>/front_end/dateitem/dateitem.do?action=cancel_date&dateItemNo=${dateitem.dateItemNo}&fromwho=seller">確認取消</a>
+        <input type="submit" class="btn btn-primary" value="確認取消"/>
+        <input type="hidden" name="dateItemNo" value="${dateitem.dateItemNo}"}/>
         <button type="button" class="btn btn-warning" data-dismiss="modal">回上一頁</button>
       </div>
+      </form>
     </div>
 
   </div>

@@ -22,7 +22,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-<title>Title Page</title>
+<title>Ãdª« You & Me</title>
 <link href="<%=request.getContextPath()%>/back_end/css/bootstrap.css" rel="stylesheet">
 <link href="<%=request.getContextPath()%>/back_end/css/nav.css" rel="stylesheet">
 <link href="<%=request.getContextPath()%>/back_end/css/colorplan.css" rel="stylesheet">

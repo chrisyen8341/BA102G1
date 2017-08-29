@@ -107,7 +107,7 @@ div.inline {
 				action="<%=request.getContextPath()%>/OrderInsert" method="POST">
 				<div class="form-group">
 					<label for="name">訂購人姓名:</label> <input type="text"
-						class="form-control" id="name" value="<%=mem.getMemName()%>">
+						class="form-control" id="name" name="name" value="<%=mem.getMemName()%>">
 				</div>
 				<div class="form-group">
 					<label for="addr">訂購人住址:</label>
@@ -129,11 +129,11 @@ div.inline {
 				</div>
 				<div class="form-group">
 					<label for="tel">訂購人電話:</label> <input type="text"
-						class="form-control" id="tel" value="<%=mem.getMemPhone()%>">
+						class="form-control" id="tel" name="tel" value="<%=mem.getMemPhone()%>">
 				</div>
 				<div class="form-group">
 					<label for="tel">訂單總金額:</label> <input type="text"
-						class="form-control" id="tel"
+						class="form-control" id="tel" readonly
 						value="<%=session.getAttribute("amount")%>">
 				</div>
 				<button type="submit" class="btn btn-default">確定付款</button>

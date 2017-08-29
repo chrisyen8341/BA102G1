@@ -8,6 +8,17 @@
 
 <style>
 
+ tilt{
+transition: 1s ease;
+}
+
+.grow img, tilt:hover{
+-webkit-transform: scale(1.3);
+-ms-transform: scale(1.3);
+transform: scale(1.3);
+transition: 1s ease;
+}
+
 @font-face {
     font-family: DJB;
     src: url(../fonts/DJB.ttf);
@@ -268,15 +279,15 @@ float:right;
           <div class="col-sm-4 ">
             <div class="bg-color">
             <div class="card hovercard">
-                <div class="cardheader" style="background-image:url('ImgReader?dateItemNo=${dateitem.dateItemNo}&action=dateImg');">
+                <div class="cardheader tilt2 " style="background-image:url('ImgReader?dateItemNo=${dateitem.dateItemNo}&action=dateImg');">
 
                 <input  type="hidden" value="${dateitem.sellerNo}">
                 <input class="no1" type="hidden" value="${dateitem.dateItemNo}">
 
                 </div>
-                <div class="avatar">
+                <div class="avatar grow">
                 	 <input  type="hidden" value="${dateitem.sellerNo}">
-                    <img class="img1" src="ImgReader?sellerNo=${dateitem.sellerNo}&action=memImg">
+                    <img class="img1 tilt" src="ImgReader?sellerNo=${dateitem.sellerNo}&action=memImg">
                     <input  type="hidden" value="${dateitem.dateItemNo}">
   
                 </div>
@@ -383,6 +394,7 @@ type="button" class = "btn btn-xs btn-basic pull-left btn-circle" data-toggle="m
  <div id="confirm${dateitem.dateItemNo}" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content fortest">
+    
       <div class="modal-header text-center">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">預約約會</h4>
@@ -456,6 +468,46 @@ type="button" class = "btn btn-xs btn-basic pull-left btn-circle" data-toggle="m
 </div> 
 
 <script>
+
+<!--進場動畫-->
+$(document).ready(function () {
+    AnimateRotate();
+    AnimateRotate2();
+});
+
+function AnimateRotate(d){
+
+    $({deg: -25}).animate({deg: 0}, {
+        duration: 500,
+        step: function(now){
+            $('.tilt').css({
+                 transform: "rotate(" + now + "deg)"
+            });
+        }
+    });
+}
+
+function AnimateRotate2(d){
+
+    $({deg: 1}).animate({deg: 0}, {
+        duration: 100,
+        step: function(now){
+            $('.tilt2').css({
+                 transform: "rotate(" + now + "deg)"
+            });
+        }
+    });
+}
+
+
+
+
+
+
+
+
+
+
 <!--檢查儲值 -->
 function goajax(dateItemNo){
 // 		alert(dateItemNo);

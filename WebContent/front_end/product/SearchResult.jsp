@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="BIG5"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.product.model.*"%>
@@ -216,10 +216,10 @@ body {
 <%@ include file="indexNavBar.file"%>
 	
 	
-     <%  int rowsPerPage = 6;  //æ¯é çš„ç­†æ•¸    
-    int rowNumber=0;      //ç¸½ç­†æ•¸
-    int pageNumber=0;     //ç¸½é æ•¸      
-    int whichPage=1;      //ç¬¬å¹¾é 
+     <%  int rowsPerPage = 6;  //¨C­¶ªºµ§¼Æ    
+    int rowNumber=0;      //Á`µ§¼Æ
+    int pageNumber=0;     //Á`­¶¼Æ      
+    int whichPage=1;      //²Ä´X­¶
     int pageIndexArray[]=null;
     int pageIndex=0; 
 %>
@@ -238,10 +238,10 @@ body {
 <%  try {
       whichPage = Integer.parseInt(request.getParameter("whichPage"));
       pageIndex=pageIndexArray[whichPage-1];
-    } catch (NumberFormatException e) { //ç¬¬ä¸€æ¬¡åŸ·è¡Œçš„æ™‚å€™
+    } catch (NumberFormatException e) { //²Ä¤@¦¸°õ¦æªº®É­Ô
        whichPage=1;
        pageIndex=0;
-    } catch (ArrayIndexOutOfBoundsException e) { //ç¸½é æ•¸ä¹‹å¤–çš„éŒ¯èª¤é æ•¸
+    } catch (ArrayIndexOutOfBoundsException e) { //Á`­¶¼Æ¤§¥~ªº¿ù»~­¶¼Æ
          if (pageNumber>0){
               whichPage=pageNumber;
               pageIndex=pageIndexArray[pageNumber-1];
@@ -293,7 +293,7 @@ body {
             	<div class="col-md-6">
             	<form action="<%=request.getContextPath()%>/ShoppingDetail.do" method="POST">
 						
-						<a class="btn cc" ><input style="position:right" type="submit" class="btn btn-primary" value="æŸ¥çœ‹è©³æƒ…"></a> 
+						<a class="btn cc" ><input style="position:right" type="submit" class="btn btn-primary" value="¬d¬Ý¸Ô±¡"></a> 
 						<input type="hidden" name="prodno" value="${product.prodNo}">
 						
 				</form>

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="BIG5"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.product.model.*"%>
@@ -18,6 +18,17 @@
 	OrdService Ord = new OrdService();
 	List<Ord> OrdFk = Ord.getOneOrdByFk(mem.getMemNo());
 	List<Ord> OrdAll = Ord.getAll();
+	for(int i=0;i<OrdFk.size();i++){
+		String address = OrdFk.get(i).getConAdd();
+		
+		String[] addr = address.split("¡A");
+		String fCounty = addr[0];
+		String fDistrict = addr[1];
+		String fStreet = addr[2];
+		String memAddr = fCounty + fDistrict + fStreet;
+		OrdFk.get(i).setConAdd(memAddr);
+		System.out.print(OrdFk.get(i).getConAdd());
+		}
 	session.setAttribute("OrdAll", OrdAll);
 	session.setAttribute("OrdFk", OrdFk);
 %>
@@ -35,41 +46,42 @@
 	<table class="table table-hover" width="200px">
 		<tr>
 			
-			<th>è¨‚å–®æ—¥æœŸ</th>
-			
-			<th>è¨‚å–®é‡‘é¡</th>
-			<th>æœƒå“¡å§“å</th>
-			<th>è¨‚å–®ç‹€æ…‹</th>
+			<th>­q³æ¤é´Á</th>
+			<th>¦¬¥ó¦a§}</th>
+			<th>­q³æª÷ÃB</th>
+			<th>·|­û©m¦W</th>
+			<th>­q³æª¬ºA</th>
 			<th></th>
 		</tr>
-				<c:forEach var="ordAll" items="${OrdFk}">
+				<c:forEach var="ordAll" items="${OrdFk}" varStatus="index">
 			<tr>
 				
 				<td><span>${ordAll.ordDate}</span></td>
 				
+				<td><span>${ordAll.conAdd}</span></td>
 				<td><span>${ordAll.ordTotal}</span></td>
 				<td><span>${ordAll.conName}</span></td>
 				
 				<c:if test="${ordAll.ordStatus ==0}">
-				<td><span>æœªå‡ºè²¨</span></td>
-				<td><input type="submit" class="btn btn-primary" value="å–æ¶ˆè¨‚å–®"></td>
+				<td><span>¥¼¥X³f</span></td>
+				<td><input type="submit" class="btn btn-primary" value="¨ú®ø­q³æ"></td>
 				<input type="hidden" name="ordNo" value="${ordAll.ordNo}">
 				</c:if>
 				<c:if test="${ordAll.ordStatus ==1}">
-				<td><span>æœªå‡ºè²¨</span></td>
-				<td><input type="submit" class="btn btn-primary" value="å–æ¶ˆè¨‚å–®"></td>
+				<td><span>¥¼¥X³f</span></td>
+				<td><input type="submit" class="btn btn-primary" value="¨ú®ø­q³æ"></td>
 				<input type="hidden" name="ordNo" value="${ordAll.ordNo}">
 				</c:if>
 				<c:if test="${ordAll.ordStatus ==2}">
-				<td><span>å·²å‡ºè²¨</span></td>
+				<td><span>¤w¥X³f</span></td>
 				<td></td>
 				</c:if>
 				<c:if test="${ordAll.ordStatus ==3}">
-				<td><span>å·²çµæ¡ˆ</span></td>
+				<td><span>¤wµ²®×</span></td>
 				<td></td>
 				</c:if>
 				<c:if test="${ordAll.ordStatus ==4}">
-				<td><span>è¨‚å–®å–æ¶ˆ</span></td>
+				<td><span>­q³æ¨ú®ø</span></td>
 				<td></td>
 				</c:if>
 			</tr>

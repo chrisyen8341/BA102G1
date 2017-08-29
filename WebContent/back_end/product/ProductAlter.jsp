@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="BIG5"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.product.model.*"%>
@@ -39,44 +39,44 @@ session.setAttribute("prod",prod);
 <div class="row col-xs-10 col-sm-10 ">
 <form action="<%=request.getContextPath() %>/ProductAlter" method="POST" enctype="multipart/form-data" name="form">
 <table class="table table-hover mm" style="background-color:#CCEEFF;">
-<tr><td>å•†å“ç·¨è™Ÿ<br><input type="text" name="proNo" value="<%=proNo%>" class="btn btn-default" required readonly></td></tr>
-<tr><td>å•†å“åç¨±<br><input type="text" size="25" maxlength="15" id="proName" name="proName" class="btn btn-default" value="<%=prod.getProdName() %>" required></td></tr>
-<tr><td>å•†å“æè¿°<br>
+<tr><td>°Ó«~½s¸¹<br><input type="text" name="proNo" value="<%=proNo%>" class="btn btn-default" required readonly></td></tr>
+<tr><td>°Ó«~¦WºÙ<br><input type="text" size="25" maxlength="15" id="proName" name="proName" class="btn btn-default" value="<%=prod.getProdName() %>" required></td></tr>
+<tr><td>°Ó«~´y­z<br>
 			  <div class="form-group">
 				<textarea rows="4" cols="25" name="proDesc" id="proDescpt" maxlength="100" class="form-control" required><%=prod.getProdDescpt() %></textarea>
 			  </div>
 </td></tr>
-<tr><td>å•†å“åƒ¹æ ¼<br><input type="text" name="proPrice" maxlength="7" id="proPrice" value="<%=prod.getProdPrice() %>" class="btn btn-default" required></td></tr>
-<tr><td>å•†å“é¡žåˆ¥<br>
-			<c:if test="${prod.prodType=='å¯µç‰©é£¼æ–™'}">
+<tr><td>°Ó«~»ù®æ<br><input type="text" name="proPrice" maxlength="7" id="proPrice" value="<%=prod.getProdPrice() %>" class="btn btn-default" required></td></tr>
+<tr><td>°Ó«~Ãþ§O<br>
+			<c:if test="${prod.prodType=='Ãdª«¹}®Æ'}">
 				<select name="proType" class="btn btn-default" id="proType"> 
-  					<option value="å¯µç‰©é£¼æ–™" selected>å¯µç‰©é£¼æ–™</option> 
-  					<option value="å¯µç‰©ç”¨å“">å¯µç‰©ç”¨å“</option>
-  					<option value="å…¶ä»–">å…¶ä»–</option>
+  					<option value="Ãdª«¹}®Æ" selected>Ãdª«¹}®Æ</option> 
+  					<option value="Ãdª«¥Î«~">Ãdª«¥Î«~</option>
+  					<option value="¨ä¥L">¨ä¥L</option>
 	 			</select>
 	 		</c:if>
-	 		<c:if test="${prod.prodType=='å¯µç‰©ç”¨å“'}">
+	 		<c:if test="${prod.prodType=='Ãdª«¥Î«~'}">
 				<select name="proType" class="btn btn-default" id="proType"> 
-  					<option value="å¯µç‰©é£¼æ–™" >å¯µç‰©é£¼æ–™</option> 
-  					<option value="å¯µç‰©ç”¨å“" selected>å¯µç‰©ç”¨å“</option>
-  					<option value="å…¶ä»–">å…¶ä»–</option>
+  					<option value="Ãdª«¹}®Æ" >Ãdª«¹}®Æ</option> 
+  					<option value="Ãdª«¥Î«~" selected>Ãdª«¥Î«~</option>
+  					<option value="¨ä¥L">¨ä¥L</option>
 	 			</select>
 	 		</c:if>
-	 		<c:if test="${prod.prodType=='å…¶ä»–'}">
+	 		<c:if test="${prod.prodType=='¨ä¥L'}">
 				<select name="proType" class="btn btn-default" id="proType"> 
-  					<option value="å¯µç‰©é£¼æ–™">å¯µç‰©é£¼æ–™</option> 
-  					<option value="å¯µç‰©ç”¨å“">å¯µç‰©ç”¨å“</option>
-  					<option value="å…¶ä»–" selected>å…¶ä»–</option>
+  					<option value="Ãdª«¹}®Æ">Ãdª«¹}®Æ</option> 
+  					<option value="Ãdª«¥Î«~">Ãdª«¥Î«~</option>
+  					<option value="¨ä¥L" selected>¨ä¥L</option>
 	 			</select>
 	 		</c:if>
 	 		
 </td></tr>
-<tr><td>å•†å“åœ–ç‰‡<input id="input-fa" name="prodimg" type="file" class="file-loading"></td></tr>
+<tr><td>°Ó«~¹Ï¤ù<input id="input-fa" name="prodimg" type="file" class="file-loading"></td></tr>
 <tr><td><div style="padding-left:8cm;">
-<input class="btn btn-info btn-pressure btn-sensitive" type="submit" value="é€å‡ºä¿®æ”¹" >
+<input class="btn btn-info btn-pressure btn-sensitive" type="submit" value="°e¥X­×§ï" >
 
 <button class="btn btn-info btn-pressure btn-sensitive" href="<%=request.getContextPath() %>/back_end/product/productManage.jsp">
-å›žå•†å“é é¢
+¦^°Ó«~­¶­±
 </button>
 <input type="button" value="alter" onclick="alter()" class="btn btn-primary">
 </div>
@@ -103,10 +103,10 @@ $("#input-fa").fileinput({
 	var proDescpt = document.getElementById("proDescpt");
 	var proPrice = document.getElementById("proPrice");
 	var proType = document.getElementById("proType");
-	proName.value="ç„¡ç©€å…¨é½¡ä½Žæ•æŒ‘å˜´é…æ–¹";
-	proDescpt.value="å…¨é½¡éšŽæ®µå…¨çŠ¬ç¨®â—é«˜å„ªè³ªå…¨å¤©ç„¶é®­é­šè‚‰ï¼Œæ»¿è¶³æ„›çŠ¬æŒ‘å‰”çš„å‘³è•¾â—100%ç„¡ç©€é¡žé…æ–¹ï¼Œæœ‰æ•ˆé é˜²éŽæ•â—é«˜å«é‡äºžéº»æ²¹é…¸ï¼Œæœ‰æ•ˆè­·è†šäº®æ¯›";
+	proName.value="µL½\¥þÄÖ§C±Ó¬D¼L°t¤è";
+	proDescpt.value="¥þÄÖ¶¥¬q¥þ¤üºØ¡´°ªÀu½è¥þ¤ÑµMÂD³½¦×¡Aº¡¨¬·R¤ü¬D­çªº¨ýÁ¢¡´100%µL½\Ãþ°t¤è¡A¦³®Ä¹w¨¾¹L±Ó¡´°ª§t¶q¨È³Âªo»Ä¡A¦³®ÄÅ@½§«G¤ò";
 	proPrice.value="2000";
-	proType.value="å¯µç‰©é£¼æ–™";
+	proType.value="Ãdª«¹}®Æ";
 	}
 </script>
 	<script src="https://code.jquery.com/jquery.js"></script>

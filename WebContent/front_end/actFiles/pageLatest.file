@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="BIG5"%>					
 		
 		<%
-			int ShowNumPerPage = 3;//每一頁pagination的li會出現幾個
+			int ShowNumPerPage = 5;//每一頁pagination的li會出現幾個
 			int pagePara = (whichPage-1)/ShowNumPerPage;//找出現在在第幾批1,6,11
 			int pageMax; //一頁要幾個數字頁，用於少於5頁或是最末頁
 			if(pageNumber>ShowNumPerPage){

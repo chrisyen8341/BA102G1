@@ -32,16 +32,17 @@ public class ProdNumChange extends HttpServlet {
 		int amount = 0;
 
 		for(int i=0;i<buylist.size();i++) {
-			
-			
+			System.out.println("以下列印購物車資訊");
+			System.out.println(num[i]);
 			int numNew=Integer.parseInt(num[i]);
 			
 			Product prod = buylist.get(i);
 			String prodName = prod.getProdName();
-			System.out.println(numNew);
 			
-			qtyMap.remove(prodName);
+			
+			
 			qtyMap.put(prodName,numNew);
+			session.setAttribute("qtyMap", qtyMap);
 			Product Newprod = buylist.get(i);
 			
 			String NewProName = Newprod.getProdName();

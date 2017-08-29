@@ -198,7 +198,7 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
 				<%@ include file="memZoneLSide.file"%>
 			</div>
 
-			<div class="col-xs-12 col-sm-8 ">
+			<div class="col-xs-12 col-sm-8 col-md-offset-1">
 				<div class="row">
 
 
@@ -245,18 +245,20 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
 
 
 														<div class="wrimagecard wrimagecard-topimage">
-															<a
-																href="<%=request.getContextPath() %>/front_end/album/aImgShow.jsp?albumNo=${album.albumNo}">
+															<a href="#" onclick="document.getElementById('album${s.index}').submit();">
 
 																<img class="aImg" src="<%=request.getContextPath() %>/front_end/album/AlbumReader.do?albumNo=${album.albumNo}">
 
-																<div class="wrimagecard-topimage_title"
-																	style="background-color: rgba(130, 93, 9, 0.1)">
+																<div class="wrimagecard-topimage_title" style="background-color: rgba(130, 93, 9, 0.1)">
 																	<h4>${album.albumTitle}
 																		<div class="pull-right badge" id="WrThemesIcons"></div>
 																	</h4>
 																</div>
 															</a>
+															<Form  action="<%=request.getContextPath() %>/front_end/album/Album.do" id="album${s.index}"  method="post">
+																<input type="hidden" name="albumNo" value="${album.albumNo}"> 									
+																<input type="hidden" name="action" value="getUserAlbum">
+															</Form>
 														</div>
 
 

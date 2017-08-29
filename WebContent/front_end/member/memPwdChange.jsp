@@ -65,7 +65,7 @@
 				<%@ include file="memZoneLSide.file"%>
 			</div>
 
-			<div class="col-xs-12 col-sm-8 ">
+			<div class="col-xs-12 col-sm-8 col-md-offset-1">
 				<div class="row">
 
 					<h5 class="page-header text-right">目前位置:會員專區</h5>

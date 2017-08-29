@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="BIG5"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 
@@ -23,9 +23,9 @@
 		
 		
 		
-	    <script src="js/card.js"></script>	
+	    <script src="<%=request.getContextPath() %>/front_end/charge/js/card.js"></script>	
 		
-		<link rel="stylesheet" href="css/card.css">
+		<link rel="stylesheet" href="<%=request.getContextPath() %>/front_end/charge/css/card.css">
 		
 		<style>
 		select:invalid { color: gray; }
@@ -52,7 +52,7 @@
 		
 		<div class="container">
 			<!-- Top Navigation -->
-<!-- 			<font size="8" style="margin-left:0px;font-family:DFKai-sb;">PETYMÂÑ≤ÂÄºÈ†ÅÈù¢</font> -->
+<!-- 			<font size="8" style="margin-left:0px;font-family:DFKai-sb;">PETYM¿x≠»≠∂≠±</font> -->
 	<div class="row"  id="show">
 		
         <div class="col-md-4 col-md-offset-3">
@@ -69,16 +69,16 @@
 			        <div class="form-container active" >
 			            <form action="<%=request.getContextPath() %>/chargePage" method="POST">
 			            		 
-			               	 Âç°Ëôü<br><input id="num" placeholder="Card number" maxlength="19" class="btn btn-default" style="margin-left:0px;width:350px;" type="text" name="number" required><br>
-			                                                         ÂßìÂêç<br><input id="name" placeholder="Full name"  class="btn btn-default" style="margin-left:0px;width:350px;" type="text" name="name" value="<%=mem.getMemName() %>" required><br>
-			                                                        ÊúâÊïàÊúüÈôê<br><input id="date" placeholder="MM/YY"  maxlength="7" class="btn btn-default" style="margin-left:0px;width:350px;" type="text" name="expiry" required><br>
-			                CVCÁ¢º<br><input id="cvc" placeholder="CVC" class="btn btn-default" style="margin-left:0px;width:350px;" type="text" name="cvc" required>
+			               	 •d∏π<br><input id="num" placeholder="Card number" maxlength="19" class="btn btn-default" style="margin-left:0px;width:350px;" type="text" name="number" required><br>
+			                                                         ©m¶W<br><input id="name" placeholder="Full name"  class="btn btn-default" style="margin-left:0px;width:350px;" type="text" name="name" value="<%=mem.getMemName() %>" required><br>
+			                                                        ¶≥Æƒ¥¡≠≠<br><input id="date" placeholder="MM/YY"  maxlength="7" class="btn btn-default" style="margin-left:0px;width:350px;" type="text" name="expiry" required><br>
+			                CVCΩX<br><input id="cvc" placeholder="CVC" class="btn btn-default" style="margin-left:0px;width:350px;" type="text" name="cvc" required>
 			               <div class="row">
 			 				  <div class="col-md-6 col-sm-6 col-xs-6 pad-adjust" style="margin-left:0cm;margin-top:5px;width:350px;">
                   			  <input type="hidden" name="action" value="payment"> 
-                  		                    ÂÑ≤ÂÄºÈáëÈ°ç<br>
-                  		      <select name="chargeNum" class="btn btn-default" style="width:350px;" id="chargeNum" name="chargeNum" required placeholder="Ë´ãËº∏ÂÖ•ÈáëÈ°ç">
-                  			  <option value="" disabled selected hidden>Ë´ãÈÅ∏ÊìáÂÑ≤ÂÄºÈáëÈ°ç</option>
+                  		                    ¿x≠»™˜√B<br>
+                  		      <select name="chargeNum" class="btn btn-default" style="width:350px;" id="chargeNum" name="chargeNum" required placeholder="Ω–øÈ§J™˜√B">
+                  			  <option value="" disabled selected hidden>Ω–øÔæ‹¿x≠»™˜√B</option>
                   			  <option value="1000">1000</option>
                   			  <option value="2000">2000</option>
                   			  <option value="5000">5000</option>
@@ -86,7 +86,7 @@
                   			  <option value="100000">100000</option>
                   			  </select>
                   			  <br>
-                  			  <input type="submit" class="btn btn-warning btn-block" style="width:350px;" value="ÊîØ‰ªò" />
+                  			  <input type="submit" class="btn btn-warning btn-block" style="width:350px;" value="§‰•I" />
                   			  
                   			  <input type="button" value="" style="margin-left:0cm;margin-right:0cm;width:1px;"onclick="insert()">
                   			  

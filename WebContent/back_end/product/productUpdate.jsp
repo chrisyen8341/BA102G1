@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="BIG5"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <html>
@@ -46,7 +46,7 @@
 			<thead>
 				<tr style="background-color: #E8CCFF;">
 					
-					<th>輸入上架商品資訊
+					<th>��J�W�[�ӫ~��T
 						<font color="red">
 	   					<c:if test="${not empty errorMsgs}">
           				<%=request.getAttribute("errorMsgs") %>
@@ -58,26 +58,26 @@
 			<tbody>
 			  
 				<tr>
-					<td>商品名稱<input type="text" size="17" maxlength="15" name="proName" id="name"
-						placeholder="請輸入上架商品名稱" required></td>
+					<td>�ӫ~�W��<input type="text" size="17" maxlength="15" name="proName" id="name"
+						placeholder="�п�J�W�[�ӫ~�W��" required></td>
 				</tr>
 				<tr>
-					<td>商品類別<input type="text" size="17" maxlength="4" name="proType" id="type"
-						placeholder="請輸入上架商品類別" required></td>
+					<td>�ӫ~���O<input type="text" size="17" maxlength="4" name="proType" id="type"
+						placeholder="�п�J�W�[�ӫ~���O" required></td>
 				</tr>
 				<tr>
-					<td><div style="padding-top:0px;">商品描述</div><textarea rows="4" cols="25" name="proDescpt" id="descpt" 
-						placeholder="請輸入上架商品描述" required></textarea>
+					<td><div style="padding-top:0px;">�ӫ~�y�z</div><textarea rows="4" cols="25" name="proDescpt" id="descpt" 
+						placeholder="�п�J�W�[�ӫ~�y�z" required></textarea>
 					</td>
 				</tr>
 				<tr>
-					<td>商品價格<input type="text" size="17" maxlength="4" name="proPrice" id="price"
-						placeholder="請輸入上架商品價格" required >
+					<td>�ӫ~����<input type="text" size="17" maxlength="4" name="proPrice" id="price"
+						placeholder="�п�J�W�[�ӫ~����" required >
 						<p id="demo"></p>	
 					</td>
 				</tr>
 				<tr>
-					<td>商品圖片
+					<td>�ӫ~�Ϥ�
 							<label class="control-label">Select File</label>
 							<input id="input-fa" name="prodimg" type="file" multiple class="file-loading">
 							
@@ -89,10 +89,10 @@
 						
 			
 		</table>
-				<input type="submit" class="btn btn-primary" value="新增商品" >
+				<input type="submit" class="btn btn-primary" value="�s�W�ӫ~" >
 				<input type="hidden" name="action"value="addprod">
-				<a href="<%=request.getContextPath()%>/back_end/order/OrderManage.jsp"><input type="button" class="btn btn-primary" value="訂單管理"></a>
-				<a href="<%=request.getContextPath()%>/back_end/product/productManage.jsp"><input type="button" class="btn btn-primary" value="商品管理"></a>  
+				<a href="<%=request.getContextPath()%>/back_end/order/OrderManage.jsp"><input type="button" class="btn btn-primary" value="�q��޲z"></a>
+				<a href="<%=request.getContextPath()%>/back_end/product/productManage.jsp"><input type="button" class="btn btn-primary" value="�ӫ~�޲z"></a>  
 				<input type="button" value="insert" onclick="alter()" class="btn btn-primary">
 			</form>	
 				
@@ -113,10 +113,10 @@ function alter(){
 	var proDescpt = document.getElementById("descpt");
 	var proPrice = document.getElementById("price");
 	var proType = document.getElementById("type");
-	proName.value="全方位無穀系列成犬無穀深海魚";
-	proDescpt.value="全方位無穀系列提供均衡的蛋白質、無穀類的碳水化合物及嚴選優質的脂肪。這些優質的成份來源，提供成犬所需要的能量";
+	proName.value="�����L�\�t�C�����L�\�`����";
+	proDescpt.value="�����L�\�t�C���ѧ��Ū��J�ս�B�L�\�����Ҥ��ƦX�����Y���u�誺�תաC�o���u�誺�����ӷ��A���Ѧ����һݭn����q";
 	proPrice.value="2040";
-	proType.value="寵物飼料";
+	proType.value="�d���}��";
 	}
 </script>
 <!-- /.container -->

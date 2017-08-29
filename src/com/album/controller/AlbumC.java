@@ -53,12 +53,41 @@ public class AlbumC extends HttpServlet {
 
 		//新增相簿
 		if ("createAlbum".equals(action)) {
-			List<AlbumImg> aImgs = new LinkedList<AlbumImg>();
-			Timestamp currentTime = new Timestamp(System.currentTimeMillis());
-
+	
+		
+			/****************************** 1.接收請求參數 - 輸入格式的錯誤處理**********************/
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+			
 			String albumTitle = req.getParameter("albumTitle");
-
+			if(albumTitle==null||albumTitle.isEmpty()){
+				errorMsgs.add("請填寫相簿名稱");
+			}
+			if(albumTitle!=null && albumTitle.trim().length()>30){
+				errorMsgs.add("相簿名稱過長");
+			}
+			
+			
 			Collection<Part> parts = req.getParts();
+			//傳過來的part至少要多於3  action 和  albumTitle 和至少一張照片
+			if(parts==null||parts.size()<3){
+				errorMsgs.add("請上傳檔案");
+			}
+			
+			if (!errorMsgs.isEmpty()) {
+				RequestDispatcher dispatcher = req.getRequestDispatcher("/front_end/album/albumShow.jsp");
+				req.setAttribute("errorMsgs", errorMsgs);
+				dispatcher.forward(req, res);
+				return;
+			}
+			
+			
+			
+			
+			/*************************** 2.開始修改資料 *****************************************/
+			Timestamp currentTime = new Timestamp(System.currentTimeMillis());
+			List<AlbumImg> aImgs = new LinkedList<AlbumImg>();
+
 			for (Part part : parts) {
 				if (getFileNameFromPart(part) != null && part.getContentType() != null) {
 					AlbumImg aImg = new AlbumImg();

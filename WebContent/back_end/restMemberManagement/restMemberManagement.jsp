@@ -94,8 +94,8 @@
 								<th>¼f®ÖÀ\ÆU</th>
 							</tr>
 						</thead>
-						
-						<c:forEach var="restauranBack" items="${restauranBacktList}" >
+						<%@ include file="/back_end/actFiles/pageBack2.file"  %>
+						<c:forEach var="restauranBack" items="${restauranBacktList}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>" >
 								<form method="post" action="<%=request.getContextPath()%>/restaurant/restaurantController">
 									<tr>
 										<td>${restauranBack.restNo}</td>
@@ -132,12 +132,12 @@
 							
 						
 						</table>
-						
+						<%@ include file="/back_end/actFiles/pageBackLatest.file" %>	
 					</div>
 				</div>
 			</div> 
   
-    
+    <script src="<%=request.getContextPath() %>/front_end/js/bootstrap.min.js"></script>
 </body>
 
 </html>

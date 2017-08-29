@@ -91,7 +91,8 @@
 								<th>¼f®Ö¬¡°Ê</th>
 							</tr>
 						</thead>
-							<c:forEach var="activityBack" items="${activityBackList}" >
+						<%@ include file="/back_end/actFiles/pageBack1.file" %>
+							<c:forEach var="activityBack" items="${activityBackList}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 								<form method="post" action="<%=request.getContextPath()%>/activity/activityController">
 									<tr>
 										<td>
@@ -132,16 +133,16 @@
 									</tr>
 								</form>	
 							</c:forEach>
-								
 							
 						
 						</table>
+							<%@ include file="/back_end/actFiles/pageBackLatest.file" %>	
 					</div>
 				</div>
 			</div> 
   		
 	
-    
+    <script src="<%=request.getContextPath() %>/front_end/js/bootstrap.min.js"></script>
 </body>
 
 </html>

@@ -15,7 +15,7 @@
 <html lang="">
 
 <head>
-
+<title>Ãdª« You & Me</title>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
@@ -40,7 +40,10 @@
 <link
 	href="<%=request.getContextPath()%>/front_end/css/fileinput.min.css"
 	media="all" rel="stylesheet" type="text/css" />
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	
+<script src="<%=request.getContextPath()%>/front_end/js/jquery.js"></script>
+<script src="<%=request.getContextPath()%>/front_end/js/bootstrap.js"></script>
+
 <script
 	src="<%=request.getContextPath()%>/front_end/js/fileinput.min.js"></script>
 <!--[if lt IE 9]>
@@ -434,8 +437,7 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
 		</script>
 
 
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </body>
 
 </html>

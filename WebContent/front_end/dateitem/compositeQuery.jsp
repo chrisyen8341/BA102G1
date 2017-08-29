@@ -36,7 +36,7 @@
 
 
 <head>
-<title>約會首頁</title>
+<title>寵物 You & Me</title>
 <link href="<%=request.getContextPath() %>/front_end/css/modern-business.css" rel="stylesheet" type="text/css">
 <style>
 /* @font-face { */

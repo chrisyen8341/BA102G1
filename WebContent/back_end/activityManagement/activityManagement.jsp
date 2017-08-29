@@ -142,7 +142,7 @@
 			</div> 
   		
 	
-    
+    <script src="<%=request.getContextPath() %>/front_end/js/bootstrap.min.js"></script>
 </body>
 
 </html>

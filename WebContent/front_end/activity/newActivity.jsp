@@ -16,6 +16,8 @@
 	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-dd");
 	String actDateMin  = simpleDateFormat.format(new Date());
 	
+	session.setAttribute("key", "val");
+	
 %>
 
 

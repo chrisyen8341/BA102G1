@@ -69,7 +69,7 @@
 		<h5 class=" page-header text-right">目前位置:管理我的活動</h5>
 		
 <!--      目前跌帶(紀數用)varStatus="activitiyE"  間隔 step="1"   從0開始${activitiyE.index}    從1開始${activitiyE.count} -->
-		<%@ include file="/front_end/actFiles/page1.file" %>
+		<%@ include file="/front_end/actFiles/pageActManagement.file" %>
 			<c:forEach var="activity" items="${activitiyList}" varStatus="activitiyE" step="1" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 			 <div class="panel panel-default">
 		       <div class="panel-heading">

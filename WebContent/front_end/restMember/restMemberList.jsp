@@ -89,8 +89,8 @@
 						<th></th>
 						
 					</tr>
-					
-					<c:forEach var="restaurant" items="${list}">
+					<%@ include file="/front_end/actFiles/pageRestList.file"  %>
+					<c:forEach var="restaurant" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 						<tr align='center' valign='middle'>
 							
 							<td>&nbsp;&nbsp;&nbsp;&nbsp;${restaurant.restName}</td>
@@ -155,7 +155,7 @@
 						</tr>
 					</c:forEach>
 				</table>
-				
+				<%@ include file="/front_end/actFiles/pageLatest.file"  %>
 				
 				
 			</div>

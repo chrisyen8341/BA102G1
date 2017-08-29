@@ -46,7 +46,7 @@
             <div class="panel-group col-sm-8">
 				
 			<h1 class=" page-header text-left">所有活動</h1>
-			<%@ include file="/front_end/actFiles/page3.file" %>
+			<%@ include file="/front_end/actFiles/pageFrontAct.file" %>
 			<%@ include file="/front_end/actFiles/activityAll.file" %>
 			<%@ include file="/front_end/actFiles/pageLatest.file" %>
 			

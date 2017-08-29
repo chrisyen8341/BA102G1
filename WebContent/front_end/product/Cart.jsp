@@ -182,8 +182,6 @@ function calculate(e,idx){
 	}
 	else if($(e).val()<0){
 		 $(e).val(1);
-	}else{
-		$(e).val(1);
 	}
 	var numb = $(e).val();
 	$('#keep'+idx).val(numb);

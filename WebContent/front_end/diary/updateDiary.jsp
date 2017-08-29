@@ -11,10 +11,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=BIG5">
-<title>Insert title here</title>
+<title>寵物 You & Me</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Title Page</title>
+    
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="<%=request.getContextPath()%>/front_end/css/bootstrap.css" rel="stylesheet">
     <link href="<%=request.getContextPath()%>/front_end/css/nav.css" rel="stylesheet">

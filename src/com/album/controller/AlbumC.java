@@ -105,9 +105,58 @@ public class AlbumC extends HttpServlet {
 			albumSvc.addAlbumWithImg(member.getMemNo(), albumTitle, currentTime, currentTime, 0,
 					aImgs.get(0).getImgFile(), aImgs);
 
+			
+			
+			
+			/**************************** 3.修改完成,準備轉交(Send the Success view)*************/
 			res.sendRedirect(req.getContextPath() + "/front_end/album/albumShow.jsp");
 
 		}
+		
+		
+		
+		
+		
+		
+		//使用者取得相簿
+		if ("getUserAlbum".equals(action)) {
+	
+		
+			/****************************** 1.接收請求參數 - 輸入格式的錯誤處理**********************/
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+			
+			Integer albumNo=null;
+			try{
+				albumNo=Integer.parseInt(req.getParameter("albumNo"));
+			}
+			catch(Exception e){
+				errorMsgs.add(" ");
+			}
+			
+			
+
+			if (!errorMsgs.isEmpty()) {
+				RequestDispatcher dispatcher = req.getRequestDispatcher("/front_end/album/albumShow.jsp");
+				req.setAttribute("errorMsgs", errorMsgs);
+				dispatcher.forward(req, res);
+				return;
+			}
+			
+			
+			/**************************** 2.準備轉交(Send the Success view)*************/
+			RequestDispatcher dispatcher = req.getRequestDispatcher("/front_end/album/aImgShow.jsp");
+			req.setAttribute("albumNo", albumNo);
+			dispatcher.forward(req, res);
+
+		}
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -134,7 +183,7 @@ public class AlbumC extends HttpServlet {
 			
 			
 			
-			/**************************** 2.修改完成,準備轉交(Send the Success view)*************/
+			/*************************** 2.開始修改資料 *****************************************/
 	
 
 			AlbumImg aImg=aImgSvc.getOneAlbumImg(imgNo);

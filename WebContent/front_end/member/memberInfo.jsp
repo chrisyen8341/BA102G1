@@ -29,11 +29,11 @@
 	<div class="container-fluid">
 		<div class="row">
 
-			<div class="col-xs-12 col-sm-2 postion-left-group ">
+			<div class="col-xs-12 col-sm-2  postion-left-group ">
 				<%@ include file="memZoneLSide.file"%>
 			</div>
 
-			<div class="col-xs-12 col-sm-8 ">
+			<div class="col-xs-12 col-sm-8 col-md-offset-1">
 				<div class="row">
 
 

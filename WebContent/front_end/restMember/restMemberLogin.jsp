@@ -36,7 +36,16 @@
 }
 
 </style>
-
+<script>
+	$(function(){
+		$("#restMemLogin").click(function(){
+			$("#restMemId").val("rest1");
+			$("#restMemPsw").val("rest1");
+		})
+			
+		
+	})
+</script>
 </head>
 <body background="<%=request.getContextPath()%>/front_end/actFiles/465.jpg"  style= margin:0px;padding:0px;background-size:cover;>
 <%@ include file="/front_end/actFiles/restMemberNavBar2.file" %>
@@ -79,8 +88,7 @@
 								<span class="input-group-addon"><i class="fa fa-user fa"
 									aria-hidden="true"></i></span> 
 									<input type="text" class="form-control" 
-									name="restMemId" id="restMemId" 
-									value="<%=(restMember==null)?"":restMember.getRestMemId()%>" placeholder="請輸入帳號" required />
+									name="restMemId" id="restMemId" placeholder="請輸入帳號" required />
 							</div>
 						</div>
 					</div>
@@ -95,8 +103,7 @@
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fa fa-user fa"
 									aria-hidden="true"></i></span> <input type="password"
-									class="form-control" name="restMemPsw" id="restMemPsw" value="<%=(restMember==null)?"":restMember.getRestMemPsw()%>"
-									placeholder="請輸入密碼" required />
+									class="form-control" name="restMemPsw" id="restMemPsw" placeholder="請輸入密碼" required />
 							</div>
 						</div>
 					</div>
@@ -112,7 +119,7 @@
 					</div>
 					
 				</form>
-
+				<button id="restMemLogin">快速登入</button>
 			</div>
 		</div>
 	</div>

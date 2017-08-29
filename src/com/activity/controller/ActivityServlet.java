@@ -85,131 +85,133 @@ public class ActivityServlet extends HttpServlet {
 		String action = req.getParameter("action");
 		
 		if("newActivity".equals(action)){
+			HttpSession session = req.getSession();
+			if(session.getAttribute("key")!=null){
 			
-			List<String> activityError = new ArrayList<>();
-			req.setAttribute("activityError", activityError);
-			
-			
-			
-			String restMemId = req.getParameter("restMemId");
-			
-			Integer actStatus = null;
-			try {
-				actStatus = Integer.parseInt(req.getParameter("actStatus"));
-			} catch (Exception e) {
-				activityError.add("活動狀態錯誤");
-			}
-			
-			String actName = req.getParameter("actName");
-			String meg = "[a-zA-Z0-9_\u4E00-\u9FFF`~!@#$%^&*()+=|{}':;',//[//].<>/?~！@#￥%……&*（）——+|{}【】‘；︰”“’。，、？]{0,30}";
-			System.out.println(meg);
-			
-			if(actName==null || (actName.trim()).length()==0 ){
-				activityError.add("請輸入活動名稱");
-			}
-			else if(!actName.trim().matches(meg)){
-				activityError.add("活動名稱請輸入中、英文、數字或是_，長度最大為30字");
-			}
-			
-			
-			
-			String actContent = req.getParameter("actContent");
-			
-			
-			if(actContent==null||(actContent.trim()).length()==0){
-				activityError.add("請輸入活動內容");
+				List<String> activityError = new ArrayList<>();
+				req.setAttribute("activityError", activityError);
 				
-			}
-			if(actContent.length()>600){
-				activityError.add("長度最大為600字");
-			}
-			
-			
-			java.sql.Date actDate = null;
-			try {
-				actDate = java.sql.Date.valueOf(req.getParameter("actDate").trim());
-			} catch (Exception e) {
-				actDate = new java.sql.Date(System.currentTimeMillis());
-				activityError.add("請輸入活動日期");
-			}
-			
-			java.sql.Date actFDate = null;
-			try {
-				actFDate = java.sql.Date.valueOf(req.getParameter("actFDate").trim());
-			} catch (Exception e) {
-				actFDate = new java.sql.Date(System.currentTimeMillis());
-				activityError.add("請輸入截止日期");
-			}
-			
-			if(!actDate.after(actFDate) || actDate.equals(actFDate)){
-				activityError.add("截止日期不能超過活動日期或是同一天");
-			}
-			
-			
-			
-			Integer actULimit = null;
-			try {
-				actULimit = Integer.parseInt(req.getParameter("actULimit").trim());
-				if(actULimit<0){
+				
+				
+				String restMemId = req.getParameter("restMemId");
+				
+				Integer actStatus = null;
+				try {
+					actStatus = Integer.parseInt(req.getParameter("actStatus"));
+				} catch (Exception e) {
+					activityError.add("活動狀態錯誤");
+				}
+				
+				String actName = req.getParameter("actName");
+				String meg = "[a-zA-Z0-9_\u4E00-\u9FFF`~!@#$%^&*()+=|{}':;',//[//].<>/?~！@#￥%……&*（）——+|{}【】‘；︰”“’。，、？]{0,30}";
+				
+				
+				if(actName==null || (actName.trim()).length()==0 ){
+					activityError.add("請輸入活動名稱");
+				}
+				else if(!actName.trim().matches(meg)){
+					activityError.add("活動名稱請輸入中、英文、數字或是_，長度最大為30字");
+				}
+				
+				
+				
+				String actContent = req.getParameter("actContent");
+				
+				
+				if(actContent==null||(actContent.trim()).length()==0){
+					activityError.add("請輸入活動內容");
+					
+				}
+				if(actContent.length()>600){
+					activityError.add("長度最大為600字");
+				}
+				
+				
+				java.sql.Date actDate = null;
+				try {
+					actDate = java.sql.Date.valueOf(req.getParameter("actDate").trim());
+				} catch (Exception e) {
+					actDate = new java.sql.Date(System.currentTimeMillis());
+					activityError.add("請輸入活動日期");
+				}
+				
+				java.sql.Date actFDate = null;
+				try {
+					actFDate = java.sql.Date.valueOf(req.getParameter("actFDate").trim());
+				} catch (Exception e) {
+					actFDate = new java.sql.Date(System.currentTimeMillis());
+					activityError.add("請輸入截止日期");
+				}
+				
+				if(!actDate.after(actFDate) || actDate.equals(actFDate)){
+					activityError.add("截止日期不能超過活動日期或是同一天");
+				}
+				
+				
+				
+				Integer actULimit = null;
+				try {
+					actULimit = Integer.parseInt(req.getParameter("actULimit").trim());
+					if(actULimit<0){
+						activityError.add("請輸入正確上限人數");
+					}
+				} catch (Exception e) {
+					actULimit = 0 ;
 					activityError.add("請輸入正確上限人數");
 				}
-			} catch (Exception e) {
-				actULimit = 0 ;
-				activityError.add("請輸入正確上限人數");
-			}
-			
-			Integer actLLimit = null;
-			try {
-				actLLimit = Integer.parseInt(req.getParameter("actLLimit").trim());
-				if(actLLimit<0){
+				
+				Integer actLLimit = null;
+				try {
+					actLLimit = Integer.parseInt(req.getParameter("actLLimit").trim());
+					if(actLLimit<0){
+						activityError.add("請輸入正確下限人數");
+					}
+				} catch (Exception e) {
+					actLLimit = 0 ;
 					activityError.add("請輸入正確下限人數");
 				}
-			} catch (Exception e) {
-				actLLimit = 0 ;
-				activityError.add("請輸入正確下限人數");
-			}
-			
-			if(actLLimit>actULimit){
-				activityError.add("下限人數不能超越上限人數");
-			}
-			
-			Integer actKind = null;
-			try {
-				actKind = new Integer(req.getParameter("actKind").trim());
-			} catch (Exception e) {
-				activityError.add("活動種類限制錯誤");
-			}
-			
-			String actAnotherKind = req.getParameter("actAnotherKind");
-			
-			
-			byte[] actInitImg =null;
-			Collection<Part> parts = req.getParts();
-			
-			try {
-				for(Part part :parts){
-					
-					if(part.getName().equals("actInitImg") && getFileNameFromPart(part) != null
-							&& part.getContentType().startsWith("image")){
-						
-						actInitImg = getPictureByteArray(part.getInputStream());
-					}
+				
+				if(actLLimit>actULimit){
+					activityError.add("下限人數不能超越上限人數");
 				}
-			} catch (Exception e) {
-				activityError.add("照片錯誤");
-			}
-			
-			
-			
-			
-			
-			
-			if(!activityError.isEmpty()){
-				RequestDispatcher requestDispatcher = req.getRequestDispatcher("/front_end/activity/newActivity.jsp");
-				requestDispatcher.forward(req, res);
-				return;
-			}
-			
+				
+				Integer actKind = null;
+				try {
+					actKind = new Integer(req.getParameter("actKind").trim());
+				} catch (Exception e) {
+					activityError.add("活動種類限制錯誤");
+				}
+				
+				String actAnotherKind = req.getParameter("actAnotherKind");
+				
+				
+				byte[] actInitImg =null;
+				Collection<Part> parts = req.getParts();
+				
+				try {
+					for(Part part :parts){
+						
+						if(part.getName().equals("actInitImg") && getFileNameFromPart(part) != null
+								&& part.getContentType().startsWith("image")){
+							
+							actInitImg = getPictureByteArray(part.getInputStream());
+						}
+					}
+				} catch (Exception e) {
+					activityError.add("照片錯誤");
+				}
+				
+				
+				
+				
+				
+				
+				if(!activityError.isEmpty()){
+					RequestDispatcher requestDispatcher = req.getRequestDispatcher("/front_end/activity/newActivity.jsp");
+					requestDispatcher.forward(req, res);
+					return;
+				}
+				
 			
 			/////////////////////////新增活動/////////////////////////////
 			ActivityService activityService = new ActivityService();
@@ -218,7 +220,9 @@ public class ActivityServlet extends HttpServlet {
 			
 			req.setAttribute("activity", activity);
 			
+			session.removeAttribute("key");
 			
+			}
 			
 			////////////////////////轉存////////////////////////////////
 			RequestDispatcher requestDispatcher = req.getRequestDispatcher("/front_end/activity/activityManagent.jsp");

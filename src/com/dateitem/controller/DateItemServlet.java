@@ -76,6 +76,13 @@ public class DateItemServlet extends HttpServlet {
 			HttpSession session = req.getSession();
 			Member member = (Member) session.getAttribute("member");
 
+			if(member==null){
+				String url = "/front_end/member/login.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);
+				successView.forward(req, res);
+			}else{
+			
+			
 			myPetList = memSvc.getPetsByMemNo(member.getMemNo());
 			
 			
@@ -89,7 +96,8 @@ public class DateItemServlet extends HttpServlet {
 			String url = "/front_end/dateitem/addDateItem.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url);
 			successView.forward(req, res);
-		}								
+		}
+			}
 		}	
 		
 		//買家檢視已購買但未完成交易的商品

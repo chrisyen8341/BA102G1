@@ -15,7 +15,7 @@
 <html lang="">
 
 <head>
-
+<title>寵物 You & Me</title>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
@@ -40,7 +40,10 @@
 <link
 	href="<%=request.getContextPath()%>/front_end/css/fileinput.min.css"
 	media="all" rel="stylesheet" type="text/css" />
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	
+<script src="<%=request.getContextPath()%>/front_end/js/jquery.js"></script>
+<script src="<%=request.getContextPath()%>/front_end/js/bootstrap.js"></script>
+
 <script
 	src="<%=request.getContextPath()%>/front_end/js/fileinput.min.js"></script>
 <!--[if lt IE 9]>
@@ -210,6 +213,17 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
 							<div class="panel-body">
 
 								<div class="row text-right" style="margin-right: 10px;">
+									
+										<c:if test="${not empty errorMsgs}">
+											<font color="red">
+												<ul>
+													<c:forEach var="message" items="${errorMsgs}">
+														<li>${message}</li>
+													</c:forEach>
+												</ul>
+											</font>
+										</c:if>
+									
 									<button type="button" class="btn btn-primary"
 										data-toggle="modal" data-target="#addAlbum">新增相簿</button>
 									<!-- 										<button type="button" class="btn btn-primary" -->
@@ -378,7 +392,7 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
 
 
 
-				<!-- MODAL -->
+				<!-- 新增相簿MODAL -->
 				<div class="modal fade" id="addAlbum" tabindex="-1" role="dialog"
 					aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div class="modal-dialog modal-lg" role="document">
@@ -404,7 +418,7 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
 											<span class="input-group-addon"><i
 												class="fa fa-user fa" aria-hidden="true"></i></span> <input
 												type="text" class="form-control" name="albumTitle"
-												id="albumTitle" placeholder="請輸入相簿名稱" required />
+												id="albumTitle" placeholder="請輸入相簿名稱" />
 										</div>
 									</div>
 								</div>
@@ -434,8 +448,7 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
 		</script>
 
 
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </body>
 
 </html>

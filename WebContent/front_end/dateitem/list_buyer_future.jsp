@@ -99,19 +99,22 @@ margin-left:2px;
 		<div id="modal-cancel" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
+    <form method="post" action="<%=request.getContextPath() %>/front_end/dateitem/dateitem.do?action=cancel_date&fromwho=buyer">
       <div class="modal-header text-center">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">取消約會預定</h4>
       </div>
       <div class="modal-body">
         <p></p>
-        <p>確定預約嗎?</p>
+        <p>確定取消預約嗎?</p>
       </div>
       <div class="modal-footer">
       <button type="button" class="btn btn-warning pull-right adj-button" data-dismiss="modal">回上一頁</button>
-        <a type="button" class="btn btn-primary pull-right adj-button" href="<%=request.getContextPath() %>/front_end/dateitem/dateitem.do?action=cancel_date&dateItemNo=${dateitem.dateItemNo}&fromwho=buyer">確認取消</a>
+        <input type="submit" class="btn btn-primary pull-right" value="確認取消"/>
+        <input type="hidden" name="dateItemNo" value="${dateitem.dateItemNo}"/>
         
       </div>
+      </form>
     </div>
 
   </div>

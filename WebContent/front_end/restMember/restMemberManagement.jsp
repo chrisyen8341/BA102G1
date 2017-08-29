@@ -36,7 +36,7 @@
 			<![endif]-->
 
 </head>
-<body>
+<body background="<%=request.getContextPath()%>/front_end/actFiles/465.jpg"  style= background-size:cover;>
 	<%@ include file="/front_end/actFiles/restMemberNavBar.file" %>
 	
 	

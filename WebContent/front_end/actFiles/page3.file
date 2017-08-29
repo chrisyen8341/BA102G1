@@ -8,7 +8,7 @@
 %>
 
 <%  
-    rowNumber=activitiyList.size();
+    rowNumber=activityFrontList	.size();
     if (rowNumber%rowsPerPage !=0)
      pageNumber=rowNumber/rowsPerPage +1;
     else pageNumber=rowNumber/rowsPerPage;    
@@ -34,5 +34,5 @@
 <%if (pageNumber>0){%>
 <b>第<%=whichPage%>/<%=pageNumber%>頁　</b>
 <%}%>
-<b>我目前擁有的活動: 共<font color=red><%=rowNumber%></font>筆</b>
+
 

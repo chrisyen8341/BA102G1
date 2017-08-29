@@ -146,6 +146,7 @@ public class RestaurantServlet extends HttpServlet {
 				updateError.add("餐廳名稱請勿留空");
 			}
 			
+			
 			String restAdd = req.getParameter("restAdd");
 			if( (restAdd.trim()).length()==0 || restAdd == null){
 				updateError.add("餐廳地址請勿留空");
@@ -247,9 +248,13 @@ public class RestaurantServlet extends HttpServlet {
 				}
 				
 				String county = req.getParameter("county").trim();
-				System.out.println(county);
+				if( county.length()==0 || county == null || county.isEmpty()){
+					newRestErr.add("餐廳地址有誤或留空");
+				}
 				String district = req.getParameter("district").trim();
-				System.out.println(district);
+				if( district.length()==0 || district == null || district.isEmpty()){
+					newRestErr.add("餐廳地址有誤或留空");
+				}
 				String restAddEnd = req.getParameter("restAdd").trim();
 				if( restAddEnd.length()==0 || restAddEnd == null || restAddEnd.isEmpty()){
 					newRestErr.add("餐廳地址有誤或留空");

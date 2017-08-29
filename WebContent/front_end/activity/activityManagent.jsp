@@ -51,7 +51,7 @@
 	</style>  
 </head>
 
-<body background="<%=request.getContextPath()%>/front_end/actFiles/465.jpg"  style= background-size:cover;>
+<body background="<%=request.getContextPath()%>/front_end/actFiles/11.jpg"  style="background-size:cover;">
 <%@ include file="/front_end/actFiles/restMemberNavBar2.file" %>
 
     <%@ include file="/front_end/actFiles/restMemberNavBar.file" %>
@@ -69,8 +69,8 @@
 		<h5 class=" page-header text-right">目前位置:管理我的活動</h5>
 		
 <!--      目前跌帶(紀數用)varStatus="activitiyE"  間隔 step="1"   從0開始${activitiyE.index}    從1開始${activitiyE.count} -->
-		
-			<c:forEach var="activity" items="${activitiyList}" varStatus="activitiyE" step="1">
+		<%@ include file="/front_end/actFiles/page1.file" %>
+			<c:forEach var="activity" items="${activitiyList}" varStatus="activitiyE" step="1" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 			 <div class="panel panel-default">
 		       <div class="panel-heading">
 		       	
@@ -103,7 +103,7 @@
 					
 					
 					<div class="col-xs-12 col-sm-8 ">
-						<textarea class="overflow form-control" rows="8" cols="40"  style="resize:none;border:0px;background-color:white" readonly>${activity.actContent}</textarea>
+						<textarea class="overflow form-control" rows="8" cols="40"  style="resize:none;border:0px;background-color:white;font-weight:bold;" readonly>${activity.actContent}</textarea>
 						
 					</div>
 					
@@ -164,7 +164,7 @@
 									
 											
 											<script>
-					
+											
 							
 												var openFile${activitiyE.index} = function(e) {
 												    var input = e.target;		
@@ -315,7 +315,7 @@
 		     </div>
 		     
 			</c:forEach>
-        
+        <%@ include file="/front_end/actFiles/pageLatest.file" %>
 		       </div>
 		     </div>
         </div>

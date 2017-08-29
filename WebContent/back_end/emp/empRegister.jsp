@@ -16,6 +16,22 @@
 	matgin-top: 20px;
 }
 </style>
+<script>
+	$(function(){
+		
+		$("#newEmp").click(function(){
+			$("#empName").val("趙柏竣");
+			$("#empId").val("petym11");
+			$("#sel1 option[value=協理]").attr("selected","selected");
+			$("#empHireDate").val("2017-08-31");
+			$("#empEmail").val("chrisyen8341@gmail.com");
+			$(".empAuth").prop("checked", true);
+		})
+			
+		
+	});
+	
+</script>
 </head>
 
 <body>
@@ -46,7 +62,7 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-user fa"
 										aria-hidden="true"></i></span> <input type="text"
-										class="form-control" name="empName" id="memId"
+										class="form-control" name="empName" id="empName"
 										value="<%=(emp == null) ? "" : emp.getEmpName()%>"
 										placeholder="請輸入姓名" required />
 								</div>
@@ -70,8 +86,8 @@
 
 
 						<div class="form-group">
-							<label for="sel1">職位</label> <select class="form-control"
-								id="sel1" name="empJob">
+							<label for="sel1">職位</label> 
+							<select class="form-control" id="sel1" name="empJob">
 								<option value="總經理">總經理</option>
 								<option value="協理">協理</option>
 								<option value="專員">專員</option>
@@ -118,36 +134,17 @@
 							<div class="row">
 								<div class="col-sm-4">
 									<div class="checkbox">
-										<label><input type="checkbox" name="empAuth" value="4001">前端看板管理</label>
+										<label><input type="checkbox" name="empAuth" class="empAuth" value="4001">前端看板管理</label>
 									</div>
 								</div>
 								<div class="col-sm-4">
 									<div class="checkbox">
-										<label><input type="checkbox" name="empAuth" value="4002">會員帳號管理</label>
+										<label><input type="checkbox" name="empAuth" class="empAuth" value="4002">會員帳號管理</label>
 									</div>
 								</div>
 								<div class="col-sm-4">
 									<div class="checkbox">
-										<label><input type="checkbox" name="empAuth" value="4003">商城管理</label>
-									</div>
-								</div>
-							</div>
-
-
-							<div class="row">
-								<div class="col-sm-4">
-									<div class="checkbox">
-										<label><input type="checkbox" name="empAuth" value="4004">檢舉申訴管理</label>
-									</div>
-								</div>
-								<div class="col-sm-4">
-									<div class="checkbox">
-										<label><input type="checkbox" name="empAuth" value="4005">權限管理</label>
-									</div>
-								</div>
-								<div class="col-sm-4">
-									<div class="checkbox">
-										<label><input type="checkbox" name="empAuth" value="4006">活動管理</label>
+										<label><input type="checkbox" name="empAuth" class="empAuth" value="4003">商城管理</label>
 									</div>
 								</div>
 							</div>
@@ -156,12 +153,31 @@
 							<div class="row">
 								<div class="col-sm-4">
 									<div class="checkbox">
-										<label><input type="checkbox" name="empAuth" value="4007">餐廳管理</label>
+										<label><input type="checkbox" name="empAuth" class="empAuth" value="4004">檢舉申訴管理</label>
 									</div>
 								</div>
 								<div class="col-sm-4">
 									<div class="checkbox">
-										<label><input type="checkbox" name="empAuth" value="4008">站內信管理</label>
+										<label><input type="checkbox" name="empAuth" class="empAuth" value="4005">權限管理</label>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="checkbox">
+										<label><input type="checkbox" name="empAuth" class="empAuth" value="4006">活動管理</label>
+									</div>
+								</div>
+							</div>
+
+
+							<div class="row">
+								<div class="col-sm-4">
+									<div class="checkbox">
+										<label><input type="checkbox" name="empAuth" class="empAuth" value="4007">餐廳管理</label>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="checkbox">
+										<label><input type="checkbox" name="empAuth" class="empAuth" value="4008">站內信管理</label>
 									</div>
 								</div>
 							</div>
@@ -189,7 +205,7 @@
 
 
 					</form>
-
+					<button id="newEmp">一鍵柏竣</button>
 
 
 				</div>

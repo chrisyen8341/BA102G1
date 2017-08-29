@@ -42,6 +42,13 @@
 	matgin-top: 20px;
 }
 </style>
+<script type="text/javascript">
+	function bigBoss(){
+		document.getElementById("empId").value="petym1";
+		document.getElementById("empPwd").value="p123456";
+		
+	}
+</script>
 </head>
 
 <body>
@@ -109,7 +116,7 @@
 
 							<input type="hidden" name="action" value="login">
 						</form>
-
+						<button onclick="bigBoss()">¶—¡Û</button>	
 					</div>
 				</div>
 

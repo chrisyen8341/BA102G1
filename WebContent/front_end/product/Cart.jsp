@@ -1,11 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.product.model.*"%>
 <%@ page import="com.member.model.*"%>
-<%request.setCharacterEncoding("UTF-8");%>  
-<%response.setCharacterEncoding("BIG5");%> 
-<html >
+<html>
+<head>
 <head>
 <%@ include file="page4.file" %>
 <style type="text/css">
@@ -19,13 +18,12 @@ width: 150px;
 <script src="<%=request.getContextPath() %>/front_end/js/bootstrap.min.js"></script>
 
 </head>
-
 <body>
 <%@ include file="/front_end/frontEndNavBar.file" %>
 <%@ include file="page2.file" %>
 
 <% Vector<Product> buylist = (Vector<Product>) session.getAttribute("shoppingcart");%>
-<%HashMap<String,Integer> qtyMap = (HashMap<String,Integer>) session.getAttribute("qtyMap");%>   
+<%Map<String,Integer> qtyMap = (Map<String,Integer>) session.getAttribute("qtyMap");%>   
 <%Member mem = (Member)session.getAttribute("member");%>
 <%if(mem == null){
 	RequestDispatcher rd = request.getRequestDispatcher("/front_end/member/login.jsp");
@@ -70,7 +68,7 @@ session.setAttribute("amount", amount);
                         <th>Quantity</th>
                         <th class="text-center">Price</th>
                         <th class="text-center">Total</th>
-                        <th>¬†</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -97,11 +95,11 @@ session.setAttribute("amount", amount);
                           
                        		 
                        		 
-                       		 <input type="number" min="1" max="10" name="num<%=index %>" form="ProdNumChange" class="form-control" id="num<%=index %>" value="<%=qtyMap.get(prod.getProdName())%>" onchange="calculate(this,<%=index%>)">
+                       		 <input type="number" min="1" max="10" name="num<%=index %>"  autocomplete="off" form="ProdNumChange" class="form-control" id="num<%=index %>" value="<%=qtyMap.get(prod.getProdName())%>" onchange="calculate(this,<%=index%>)">
                              
                                
-                           
-                        </td>
+                       
+                      </td>
                         <td  class="col-sm-1 col-md-1 text-center"><p>$<%=prod.getProdPrice()%></p></td>
                         <% %>
                         <td  class="col-sm-1 col-md-1 text-center">
@@ -118,16 +116,16 @@ session.setAttribute("amount", amount);
               					<input type="hidden" name="delname" id="name<%=index %>" value=<%=prod.getProdName()%>> 
               					<input type="hidden" name="price"  id="pri<%=index %>" value=<%=prod.getProdPrice()%>>
              				    <input type="hidden" name="prodno" value=<%=prod.getProdNo()%>>
-              					<input type="submit" class="btn btn-danger" value="Âà™Èô§">
+              					<input type="submit" class="btn btn-danger" value="ßR∞£">
        					 		
        					 </form>
                         </td>
                     </tr>
                   <%}%> 
                      <tr>
-                        <td> ¬† </td>
-                        <td> ¬† </td>
-                        <td> ¬† </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         <td><h3>Total</h3></td>
                         	
                         <td>
@@ -145,12 +143,12 @@ session.setAttribute("amount", amount);
                          <form action="<%=request.getContextPath() %>/ProdNumChange" id="ProdNumChange" method="POST">
                          	<%for (int index = 0; index < buylist.size(); index++) {
         					Product prod = buylist.get(index); %>
-                        	<input type="hidden" name="test" id="keep<%=index %>" value="2">
+                        	<input type="hidden" name="test" id="keep<%=index %>" value="<%=qtyMap.get(prod.getProdName())%>">
               					
              				<%} %>
                          	<input type="hidden" name="action" value="back">
                         	<button type="submit" class="btn btn-default">
-                            	<span class="glyphicon glyphicon-shopping-cart">ÁπºÁ∫åË≥ºÁâ©</span>
+                            	<span class="glyphicon glyphicon-shopping-cart">ƒ~ƒÚ¡ ™´</span>
                         	</button>
                          </form>
                         </td>
@@ -158,12 +156,12 @@ session.setAttribute("amount", amount);
                         <form action="<%=request.getContextPath() %>/ProdNumChange" id="ProdNumChange" method="POST">
                         <%for (int index = 0; index < buylist.size(); index++) {
         					Product prod = buylist.get(index); %>
-                        <input type="hidden" name="test" id="pay<%=index %>" value="1">
+                        <input type="hidden" name="test" id="pay<%=index %>" value="<%=qtyMap.get(prod.getProdName())%>">
               					
              				    <%} %>
                         <input type="hidden" name="action" value="pay">
                         <button type="submit" class="btn btn-success"> 
-                        	ÁµêÂ∏≥
+                        	µ≤±b
                         </button>
                         </form>
                         </td>
@@ -179,10 +177,19 @@ session.setAttribute("amount", amount);
 <script>
 
 function calculate(e,idx){
-	
+	if($(e).val()>10){
+		 $(e).val(10);
+	}
+	else if($(e).val()<0){
+		 $(e).val(1);
+	}else{
+		$(e).val(1);
+	}
 	var numb = $(e).val();
 	$('#keep'+idx).val(numb);
 	$('#pay'+idx).val(numb);
+	console.log($('#keep'+idx).val(numb));
+	
 	
 	var sum=0;
 	var index = $("#index").val();
@@ -214,5 +221,4 @@ function calculate(e,idx){
 
 </script>
 </body>
-
 </html>

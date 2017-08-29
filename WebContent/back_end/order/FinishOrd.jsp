@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="BIG5"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.order.model.*"%>
@@ -36,20 +36,20 @@
 <div class="row col-xs-10 col-sm-10 ">
 <div>
 <ul class="nav nav-tabs mm">
-<li role="allorder"><a href="<%=request.getContextPath()%>/back_end/order/OrderManage.jsp">æ‰€æœ‰è¨‚å–®</a></li>
-<li role="dealorder"><a href="<%=request.getContextPath()%>/back_end/order/NoShipOrd.jsp">è™•ç†ä¸­è¨‚å–®</a></li>
-<li role="finishorder" class="active"><a href="<%=request.getContextPath()%>/back_end/order/FinishOrd.jsp">å·²å®Œæˆè¨‚å–®</a></li>
+<li role="allorder"><a href="<%=request.getContextPath()%>/back_end/order/OrderManage.jsp">©Ò¦³­q³æ</a></li>
+<li role="dealorder"><a href="<%=request.getContextPath()%>/back_end/order/NoShipOrd.jsp">³B²z¤¤­q³æ</a></li>
+<li role="finishorder" class="active"><a href="<%=request.getContextPath()%>/back_end/order/FinishOrd.jsp">¤w§¹¦¨­q³æ</a></li>
 </ul>
 </div>
 <div>
 <table class="table table-hover m">
 	<thead>
 		<tr style="background-color: #E8CCFF;">
-			<th>è¨‚å–®ç·¨è™Ÿ</th>
-			<th>è¨‚å–®æ—¥æœŸ</th>
-			<th>è¨‚å–®ç‹€æ…‹</th>
-			<th>é¡§å®¢åç¨±</th>
-			<th>åˆè¨ˆ</th>
+			<th>­q³æ½s¸¹</th>
+			<th>­q³æ¤é´Á</th>
+			<th>­q³æª¬ºA</th>
+			<th>ÅU«È¦WºÙ</th>
+			<th>¦X­p</th>
 		</tr>
 	</thead>
 <c:forEach var="ordList" items="${ordList}">
@@ -61,23 +61,23 @@
 	<td>${ordList.ordDate}</td>
 	<c:if test="${ordList.ordStatus == 3}">
 	<td><select name="ordstate" class="btn btn-default">
-ã€€		<option value="1">æœªå‡ºè²¨</option>
-ã€€		<option value="2">å·²å‡ºè²¨</option>
-ã€€		<option value="3" selected>å·²çµæ¡ˆ</option>
-		<option value="4">å·²å–æ¶ˆ</option>
+¡@		<option value="1">¥¼¥X³f</option>
+¡@		<option value="2">¤w¥X³f</option>
+¡@		<option value="3" selected>¤wµ²®×</option>
+		<option value="4">¤w¨ú®ø</option>
 	</select></td>
 	</c:if>
 	<c:if test="${ordList.ordStatus == 4}">
 	<td><select name="ordstate" class="btn btn-default">
-ã€€		<option value="1">æœªå‡ºè²¨</option>
-ã€€		<option value="2">å·²å‡ºè²¨</option>
-ã€€		<option value="3">å·²çµæ¡ˆ</option>
-		<option value="4" selected>å·²å–æ¶ˆ</option>
+¡@		<option value="1">¥¼¥X³f</option>
+¡@		<option value="2">¤w¥X³f</option>
+¡@		<option value="3">¤wµ²®×</option>
+		<option value="4" selected>¤w¨ú®ø</option>
 	</select></td>
 	</c:if>
 	<td>${ordList.conName}</td>
 	<td>${ordList.ordTotal}</td>
-	<td><input type="submit" class="btn btn-primary" value="ä¿®æ”¹è¨‚å–®"></td>
+	<td><input type="submit" class="btn btn-primary" value="­×§ï­q³æ"></td>
    	<input type="hidden" name="ordNo" value="${ordList.ordNo}">
 </tr>
 </c:if>
@@ -87,7 +87,7 @@
 </div>
 <div class="row col-xs-10 col-sm-10" align="center">
 	  
-		<a href="<%=request.getContextPath() %>/back_end/product/productManage.jsp" ><input type="button" class="btn btn-primary" value="å•†å“ç®¡ç†"></a>
+		<a href="<%=request.getContextPath() %>/back_end/product/productManage.jsp" ><input type="button" class="btn btn-primary" value="°Ó«~ºÞ²z"></a>
 	  	
 	</div>
 </div>

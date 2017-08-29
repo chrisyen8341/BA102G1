@@ -33,6 +33,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <style>
+
+body{  
+  background-image:url('../images/diary-background5.jpg') !important; */
+ 	 
+  }  
+
 .panel-body{
 	padding:1px;
 }
@@ -73,13 +79,14 @@
                 	 <div class="row">
 <!--                 	此為修改日誌區 -->
 						<form class="form-group" action="<%=request.getContextPath()%>/front_end/diary/diary.do" method=post enctype="multipart/form-data">
-							<input type="hidden" name="diano" value="${diary.diaNo}">
+							<input type="hidden" name="diano" value="${empty diary ?diaErr.diaNo:diary.diaNo}">
 							<input type="hidden" name="action" value="update">
+							<input type="hidden" name="backpath" value="${empty backpath? originSource:backpath  }">
 							<div class="input-group">
 								<label class="input-group-addon">日誌</label>
-								<input type="text" name="dianame" class="form-control" value="${diary.diaName}"><br>
+								<input type="text" name="dianame" class="form-control" value="${empty diary ?diaErr.diaName:diary.diaName}"><br>
 							</div>
-							<textarea name="diatext" style="resize:none;height:80px;" class="form-control">${diary.diaText}</textarea>
+							<textarea name="diatext" style="resize:none;height:80px;" class="form-control">${empty diary ?diaErr.diaText:diary.diaText}</textarea>
 							<input type="file" class="file" name="diaimg" >
 							<p>
 							<div class="">	

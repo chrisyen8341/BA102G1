@@ -82,17 +82,20 @@
 	.clearBoth { clear:both; }
 </style>
 
-<script type="text/javascript">
-	function newRest(){
-		
-		document.getElementById("restName").value="QQ";
-	}
-
+<script>
+	$(function(){
+		$("#newRest").click(function(){
+			$("#restName").val("捲尾巴寵物餐廳");
+			$("#restAdd").val("永平路306號");
+			$("#restPhone").val("(02)2231-8882");
+			
+		})
+	})
 
 </script>
 
 </head>
-<body>
+<body background="<%=request.getContextPath()%>/front_end/actFiles/465.jpg"  style=background-size:cover;>
 	<%@ include file="/front_end/actFiles/restMemberNavBar2.file" %>
 	
 	
@@ -143,7 +146,7 @@
 											
 										</div>
 										
-											<input type="text" name="restAdd" class="form-control" 
+											<input type="text" name="restAdd" id="restAdd" class="form-control" 
 											value="" placeholder="請輸入餐廳地址">
 									</div>
 								
@@ -154,22 +157,13 @@
 									餐廳電話
 								</label>
 								<div class="col-sm-9">
-									<input type="text" name="restPhone" class="form-control" 
+									<input type="text" name="restPhone" id="restPhone" class="form-control" 
 									value="" placeholder="請輸入餐廳電話">
 									
 								</div>
 							</div>
 
-							<div class="form-group">
-								<label class="col-sm-3 control-label">
-									餐廳介紹
-								</label>
-								<div class="col-sm-9">
-									<textarea rows="3" cols="54" name="restIntro" class="form-control" 
-									 placeholder="請輸入餐廳介紹" style="resize:none"></textarea>
-									
-								</div>
-							</div>
+							
 
 							<div class="form-group">
 								<label class="col-sm-3 control-label">
@@ -196,7 +190,7 @@
 						</form>			
 					</div>	
 						
-					<button onclick="newRest()">新增餐廳</button>	
+					<button id="newRest">新增餐廳</button>	
 					
 				</div>
 			</div>

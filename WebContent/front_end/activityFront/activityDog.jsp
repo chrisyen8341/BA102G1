@@ -42,7 +42,9 @@
             <div class="panel-group col-sm-8">
 			<h1 class=" page-header text-left">ª¯ª¯ªººÛ</h1>
 			
+			<%@ include file="/front_end/actFiles/page3.file" %>
 			<%@ include file="/front_end/actFiles/activityAll.file" %>
+			<%@ include file="/front_end/actFiles/pageLatest.file" %>
 	
 
 		

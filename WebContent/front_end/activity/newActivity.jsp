@@ -106,7 +106,7 @@ $(function(){
 			<![endif]-->
 
 </head>
-<body>
+<body background="<%=request.getContextPath()%>/front_end/actFiles/465.jpg"  style= background-size:cover;>
 	<%@ include file="/front_end/actFiles/restMemberNavBar.file" %>
 	<%@ include file="/front_end/actFiles/activity.file" %>
 	
@@ -131,8 +131,8 @@ $(function(){
 							
 							<input type="hidden" name="restMemId" value="${restMember.restMemId}">
 							<input type="hidden" name="actStatus" value="0">
-							<div class="form-group">
-								<label class="col-sm-3 control-label">
+							<div class="form-group" >
+								<label class="col-sm-3 control-label"  >
 									¬¡°Ê¦WºÙ
 								</label>
 								<div class="col-sm-9">

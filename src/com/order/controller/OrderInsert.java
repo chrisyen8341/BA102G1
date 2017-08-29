@@ -43,12 +43,14 @@ public class OrderInsert extends HttpServlet {
 		java.util.Date appTime = new java.util.Date();
 		java.sql.Date applyTime = new java.sql.Date(appTime.getTime());
 		String county = req.getParameter("county").trim();
+		String name = req.getParameter("name").trim();
+		String tel = req.getParameter("tel").trim();
 		System.out.println("縣市: " + county);
 		String district = req.getParameter("district").trim();
 		System.out.println("區: " + district);
 		String memAddress = req.getParameter("memAddress").trim();
 		System.out.println("街名: " + memAddress);
-		String totalAddress = county + district + memAddress;
+		String totalAddress = county +"，" + district +"，" +  memAddress;
 		System.out.println("地址: " + totalAddress);
 		
 		
@@ -64,7 +66,7 @@ public class OrderInsert extends HttpServlet {
 		//扣除會員點數
 			MemberService memDao = new MemberService();
 			int chargeNow = mem.getMemPoint() - num;
-			Member member = memDao.updateMember(mem.getMemNo(), mem.getMemId(), mem.getMemPwd(), mem.getMemName(),mem.getMemSname(), mem.getMemGender(), mem.getMemIdNo(), mem.getMemBday(), mem.getMemPhone(),mem.getMemAddress(), mem.getMemEmail(), mem.getMemImg(), mem.getMemReported(),mem.getMemStatus(), mem.getMemRelation(), mem.getMemSelfintro(), mem.getMemFollowed(),chargeNow, mem.getMemSaleRank(), mem.getMemLongtitude(), mem.getMemLatitude(),mem.getMemLocTime(), mem.getMemLocStatus());
+			Member member = memDao.updateMember(mem.getMemNo(), mem.getMemId(), mem.getMemPwd(), name,mem.getMemSname(), mem.getMemGender(), mem.getMemIdNo(), mem.getMemBday(), tel,totalAddress, mem.getMemEmail(), mem.getMemImg(), mem.getMemReported(),mem.getMemStatus(), mem.getMemRelation(), mem.getMemSelfintro(), mem.getMemFollowed(),chargeNow, mem.getMemSaleRank(), mem.getMemLongtitude(), mem.getMemLatitude(),mem.getMemLocTime(), mem.getMemLocStatus());
 			session.setAttribute("member", member);
 		//-------設定新增訂單資料--------------------
 			Ord ord = new Ord();
@@ -76,7 +78,7 @@ public class OrderInsert extends HttpServlet {
 			ord.setOrdStatus(1);
 			ord.setOrdShip(50);
 			ord.setOrdTotal(num);
-			ord.setConAdd(mem.getMemAddress());
+			ord.setConAdd(totalAddress);
 			ord.setConName(mem.getMemName());
 			ord.setConTel(mem.getMemPhone());
 		//--------設定訂單清單資料--

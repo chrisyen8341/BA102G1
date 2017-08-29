@@ -47,9 +47,19 @@ public class DiaryServlet extends HttpServlet{
 			String diaName = null;
 			try{
 				diaName = req.getParameter("dianame").trim();
-				if(diaName.isEmpty()){
+				
+				//diaName.isEmpty()
+				if( diaName==null || "".equals(diaName) ){
 					errorMsgs.add("請輸入發文名稱!");
 				}
+				if(diaName!=null && diaName.length()>30){
+					errorMsgs.add("日誌標題長度過長!!");
+				}
+				
+				//擋住script
+				diaName = diaName.replace("<script>","");
+				diaName = diaName.replace("</script>","");
+				
 			}catch(NullPointerException e){
 				e.printStackTrace(System.err);	
 			}
@@ -57,9 +67,14 @@ public class DiaryServlet extends HttpServlet{
 			String diaText = null;
 			try{
 				diaText = req.getParameter("diatext").trim();
-				if(diaText.equals("")){			//夸號裡面不是null的字而是""
+				if(diaText==null || diaText.equals("")){			//判斷空值(空字串)
 					errorMsgs.add("請輸入內文!");
 				}
+				
+				//擋住script
+				diaText = diaText.replace("<script>","");
+				diaText = diaText.replace("</script>","");
+				
 			}catch(Exception ne){
 				ne.printStackTrace(System.err);
 			}
@@ -119,9 +134,17 @@ public class DiaryServlet extends HttpServlet{
 				String diaName = null;
 				try{
 					diaName = req.getParameter("dianame").trim();
-					if(diaName.isEmpty()){
+					if(diaName==null || diaName.isEmpty()){
 						errorMsgs.add("請輸入發文名稱!");
 					}
+					if(diaName!=null && diaName.length()>30){
+						errorMsgs.add("日誌標題長度過長!!");
+					}
+					
+					//擋住script
+					diaName = diaName.replace("<script>","");
+					diaName = diaName.replace("</script>","");
+					
 				}catch(NullPointerException e){
 					e.printStackTrace(System.err);	
 				}
@@ -130,10 +153,13 @@ public class DiaryServlet extends HttpServlet{
 				
 				try{
 					diaText = req.getParameter("diatext").trim();
-					if(diaText.equals("")){			//夸號裡面不是null的字而是""
+					if(diaText !=null && diaText.equals("")){
 						errorMsgs.add("請輸入內文!");
 					}
-					
+	
+					//擋住script
+					diaText = diaText.replace("<script>","");
+					diaText = diaText.replace("</script>","");
 				}catch(Exception ne){
 					ne.printStackTrace(System.err);
 				}
@@ -269,6 +295,9 @@ public class DiaryServlet extends HttpServlet{
 		
 		return diaimg.toByteArray();
 	}
+	
+	
+	
 	
 
 }

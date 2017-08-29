@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="BIG5"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.product.model.*"%>
@@ -32,10 +32,10 @@
     <thead>
       <tr style="background-color:#E8CCFF;">
       	
-        <th>商品名稱</th>
-        <th>商品類別</th>
-        <th>商品價格</th>
-        <th>商品狀況</th>
+        <th>�ӫ~�W��</th>
+        <th>�ӫ~���O</th>
+        <th>�ӫ~����</th>
+        <th>�ӫ~���p</th>
         <th></th>
         <th></th>
       </tr>
@@ -52,14 +52,14 @@
         <td>${product.prodType}</td>
         <td>${product.prodPrice}</td>
         
-        <td>上架中</td>
+        <td>�W�[��</td>
         <form action="<%=request.getContextPath() %>/ProductRemove" method="POST">  
         <input type="hidden" name="prodNo" id="no<%=prodList.size()%>" value="${product.prodNo}">
-        <td><input class="btn btn-primary" type="submit" value="商品下架"></td>
+        <td><input class="btn btn-primary" type="submit" value="�ӫ~�U�["></td>
          </form> 
         <form action="<%=request.getContextPath() %>/back_end/product/ProductAlter.jsp" method="POST">  
         <input type="hidden" name="proNo" value="${product.prodNo}">
-        <td><input class="btn btn-primary" type="submit" value="商品修改" ></td>
+        <td><input class="btn btn-primary" type="submit" value="�ӫ~�ק�" ></td>
          </form>
         
       </tr>
@@ -73,8 +73,8 @@
 
 	<div class="row col-xs-10 col-sm-10" align="center" style="padding-left:10cm;">
 	  
-		<a href="<%=request.getContextPath() %>/back_end/product/productUpdate.jsp" ><input type="submit" class="btn btn-primary" value="上架新商品"></a>
-	  	<a href="<%=request.getContextPath() %>/back_end/order/OrderManage.jsp" ><input type="button" class="btn btn-primary" value="訂單管理"></a>
+		<a href="<%=request.getContextPath() %>/back_end/product/productUpdate.jsp" ><input type="submit" class="btn btn-primary" value="�W�[�s�ӫ~"></a>
+	  	<a href="<%=request.getContextPath() %>/back_end/order/OrderManage.jsp" ><input type="button" class="btn btn-primary" value="�q��޲z"></a>
 	</div> 
 
 	

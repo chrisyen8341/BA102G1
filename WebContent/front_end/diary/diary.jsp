@@ -24,10 +24,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=BIG5">
-<title>Insert title here</title>
+<title>寵物 You & Me</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Title Page</title>
+    
     <link href="<%=request.getContextPath()%>/front_end/css/bootstrap.css" rel="stylesheet">
     <link href="<%=request.getContextPath()%>/front_end/css/nav.css" rel="stylesheet">
     <link href="<%=request.getContextPath()%>/front_end/css/colorplan.css" rel="stylesheet"> 
@@ -100,13 +100,13 @@
                 <div class="row">
                 	<div class=" col-sm-8 col-sm-offset-2">
 						<c:if test="${not empty errorMsgs}">
-							<font color='red'>請修正以下錯誤:
-							<ul>
-								<c:forEach var="message" items="${errorMsgs}">
-									<li>${message}</li>
-								</c:forEach>
-							</ul>
-							</font>
+								<font color='red'>請修正以下錯誤:
+								<ul>
+									<c:forEach var="message" items="${errorMsgs}">
+										<li>${message}</li>
+									</c:forEach>
+								</ul>
+								</font>
 						</c:if>
                 	</div>
                 </div>

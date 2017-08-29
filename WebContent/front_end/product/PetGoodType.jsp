@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="BIG5"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.product.model.*"%>
 <%
 	ProductService prodService = new ProductService();
-	List<Product> prodList = prodService.getAllByType("ÂØµÁâ©Áî®ÂìÅ");
+	List<Product> prodList = prodService.getAllByType("√d™´•Œ´~");
 	session.setAttribute("prodList", prodList);
 
 %>
@@ -242,7 +242,7 @@ body {
       
       </div>
     <c:forEach var="product" items="${prodList}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
-    <c:if test="${product.prodType == 'ÂØµÁâ©Áî®ÂìÅ'}">
+    <c:if test="${product.prodType == '√d™´•Œ´~'}">
 		<div class="promo-flex col-sm-4" style="color: rgba(0, 0, 0, .4);">
         <div data-ix="blog-card" class="w-clearfix w-preserve-3d promo-card" >
         
@@ -250,7 +250,9 @@ body {
         
           <div class="blog-bar color-pink"></div>
           <div class="blog-post-text" style="width:180px;height:40px;">
+            <font size="4" color="black"  style="font-family:DFKai-sb;">
             ${product.prodName}
+            </font>
             
           </div>
           <div class="blog-post-text " style="margin-right:0px">
@@ -262,7 +264,7 @@ body {
             	<div class="col-md-6">
             	<form action="<%=request.getContextPath()%>/ShoppingDetail.do" method="POST">
 						
-						<a class="btn cc" ><input style="position:right" type="submit" class="btn btn-primary" value="Êü•ÁúãË©≥ÊÉÖ"></a> 
+						<a class="btn cc" ><input style="position:right" type="submit" class="btn btn-primary" value="¨d¨›∏‘±°"></a> 
 						<input type="hidden" name="prodno" value="${product.prodNo}">
 						
 				</form>

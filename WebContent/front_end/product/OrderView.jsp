@@ -27,7 +27,7 @@
 		String fStreet = addr[2];
 		String memAddr = fCounty + fDistrict + fStreet;
 		OrdFk.get(i).setConAdd(memAddr);
-		System.out.print(OrdFk.get(i).getConAdd());
+		
 		}
 	session.setAttribute("OrdAll", OrdAll);
 	session.setAttribute("OrdFk", OrdFk);
@@ -42,7 +42,7 @@
 <body>
 	<%@ include file="/front_end/frontEndNavBar.file" %>
 	<%@ include file="page2.file"%>
-	<form action="<%=request.getContextPath()%>/OrdCancel" method="POST">
+	
 	<table class="table table-hover" width="200px">
 		<tr>
 			
@@ -54,6 +54,7 @@
 			<th></th>
 		</tr>
 				<c:forEach var="ordAll" items="${OrdFk}" varStatus="index">
+				
 			<tr>
 				
 				<td><span>${ordAll.ordDate}</span></td>
@@ -64,13 +65,17 @@
 				
 				<c:if test="${ordAll.ordStatus ==0}">
 				<td><span>未出貨</span></td>
+				<form action="<%=request.getContextPath()%>/OrdCancel" method="POST">
 				<td><input type="submit" class="btn btn-primary" value="取消訂單"></td>
 				<input type="hidden" name="ordNo" value="${ordAll.ordNo}">
+				</form>
 				</c:if>
 				<c:if test="${ordAll.ordStatus ==1}">
 				<td><span>未出貨</span></td>
+				<form action="<%=request.getContextPath()%>/OrdCancel" method="POST">
 				<td><input type="submit" class="btn btn-primary" value="取消訂單"></td>
 				<input type="hidden" name="ordNo" value="${ordAll.ordNo}">
+				</form>
 				</c:if>
 				<c:if test="${ordAll.ordStatus ==2}">
 				<td><span>已出貨</span></td>
@@ -87,7 +92,7 @@
 			</tr>
 				</c:forEach>	
 	</table>
-	</form>
+	
 	  <%@ include file="/front_end/frontEndButtomFixed.file" %>
         <script src="https://code.jquery.com/jquery.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>

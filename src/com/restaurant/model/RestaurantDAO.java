@@ -335,6 +335,7 @@ public class RestaurantDAO implements RestaurantDAO_Interface {
 			String restaurantQuery = "select * from rest "
 					+ CompositeQuery.get_WhereCondition(map)
 					+"order by restNo";
+			
 			pstmt = conn.prepareStatement(restaurantQuery);
 			rs = pstmt.executeQuery();
 			while(rs.next()){

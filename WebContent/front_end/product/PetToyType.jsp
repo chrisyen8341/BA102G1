@@ -245,7 +245,7 @@ body {
     <div class="promo-flex col-sm-4" style="color: rgba(0, 0, 0, .4);">
         <div data-ix="blog-card" class="w-clearfix w-preserve-3d promo-card" >
         
-        <img style="width:200px;height:150px;margin-left:1cm;" width="100%" src="http://localhost:8081/ChrisAll/ProductImage?prodno=${product.prodNo}">
+        <img style="width:200px;height:150px;margin-left:1cm;" width="100%" src="<%=request.getContextPath() %>/ProductImage?prodno=${product.prodNo}">
         
           <div class="blog-bar color-pink"></div>
           <div class="blog-post-text" style="width:180px;height:40px;">

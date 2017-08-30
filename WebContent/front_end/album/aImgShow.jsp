@@ -47,7 +47,7 @@
 	media="all" rel="stylesheet" type="text/css" />
 	
 <script src="<%=request.getContextPath()%>/front_end/js/jquery.js"></script>
-<script src="<%=request.getContextPath()%>/front_end/js/bootstrap.js"></script>
+<script src="<%=request.getContextPath()%>/front_end/js/bootstrap.min.js"></script>
 
 <script
 	src="<%=request.getContextPath()%>/front_end/js/fileinput.min.js"></script>
@@ -502,7 +502,7 @@
 		});
 		
 		$('#input-20').on('filebatchuploadcomplete', function (event, data, previewId, index) {
-			top.location.href="<%=request.getContextPath()%>/front_end/album/aImgShow.jsp?albumNo=<%=albumNo%>";});
+			top.location.href="<%=request.getContextPath()%>/front_end/album/Album.do?albumNo=<%=albumNo%>&action=getUserAlbum";});
 	
 		
 		

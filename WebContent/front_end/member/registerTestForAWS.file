@@ -221,53 +221,6 @@ document.getElementById("memBday").setAttribute("max", today);
 	//送出表單時檢察有無未填
 		$('form').submit(function() {
 			
-			//預設是全部都填   
-			var isEmpty = null;
-			//只要input有沒填的 就改變為true
-			if($('input[name=petOrNot]').get(0).checked)
-			{
-				$("input").slice(0,13).each(function() {
-					console.log("t");
-					if ($.trim($(this).val()) === "") {
-						if($(this).prop("id")=="memImg"){
-							console.log("test");
-							$(this).prev().prev().html("&nbsp;&nbsp;&nbsp;&nbsp;請填寫資料").css('color','red');
-						}
-						else{
-						$(this).parent().parent().prev().html("&nbsp;&nbsp;&nbsp;&nbsp;請填寫資料").css('color','red');
-						}
-						isEmpty = true;
-					}
-				});
-				if($("#memAddress").val()===""){
-					$("#memAddressShow").html("&nbsp;&nbsp;&nbsp;&nbsp;請填寫資料").css('color','red');
-					isEmpty = true;
-				}
-			}
-			else{
-				$("input").each(function() {
-					if ($.trim($(this).val()) === "") {
-						if($(this).prop("id")=="memImg" || $(this).prop("id")=="petImg"){
-							$(this).prev().prev().html("&nbsp;&nbsp;&nbsp;&nbsp;請填寫資料").css('color','red');
-						}
-						else{
-						$(this).parent().parent().prev().html("&nbsp;&nbsp;&nbsp;&nbsp;請填寫資料").css('color','red');
-					}
-						isEmpty = true;
-					}
-				});
-				if($("#memAddress").val()===""){
-					$("#memAddressShow").html("&nbsp;&nbsp;&nbsp;&nbsp;請填寫資料").css('color','red');
-					isEmpty = true;
-				}
-			};
-
-			//只要有空 就讓submit送不出去
-			if (isEmpty) {
-				return false;
-			}
-
-
 			for (var i = 0; i < valids.length; i++) {
 				if(!valids[i]){
 					return false;
@@ -293,7 +246,7 @@ document.getElementById("memBday").setAttribute("max", today);
 
 
 		$("#autoAddMemPet").click(function(){
-			$("#memId").val("petym11");
+			$("#memId").val("petym0");
 			$("#memId").testMemId();
 			$("#memSname").val("慈慈");
 			$("#memPwd").val("p123456");

@@ -23,11 +23,14 @@ public class OrdCancel extends HttpServlet {
    
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		int ordNo = Integer.valueOf(req.getParameter("ordNo"));
+		
 		OrdService ordDao = new OrdService();
 		MemberService memDao = new MemberService();
 		HttpSession session = req.getSession();
 		Member mem = (Member)session.getAttribute("member");
 		Ord ordOne = ordDao.getOneOrd(ordNo);
+		System.out.println(ordOne.getOrdTotal());
+		System.out.println(mem.getMemPoint());
 		int memPoint = ordOne.getOrdTotal() + mem.getMemPoint();
 		Ord OrdFk = ordDao.updateOrd(ordNo, ordOne.getMemNo(), ordOne.getOrdDate(), ordOne.getOrdCheck(), ordOne.getOrdProduct(), ordOne.getOrdClose(), 4, ordOne.getOrdShip(), ordOne.getOrdTotal(), ordOne.getConName(), ordOne.getConAdd(), ordOne.getConTel());
 		Member member = memDao.updateMember(mem.getMemNo(), mem.getMemId(), mem.getMemPwd(), mem.getMemName(), mem.getMemSname(), mem.getMemGender(), mem.getMemIdNo(), mem.getMemBday(), mem.getMemPhone(), mem.getMemAddress(), mem.getMemEmail(), mem.getMemImg(), mem.getMemReported(), mem.getMemStatus(), mem.getMemRelation(), mem.getMemSelfintro(), mem.getMemFollowed(), memPoint, mem.getMemSaleRank(), mem.getMemLongtitude(), mem.getMemLatitude(), mem.getMemLocTime(), mem.getMemLocStatus());

@@ -3,14 +3,17 @@
 <%@ page import="com.product.model.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
-
+<%
+int prodNo = Integer.valueOf(request.getParameter("prodNo"));
+ProductService prodService = new ProductService();
+Product shoppingdetail = (Product)prodService.getOneProduct(prodNo);
+session.setAttribute("shoppingdetail", shoppingdetail);
+%>
 <html>
 <head>
 <script src="<%=request.getContextPath() %>/front_end/js/jquery.js"></script>
 <script src="<%=request.getContextPath() %>/front_end/js/bootstrap.min.js"></script>
-<%@ include file="page4.file" %>
-
-
+<%@ include file="/back_end/product/page1.file" %>
 <style>
  .panel.panel--styled {
     background: #F4F2F3;
@@ -73,13 +76,9 @@ span.glyphicon {
 </style>
 </head>
 <body>
-<%@ include file="/front_end/frontEndNavBar.file" %>
-<%@ include file="page2.file" %>
-
-<%Product shoppingdetail =  (Product)session.getAttribute("shoppingdetail");%>
-				
-				
-				<div class="container">    
+<%@ include file="/back_end/backEndNavBar.file"%>
+<%@ include file="/back_end/backEndLSide.file"%>
+<div class="container">    
 		<div class="row">
 			<div class="col-md-8" style="margin-left:2cm;margin-top:2cm">				
 				<div class="panel panel-default  panel--styled">
@@ -100,13 +99,7 @@ span.glyphicon {
     						
     					
 							<div class="col-md-4 text-center">
-							   <form action="<%=request.getContextPath()%>/ShoppingCar.do" method="post">
-									<input type="hidden" name="name" value="${shoppingdetail.prodName}">
-    								<input type="hidden" name="price" value="${shoppingdetail.prodPrice}">
-    								<input type="hidden" name="prodno" value="${shoppingdetail.prodNo}">
-    								<input type="hidden" name="action" value="add">
-								<button type="submit" class="btn btn-lg btn-add-to-cart"><span class="glyphicon glyphicon-shopping-cart"></span>   Add to Cart</button>						
-							   </form>
+							   
 							</div>
 							<div class="col-md-4 text-left">
 								<h5>Price <span class="itemPrice">NT.<%=shoppingdetail.getProdPrice()%></span></h5>
@@ -120,9 +113,11 @@ span.glyphicon {
 					</div>
 				</div>
 			</div>
+							
 		</div>
+							<button style="margin-left:14cm;" class="btn btn-primary" onclick="window.close()">Ãö³¬µøµ¡</button>
     </div>
-        <%@ include file="/front_end/frontEndButtom.file" %>
+     <%@ include file="/front_end/frontEndButtom.file" %>
        <script src="https://code.jquery.com/jquery.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>

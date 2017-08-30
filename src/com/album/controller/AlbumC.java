@@ -8,11 +8,13 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.imageio.ImageIO;
 import javax.servlet.RequestDispatcher;
@@ -30,6 +32,7 @@ import com.album.model.AlbumService;
 import com.albumimg.model.AlbumImg;
 import com.albumimg.model.AlbumImgService;
 import com.member.model.Member;
+import com.member.model.MemberService;
 
 @WebServlet("/front_end/album/Album.do")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 5 * 1024 * 1024 * 1024, maxRequestSize = 5 * 5 * 1024
@@ -45,6 +48,7 @@ public class AlbumC extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		HttpSession session = req.getSession();
 		Member member = (Member) session.getAttribute("member");
+		MemberService memSvc = new MemberService();
 		AlbumService albumSvc = new AlbumService();
 		AlbumImgService aImgSvc=new AlbumImgService();
 		String action = req.getParameter("action");
@@ -126,12 +130,28 @@ public class AlbumC extends HttpServlet {
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 			
+
+			
+			
 			Integer albumNo=null;
 			try{
 				albumNo=Integer.parseInt(req.getParameter("albumNo"));
 			}
 			catch(Exception e){
 				errorMsgs.add(" ");
+			}
+			
+			
+			
+			//驗正請求是不是該會員所有的相簿 如我不試從導首頁
+			Set<Album> albumSet = memSvc.getAlbumsByMemNo(member.getMemNo());
+			List<Integer> memsAlbumNoList=new ArrayList<Integer>();
+			for(Album album:albumSet){
+				memsAlbumNoList.add(album.getAlbumNo());
+			}
+			
+			if(!memsAlbumNoList.contains(albumNo)){
+				errorMsgs.add("這不是你的相簿");
 			}
 			
 			

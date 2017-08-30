@@ -87,9 +87,15 @@ public class ShoppingCar extends HttpServlet {
 						Product Product = buylist.get(i);
 					if(Product.getProdName().equals(aprod.getProdName())) {
 						match=true;
-						int qty = qtyMap.get(Product.getProdName());
-						qty=qty+1;
-						qtyMap.put(Product.getProdName(),qty);
+						if (qtyMap.get(Product.getProdName())==10) {
+							int qty = qtyMap.get(Product.getProdName());
+							qty=10;
+							qtyMap.put(Product.getProdName(), qty);
+						}else{
+							int qty = qtyMap.get(Product.getProdName());
+							qty = qty + 1;
+							qtyMap.put(Product.getProdName(), qty);
+						}
 						}
 					}if (!match){
 						buylist.add(aprod);

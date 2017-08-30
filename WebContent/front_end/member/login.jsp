@@ -69,15 +69,15 @@
 					<input class="btn btn-primary btn-lg btn-block login-button login"
 						type="submit" value="µn¿ý">
 					<div>
-						<a href="<%=request.getContextPath() %>/front_end/member/forgetPwd.jsp" class="btn btn-link">§Ñ°O±K½X</a> <a href="<%=request.getContextPath() %>/front_end/member/register.jsp"
-							class="btn btn-link">µù¥U</a>
+						<a href="<%=request.getContextPath() %>/front_end/member/forgetPwd.jsp" class="btn btn-link">§Ñ°O±K½X</a> 
+						<a href="<%=request.getContextPath() %>/front_end/member/register.jsp" class="btn btn-link">µù¥U</a>
 					</div>
 					<input type="hidden" name="action" value="login">
 				</form>
 				
-				<button id="loginbtn1" class="btn btn-xs btn-default">¦³Ãd</button>
-				<button id="loginbtn2" class="btn btn-xs btn-default">¨SÃd</button>
-				<button id="loginbtn3" class="btn btn-xs btn-default">²Ä¤T</button>
+				<button id="loginbtn1" class="btn btn-xs btn-default">·O·O</button>
+				<button id="loginbtn2" class="btn btn-xs btn-default">¨|¸Û</button>
+				<button id="loginbtn3" class="btn btn-xs btn-default">¸ô¤H</button>
 
 			</div>
 		</div>

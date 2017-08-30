@@ -75,7 +75,7 @@ public class OrderServer extends HttpServlet {
 		while ((line = br.readLine()) != null) {
 			jsonIn.append(line);
 		}
-		//System.out.println("----------jsonIn-78行--------"+jsonIn);
+		System.out.println("----------jsonIn-78行--------"+jsonIn);
 		JsonObject jsonObject = gson.fromJson(jsonIn.toString(), JsonObject.class);
 		//獲的android的memberId的String
 		String memberId = jsonObject.get("memberId").getAsString();
@@ -86,6 +86,8 @@ public class OrderServer extends HttpServlet {
 		ArrayList<DateItemVO> buyerList = dateItemDAO.findItemBuyer(memberInteger);//1
 		//System.out.println("----------buyerList-87行--------"+buyerList.size());
 		ArrayList<DateItemVO> sellerList = dateItemDAO.findItemSeller(memberInteger);//5
+		//只有是賣家的時候，商品狀態才會有0(剛好上架)與1(已被購買)等狀態
+		
 		//System.out.println("----------sellerList-89行--------"+sellerList.size());
 
 		ArrayList<Member> sellerOfmember = new ArrayList<Member>();
@@ -99,15 +101,15 @@ public class OrderServer extends HttpServlet {
 		//當會員是買家或是賣家的時候，有賣家資料，賣家狗，賣家餐廳
 		if("all".equals(action)){
 			ArrayList<DateItemVO> AllList = dateItemDAO.findItemAll(memberInteger);
-			//System.out.println("-------------AllList.size()"+AllList.size());
+			System.out.println("-------------AllList.size()"+AllList.size());
 			
 			for(DateItemVO dateItem: AllList){
 				//System.out.println("------dateItem.getBuyerNo()---"+dateItem.getBuyerNo());
 				//System.out.println("------dateItem.getSellerNo()---"+dateItem.getSellerNo());
 				//System.out.println("-------memberInteger------------"+memberInteger);
 				//System.out.println("-----------------------------"+(Integer.valueOf(dateItem.getSellerNo()).equals(Integer.valueOf(memberInteger))));
-				boolean memberIsBuyer = Integer.valueOf(dateItem.getBuyerNo()).equals(Integer.valueOf(memberInteger));
-				boolean memberIsSeller = Integer.valueOf(dateItem.getSellerNo()).equals(Integer.valueOf(memberInteger));
+				boolean memberIsBuyer = (dateItem.getBuyerNo().toString()).equals((memberInteger).toString());
+				boolean memberIsSeller = (dateItem.getSellerNo().toString()).equals((memberInteger).toString());
 				//表示他是買家
 				if(memberIsBuyer){
 					Member buyerMember = memberDAO.findByPk(memberInteger);
@@ -136,6 +138,46 @@ public class OrderServer extends HttpServlet {
 				OrderVOAll orderVO = new OrderVOAll(AllList,buyerOfmember,sellerOfmember,buyerPetOfmember,sellerRestaurantOfmember);
 				outStr = gson.toJson(orderVO);
 		}
+		}
+		
+		if("allMessage".equals(action)){
+			ArrayList<DateItemVO> AllList = dateItemDAO.findItemAllInMessage(memberInteger);
+			//System.out.println("-------------AllList.size()"+AllList.size());
+			for(DateItemVO dateItem: AllList){
+				//System.out.println("------dateItem.getBuyerNo()---"+dateItem.getBuyerNo());
+				//System.out.println("------dateItem.getSellerNo()---"+dateItem.getSellerNo());
+				//System.out.println("-------memberInteger------------"+memberInteger);
+				//System.out.println("-----------------------------"+(Integer.valueOf(dateItem.getSellerNo()).equals(Integer.valueOf(memberInteger))));
+				boolean memberIsBuyer = Integer.valueOf(dateItem.getBuyerNo()).equals(Integer.valueOf(memberInteger));
+				boolean memberIsSeller = Integer.valueOf(dateItem.getSellerNo()).equals(Integer.valueOf(memberInteger));
+				//表示他是買家
+				if(memberIsBuyer){
+					Member buyerMember = memberDAO.findByPk(memberInteger);
+					Member sellerMember = memberDAO.findByPk(dateItem.getSellerNo());
+					Pet sellerpet = petDAO.findByPk(dateItem.getPetNo());
+					Restaurant restaurantSeller = restaurantDAO.findByPK(dateItem.getRestListNo());
+					buyerOfmember.add(buyerMember);
+					sellerOfmember.add(sellerMember);
+					buyerPetOfmember.add(sellerpet);
+					sellerRestaurantOfmember.add(restaurantSeller);
+				}else if(memberIsSeller){
+					
+					//表示他是賣家
+					Member buyerMember = memberDAO.findByPk(dateItem.getBuyerNo());
+					Member sellerMember = memberDAO.findByPk(memberInteger);
+					Pet sellerpet = petDAO.findByPk(dateItem.getPetNo());
+					Restaurant restaurantSeller = restaurantDAO.findByPK(dateItem.getRestListNo());
+					buyerOfmember.add(buyerMember);
+					sellerOfmember.add(sellerMember);
+					buyerPetOfmember.add(sellerpet);
+					sellerRestaurantOfmember.add(restaurantSeller);
+					
+				}else{
+					//System.out.println("沒東西");
+				}
+				OrderVOAll orderVO = new OrderVOAll(AllList,buyerOfmember,sellerOfmember,buyerPetOfmember,sellerRestaurantOfmember);
+				outStr = gson.toJson(orderVO);
+			}
 		}
 			//System.out.println("----------notAll.equals(action)--------"+"notAll".equals(action));
 		
@@ -167,6 +209,36 @@ public class OrderServer extends HttpServlet {
 		OrderVO orderVO = new OrderVO(buyerList, sellerOfmember, sellerPetOfmember, sellerRestaurantOfmember, sellerList, buyerOfmember, buyerPetOfmember, sellerRestaurantOfmember);
 		outStr = gson.toJson(orderVO);
 		}
+		if("notAllMessage".equals(action)){
+			 sellerList = dateItemDAO.findMessageSeller(memberInteger);
+			for (int i=0 ; i<buyerList.size();i++){
+				int sellno= buyerList.get(i).getSellerNo();
+				int sellPetNo = buyerList.get(i).getPetNo();
+				int sellRestNo = buyerList.get(i).getRestListNo();
+				Member memberseller =memberDAO.findByPk(sellno);
+				sellerOfmember.add(memberseller);//2
+				Pet petSeller = petDAO.findByPk(sellPetNo);
+				sellerPetOfmember.add(petSeller);//3
+				Restaurant restaurantSeller = restaurantDAO.findByPK(sellRestNo);
+				sellerRestaurantOfmember.add(restaurantSeller);//4
+			}
+			//會員是賣家，找到買家資訊。包含買家資料 餐廳，寵物是會員本身的寵物，但可能有很多寵物 所以還是要取得賣家寵物編號
+			for (int i=0 ; i<sellerList.size();i++){
+				int buyerNo= sellerList.get(i).getBuyerNo();
+				int buyerPetNo = sellerList.get(i).getPetNo();
+				int buyRestNo = sellerList.get(i).getRestListNo();
+				Member memberbuyer =memberDAO.findByPk(buyerNo);
+				System.out.println(sellerList.size());
+				System.out.println(buyerList.size());
+				buyerOfmember.add(memberbuyer);//6
+				Pet petSeller = petDAO.findByPk(buyerPetNo);
+				buyerPetOfmember.add(petSeller);//7
+				Restaurant restaurantBuyer = restaurantDAO.findByPK(buyRestNo);
+				sellerRestaurantOfmember.add(restaurantBuyer);//8
+				}
+			OrderVO orderVO = new OrderVO(buyerList, sellerOfmember, sellerPetOfmember, sellerRestaurantOfmember, sellerList, buyerOfmember, buyerPetOfmember, sellerRestaurantOfmember);
+			outStr = gson.toJson(orderVO);
+			}
 	
 		//System.out.println("outStr::::"+outStr);
 	    doGet(rq, rp);

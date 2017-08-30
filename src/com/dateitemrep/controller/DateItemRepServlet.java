@@ -4,7 +4,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.LinkedList;
+import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -45,6 +48,10 @@ public class DateItemRepServlet extends HttpServlet{
 		
 		if("insert".equals(action)){
 			
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+			
+			
 			//---------檢舉人編號-----------------之後改成用session取
 			Integer memNo  = null;
 			memNo =member.getMemNo();
@@ -52,15 +59,27 @@ public class DateItemRepServlet extends HttpServlet{
 			//---------被檢舉約會商品編號-----------------
 			Integer dateItemNo  = null;
 			dateItemNo =new Integer(req.getParameter("dateItemNo").trim());
-			System.out.println(dateItemNo);
+			
 			//---------新增的內文---------------------
 			String repText = null;
 			repText = req.getParameter("repText").trim();
-			
+			if( repText==null || "".equals(repText) ){
+				errorMsgs.add("請輸入檢舉內文!");
+			}
+			repText = repText.replace("<script>","");
+			repText = repText.replace("</script>","");
 			//--------檢舉時間為現在-------------------
 			Date repDate = new Date(System.currentTimeMillis());
 			Integer repState = new Integer(0);//代表還沒有處理
 			
+			if (!errorMsgs.isEmpty()) {
+				
+				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/dateitem/select_page.jsp");
+				failureView.forward(req, res);
+				
+				return;
+			}
+				
 			//---------呼叫service前來處理---------------
 			DateItemRepService dirSvc = new DateItemRepService();
 			dirSvc.addRep(memNo, dateItemNo, repText, repDate, repState);

@@ -279,10 +279,11 @@ public class Update extends HttpServlet {
 			String district = req.getParameter("district").trim();
 			String memAddress = req.getParameter("memAddress").trim();
 			String memEmail = req.getParameter("memEmail").trim();
+			String gRecaptchaResponse = req.getParameter("g-recaptcha-response");
 
-
+			System.out.println(gRecaptchaResponse);
 			Member fMem = new Member();
-
+			boolean verify = VerifyRecaptcha.verify(gRecaptchaResponse);
 
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
@@ -497,7 +498,7 @@ public class Update extends HttpServlet {
 
 			}
 
-			if (!errorMsgs.isEmpty()) {
+			if (!errorMsgs.isEmpty() || !verify) {
 				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/register.jsp");
 				String fCounty = county;
 				String fDistrict = district;

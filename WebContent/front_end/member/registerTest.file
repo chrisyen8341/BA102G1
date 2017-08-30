@@ -293,7 +293,7 @@ document.getElementById("memBday").setAttribute("max", today);
 
 
 		$("#autoAddMemPet").click(function(){
-			$("#memId").val("petym0");
+			$("#memId").val("petym11");
 			$("#memId").testMemId();
 			$("#memSname").val("·O·O");
 			$("#memPwd").val("p123456");

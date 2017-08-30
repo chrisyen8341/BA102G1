@@ -817,7 +817,7 @@ public class DateItemDAO implements DateItemDAO_interface{
 			}else {
 				petKind="¨ä¥L";
 			}
-			String FIND_PET_TYPE = "select * from dateitem where  petno  in ( select petno from pet where petkind like '%"+petKind+"%')";
+			String FIND_PET_TYPE = "select * from dateitem where dateItemStatus=0 and  petno  in ( select petno from pet where petkind like '%"+petKind+"%')";
 //									select * from dateitem where  petno  in ( select petno from pet where petkind like '%   ¿ß      %');
 			con = ds.getConnection();
 			pstmt=con.prepareStatement(FIND_PET_TYPE);

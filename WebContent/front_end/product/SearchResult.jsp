@@ -281,7 +281,9 @@ body {
         
           <div class="blog-bar color-pink"></div>
           <div class="blog-post-text" style="width:180px;height:40px;">
+             <font size="4" color="black"  style="font-family:DFKai-sb;">
             ${product.prodName}
+            </font>
             
           </div>
           <div class="blog-post-text " style="margin-right:0px">
@@ -305,25 +307,16 @@ body {
 		</c:if>
 	
 	</c:forEach>
-	 </div>
-  </div>
-        
-        
-        <div class="row">
-        <div>
-                <div class="text-center">
-                    <%@ include file="pageCount2.file"%>
-                </div>
+	  <!--                 Åã¥Ü­¶¼Æ -->
+                               	   
                 
-            </div>
         </div>
+        </div>
+        </div>
+        <%@ include file="page.file" %> 
         
         <%@ include file="/front_end/frontEndButtom.file" %>
         </div>
-        </div>
-        </div>
-        </div>
-	 <%@ include file="/front_end/frontEndButtom.file" %>
         <script src="https://code.jquery.com/jquery.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>

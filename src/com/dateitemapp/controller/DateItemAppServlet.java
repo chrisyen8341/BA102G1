@@ -8,8 +8,11 @@ import java.io.PrintWriter;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Base64;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
@@ -54,6 +57,10 @@ public class DateItemAppServlet extends HttpServlet{
 		
 		if("insert".equals(action)){
 			
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+			
+			
 			//---------申訴人編號-----------------之後改成用session取
 			Integer memNo  = null;
 			memNo = member.getMemNo();
@@ -66,6 +73,16 @@ public class DateItemAppServlet extends HttpServlet{
 			String appTitle = null;
 			appTitle = req.getParameter("appTitle").trim();
 			
+			if( appTitle==null || "".equals(appTitle) ){
+				errorMsgs.add("請輸入發文名稱!");
+			}
+			if(appTitle!=null && appTitle.length()>30){
+				errorMsgs.add("日誌標題長度過長!!");
+			}
+			
+			//擋住script
+			appTitle = appTitle.replace("<script>","");
+			appTitle = appTitle.replace("</script>","");
 			
 			//---------新增的內文+加上把照片轉字串---------------------
 			String appText = null;
@@ -75,9 +92,7 @@ public class DateItemAppServlet extends HttpServlet{
 			Part part = null;
 			part = req.getPart("appImage");
 			
-			System.out.println(part);
-			
-			
+
 			if(!part.equals("")){
 				if(part.getContentType().substring(0,5).equals("image")){
 					appImg = getByteArrayImg(part);
@@ -85,15 +100,39 @@ public class DateItemAppServlet extends HttpServlet{
 				}
 			}
 			
-			if(appImgtoString.equals("")){
+			if(appImgtoString == null){
 				appText = req.getParameter("appText").trim();
+				if(appText==null || appText.equals("")){			//判斷空值(空字串)
+					errorMsgs.add("請輸入內文!");
+				}
+				
+				//擋住script
+				appText = appText.replace("<script>","");
+				appText = appText.replace("</script>","");
 			}else{
-				appText = req.getParameter("appText").trim()+"<br><img src=\"data:image/jpg;base64,"+appImgtoString+"\">";
+				appText = req.getParameter("appText").trim();
+				if(appText==null || appText.equals("")){			//判斷空值(空字串)
+					errorMsgs.add("請輸入內文!");
+				}
+				appText = appText+"<br><img src=\"data:image/jpg;base64,"+appImgtoString+"\">";
+				
+				appText = appText.replace("<script>","");
+				appText = appText.replace("</script>","");
 			}
 				System.out.println(appText);
 			//--------申訴時間為現在-------------------
 			Date appDate = new Date(System.currentTimeMillis());
 			Integer appState = new Integer(0);//代表還沒有處理
+			
+			if (!errorMsgs.isEmpty()) {
+				
+				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/dateitem/list_buyer_future.jsp");
+				failureView.forward(req, res);
+				
+				return;
+			}
+			
+			
 			
 			//---------呼叫service前來處理---------------
 			DateItemAppService dipSvc = new DateItemAppService();

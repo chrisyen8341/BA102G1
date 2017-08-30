@@ -37,6 +37,7 @@
 	<link href="<%=request.getContextPath() %>/front_end/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script src="<%=request.getContextPath() %>/front_end/js/fileinput.js"  type="text/javascript"></script>
+	<script src="<%=request.getContextPath() %>/front_end/ckeditor/ckeditor.js" ></script>
 <!-- 	<script src="https://code.jquery.com/jquery.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	 <!--[if lt IE 9]>
@@ -129,9 +130,10 @@
 							<input type="hidden" name="whichPage" value="<%= whichPage %>">
 							<div class="input-group">
 								<label class="input-group-addon">日誌</label>
-								<input type="text" name="dianame" class="form-control" placeholder="Write down your title." value="${diaErr.diaName }"><br>
+								<input type="text" name="dianame" id="fastName" class="form-control" placeholder="Write down your title." value="${diaErr.diaName }"><br>
 							</div>
-							<textarea name="diatext" style="resize:none;height:80px;" class="form-control" placeholder="What's on your mind, ${memSvc.getOneMember(member.getMemNo()).getMemSname()}?">${diaErr.diaText }</textarea>
+							<textarea name="diatext" id="fastText" style="resize:none;height:80px;" class="form-control" placeholder="What's on your mind, ${memSvc.getOneMember(member.getMemNo()).getMemSname()}?">${diaErr.diaText }</textarea>
+							
 							<input type="file" class="file" name="diaimg" data-show-upload="false">
 							<p>
 							<div class="">	
@@ -139,6 +141,8 @@
 							</div>
 							</p>
 						</form>
+								<input type="button" style="display:inline-block;font-size: 10px;" value="發圖" onclick="fastPic();">						
+								<input type="button" style="display:inline-block;font-size: 10px;" value="發片" onclick="fastVid();">						
 					  </div>
                 	</div>
                 </div>
@@ -227,6 +231,8 @@
                 <%@ include file="/front_end/frontEndButtom.file"%>
         </div>
     </div>     
+                <%@ include file="fastShowData.file" %> 
+	
 		
 	         
         

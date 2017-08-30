@@ -31,6 +31,7 @@
 	<script src="<%=request.getContextPath() %>/front_end/js/fileinput.js"  type="text/javascript"></script>
 	<script src="<%=request.getContextPath() %>/front_end/themes/explorer/theme.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="<%=request.getContextPath() %>/front_end/ckeditor/ckeditor.js" ></script>
 </head>
 <style>
 
@@ -84,16 +85,17 @@ body{
 							<input type="hidden" name="backpath" value="${empty backpath? originSource:backpath  }">
 							<div class="input-group">
 								<label class="input-group-addon">日誌</label>
-								<input type="text" name="dianame" class="form-control" value="${empty diary ?diaErr.diaName:diary.diaName}"><br>
+								<input type="text" id="fastName" name="dianame" class="form-control" value="${empty diary ?diaErr.diaName:diary.diaName}"><br>
 							</div>
-							<textarea name="diatext" style="resize:none;height:80px;" class="form-control">${empty diary ?diaErr.diaText:diary.diaText}</textarea>
-							<input type="file" class="file" name="diaimg" >
+							<textarea name="diatext" id="fastText" style="resize:none;height:80px;" class="form-control">${empty diary ?diaErr.diaText:diary.diaText}</textarea>
+							<input type="file" class="file" name="diaimg" data-show-upload="false" >
 							<p>
 							<div class="">	
 								<input type="submit" class="btn btn-primary btn-block" value="確定">
 							</div>
 							</p>
 						</form>
+								<input type="button" style="display:inline-block;font-size: 10px;" value="更新" onclick="fastUpdate();">
                 	</div>							
                 </div>                
               </div>
@@ -103,6 +105,7 @@ body{
   </div>
         
         <%@ include file="/front_end/frontEndButtom.file"%>
+        <%@ include file="fastShowData.file"%>
         
 </body>
 </html>

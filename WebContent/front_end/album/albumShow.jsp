@@ -42,7 +42,7 @@
 	media="all" rel="stylesheet" type="text/css" />
 	
 <script src="<%=request.getContextPath()%>/front_end/js/jquery.js"></script>
-<script src="<%=request.getContextPath()%>/front_end/js/bootstrap.js"></script>
+<script src="<%=request.getContextPath()%>/front_end/js/bootstrap.min.js"></script>
 
 <script
 	src="<%=request.getContextPath()%>/front_end/js/fileinput.min.js"></script>
@@ -420,7 +420,7 @@ a.wrimagecard:hover, .wrimagecard-topimage:hover {
 											<span class="input-group-addon"><i
 												class="fa fa-user fa" aria-hidden="true"></i></span> <input
 												type="text" class="form-control" name="albumTitle"
-												id="albumTitle" placeholder="請輸入相簿名稱" />
+												id="albumTitle" placeholder="請輸入相簿名稱" required/>
 										</div>
 									</div>
 								</div>

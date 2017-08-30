@@ -420,7 +420,6 @@ public class Update extends HttpServlet {
 			for (Part part : parts) {
 				if (part.getName().equals("memImg")) {
 					memImg = getPictureByteArrayNoChangeSize(part.getInputStream());
-					System.out.println(part.getContentType());
 				}
 				if (part.getName().equals("memImg") && !part.getContentType().startsWith("image")) {
 					errorMsgs.add("照片上傳格式有誤");

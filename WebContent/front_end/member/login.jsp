@@ -70,14 +70,14 @@
 						type="submit" value="登錄">
 					<div>
 						<a href="<%=request.getContextPath() %>/front_end/member/forgetPwd.jsp" class="btn btn-link">忘記密碼</a> 
-						<a href="<%=request.getContextPath() %>/front_end/member/registerForAWS.jsp" class="btn btn-link">註冊</a>
+						<a href="<%=request.getContextPath() %>/front_end/member/register.jsp" class="btn btn-link">註冊</a>
 					</div>
 					<input type="hidden" name="action" value="login">
 				</form>
 				
-				<button id="loginbtn1" class="btn btn-xs btn-default">有寵</button>
-				<button id="loginbtn2" class="btn btn-xs btn-default">沒寵</button>
-				<button id="loginbtn3" class="btn btn-xs btn-default">第三</button>
+				<button id="loginbtn1" class="btn btn-xs btn-default">慈慈</button>
+				<button id="loginbtn2" class="btn btn-xs btn-default">育誠</button>
+				<button id="loginbtn3" class="btn btn-xs btn-default">路人</button>
 
 			</div>
 		</div>

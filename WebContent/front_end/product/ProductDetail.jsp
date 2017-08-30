@@ -10,7 +10,7 @@
 <script src="<%=request.getContextPath() %>/front_end/js/bootstrap.min.js"></script>
 <%@ include file="page4.file" %>
 
-<title>Insert title here</title>
+
 <style>
  .panel.panel--styled {
     background: #F4F2F3;

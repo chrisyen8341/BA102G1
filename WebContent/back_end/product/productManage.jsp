@@ -48,7 +48,7 @@
      <c:if test = "${product.prodState == 0}">
       <tr>
         
-        <td>${product.prodName}</td>
+        <td><a href="<%=request.getContextPath()%>/back_end/product/ProdView.jsp?prodNo=${product.prodNo}" target="_blank">${product.prodName}</a></td>
         <td>${product.prodType}</td>
         <td>${product.prodPrice}</td>
         

@@ -56,11 +56,7 @@
 	<div class="row"  id="show">
 		
         <div class="col-md-4 col-md-offset-3">
-          						<font color="red"> 
-                                   <c:if test="${not empty errorMsgs}">
-                                     <%=request.getAttribute("errorMsgs") %>
-                                   </c:if>
-                        		</font>
+          						
 			<div class="main clearfix" style="padding-top:0px;">
 			   
 				<div class="demo-container">
@@ -87,8 +83,12 @@
                   			  </select>
                   			  <br>
                   			  <input type="submit" class="btn btn-warning btn-block" style="width:350px;" value="¤ä¥I" />
-                  			  
-                  			  <input type="button" value="" style="margin-left:0cm;margin-right:0cm;width:1px;"onclick="insert()">
+                  			  <font color="red"> 
+                                   <c:if test="${not empty errorMsgs}">
+                                     <%=request.getAttribute("errorMsgs") %>
+                                   </c:if>
+                        		</font>
+                  			  <input type="button" value="Àx" style="margin-left:0cm;margin-right:0cm;width:1cm;"onclick="insert()">
                   			  
              				  </div>
              				</div>
@@ -122,9 +122,11 @@
 	    	var one = document.getElementById("name");
 	    	var date = document.getElementById("date");
 	        var memname = document.getElementById("memname");
+	        var cvc = document.getElementById("cvc");
 	        num.value="5432123456788881";
 	        date.value="12/21";
 	        one.value=memname.value; 
+	        cvc.value="310"
 	    }
 		</script>
 		<script type="text/javascript">

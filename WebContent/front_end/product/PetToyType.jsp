@@ -275,19 +275,16 @@ body {
       
       		</c:if>
 		</c:forEach> 
-    </div>
-  </div>
-        
-        
-        <div class="row">
-        <div>
-                <div class="text-center">
-                    <%@ include file="pageCount2.file"%>
-                </div>
+     <!--                 Åã¥Ü­¶¼Æ -->
+                               	   
                 
-            </div>
         </div>
+        </div>
+        </div>
+        <%@ include file="page.file" %> 
+        
         <%@ include file="/front_end/frontEndButtom.file" %>
+        </div>
         <script src="https://code.jquery.com/jquery.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>

@@ -144,10 +144,10 @@ public class OrderServer extends HttpServlet {
 			ArrayList<DateItemVO> AllList = dateItemDAO.findItemAllInMessage(memberInteger);
 			//System.out.println("-------------AllList.size()"+AllList.size());
 			for(DateItemVO dateItem: AllList){
-				//System.out.println("------dateItem.getBuyerNo()---"+dateItem.getBuyerNo());
-				//System.out.println("------dateItem.getSellerNo()---"+dateItem.getSellerNo());
-				//System.out.println("-------memberInteger------------"+memberInteger);
-				//System.out.println("-----------------------------"+(Integer.valueOf(dateItem.getSellerNo()).equals(Integer.valueOf(memberInteger))));
+//				System.out.println("------dateItem.getBuyerNo()---"+dateItem.getBuyerNo());
+//				System.out.println("------dateItem.getSellerNo()---"+dateItem.getSellerNo());
+//				System.out.println("-------memberInteger------------"+memberInteger);
+//				System.out.println("-----------------------------"+(Integer.valueOf(dateItem.getSellerNo()).equals(Integer.valueOf(memberInteger))));
 				boolean memberIsBuyer = Integer.valueOf(dateItem.getBuyerNo()).equals(Integer.valueOf(memberInteger));
 				boolean memberIsSeller = Integer.valueOf(dateItem.getSellerNo()).equals(Integer.valueOf(memberInteger));
 				//表示他是買家
@@ -177,6 +177,8 @@ public class OrderServer extends HttpServlet {
 				}
 				OrderVOAll orderVO = new OrderVOAll(AllList,buyerOfmember,sellerOfmember,buyerPetOfmember,sellerRestaurantOfmember);
 				outStr = gson.toJson(orderVO);
+//				System.out.println("----------outStrMessageAll--------"+outStr);
+
 			}
 		}
 			//System.out.println("----------notAll.equals(action)--------"+"notAll".equals(action));

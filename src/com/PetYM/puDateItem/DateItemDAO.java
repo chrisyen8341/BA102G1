@@ -58,7 +58,7 @@ public class DateItemDAO implements DateItemDAO_interface{
 	private static final String FIND_BY_SELLER = "SELECT * FROM DATEITEM WHERE SELLERNO =? ORDER BY DATEITEMNO DESC";
 	private static final String FIND_BY_FASTDATEITEM = "SELECT * FROM DATEITEM WHERE isInstantDate =1 AND sellerNo  != ? AND dateItemStatus=0 ORDER BY DATEITEMNO DESC";
 	private static final String FIND_BY_All = "select * from dateitem where sellerno = ? or buyerno = ? order by datemeetingtime desc";
-	private static final String FIND_BY_AllMessage = "select * from dateitem where (sellerno = ? or buyerno = ?)and dateItemStatus=1 order by datemeetingtime desc";
+	private static final String FIND_BY_AllMessage = "select * from dateitem where (sellerno = ? or buyerno = ?)and dateItemStatus!=0 order by datemeetingtime desc";
 	private static final String FIND_BY_All_FINDMessageSELLER = "SELECT * FROM DATEITEM WHERE SELLERNO =? and dateitemstatus=1 ORDER BY DATEITEMNO DESC";
 	private static final String FIND_PET_TYPE = "select * from dateitem where  petno  in ( select petno from pet where petkind like '%++%');";
 

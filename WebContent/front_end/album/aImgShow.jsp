@@ -6,7 +6,7 @@
 <%@ page import="java.util.HashMap"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
-	Integer albumNo = Integer.parseInt(request.getParameter("albumNo"));
+	Integer albumNo = (Integer)(request.getAttribute("albumNo"));
 	AlbumService albumSvc = new AlbumService();
 	MemberService memSvc = new MemberService();
 	Member member = (Member) session.getAttribute("member");
@@ -47,7 +47,7 @@
 	media="all" rel="stylesheet" type="text/css" />
 	
 <script src="<%=request.getContextPath()%>/front_end/js/jquery.js"></script>
-<script src="<%=request.getContextPath()%>/front_end/js/bootstrap.js"></script>
+<script src="<%=request.getContextPath()%>/front_end/js/bootstrap.min.js"></script>
 
 <script
 	src="<%=request.getContextPath()%>/front_end/js/fileinput.min.js"></script>
@@ -165,7 +165,7 @@
 				<%@ include file="memZoneLSide.file"%>
 			</div>
 
-			<div class="col-xs-12 col-sm-8 ">
+			<div class="col-xs-12 col-sm-8 col-md-offset-1">
 				<div class="row">
 
 
@@ -502,7 +502,7 @@
 		});
 		
 		$('#input-20').on('filebatchuploadcomplete', function (event, data, previewId, index) {
-			top.location.href="<%=request.getContextPath()%>/front_end/album/aImgShow.jsp?albumNo=<%=albumNo%>";});
+			top.location.href="<%=request.getContextPath()%>/front_end/album/Album.do?albumNo=<%=albumNo%>&action=getUserAlbum";});
 	
 		
 		

@@ -112,7 +112,7 @@
 
 				<div class="form-horizontal">
 				<c:if test="${not empty newRestErr}">
-					${newRestErr}
+					<font color="red" style="font-weight:bold">${newRestErr}</font>
 				</c:if>
 					<form method="post" action="<%=request.getContextPath()%>/restaurant/restaurantController">
 							

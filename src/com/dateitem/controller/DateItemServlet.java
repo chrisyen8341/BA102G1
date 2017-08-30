@@ -190,11 +190,12 @@ public class DateItemServlet extends HttpServlet {
 			HttpSession session = req.getSession();
 			Member member = (Member) session.getAttribute("member");
 			int buyerNo = member.getMemNo();
-						
-						
+			
 			Integer dateItemNo = new Integer(req.getParameter("dateItemNo").trim());
 			DateItemService dSvc = new DateItemService();
 			DateItemVO dateItemVO = dSvc.findByPK(dateItemNo);
+			
+			if(member.getMemPoint()>dateItemVO.getDateItemPrice()){
 			
 			//call另一個類別中 執行續安全的方法:購買
 			BuyDateItem buyDateItem = new BuyDateItem();
@@ -209,7 +210,7 @@ public class DateItemServlet extends HttpServlet {
 				lSvc.addLtrOfDateBeBought(dateItemVO);
 				lSvc.addLtrOfBuyDateItemSucess(dateItemVO);
 				MemberService mSvc = new MemberService();
-				int currentPoint = mSvc.getOneMember(buyerNo).getMemPoint();
+				int currentPoint = member.getMemPoint();
 				member.setMemPoint(currentPoint-dateItemVO.getDateItemPrice());
 				session.setAttribute("member", member);
 				}else{
@@ -218,6 +219,13 @@ public class DateItemServlet extends HttpServlet {
 					RequestDispatcher successView = req.getRequestDispatcher(url);
 					successView.forward(req, res);	
 				}
+			
+			}else{
+				req.setAttribute("itemNotFound", dateItemVO);
+				String url = "/front_end/dateitem/list_buyer_future.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);
+				successView.forward(req, res);	
+			}
 		}
 				
 				
@@ -289,6 +297,10 @@ public class DateItemServlet extends HttpServlet {
 			//儲值金額返還
 			int currentPoint = mSvc.getOneMember(dateItemVO.getBuyerNo()).getMemPoint();
 			mSvc.getOneMember(dateItemVO.getBuyerNo()).setMemPoint(currentPoint+dateItemVO.getDateItemPrice());
+			HttpSession session = req.getSession();
+			Member member = (Member) session.getAttribute("member");
+			member.setMemPoint(currentPoint+dateItemVO.getDateItemPrice());
+			session.setAttribute("member", member);
 			
 			//分辨取消來自買方還是賣方,分別導回買賣方的歷史紀錄
 			try {

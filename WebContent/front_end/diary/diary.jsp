@@ -44,6 +44,14 @@
   		<![endif]-->
 </head>
 <style>
+
+  body{  
+  background-image:url('../images/diary-background5.jpg') !important; */
+ 	 
+  }  
+ 
+
+
 .panel-body{
 	padding:1px;
 }
@@ -117,14 +125,16 @@
 						<form class="form-group" action="<%=request.getContextPath()%>/front_end/diary/diary.do" method=post enctype="multipart/form-data">
 							
 							<input type="hidden" name="action" value="insert">
+							<input type="hidden" name="originSource" value="diary.jsp">
+							<input type="hidden" name="whichPage" value="<%= whichPage %>">
 							<div class="input-group">
 								<label class="input-group-addon">日誌</label>
-								<input type="text" name="dianame" class="form-control" placeholder="Write down your title."><br>
+								<input type="text" name="dianame" class="form-control" placeholder="Write down your title." value="${diaErr.diaName }"><br>
 							</div>
-							<textarea name="diatext" style="resize:none;height:80px;" class="form-control" placeholder="What's on your mind, ${memSvc.getOneMember(member.getMemNo()).getMemSname()}?"></textarea>
+							<textarea name="diatext" style="resize:none;height:80px;" class="form-control" placeholder="What's on your mind, ${memSvc.getOneMember(member.getMemNo()).getMemSname()}?">${diaErr.diaText }</textarea>
 							<input type="file" class="file" name="diaimg" data-show-upload="false">
 							<p>
-							<div  class="">	
+							<div class="">	
 								<input type="submit" class="btn btn-primary btn-block" value="確定">
 							</div>
 							</p>
@@ -155,6 +165,8 @@
 		                        		<form action="<%=request.getContextPath()%>/front_end/diary/diary.do" method=post enctype="multipart/form-data" >
 				                        	<input type="hidden" name="action" value="getOne_For_Update">
 				                        	<input type="hidden" name="diano" value="${diary.diaNo}">
+				                        	<input type="hidden" name="originSource" value="diary.jsp">
+											<input type="hidden" name="whichPage" value="<%= whichPage %>">
 											<input class="btn btn-info btn-xs" type="submit" value="修改">
 										</form>
 									</div>
@@ -163,6 +175,8 @@
 										<form action="<%=request.getContextPath()%>/front_end/diary/diary.do" method=post enctype="multipart/form-data" >
 				                        	<input type="hidden" name="action" value="delete">
 				                        	<input type="hidden" name="diano" value="${diary.diaNo}">
+				           	             	<input type="hidden" name="originSource" value="diary.jsp">
+											<input type="hidden" name="whichPage" value="<%= whichPage %>">
 											<input class="btn btn-danger btn-xs" type="submit" value="刪除"><br>
 										</form>
 									</div>

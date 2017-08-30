@@ -276,17 +276,13 @@ public class Update extends HttpServlet {
 			String memIdNo = req.getParameter("memIdNo").trim();
 			String memPhone = req.getParameter("memPhone").trim();
 			String county = req.getParameter("county").trim();
-			System.out.println("縣市: " + county);
 			String district = req.getParameter("district").trim();
-			System.out.println("區: " + district);
 			String memAddress = req.getParameter("memAddress").trim();
-			System.out.println("街名: " + memAddress);
 			String memEmail = req.getParameter("memEmail").trim();
-			String gRecaptchaResponse = req.getParameter("g-recaptcha-response");
 
-			System.out.println(gRecaptchaResponse);
+
 			Member fMem = new Member();
-			boolean verify = VerifyRecaptcha.verify(gRecaptchaResponse);
+
 
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
@@ -420,7 +416,6 @@ public class Update extends HttpServlet {
 			for (Part part : parts) {
 				if (part.getName().equals("memImg")) {
 					memImg = getPictureByteArrayNoChangeSize(part.getInputStream());
-					System.out.println(part.getContentType());
 				}
 				if (part.getName().equals("memImg") && !part.getContentType().startsWith("image")) {
 					errorMsgs.add("照片上傳格式有誤");
@@ -502,7 +497,7 @@ public class Update extends HttpServlet {
 
 			}
 
-			if (!errorMsgs.isEmpty() || !verify) {
+			if (!errorMsgs.isEmpty()) {
 				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/member/register.jsp");
 				String fCounty = county;
 				String fDistrict = district;

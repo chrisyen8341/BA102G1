@@ -36,12 +36,19 @@ public class DiaryServlet extends HttpServlet{
 		req.setCharacterEncoding("utf-8");
 		res.setContentType("text/html; charset=Big5");
 		String action = req.getParameter("action");
+		Integer whichPage = null;
+		try{
+			whichPage = new Integer(req.getParameter("whichPage"));
+		}catch(Exception e){
+			whichPage = 1;
+		}
+		
 		
 		if("insert".equals(action)){
 			
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
-			
+			Diary diaErr = new Diary();
 
 			//----------------判斷名稱是否為空值-------------------
 			String diaName = null;
@@ -60,6 +67,8 @@ public class DiaryServlet extends HttpServlet{
 				diaName = diaName.replace("<script>","");
 				diaName = diaName.replace("</script>","");
 				
+				diaErr.setDiaName(diaName);
+				
 			}catch(NullPointerException e){
 				e.printStackTrace(System.err);	
 			}
@@ -75,6 +84,8 @@ public class DiaryServlet extends HttpServlet{
 				diaText = diaText.replace("<script>","");
 				diaText = diaText.replace("</script>","");
 				
+				diaErr.setDiaText(diaText);
+				
 			}catch(Exception ne){
 				ne.printStackTrace(System.err);
 			}
@@ -83,11 +94,12 @@ public class DiaryServlet extends HttpServlet{
 			String diaImgExtName = null;
 			
 			Part part = req.getPart("diaimg");
-			diaImgExtName =  part.getContentType().substring(0,5);
+			
 			
 			if(!part.equals("")){
 				if(part.getContentType().substring(0,5).equals("image")||part.getContentType().substring(0,5).equals("video")){
 					diaImg = getByteArrayImg(part);
+					diaImgExtName =  part.getContentType().substring(0,5);
 				}
 			}
 //				GregorianCalendar speday = new GregorianCalendar(2011,12,3,23,49,22);
@@ -106,11 +118,15 @@ public class DiaryServlet extends HttpServlet{
 //				diary.setDiaText(diaText);
 //				diary.setDiaImg(diaImg);
 //				diary.setDiaState(diaState);
-
+				
+				//抓出來源網址的網頁
+				String originSource = req.getParameter("originSource");
+				
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-	
-					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/diary/mydiary.jsp");
+					
+					req.setAttribute("diaErr", diaErr);
+					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/diary/"+originSource+"?whichPage="+whichPage);
 					failureView.forward(req, res);
 					
 					return;
@@ -119,7 +135,7 @@ public class DiaryServlet extends HttpServlet{
 				DiaryService dsv =new DiaryService();
 				dsv.addDia(member.getMemNo(), diaName, diaText, diaImg, diaCreTime, diaModTime, diaState, diaImgExtName);
 				
-				res.sendRedirect(req.getContextPath() + "/front_end/diary/mydiary.jsp");
+				res.sendRedirect(req.getContextPath() + "/front_end/diary/"+originSource+"?whichPage="+whichPage);
 				
 		}
 		
@@ -127,9 +143,11 @@ public class DiaryServlet extends HttpServlet{
 			
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
-		
+			Diary diaErr = new Diary();
+			
 			try {
 				Integer diaNo = Integer.valueOf(req.getParameter("diano"));
+				diaErr.setDiaNo(diaNo);
 				//----------------判斷名稱是否為空值-------------------
 				String diaName = null;
 				try{
@@ -144,6 +162,8 @@ public class DiaryServlet extends HttpServlet{
 					//擋住script
 					diaName = diaName.replace("<script>","");
 					diaName = diaName.replace("</script>","");
+					
+					diaErr.setDiaName(diaName);
 					
 				}catch(NullPointerException e){
 					e.printStackTrace(System.err);	
@@ -160,6 +180,9 @@ public class DiaryServlet extends HttpServlet{
 					//擋住script
 					diaText = diaText.replace("<script>","");
 					diaText = diaText.replace("</script>","");
+					
+					diaErr.setDiaText(diaText);
+					
 				}catch(Exception ne){
 					ne.printStackTrace(System.err);
 				}
@@ -168,19 +191,19 @@ public class DiaryServlet extends HttpServlet{
 				String diaImgExtName = null;
 				try{
 					Part part = req.getPart("diaimg");
-					diaImgExtName =  part.getContentType().substring(0,5);
 						if(part.getContentType().substring(0,5).equals("image")||part.getContentType().substring(0,5).equals("video") ){
 							diaImg = getByteArrayImg(part);
+							diaImgExtName =  part.getContentType().substring(0,5);
 							
 						}else if(part.getSize()!=0){
 							//格式錯誤
-							errorMsgs.add("此非圖片格式!");
+							errorMsgs.add("此非圖片或影片格式!");
 						}else {
 							//判斷如果沒上傳新的就沿用舊的
 							DiaryService diaSvc = new DiaryService();
 							Diary diaryOld = diaSvc.getOneDia(diaNo);
 							diaImg = diaryOld.getDiaImg();
-							
+							diaImgExtName = diaryOld.getDiaImgExtName();
 						}
 			
 				}catch(Exception e){
@@ -190,7 +213,12 @@ public class DiaryServlet extends HttpServlet{
 					Timestamp diaModTime = new Timestamp(System.currentTimeMillis());;
 					Integer diaState = 0; //indicate appearance
 
+					
+				String backpath = req.getParameter("backpath");	
+				
 				if (!errorMsgs.isEmpty()) {
+					req.setAttribute("backpath", backpath);
+					req.setAttribute("diaErr", diaErr);
 					RequestDispatcher failureView = req.getRequestDispatcher("/front_end/diary/updateDiary.jsp");
 					failureView.forward(req, res);
 					return; //程式中斷
@@ -201,13 +229,17 @@ public class DiaryServlet extends HttpServlet{
 				Diary diary = diaSvc.updateDia(member.getMemNo(), diaName, diaText, diaImg, diaModTime, diaState, diaNo, diaImgExtName);
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
-				req.setAttribute("diary", diary); // 資料庫update成功後,正確的的diary物件,存入req
-				String url = "/front_end/diary/mydiary.jsp";
+				
+				
+				req.setAttribute("backpath", backpath);
+				req.setAttribute("diary", diary);
+				String url = "/front_end/diary/"+backpath;
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 
 				/***************************其他可能的錯誤處理*************************************/
 			} catch (Exception e) {
+				req.setAttribute("diaErr", diaErr);
 				errorMsgs.add("修改資料失敗: "+e.getMessage());
 				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/diary/updateDiary.jsp");
 				failureView.forward(req, res);
@@ -218,7 +250,7 @@ public class DiaryServlet extends HttpServlet{
 
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
-			
+			String originSource = null;
 			try {
 				/***************************1.接收請求參數****************************************/
 				Integer diano = Integer.valueOf(req.getParameter("diano"));
@@ -228,15 +260,21 @@ public class DiaryServlet extends HttpServlet{
 				Diary diary = diaSvc.getOneDia(diano); 
 								
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
-				req.setAttribute("diary", diary);         // 資料庫取出的diary物件,存入req
+				//抓出來源網址的網頁
+				originSource = req.getParameter("originSource");
+				req.setAttribute("originSource", originSource+"?whichPage="+whichPage);         // 資料庫取出的diary物件,存入req
+//				System.out.println("getONe: "+originSource+"?whichPage="+whichPage);
+				req.setAttribute("diary", diary);
 				String url = "/front_end/diary/updateDiary.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 
 				successView.forward(req, res);
 
 				/***************************其他可能的錯誤處理**********************************/
 			} catch (Exception e) {
+				//抓出來源網址的網頁
+				originSource = req.getParameter("originSource");
 				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/diary/mydiary.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/diary/"+originSource+"?whichPage="+whichPage);
 				failureView.forward(req, res);
 			}
 		}
@@ -245,7 +283,8 @@ public class DiaryServlet extends HttpServlet{
 
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
-	
+			String originSource = req.getParameter("originSource");
+			
 			try {
 				/***************************1.接收請求參數***************************************/
 				Integer diaNo = new Integer(req.getParameter("diano"));
@@ -255,14 +294,16 @@ public class DiaryServlet extends HttpServlet{
 				diaSvc.deleteDia(diaNo);
 				
 				/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
-				String url = "/front_end/diary/mydiary.jsp";
+				
+				String url = "/front_end/diary/"+originSource+"?whichPage="+whichPage;
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 				successView.forward(req, res);
 				
 				/***************************其他可能的錯誤處理**********************************/
 			} catch (Exception e) {
+				
 				errorMsgs.add("刪除資料失敗:"+e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/diary/mydiary.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front_end/diary/"+originSource+"?whichPage="+whichPage);
 				failureView.forward(req, res);
 			}
 		}

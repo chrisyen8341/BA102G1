@@ -16,7 +16,7 @@ pageContext.setAttribute("fDistrict", fDistrict);
 %>
 
 <%@ include file="memHead.file"%>
-<%@ include file="registerTest.file"%>
+<%@ include file="registerTestForAWS.file"%>
 <title>Ãdª« You & Me</title>
  <script src="<%=request.getContextPath() %>/front_end/js/jquery.twzipcode.min.js"></script> 
 
@@ -343,12 +343,13 @@ pageContext.setAttribute("fDistrict", fDistrict);
 					<input type="hidden" name="action" value="register">
 
 
-					<!-- 					google Invisible reCAPTCHA  -->
-					<div id='recaptcha' class="g-recaptcha"
-						data-sitekey="6LeBbC0UAAAAAEd3C3R3zbSpsfxg2A7zZarw2mZT"
-						data-callback="onSubmit" data-size="invisible"></div>
-					<button id='sub'
-						class="btn btn-primary btn-lg btn-block login-button">µù¥U</button>
+<!-- 										google Invisible reCAPTCHA  -->
+<!-- 					<div id='recaptcha' class="g-recaptcha" -->
+<!-- 						data-sitekey="6LeBbC0UAAAAAEd3C3R3zbSpsfxg2A7zZarw2mZT" -->
+<!-- 						data-callback="onSubmit" data-size="invisible"></div> -->
+<!-- 					<button id='sub' -->
+<!-- 						class="btn btn-primary btn-lg btn-block login-button">µù¥U</button> -->
+					<input type="submit" value="µù¥U" class="btn btn-primary btn-lg btn-block login-button">
 
 				</form>
 				<%-- ¿ù»~ªí¦C --%>
@@ -375,28 +376,9 @@ pageContext.setAttribute("fDistrict", fDistrict);
 	<%@ include file="/front_end/frontEndButtom.file"%>
 
 
-	<script>
-		function onSubmit(token) {
-			document.getElementById('register').submit();
-		}
 
-		function validate(event) {
-
-			event.preventDefault();
-			grecaptcha.execute();
-		}
-
-		function onload() {
-			var element = document.getElementById('sub');
-			element.onclick = validate;
-		}
-	</script>
 	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
-
-	<script>
-		onload();
-	</script>
 
 
 	<script>

@@ -33,10 +33,10 @@ public class RestaurantServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	
-	protected Double getLongtitude(String restRestAdd){
+	protected Double getLongtitude(String restAdd){
 		Double longtitude = null;
 		try {
-			String sKeyWord = restRestAdd;
+			String sKeyWord = restAdd;
 			
 			URL urlFromGMap  = new URL(String.format("http://maps.googleapis.com/maps/api/geocode/json?address=%s&sensor=false&language=zh-TW", 
 			URLEncoder.encode(sKeyWord, "UTF-8")));//p=%s is KeyWord in	            
@@ -61,10 +61,10 @@ public class RestaurantServlet extends HttpServlet {
 		return longtitude;       
 	}
     
-	protected Double getLatitude(String restRestAdd){
+	protected Double getLatitude(String restAdd){
 		Double latitude = null;
 		try {
-			String sKeyWord = restRestAdd;
+			String sKeyWord = restAdd;
 			
 			URL urlFromGMap  = new URL(String.format("http://maps.googleapis.com/maps/api/geocode/json?address=%s&sensor=false&language=zh-TW", 
 			URLEncoder.encode(sKeyWord, "UTF-8")));//p=%s is KeyWord in	            
@@ -169,7 +169,7 @@ public class RestaurantServlet extends HttpServlet {
 				updateError.add("餐廳種類請勿留空");
 			}
 			
-			String restLocate = req.getParameter("restAdd").substring(0,2)+"縣";
+			String restLocate = req.getParameter("restAdd").substring(0,3);
 			if( (restLocate.trim()).length()==0 || restLocate == null ){
 				updateError.add("餐廳縣市轉換錯誤");
 			}
@@ -263,13 +263,16 @@ public class RestaurantServlet extends HttpServlet {
 				
 				String restAdd = county+district+restAddEnd;
 				
+				
+				
 				String restPhone = req.getParameter("restPhone");
 				if( (restPhone.trim()).length()==0 || restPhone == null){
 					newRestErr.add("餐廳電話請勿留空");
 				}
 				
-				String restIntro = req.getParameter("restIntro");
+				String restIntro = "qqq";
 				if( (restIntro.trim()).length()==0 || restIntro == null){
+					
 					newRestErr.add("餐廳介紹請勿留空");
 				}
 				
@@ -282,7 +285,9 @@ public class RestaurantServlet extends HttpServlet {
 				
 				String restLocate = null;
 				try {
-					restLocate = req.getParameter("restAdd").substring(0,2)+"縣";
+					
+					restLocate = restAdd.substring(0,3);
+					
 						if( (restLocate.trim()).length()==0 || restLocate == null ){
 							newRestErr.add("請輸入正確縣市");
 						}
@@ -300,12 +305,15 @@ public class RestaurantServlet extends HttpServlet {
 				Double restLongtitude = null;
 				
 				try {
+					
 					restLongtitude = getLongtitude(restAdd);
+					System.out.println("restAdd::::"+restAdd);
+					System.out.println("restLongtitude::::"+restLongtitude);
 						if(restLongtitude>180.0 || restLongtitude<0.0){
 							newRestErr.add("請輸入正確地址");
 						}
 				} catch (Exception e) {
-					newRestErr.add("餐廳經度輸入錯誤");
+					newRestErr.add("GoogleQuota到達上限");
 				}
 				
 				Double restLatitude = null;
@@ -315,7 +323,7 @@ public class RestaurantServlet extends HttpServlet {
 							newRestErr.add("請輸入正確地址");
 						}
 				} catch (Exception e) {
-					newRestErr.add("餐廳緯度輸入錯誤");
+					newRestErr.add("GoogleQuota到達上限");
 				}
 				
 				if(!newRestErr.isEmpty()){
@@ -344,7 +352,7 @@ public class RestaurantServlet extends HttpServlet {
 				Integer restReviewStatus = null;
 				try {
 					restReviewStatus = Integer.parseInt(req.getParameter("restReviewStatus"));
-					System.out.println(restReviewStatus);
+					
 				} catch (Exception e) {
 					reatManeErr.add("餐廳狀態錯誤");
 				}
@@ -352,13 +360,13 @@ public class RestaurantServlet extends HttpServlet {
 				Integer restNo = null;
 				try {
 					restNo = Integer.parseInt(req.getParameter("restNo"));
-					System.out.println(restNo);
+					
 				} catch (Exception e) {
 					reatManeErr.add("餐廳編號錯誤");
 				}
 				
 				if(!reatManeErr.isEmpty()){
-					System.out.println("000");
+					
 					RequestDispatcher requestDispatcher = req.getRequestDispatcher("/back_end/restMemberManagement/restMemberManagement.jsp");
 					requestDispatcher.forward(req, res);
 					return;

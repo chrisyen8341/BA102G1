@@ -69,8 +69,8 @@
 					<input class="btn btn-primary btn-lg btn-block login-button login"
 						type="submit" value="µn¿ý">
 					<div>
-						<a href="<%=request.getContextPath() %>/front_end/member/forgetPwd.jsp" class="btn btn-link">§Ñ°O±K½X</a> <a href="<%=request.getContextPath() %>/front_end/member/register.jsp"
-							class="btn btn-link">µù¥U</a>
+						<a href="<%=request.getContextPath() %>/front_end/member/forgetPwd.jsp" class="btn btn-link">§Ñ°O±K½X</a> 
+						<a href="<%=request.getContextPath() %>/front_end/member/registerForAWS.jsp" class="btn btn-link">µù¥U</a>
 					</div>
 					<input type="hidden" name="action" value="login">
 				</form>

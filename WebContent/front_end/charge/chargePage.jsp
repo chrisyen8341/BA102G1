@@ -122,9 +122,11 @@
 	    	var one = document.getElementById("name");
 	    	var date = document.getElementById("date");
 	        var memname = document.getElementById("memname");
+	        var cvc = document.getElementById("cvc");
 	        num.value="5432123456788881";
 	        date.value="12/21";
 	        one.value=memname.value; 
+	        cvc.value="310"
 	    }
 		</script>
 		<script type="text/javascript">
